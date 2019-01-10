@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('admin')->default(0);
             $table->string('locale', 8)->default('en');
+            $table->unsignedInteger('organization_id');
             $table->rememberToken();
             $table->timestamps();
         });

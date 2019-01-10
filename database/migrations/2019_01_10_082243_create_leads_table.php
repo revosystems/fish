@@ -1,5 +1,6 @@
 <?php
 
+use App\Lead;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,6 +14,7 @@ class CreateLeadsTable extends Migration
      */
     public function up()
     {
+        Schema::create('leads', function (Blueprint $table) {
         $table->increments('id');
         $table->string('email')->nullable();
 
@@ -34,6 +36,7 @@ class CreateLeadsTable extends Migration
 
         $table->timestamps();
         $table->softDeletes();
+    });
     }
 
     /**
