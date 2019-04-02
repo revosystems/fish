@@ -38,6 +38,4 @@ class Lead extends Resource
             Date::make('updated_at', __('ticket.updated'))->showInTimeAgo()->sortable(),
         ];
     }
-
-
 }

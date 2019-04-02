@@ -13,13 +13,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        $user = factory(User::class)->create([
-            "email" => "jordi.p@revo.works",
-            "admin" => true,
-        ]);
-        factory(Lead::class, 50)->create(['user_id' => $user->id]);
-        factory(Lead::class, 25)->create(['user_id' => factory(User::class)->create()->id]);
-        factory(Lead::class, 25)->create(['user_id' => factory(User::class)->create()->id]);
+        $this->call(UsersTableSeeder::class);
+        $this->call(LeadDevicesTableSeeder::class);
+        $this->call(LeadErpTableSeeder::class);
+        $this->call(LeadFranchisePosExternalTableSeeder::class);
+        $this->call(LeadPosTableSeeder::class);
+        $this->call(LeadPosTypesTableSeeder::class);
+        $this->call(LeadPropertySpacesTableSeeder::class);
+        //$this->call(LeadRetailPropertySpacesTableSeeder::class);
+        $this->call(LeadRetailSaleLocationsTableSeeder::class);
+        $this->call(LeadRetailSaleModesTableSeeder::class);
+        $this->call(LeadRetailTypologyGeneralTableSeeder::class);
+        $this->call(LeadTypesTableSeeder::class);
+        $this->call(LeadTypesSegmentsTableSeeder::class);
+        $this->call(LeadXefKdsTableSeeder::class);
+        $this->call(LeadXefPmsTableSeeder::class);
+        $this->call(LeadXefPropertyFranchiseTableSeeder::class);
+        //$this->call(LeadXefPropertySpacesTableSeeder::class);
+        $this->call(LeadXefTypologyGeneralTableSeeder::class);
+        $this->call(LeadXefTypologySpecificTableSeeder::class);
     }
 }

@@ -12,15 +12,22 @@ const mix = require('laravel-mix');
  */
 
 mix.babel([
-    //'resources/assets/js/app.js',
+        'node_modules/jquery-tags-input/dist/jquery.tagsinput.min.js',
         'vendor/badchoice/thrust/src/resources/js/thrust.min.js',
-        //'resources/js/utils.js',
-        'resources/js/libs/jquery.tagsinput.min.js',  //http://xoxco.com/projects/code/tagsinput/
-        'resources/js/libs/mention.js/bootstrap-typeahead.js',  //https://github.com/ivirabyan/jquery-mentions
-        'resources/js/libs/mention.js/mention.js',  //https://github.com/ivirabyan/jquery-mentions
+        'resources/js/libs/mention.js/bootstrap-typeahead.js',
+        'resources/js/libs/mention.js/mention.js',
     ], 'public/js/app.js')
-    .less('resources/less/style.less', '../resources/css/style.css')
+
+    // WEB JS
+    .babel(['resources/js/main.js'], 'public/js/main.js')
+
+    // WEB STYLES
+    .less('resources/less/app.less', '../resources/css/less-app.css')
     .styles([
-        'resources/css/libs/jquery.tagsinput.min.css',
-        'resources/css/style.css'
-    ],'public/css/all.css');
+        'resources/css/app.css',
+        'resources/css/less-app.css',
+    ],'public/css/app.css')
+
+    // PROPOSAL PDF
+    .styles(['resources/css/pdf.css'],'public/css/pdf.css')
+;

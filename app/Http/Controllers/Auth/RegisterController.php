@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -37,6 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+	    //dd(env('MAIL_HOST'));
         $this->middleware('guest');
     }
 
@@ -49,7 +50,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:2', 'max:255'],
+	        'firstsurname' => ['required', 'string', 'min:2', 'max:255'],
+	        'secondsurname' => ['required', 'string', 'min:2', 'max:255'],
+	        'enterprise' => ['required', 'string', 'min:3', 'max:255'],
+	        'territory' => ['required', 'string', 'min:3', 'max:255'],
+	        'department' => ['required', 'string', 'min:3', 'max:255'],
+	        'position' => ['required', 'string', 'min:3', 'max:255'],
+	        'phone' => ['required', 'numeric', 'digits_between:9,12'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -65,6 +73,13 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+	        'surname1' => $data['firstsurname'],
+	        'surname2' => $data['secondsurname'],
+	        'enterprise' => $data['enterprise'],
+	        'territory' => $data['territory'],
+	        'department' => $data['department'],
+	        'position' => $data['position'],
+	        'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

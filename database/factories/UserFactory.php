@@ -17,29 +17,39 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $faker->locale = 'es_ES';
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'name'              => $faker->firstname,
+	    'surname1'          => $faker->lastName,
+	    'surname2'          => $faker->lastName,
+	    'enterprise'        => $faker->company,
+	    'territory'         => $faker->city,
+	    'department'        => $faker->jobTitle,
+	    'position'          => $faker->bs,
+	    'phone'             => $faker->PhoneNumber,
+        'email'             => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
-        'organization_id' => function(){
+        'password'          => '$2y$12$EkoXUA79v5ywoph.oaDUQeplLw7sr54hJiXTGpL7L23O2VUnzhZsu', // 123456
+        'remember_token'    => str_random(10),
+        'organization_id'   => function(){
             return factory(Organization::class)->create()->id;
         }
     ];
 });
 
 $factory->define(Organization::class, function( Faker $faker){
+    $faker->locale = 'es_ES';
    return [
-       'name' => $faker->name,
-       'email' => $faker->unique()->safeEmail,
-       'token' => str_random(24)
+       'name'   => $faker->name,
+       'email'  => $faker->unique()->safeEmail,
+       'token'  => str_random(24)
    ];
 });
 
 $factory->define(Lead::class, function(Faker $faker){
+    $faker->locale = 'es_ES';
     return [
-        'name' => $faker->name,
+        'name'  => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'organization_id' => function(){
             return factory(Organization::class)->create()->id;

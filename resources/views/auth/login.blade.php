@@ -1,73 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                @if (session('errorMsg'))
+                    <div class="alert text-center" role="alert">
+                        @lang(session('errorMsg'))
+                    </div>
+                @endif
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="form-group">
+                        <div class="input-group {{ $errors->has('email') ? ' is-invalid' : '' }}">
+                            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="@lang('auth.fields.email')" class="form-control" >
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">{{ $errors->first('email') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group {{ $errors->has('password') ? ' is-invalid' : '' }}">
+                            <input type="password" name="password" id="password" placeholder="@lang('auth.fields.password')" class="form-control">
+                            @if (Route::has('password.request'))
+                                <a class="btn forgot-link" href="{{ route('password.request') }}">
+                                    @lang('auth.login.forgotLink')
+                                </a>
+                            @endif
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                        @if ($errors->has('password'))
+                            <span class="invalid-feedback" role="alert">{{ $errors->first('password') }}</span>
+                        @endif
+                    </div>
+                    <button type="submit" class="btn">@lang('auth.login.button')</button>
+                    <div class="text-center">
+                        <label class="checkbox-wrap">
+                            <div class="checkbox">
+                                <i class="fa fa-check"></i>
+                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                            @lang('auth.fields.remember')
+                        </label>
+                    </div>
+                    <a class="inverted alone text-center" href="{{ route('register') }}">@lang("auth.login.registerLink")</a>
+                </form>
             </div>
         </div>
-    </div>
-</div>
 @endsection
