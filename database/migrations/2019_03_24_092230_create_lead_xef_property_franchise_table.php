@@ -17,7 +17,7 @@ class CreateLeadXefPropertyFranchiseTable extends Migration
         Schema::create('lead_xef_property_franchise', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('ordern');
+            $table->integer('order');
             $table->timestamps();
         });
     }

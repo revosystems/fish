@@ -17,7 +17,7 @@ class CreateLeadXefTipologySpecificGeneralTable extends Migration
         Schema::create('lead_xef_typology_specific', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('ordern');
+            $table->integer('order');
             $table->timestamps();
         });
     }

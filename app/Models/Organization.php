@@ -1,11 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
+    protected $fillable = ['name'];
+
     public function organizations()
     {
         return $this->hasMany(Organization::class);
@@ -19,5 +21,10 @@ class Organization extends Model
     public function leads()
     {
         return $this->hasMany(Lead::class);
+    }
+
+    public function leadsWith()
+    {
+        return $this->hasManyThrough(Lead::class, Organization::class);
     }
 }

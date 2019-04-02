@@ -10,7 +10,7 @@ class Status extends Field
     {
         //$link = route('leads.show', $lead);
         $link = ''; //todo
-        return "<a class='label lead-status-{$lead->statusName()}' href='{$link}'>".__('lead.'.$lead->statusName()).' </a>';
+        return "<a class='label lead-status-{$lead->statusName()}' href='{$link}'>".__('admin.'.$lead->statusName()).' </a>';
     }
 
     public function displayInEdit($object, $inline = false)

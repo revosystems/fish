@@ -18,7 +18,7 @@ class CreateLeadSoftTypesTable extends Migration
             $table->increments('id');
             $table->integer('related_proposal_id')->unsigned();
             $table->string('name');
-            $table->integer('ordern');
+            $table->integer('order');
             $table->timestamps();
             $table->foreign('related_proposal_id')->references('id')->on('lead_proposals');
         });

@@ -17,7 +17,7 @@ class CreateLeadRetailSaleLocationTable extends Migration
         Schema::create('lead_retail_sale_location', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('ordern');
+            $table->integer('order');
             $table->timestamps();
         });
     }

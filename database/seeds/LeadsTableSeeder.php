@@ -1,7 +1,7 @@
 <?php
 
-use App\Lead;
-use App\User;
+use App\Models\Lead;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

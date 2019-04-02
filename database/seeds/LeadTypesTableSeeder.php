@@ -15,8 +15,8 @@ class LeadTypesTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('lead_types')->truncate();
         DB::table('lead_types')->insert([
-            ['name' => 'Xef','class' => 'dep.xef','ordern' => 1,'created_at' => new DateTime,'updated_at' => new DateTime],
-            ['name' => 'Retail','class' => 'dep.retail','ordern' => 2,'created_at' => new DateTime,'updated_at' => new DateTime],
+            ['name' => 'Xef','class' => 'dep.xef','order' => 1,'created_at' => new DateTime,'updated_at' => new DateTime],
+            ['name' => 'Retail','class' => 'dep.retail','order' => 2,'created_at' => new DateTime,'updated_at' => new DateTime],
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

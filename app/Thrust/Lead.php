@@ -13,8 +13,8 @@ use BadChoice\Thrust\Resource;
 
 class Lead extends Resource
 {
-    public static $model = \App\Lead::class;
-    public static $search = ['name', 'email', 'company', 'phone'];
+    public static $model = \App\Models\Lead::class;
+    public static $search = ['name', 'email', /*'company',*/ 'phone'];
 
     public function fields()
     {
@@ -34,8 +34,8 @@ class Lead extends Resource
             BelongsTo::make('user'),
             Status::make('status')->sortable(),
 //            Tasks::make('tasks', trans_choice('lead.task', 2)),
-            Date::make('created_at', __('ticket.requested'))->showInTimeAgo()->sortable(),
-            Date::make('updated_at', __('ticket.updated'))->showInTimeAgo()->sortable(),
+            Date::make('created_at', __('admin.requested'))->showInTimeAgo()->sortable(),
+            Date::make('updated_at', __('admin.updated'))->showInTimeAgo()->sortable(),
         ];
     }
 }

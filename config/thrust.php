@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'translationsPrefix'             => 'ticket.',
+    'translationsPrefix'             => 'admin.',
     'translationsDescriptionsPrefix' => 'pageDescription.',
     'routePrefix'                    => 'thrust',
     'routeMiddleware'                => ['web', 'auth'],

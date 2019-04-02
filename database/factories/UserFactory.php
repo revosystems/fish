@@ -1,8 +1,8 @@
 <?php
 
-use App\Lead;
-use App\Organization;
-use App\User;
+use App\Models\Lead;
+use App\Models\Organization;
+use App\Models\User;
 use Faker\Generator as Faker;
 
 /*
@@ -16,7 +16,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     $faker->locale = 'es_ES';
     return [
         'name'              => $faker->firstname,

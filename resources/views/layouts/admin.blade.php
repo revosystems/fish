@@ -18,6 +18,10 @@
 
 @yield('content')
 
+<script>
+    var lang = {!! json_encode(Lang::get('javascript')) !!};
+</script>
+@include('layouts.popup')
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('scripts')
 </body>

@@ -17,7 +17,7 @@ class CreateLeadFranchisePosExternalTable extends Migration
         Schema::create('lead_franchise_pos_external', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('ordern');
+            $table->integer('order');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class CreateLeadPropertySpacesTable extends Migration
             $table->increments('id');
             $table->integer('lead_type_id')->unsigned();
             $table->string('name');
-            $table->integer('ordern');
+            $table->integer('order');
             $table->timestamps();
             $table->foreign('lead_type_id')->references('id')->on('lead_types');
         });

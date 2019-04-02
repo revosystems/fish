@@ -18,7 +18,7 @@ class CreateLeadTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('class');
-            $table->integer('ordern');
+            $table->integer('order');
             $table->timestamps();
         });
     }

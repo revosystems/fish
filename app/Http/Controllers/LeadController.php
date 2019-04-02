@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLeadRequest;
-use App\LeadPropertySpaces;
-use App\LeadSoft;
-use App\LeadSoftType;
-use App\LeadTypesSegment;
+use App\Models\LeadPropertySpaces;
+use App\Models\LeadSoft;
+use App\Models\LeadSoftType;
+use App\Models\LeadTypesSegment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Lead;
-use App\LeadDevice;
-use App\LeadErp;
-use App\LeadFranchisePosExternal;
-use App\LeadPos;
-use App\LeadProposal;
-use App\LeadRetailSaleLocation;
-use App\LeadRetailSaleMode;
-use App\LeadRetailTypologyGeneral;
-use App\LeadType;
-use App\LeadXefKds;
-use App\LeadXefPms;
-use App\LeadXefPropertyFranchise;
-use App\LeadXefTypologyGeneral;
-use App\LeadXefTypologySpecific;
+use App\Models\Lead;
+use App\Models\LeadDevice;
+use App\Models\LeadErp;
+use App\Models\LeadFranchisePosExternal;
+use App\Models\LeadPos;
+use App\Models\LeadProposal;
+use App\Models\LeadRetailSaleLocation;
+use App\Models\LeadRetailSaleMode;
+use App\Models\LeadRetailTypologyGeneral;
+use App\Models\LeadType;
+use App\Models\LeadXefKds;
+use App\Models\LeadXefPms;
+use App\Models\LeadXefPropertyFranchise;
+use App\Models\LeadXefTypologyGeneral;
+use App\Models\LeadXefTypologySpecific;
 
 class LeadController extends Controller
 {
@@ -58,21 +58,21 @@ class LeadController extends Controller
     public function create()
     {
         // CLIENT
-            $lead_types                     = LeadType::all()->sortBy("ordern");
+            $lead_types                     = LeadType::all()->sortBy("order");
             $lead_xef_typology_general      = LeadXefTypologyGeneral::all()->sortBy("name");
-            $lead_xef_typology_specific     = LeadXefTypologySpecific::all()->sortBy("ordern");
+            $lead_xef_typology_specific     = LeadXefTypologySpecific::all()->sortBy("order");
             $lead_retail_typology_general   = LeadRetailTypologyGeneral::all()->sortBy("name");
         // PROPERTY
-            $lead_xef_property_franchise    = LeadXefPropertyFranchise::all()->sortBy("ordern");
-            $lead_xef_property_spaces       = $lead_types->find(1)->spaces->sortBy("ordern");
-            $lead_retail_property_spaces    = $lead_types->find(2)->spaces->sortBy("ordern");
+            $lead_xef_property_franchise    = LeadXefPropertyFranchise::all()->sortBy("order");
+            $lead_xef_property_spaces       = $lead_types->find(1)->spaces->sortBy("order");
+            $lead_retail_property_spaces    = $lead_types->find(2)->spaces->sortBy("order");
         // CONFIGURATION
-            $lead_devices                   = LeadDevice::all()->sortBy("ordern");
-            $lead_xef_kds                   = LeadXefKds::all()->sortBy("ordern");
+            $lead_devices                   = LeadDevice::all()->sortBy("order");
+            $lead_xef_kds                   = LeadXefKds::all()->sortBy("order");
 	        $lead_pos                       = LeadPos::all()->sortBy("name");
-            $lead_retail_sale_mode          = LeadRetailSaleMode::all()->sortBy("ordern");
-            $lead_retail_sale_location      = LeadRetailSaleLocation::all()->sortBy("ordern");
-	        $lead_franchise_pos_external    = LeadFranchisePosExternal::all()->sortBy("ordern");
+            $lead_retail_sale_mode          = LeadRetailSaleMode::all()->sortBy("order");
+            $lead_retail_sale_location      = LeadRetailSaleLocation::all()->sortBy("order");
+	        $lead_franchise_pos_external    = LeadFranchisePosExternal::all()->sortBy("order");
             $lead_xef_pms                   = LeadXefPms::all()->sortBy("name");
             $lead_erp                       = LeadErp::all()->sortBy("name");
             $lead_xef_soft                  = $lead_types->find(1)->software->sortBy("name")->groupBy("lead_soft_type_id");
