@@ -24,5 +24,6 @@
 @include('layouts.popup')
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('scripts')
+@stack('edit-scripts')
 </body>
 </html>

@@ -20,6 +20,7 @@ class CreateLeadXefTypologyGeneralTable extends Migration
             $table->string('related_proposal_id')->nullable();
             $table->string('name');
             $table->timestamps();
+
             $table->foreign('lead_proposal_id')->references('id')->on('lead_proposals');
         });
     }

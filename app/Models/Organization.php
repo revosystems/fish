@@ -13,6 +13,10 @@ class Organization extends Model
         return $this->hasMany(Organization::class);
     }
 
+    public function parentOrganization(){
+        return $this->belongsTo(Organization::class, 'organization_id');
+    }
+
     public function users()
     {
         return $this->hasMany(User::class);

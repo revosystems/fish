@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeadCommentsTable extends Migration
+class CreateAttachmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateLeadCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lead_comments', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('path');
+            $table->unsignedInteger('attachable_id');
+            $table->string('attachable_type');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateLeadCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lead_comments');
+        Schema::dropIfExists('attachments');
     }
 }

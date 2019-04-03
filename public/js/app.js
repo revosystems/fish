@@ -58,8 +58,8 @@ function callAjax(t, e) {
   });
 }
 
-function saveOrder(t) {
-  $(".loadingImage").show(), postSaveOrder(window.location.origin + "/thrust/" + t + "/updateOrder", ".sortable");
+function saveOrder(t, e) {
+  $(".loadingImage").show(), postSaveOrder(window.location.origin + "/thrust/" + t + "/updateOrder?page=" + e, ".sortable");
 }
 
 function saveChildOrder(t, e, n) {
