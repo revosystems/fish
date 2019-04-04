@@ -406,7 +406,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('retail_sale_mode') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_sale_mode') !='') {{ 'started' }} @endif" name="retail_sale_mode" id="retail_sale_mode" title="{{ __('app.lead.retailSaleMode') }}" data-size="5">
-                                    @foreach($lead_retail_sale_mode as $type)
+                                    @foreach($lead_retail_sale_modes as $type)
                                         <option value='{{$type->id}}'
                                                 @if (old('retail_sale_mode') == $type->id)
                                                 {{ 'selected' }}
@@ -426,7 +426,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('retail_sale_location') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_sale_location') !='') {{ 'started' }} @endif" name="retail_sale_location" id="retail_sale_location" title="{{ __('app.lead.retailSaleLocation') }}" data-size="5">
-                                    @foreach($lead_retail_sale_location as $type)
+                                    @foreach($lead_retail_sale_locations as $type)
                                         <option value='{{$type->id}}'
                                                 @if (old('retail_sale_location') == $type->id)
                                                 {{ 'selected' }}

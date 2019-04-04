@@ -2,7 +2,7 @@
 @section('content')
     <div class="description comment">
         <div class="breadcrumb">
-            <a href="{{ route('thrust.hasMany', ['organizations', $lead->organization, 'leads']) }}"> {{ trans_choice('admin.organization', 1) }} {{ nameOrDash($lead->organization) }} {{ trans_choice('admin.lead', 2) }}</a>
+            <a href="{{ route('thrust.hasMany', ['organizations', $lead->organization, 'leads']) }}"> {{ trans_choice('admin.organization', 1) }} · {{ nameOrDash($lead->organization) }} · {{ trans_choice('admin.lead', 2) }}</a>
         </div>
         <h3> {{ nameOrDash($lead->organization) }} · {{ $lead->name }} · {{ $lead->email }} </h3>
         @busy <span class="label lead-status-{{ $lead->statusName() }}"> {{ __("admin." . $lead->statusName() ) }} </span> &nbsp;
@@ -10,14 +10,14 @@
     </div>
 
     <div class="description comment">
-        {{ Form::open(["url" => route('leads.update',$lead), 'method' => "PUT"]) }}
+        {{ Form::open(["url" => route('leads.update', $lead), 'method' => "PUT"]) }}
             @include('components.lead.fields', ["lead" => $lead])
             <button class="uppercase"> {{ __('admin.update') }}</button>
         {{ Form::close() }}
     </div>
 
     <div class="comment new-comment">
-        {{ Form::open(["url" => route("leads.status.store",$lead), "files" => true, "id" => "comment-form"]) }}
+        {{ Form::open(["url" => route("leads.status.store", $lead), "files" => true, "id" => "comment-form"]) }}
         <textarea name="body"></textarea>
         <br>
         @include('components.uploadAttachment', ["attachable" => $lead, "type" => "leads"])

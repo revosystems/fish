@@ -30,6 +30,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    public function leads()
+    {
+        return $this->hasMany(Lead::class);
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new RegisterNotification);

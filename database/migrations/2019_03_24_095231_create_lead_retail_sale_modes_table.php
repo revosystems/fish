@@ -13,8 +13,8 @@ class CreateLeadRetailSaleModesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_retail_sale_mode');
-        Schema::create('lead_retail_sale_mode', function (Blueprint $table) {
+        Schema::dropIfExists('lead_retail_sale_modes');
+        Schema::create('lead_retail_sale_modes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('order');
@@ -29,6 +29,6 @@ class CreateLeadRetailSaleModesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lead_retail_sale_mode');
+        Schema::dropIfExists('lead_retail_sale_modes');
     }
 }

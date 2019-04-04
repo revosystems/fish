@@ -57,46 +57,28 @@ class LeadController extends Controller
 	 */
     public function create()
     {
-        // CLIENT
-            $lead_types                     = LeadType::all()->sortBy("order");
-            $lead_xef_typology_general      = LeadXefTypologyGeneral::all()->sortBy("name");
-            $lead_xef_typology_specific     = LeadXefTypologySpecific::all()->sortBy("order");
-            $lead_retail_typology_general   = LeadRetailTypologyGeneral::all()->sortBy("name");
-        // PROPERTY
-            $lead_xef_property_franchise    = LeadXefPropertyFranchise::all()->sortBy("order");
-            $lead_xef_property_spaces       = $lead_types->find(1)->spaces->sortBy("order");
-            $lead_retail_property_spaces    = $lead_types->find(2)->spaces->sortBy("order");
-        // CONFIGURATION
-            $lead_devices                   = LeadDevice::all()->sortBy("order");
-            $lead_xef_kds                   = LeadXefKds::all()->sortBy("order");
-	        $lead_pos                       = LeadPos::all()->sortBy("name");
-            $lead_retail_sale_mode          = LeadRetailSaleMode::all()->sortBy("order");
-            $lead_retail_sale_location      = LeadRetailSaleLocation::all()->sortBy("order");
-	        $lead_franchise_pos_external    = LeadFranchisePosExternal::all()->sortBy("order");
-            $lead_xef_pms                   = LeadXefPms::all()->sortBy("name");
-            $lead_erp                       = LeadErp::all()->sortBy("name");
-            $lead_xef_soft                  = $lead_types->find(1)->software->sortBy("name")->groupBy("lead_soft_type_id");
-            $lead_retail_soft               = $lead_types->find(2)->software->sortBy("name")->groupBy("lead_soft_type_id");
-
-        return view('lead.create', compact([
-            'lead_types',
-            'lead_xef_typology_general',
-            'lead_xef_typology_specific',
-            'lead_retail_typology_general',
-            'lead_xef_property_franchise',
-            'lead_xef_property_spaces',
-            'lead_retail_property_spaces',
-            'lead_devices',
-            'lead_xef_kds',
-            'lead_pos',
-            'lead_retail_sale_mode',
-            'lead_retail_sale_location',
-            'lead_franchise_pos_external',
-            'lead_xef_pms',
-            'lead_erp',
-            'lead_xef_soft',
-            'lead_retail_soft'
-        ]));
+        $lead_types                     = LeadType::all()->sortBy("order");
+        return view('lead.create', [
+            "lead_types"                    => $lead_types,
+            "lead_xef_typology_general"     => LeadXefTypologyGeneral::all()->sortBy("name"),
+            "lead_xef_typology_specific"    => LeadXefTypologySpecific::all()->sortBy("order"),
+            "lead_retail_typology_general"  => LeadRetailTypologyGeneral::all()->sortBy("name"),
+            // PROPERTY
+            "lead_xef_property_franchise"   => LeadXefPropertyFranchise::all()->sortBy("order"),
+            "lead_xef_property_spaces"      => $lead_types->find(1)->spaces->sortBy("order"),
+            "lead_retail_property_spaces"   => $lead_types->find(2)->spaces->sortBy("order"),
+            // CONFIGURATION
+            "lead_devices"                  => LeadDevice::all()->sortBy("order"),
+            "lead_xef_kds"                  => LeadXefKds::all()->sortBy("order"),
+            "lead_pos"                      => LeadPos::all()->sortBy("name"),
+            "lead_retail_sale_modes"        => LeadRetailSaleMode::all()->sortBy("order"),
+            "lead_retail_sale_locations"    => LeadRetailSaleLocation::all()->sortBy("order"),
+            "lead_franchise_pos_external"   => LeadFranchisePosExternal::all()->sortBy("order"),
+            "lead_xef_pms"                  => LeadXefPms::all()->sortBy("name"),
+            "lead_erp"                      => LeadErp::all()->sortBy("name"),
+            "lead_xef_soft"                 => $lead_types->find(1)->software->sortBy("name")->groupBy("lead_soft_type_id"),
+            "lead_retail_soft"              => $lead_types->find(2)->software->sortBy("name")->groupBy("lead_soft_type_id"),
+        ]);
     }
 
     /**

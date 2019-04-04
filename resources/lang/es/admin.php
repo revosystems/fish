@@ -80,4 +80,6 @@ return [
     'high'             => 'Alta',
     'blocker'          => 'Bloqueador',
 
+    'admin'             => 'Admin',
+    'report'            => 'Report|Reports',
 ];

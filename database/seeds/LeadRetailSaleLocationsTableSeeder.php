@@ -13,8 +13,8 @@ class LeadRetailSaleLocationsTableSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('lead_retail_sale_location')->truncate();
-        DB::table('lead_retail_sale_location')->insert([
+        DB::table('lead_retail_sale_locations')->truncate();
+        DB::table('lead_retail_sale_locations')->insert([
             ['name' => 'En un local','order' => 1,'created_at' => new DateTime,'updated_at' => new DateTime],
             ['name' => 'En mobilidad','order' => 2,'created_at' => new DateTime,'updated_at' => new DateTime],
         ]);

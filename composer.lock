@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbdeee9f324de721980d2de9e46a830e",
+    "content-hash": "76fd18cafd39ae5e0b7872ac82287e98",
     "packages": [
+        {
+            "name": "badchoice/grog",
+            "version": "1.6.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BadChoice/grog.git",
+                "reference": "2075075b6a5b23fd95956efc248951077e7d2906"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BadChoice/grog/zipball/2075075b6a5b23fd95956efc248951077e7d2906",
+                "reference": "2075075b6a5b23fd95956efc248951077e7d2906",
+                "shasum": ""
+            },
+            "require": {
+                "goodby/csv": "1.2.0",
+                "khill/fontawesomephp": "1.1.x",
+                "laravelcollective/html": ">=5.4.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BadChoice\\Grog\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Badchoice",
+                    "email": "jordi@gloobus.net"
+                }
+            ],
+            "description": "Easy form builder from array",
+            "time": "2019-01-16T15:33:13+00:00"
+        },
         {
             "name": "badchoice/hurricane",
             "version": "1.0.2",
@@ -567,6 +603,63 @@
                 "trusted proxy"
             ],
             "time": "2019-01-10T14:06:47+00:00"
+        },
+        {
+            "name": "goodby/csv",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/goodby/csv.git",
+                "reference": "66c376b3bd51bc90fd680bfdf3708c9a22b9d081"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/goodby/csv/zipball/66c376b3bd51bc90fd680bfdf3708c9a22b9d081",
+                "reference": "66c376b3bd51bc90fd680bfdf3708c9a22b9d081",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": ">=1.1.0",
+                "mockery/mockery": ">=0.7.2",
+                "phpunit/phpunit": "3.7.*",
+                "suin/php-expose": ">=1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Goodby\\CSV": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "suin",
+                    "email": "suinyeze@gmail.com",
+                    "homepage": "https://www.facebook.com/suinyeze",
+                    "role": "Developer, Renaming Specialist"
+                },
+                {
+                    "name": "reoring",
+                    "email": "mori.reo@gmail.com",
+                    "homepage": "https://www.facebook.com/reoring",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CSV import/export library",
+            "homepage": "https://github.com/goodby/csv",
+            "keywords": [
+                "csv",
+                "export",
+                "import"
+            ],
+            "time": "2015-01-14T03:58:50+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

@@ -694,6 +694,9 @@ li {
   .hide-mobile {
     display: none;
   }
+  .show-mobile {
+    display: unset;
+  }
 }
 input {
   border: 1px solid #c8c8c8;
