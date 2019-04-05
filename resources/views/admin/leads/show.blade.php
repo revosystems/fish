@@ -21,7 +21,7 @@
     </div>
 
     <div class="comment new-comment mt4">
-        <h4>Nuevo Comentario</h4>
+        <h4>{{ __('admin.newComment') }}</h4>
         {{ Form::open(["url" => route("leads.status.store", $lead), "files" => true, "id" => "comment-form"]) }}
         <textarea name="body"></textarea>
         <br>

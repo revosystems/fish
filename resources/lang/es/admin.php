@@ -82,4 +82,5 @@ return [
 
     'admin'             => 'Admin',
     'report'            => 'Report|Reports',
+    'newComment'        => 'Nuevo Comentario'
 ];

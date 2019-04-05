@@ -3,6 +3,7 @@
     <div class="col-min33">
         <table class="no-padding">
             <tr>
+                {{--{{dd($lead->type)}}--}}
                 <td>{{ __('app.lead.type') }}:</td>
                 <td>{{ Form::select('type', createSelectArray( \App\Models\LeadType::all()->sortBy("order"), true), $lead->type) }}</td>
             </tr>
@@ -77,27 +78,21 @@
             </tr>
             <tr>
                 <td>
-                    <input type="hidden" name="xef_property_spaces[]" value="">
-                    <select class="selectpicker @if (old('xef_property_spaces') !='') {{ 'started' }} @endif" name="xef_property_spaces[]" id="xef_property_spaces" title="{{ __('app.lead.xefPropertySpaces') }}"  data-size="5" multiple>
-                        @foreach($lead_xef_property_spaces as $space)
-                            <option value='{{$space->id}}' @if (old('xef_property_spaces') !='' && in_array($space->id,old('xef_property_spaces'))) {{ 'selected' }} @endif
-                            @if (old('xef_property_spaces') == $space->id)
-                            {{ 'selected' }}
-                            @endif
-                            data-content="<div class='hideHint'>{{ __('app.lead.xefPropertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"
-                            >
-                                {{ $space->name }}
-                            </option>
-                        @endforeach
-                    </select>
+                    {{--<input type="hidden" name="xef_property_spaces[]" value="">--}}
+                    {{--<select class="selectpicker @if (old('xef_property_spaces') !='') {{ 'started' }} @endif" name="xef_property_spaces[]" id="xef_property_spaces" title="{{ __('app.lead.xefPropertySpaces') }}"  data-size="5" multiple>--}}
+                        {{--@foreach($lead_xef_property_spaces as $space)--}}
+                            {{--<option value='{{$space->id}}' @if (old('xef_property_spaces') !='' && in_array($space->id,old('xef_property_spaces'))) {{ 'selected' }} @endif--}}
+                            {{--@if (old('xef_property_spaces') == $space->id)--}}
+                            {{--{{ 'selected' }}--}}
+                            {{--@endif--}}
+                            {{--data-content="<div class='hideHint'>{{ __('app.lead.xefPropertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"--}}
+                            {{-->--}}
+                                {{--{{ $space->name }}--}}
+                            {{--</option>--}}
+                        {{--@endforeach--}}
+                    {{--</select>--}}
                 </td>
             </tr>
-        </table>
-    </div>
-</div>
-<div class="grid">
-    <div class="col-min33">
-        <table class="no-padding">
             <tr>
                 <td>{{ __('app.lead.xefPropertyCapacity') }}: </td>
                 <td><input type="text" name="xef_property_capacity" id="xef_property_capacity" value="{{ old('xef_property_capacity') ? : $lead->xef_property_capacity }}" placeholder="{{ __('app.lead.xefPropertyCapacity') }}" class="form-control" ></td>
@@ -106,31 +101,25 @@
                 <td>{{ __('app.lead.retailPropertyQuantity') }}: </td>
                 <td><input type="text" name="retail_property_quantity" id="retail_property_quantity" value="{{ old('retail_property_quantity') ? : $lead->retail_property_quantity }}" placeholder="{{ __('app.lead.retailPropertyQuantity') }}" class="form-control" ></td>
             </tr>
-        </table>
-    </div>
-    <div class="col-min33">
-        <table class="no-padding">
             <tr>
                 <td>
-                    <input type="hidden" name="retail_property_spaces[]" value="">
-                    <div class="form-group isPicker {{ $errors->has('retail_property_spaces') ? ' is-invalid' : '' }}">
-                        {{--<select class="selectpicker @if (old('retail_property_spaces') !='') {{ 'started' }} @endif" name="retail_property_spaces[]" id="retail_property_spaces" title="{{ __('app.lead.retailPropertySpaces') }}"  data-size="5" multiple>--}}
-                        {{--@foreach($lead_retail_property_spaces as $space)--}}
-                        {{--<option value='{{$space->id}}' @if (old('retail_property_spaces') !='' && in_array($space->id,old('retail_property_spaces'))) {{ 'selected' }} @endif--}}
-                        {{--@if (old('retail_property_spaces') == $space->id)--}}
-                        {{--{{ 'selected' }}--}}
-                        {{--@endif--}}
-                        {{--data-content="<div class='hideHint'>{{ __('app.lead.retailPropertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"--}}
-                        {{-->--}}
-                        {{--{{ $space->name }}--}}
-                        {{--</option>--}}
-                        {{--@endforeach--}}
-                        {{--</select>--}}
-                    </div>
+                    {{--<input type="hidden" name="retail_property_spaces[]" value="">--}}
+                    {{--<select class="selectpicker @if (old('retail_property_spaces') !='') {{ 'started' }} @endif" name="retail_property_spaces[]" id="retail_property_spaces" title="{{ __('app.lead.retailPropertySpaces') }}"  data-size="5" multiple>--}}
+                    {{--@foreach($lead_retail_property_spaces as $space)--}}
+                    {{--<option value='{{$space->id}}' @if (old('retail_property_spaces') !='' && in_array($space->id,old('retail_property_spaces'))) {{ 'selected' }} @endif--}}
+                    {{--@if (old('retail_property_spaces') == $space->id)--}}
+                    {{--{{ 'selected' }}--}}
+                    {{--@endif--}}
+                    {{--data-content="<div class='hideHint'>{{ __('app.lead.retailPropertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"--}}
+                    {{-->--}}
+                    {{--{{ $space->name }}--}}
+                    {{--</option>--}}
+                    {{--@endforeach--}}
+                    {{--</select>--}}
                 </td>
             </tr>
             <tr>
-                <td>{{ __('app.lead.retailPropertyStaffQuantity') }}: </td>
+                <td>{{ __('app.lead.retailPropertyStaffQuantity') }}</td>
                 <td><input type="text" name="retail_property_staff_quantity" id="retail_property_staff_quantity" value="{{ old('retail_property_staff_quantity') ? : $lead->retail_property_staff_quantity }}" placeholder="{{ __('app.lead.retailPropertyStaffQuantity') }}" class="form-control" ></td>
             </tr>
         </table>
