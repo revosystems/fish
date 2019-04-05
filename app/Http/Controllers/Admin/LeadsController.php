@@ -10,8 +10,7 @@ class LeadsController extends Controller
 {
     public function show(Lead $lead)
     {
-        createSelectArray(LeadType::all());
-//        $lead_types                     = LeadType::all()->sortBy("order");
+        $lead_types                     = LeadType::all()->sortBy("order");
         return view('admin.leads.show', [
             "lead"                          => $lead,
 //            "lead_types"                    => $lead_types,
@@ -20,8 +19,8 @@ class LeadsController extends Controller
 //            "lead_retail_typology_general"  => LeadRetailTypologyGeneral::all()->sortBy("name"),
 //            // PROPERTY
 //            "lead_xef_property_franchise"   => LeadXefPropertyFranchise::all()->sortBy("order"),
-//            "lead_xef_property_spaces"      => $lead_types->find(1)->spaces->sortBy("order"),
-//            "lead_retail_property_spaces"   => $lead_types->find(2)->spaces->sortBy("order"),
+            "lead_xef_property_spaces"      => $lead_types->find(1)->spaces->sortBy("order"),
+            "lead_retail_property_spaces"   => $lead_types->find(2)->spaces->sortBy("order"),
 //            // CONFIGURATION
 //            "lead_devices"                  => LeadDevice::all()->sortBy("order"),
 //            "lead_xef_kds"                  => LeadXefKds::all()->sortBy("order"),
@@ -38,12 +37,10 @@ class LeadsController extends Controller
 
     public function update(Lead $lead)
     {
-//        dd(request()->toArray());
         $lead->update(array_only(request()->all(), [
             "type", "type_segment", "xef_typology_general", "xef_typology_specific", "retail_typology_general",
             'surname1', 'surname2', 'trade_name', 'email', 'phone', 'city', 'xef_property_quantity', 'xef_property_capacity', 'retail_property_quantity', 'retail_property_staff_quantity', 'xef_pos_critical_quantity', 'xef_cash_quantity', 'xef_printers_quantity', 'xef_kds_quantity', 'xef_pms_other', 'erp_other', 'xef_soft_other', 'retail_soft_other',         ]));
 //        $lead->update(request()->all());
-        dd('sh');
         return back()->withMessage('updated');
     }
 }

@@ -40,8 +40,9 @@
 @import "tabs";
 */
 @import "sidebar";
-
+@import "tables";
 body{
+  background-color: #EEEEEE;
   margin:0;
   padding:0;
   color: #555;
@@ -164,7 +165,8 @@ li a:hover{
   padding: 20px;
   position: fixed;
   float: left;
-  left: @sidebar-width-collapsed;
+  left: 0;
+  margin-top: 24px;
   top: @headerHeight;
   bottom: 0;
   right: 0;
@@ -336,13 +338,14 @@ a{
 }
 
 .content{
+  left:0;
   .pt4;
   margin-left: @sidebar-width;
   overflow:auto;
 }
 
 .comment{
-  .ph4; .pv4;
+  .pv4;
   .bb;
   min-height:50px;
 }
@@ -506,7 +509,7 @@ button:focus {outline:0;}
 }
 
 .date{
-  color: @lighter-gray;
+  color: #a9a9a9;
 }
 
 .pagination li{
@@ -517,9 +520,10 @@ button:focus {outline:0;}
 
 .caret-down{
   padding: 6px;
+  padding-bottom: 8px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  margin-left: -2px;
+  margin-left: -6px;
   vertical-align: text-top;
 }
 

@@ -692,5 +692,6 @@
             </div>
         </div>
     </form>
+    @if ($errors) {{dd($errors->toArray())}}@endif
 
 @endsection
