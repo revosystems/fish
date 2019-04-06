@@ -13,7 +13,6 @@ class CreateLeadSoftTypesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_soft_types');
         Schema::create('lead_soft_types', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('related_proposal_id')->unsigned();

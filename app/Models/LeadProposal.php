@@ -11,8 +11,8 @@ class LeadProposal extends Model
         return $this->belongsTo(Lead::class);
     }
 
-    public function typologyGeneral()
+    public function generalTypology()
     {
-        return $this->belongsTo(LeadXefTypologyGeneral::class,'lead_xef_typology_general');
+        return $this->belongsTo(LeadGeneralTypology::class);
     }
 }

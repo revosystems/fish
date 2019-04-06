@@ -218,20 +218,16 @@ return [
             'type' => [
                 'required'  => 'Debe seleccionar una opción',
             ],
-            'type_segment' => [
+            'type_segment_id' => [
                 'required'  => 'Debe seleccionar una opción',
             ],
+            'general_typology' => [
+                'required_if'  => 'Debe seleccionar una opción',
+            ],
             // > XEF
-                'xef_typology_general' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'xef_typology_specific' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-            // > XEF
-                'retail_typology_general' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
+            'xef_specific_typology' => [
+                'required_if'  => 'Debe seleccionar una opción',
+            ],
 
         // CLIENT INFO
             'trade_name' => [
@@ -240,13 +236,13 @@ return [
                 'max'       => 'Máximo :max caracteres',
             ],
 
-        // PROPERTY
+            // PROPERTY
+            'property_quantity' => [
+                'required_if'  => 'Campo obligatorio',
+                'numeric'   => 'Debe ser numérico',
+            ],
             // > XEF
-                'xef_property_quantity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
-                'xef_property_franchise' => [
+                'xef_property_franchise_id' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
                 'xef_property_spaces' => [
@@ -258,10 +254,6 @@ return [
                     'numeric'   => 'Debe ser numérico',
                 ],
             // > RETAIL
-                'retail_property_quantity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
                 'retail_property_spaces' => [
                     'required'  => 'Debe seleccionar una opción',
                     'required_if'  => 'Debe seleccionar una opción',

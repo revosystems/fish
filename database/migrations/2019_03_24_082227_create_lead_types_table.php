@@ -13,7 +13,6 @@ class CreateLeadTypesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_types');
         Schema::create('lead_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

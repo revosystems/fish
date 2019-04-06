@@ -13,7 +13,6 @@ class CreateLeadFranchisePosExternalTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_franchise_pos_external');
         Schema::create('lead_franchise_pos_external', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

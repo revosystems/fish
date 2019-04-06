@@ -3,31 +3,30 @@
     <div class="col-min33">
         <table class="no-padding">
             <tr>
-                {{--{{dd($lead->type)}}--}}
                 <td>{{ __('app.lead.type') }}:</td>
                 <td>{{ Form::select('type', createSelectArray( \App\Models\LeadType::all()->sortBy("order"), true), $lead->type) }}</td>
             </tr>
 
-            <input type="hidden" name="type_segment_old" id="type_segment_old" value="{{old('type_segment')}}" />
+            <input type="hidden" name="type_segment_id_old" id="type_segment_id_old" value="{{old('type_segment_id')}}" />
             <tr>
                 <td>{{ __('app.lead.type_segment') }}:</td>
-                <td>{{ Form::select('type_segment', createSelectArray( \App\Models\LeadTypesSegment::all()->sortBy("order"), true), $lead->type_segment) }}</td>
+                <td>{{ Form::select('type_segment_id', createSelectArray( \App\Models\LeadTypesSegment::all()->sortBy("order"), true), $lead->type_segment_id) }}</td>
             </tr>
             <tr>
-                <td>{{ __('app.lead.retailTypologyGeneral') }}:</td>
-                <td>{{ Form::select('retail_typology_general', createSelectArray( \App\Models\LeadRetailTypologyGeneral::all()->sortBy("order"), true), $lead->retail_typology_general) }}</td>
+                <td>{{ __('app.lead.generalTypology') }}:</td>
+                <td>{{ Form::select('general_typology', createSelectArray( \App\Models\LeadGeneralTypology::all()->sortBy("order"), true), $lead->general_typology) }}</td>
             </tr>
         </table>
     </div>
     <div class="col-min33">
         <table class="no-padding">
             <tr>
-                <td>{{ __('app.lead.xefTypologyGeneral') }}:</td>
-                <td>{{ Form::select('xef_typology_general', createSelectArray( \App\Models\LeadXefTypologyGeneral::all()->sortBy("order"), true), $lead->xef_typology_general) }}</td>
+                <td>{{ __('app.lead.generalTypology') }}:</td>
+                <td>{{ Form::select('general_typology', createSelectArray( \App\Models\LeadGeneralTypology::all()->sortBy("order"), true), $lead->general_typology) }}</td>
             </tr>
             <tr>
-                <td>{{ __('app.lead.xefTypologySpecific') }}:</td>
-                <td>{{ Form::select('xef_typology_specific', createSelectArray( \App\Models\LeadXefTypologySpecific::all()->sortBy("order"), true), $lead->xef_typology_specific) }}</td>
+                <td>{{ __('app.lead.xefSpecificTypology') }}:</td>
+                <td>{{ Form::select('xef_specific_typology', createSelectArray( \App\Models\LeadXefSpecificTypology::all()->sortBy("order"), true), $lead->xef_specific_typology) }}</td>
             </tr>
         </table>
     </div>
@@ -73,19 +72,19 @@
     <div class="col-min33">
         <table class="no-padding">
             <tr>
-                <td>{{ __('app.lead.xefPropertyQuantity') }}</td>
-                <td><input type="text" name="xef_property_quantity" id="xef_property_quantity" value="{{ old('xef_property_quantity') ? : $lead->xef_property_quantity }}" placeholder="{{ __('app.lead.xefPropertyQuantity') }}" class="form-control" ></td>
+                <td>{{ __('app.lead.propertyQuantity') }}</td>
+                <td><input type="text" name="property_quantity" id="property_quantity" value="{{ old('property_quantity') ? : $lead->property_quantity }}" placeholder="{{ __('app.lead.propertyQuantity') }}" class="form-control" ></td>
             </tr>
             <tr>
                 <td>
-                    {{--<input type="hidden" name="xef_property_spaces[]" value="">--}}
-                    {{--<select class="selectpicker @if (old('xef_property_spaces') !='') {{ 'started' }} @endif" name="xef_property_spaces[]" id="xef_property_spaces" title="{{ __('app.lead.xefPropertySpaces') }}"  data-size="5" multiple>--}}
-                        {{--@foreach($lead_xef_property_spaces as $space)--}}
-                            {{--<option value='{{$space->id}}' @if (old('xef_property_spaces') !='' && in_array($space->id,old('xef_property_spaces'))) {{ 'selected' }} @endif--}}
-                            {{--@if (old('xef_property_spaces') == $space->id)--}}
+                    {{--<input type="hidden" name="property_spaces[]" value="">--}}
+                    {{--<select class="selectpicker @if (old('property_spaces') !='') {{ 'started' }} @endif" name="property_spaces[]" id="property_spaces" title="{{ __('app.lead.pySpaces') }}"  data-size="5" multiple>--}}
+                        {{--@foreach($lead_property_spaces as $space)--}}
+                            {{--<option value='{{$space->id}}' @if (old('property_spaces') !='' && in_array($space->id,old('property_spaces'))) {{ 'selected' }} @endif--}}
+                            {{--@if (old('property_spaces') == $space->id)--}}
                             {{--{{ 'selected' }}--}}
                             {{--@endif--}}
-                            {{--data-content="<div class='hideHint'>{{ __('app.lead.xefPropertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"--}}
+                            {{--data-content="<div class='hideHint'>{{ __('app.lead.propertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"--}}
                             {{-->--}}
                                 {{--{{ $space->name }}--}}
                             {{--</option>--}}
@@ -98,19 +97,19 @@
                 <td><input type="text" name="xef_property_capacity" id="xef_property_capacity" value="{{ old('xef_property_capacity') ? : $lead->xef_property_capacity }}" placeholder="{{ __('app.lead.xefPropertyCapacity') }}" class="form-control" ></td>
             </tr>
             <tr>
-                <td>{{ __('app.lead.retailPropertyQuantity') }}: </td>
-                <td><input type="text" name="retail_property_quantity" id="retail_property_quantity" value="{{ old('retail_property_quantity') ? : $lead->retail_property_quantity }}" placeholder="{{ __('app.lead.retailPropertyQuantity') }}" class="form-control" ></td>
+                <td>{{ __('app.lead.propertyQuantity') }}</td>
+                <td><input type="text" name="property_quantity" id="property_quantity" value="{{ old('property_quantity') ? : $lead->property_quantity }}" placeholder="{{ __('app.lead.propertyQuantity') }}" class="form-control" ></td>
             </tr>
             <tr>
                 <td>
-                    {{--<input type="hidden" name="retail_property_spaces[]" value="">--}}
-                    {{--<select class="selectpicker @if (old('retail_property_spaces') !='') {{ 'started' }} @endif" name="retail_property_spaces[]" id="retail_property_spaces" title="{{ __('app.lead.retailPropertySpaces') }}"  data-size="5" multiple>--}}
-                    {{--@foreach($lead_retail_property_spaces as $space)--}}
-                    {{--<option value='{{$space->id}}' @if (old('retail_property_spaces') !='' && in_array($space->id,old('retail_property_spaces'))) {{ 'selected' }} @endif--}}
-                    {{--@if (old('retail_property_spaces') == $space->id)--}}
+                    {{--<input type="hidden" name="property_spaces[]" value="">--}}
+                    {{--<select class="selectpicker @if (old('property_spaces') !='') {{ 'started' }} @endif" name="property_spaces[]" id="property_spaces" title="{{ __('app.lead.propertySpaces') }}"  data-size="5" multiple>--}}
+                    {{--@foreach($lead_property_spaces as $space)--}}
+                    {{--<option value='{{$space->id}}' @if (old('property_spaces') !='' && in_array($space->id,old('property_spaces'))) {{ 'selected' }} @endif--}}
+                    {{--@if (old('property_spaces') == $space->id)--}}
                     {{--{{ 'selected' }}--}}
                     {{--@endif--}}
-                    {{--data-content="<div class='hideHint'>{{ __('app.lead.retailPropertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"--}}
+                    {{--data-content="<div class='hideHint'>{{ __('app.lead.propertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>"--}}
                     {{-->--}}
                     {{--{{ $space->name }}--}}
                     {{--</option>--}}
@@ -247,7 +246,7 @@
             </tr>
             <tr>
                 {{--<select class="selectpicker @if (old('xef_pms') !='') {{ 'started' }} @endif" name="xef_pms" id="xef_pms" title="{{ __('app.lead.xefPms') }}"  data-size="5"--}}
-                {{--@if (old('xef_typology_general') != 7)--}}
+                {{--@if (old('general_typology') != 7)--}}
                 {{--{{ 'disabled' }}--}}
                 {{--@endif--}}
                 {{-->--}}

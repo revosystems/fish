@@ -13,6 +13,11 @@ class LeadPosType extends Model
 
     public function pos()
     {
-        return $this->hasMany(LeadPos::class,'lead_pos_id');
+        return $this->hasMany(LeadPos::class);
+    }
+
+    public function relatedProposal()
+    {
+        return $this->belongsTo(LeadProposal::class, 'related_proposal_id');
     }
 }

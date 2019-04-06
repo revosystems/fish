@@ -13,8 +13,7 @@ class CreateLeadXefTipologySpecificGeneralTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_xef_typology_specific');
-        Schema::create('lead_xef_typology_specific', function (Blueprint $table) {
+        Schema::create('lead_xef_specific_typology', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('order');
@@ -29,6 +28,6 @@ class CreateLeadXefTipologySpecificGeneralTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lead_xef_typology_specific');
+        Schema::dropIfExists('lead_xef_specific_typology');
     }
 }

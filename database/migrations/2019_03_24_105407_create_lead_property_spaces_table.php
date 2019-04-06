@@ -13,14 +13,12 @@ class CreateLeadPropertySpacesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_property_spaces');
         Schema::create('lead_property_spaces', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lead_type_id')->unsigned();
+            $table->integer('type');
             $table->string('name');
             $table->integer('order');
             $table->timestamps();
-            $table->foreign('lead_type_id')->references('id')->on('lead_types');
         });
     }
 

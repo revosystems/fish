@@ -8,101 +8,96 @@ return [
     'error404_hint'     => 'Lo sentimos, la página a la que intenta acceder no se ha encontrado',
 
 
-    'pageTitles' =>[
-        'login' => 'Acceder al canal',
-        'error404'  => 'Página no encontrada',
-        'createLead'  => 'Nuevo Lead',
-        'proposalLead'  => 'Propuesta para',
+    'pageTitles' => [
+        'login'             => 'Acceder al canal',
+        'error404'          => 'Página no encontrada',
+        'createLead'        => 'Nuevo Lead',
+        'proposalLead'      => 'Propuesta para',
         'proposalLeadSlim'  => 'Propuesta',
 
     ],
 
-    'home' =>[
+    'home' => [
         'newLeadButton'     => 'Nuevo Lead'
     ],
 
-    'lead' =>[
+    'lead' => [
         'formHint'              => 'Es importante que recabes esta información clave sobre el lead para preparar bien la fase pre-venta en la que te encuentras. Una vez lo hagas mediante este formulario, obtendrás la orientación sobre todos aquellos ítems que pueden aportar valor a tu potencial cliente, y tendrás una foto bastante real de la envergadura y tipología de la operación ante la que te encuentras.',
         'clientTitle'           => 'Cliente',
         'informationTitle'      => 'Información general',
-	    'propertyTitle'         => 'Local',
+        'propertyTitle'         => 'Local',
         'configurationTitle'    => 'Configuración',
 
-	    // CLIENT
-            'type'          => 'Perfil',
-            'type_segment'  => 'Segmentación',
-                // > XEF
-                    'xefTypologyGeneral'    => 'Tipología general',
-                    'xefTypologySpecific'   => 'Tipología específica',
-                // > RETAIL
-                'retailTypologyGeneral'     => 'Tipología general',
+        // CLIENT
+        'type'                  => 'Perfil',
+        'type_segment'          => 'Segmentación',
+        'generalTypology'       => 'Tipología general',
+        'xefSpecificTypology'   => 'Tipología específica',
 
-	    // CLIENT INFO
-            'trade_name'    => 'Nombre comercial',
-            'name'          => 'Nombre',
-            'surname1'      => 'Primer apellido',
-            'surname2'      => 'Segundo apellido',
-            'email'         => 'Correo electrónico',
-            'phone'         => 'Teléfono',
-            'city'          => 'Población',
+        // CLIENT INFO
+        'trade_name'    => 'Nombre comercial',
+        'name'          => 'Nombre',
+        'surname1'      => 'Primer apellido',
+        'surname2'      => 'Segundo apellido',
+        'email'         => 'Correo electrónico',
+        'phone'         => 'Teléfono',
+        'city'          => 'Población',
 
         // PROPERTY
-            // > XEF
-                'xefPropertyQuantity'   => '¿Cuantos locales tiene el propietario?',
-                'xefPropertyFranchise'     => '¿Es franquicia?',
-                'xefPropertySpaces'     => 'Espacios',
-                'xefPropertyCapacity'   => 'Aforo local para carta, no eventos',
-            // > RETAIL
-                'retailPropertyQuantity'   => '¿Cuantos locales tiene el propietario?',
-                'retailPropertySpaces'     => 'Espacios',
-                'retailPropertyStaffQuantity'   => 'Nº de empleados / comerciales',
+        'propertyQuantity'         => '¿Cuantos locales tiene el propietario?',
+        'propertySpaces'           => 'Espacios',
+        // > XEF
+        'xefPropertyFranchise'     => '¿Es franquicia?',
+        'xefPropertyCapacity'      => 'Aforo local para carta, no eventos',
+        // > RETAIL
+        'retailPropertyStaffQuantity'   => 'Nº de empleados / comerciales',
 
-	    // CONFIGURATION
-            // > XEF & RETAIL
-                'devices'                   => '¿Dispone de dispositivos?',
-                'devicesHint'               => 'Recomendamos la adquisición de hardware nuevo, pero en caso necesitar usar el actual, debe especificarse todo el material (modelo y año) para la correcta identificación y evaluación por parte de REVO.',
-                'devicesHintPlaceholder'    => 'Especificar dispositivos',
-            // > XEF
-                'xefPosCriticalQuantity'    => 'Nº de comanderos entorno crítico',
-                'xefCashQuantity'           => 'Nº de cajas de cobro',
-                'xefPrintersQuantity'       => 'Nº de impresoras en cocina',
-                'xefKds'                    => '¿Desea trabajar con pantallas en cocina?',
-                'xefKdsQuantity'            => 'Nº de pantallas',
-            // > XEF & RETAIL
-	            'pos'                       => 'TPV actual',
-            // > RETAIL
-                'retailSaleMode'          => '¿Requiere una venta delante del cliente final?',
-                'retailSaleLocation'      => '¿Dónde se vende?',
-            // > XEF (isFranchise) & RETAIL (isFranchise)
-                'franchisePosExternal'      => '¿Tiene autorización para trabajar con otro TPV?',
-            // > XEF (isHotel)
-                'xefPms'                    => 'PMS actual',
-            // > XEF & RETAIL
-                'erp'                       => 'ERP actual',
-            // > XEF (Medium-Large)
-//                'xefErp'                    => 'ERP actual',
-                'xefSoft'                   => 'Software del que dispone el cliente',
-                'xefSoftStock'              => 'Almacén y compras',
-                'xefSoftStaff'              => 'Gestión de personal',
-                'xefSoftBookings'           => 'Reservas',
-                'xefSoftDelivery'           => 'Delivery',
-                'xefSoftRecipes'            => 'Recetas',
-            // > RETAIL (Franchise)
-//                'retailErp'                    => 'ERP actual',
-                'retailSoft'                   => 'Otros software del cliente',
-                'retailSoftStaff'              => 'Gestión de personal',
-                'retailSoftDelivery'           => 'Delivery',
+        // CONFIGURATION
+        // > XEF & RETAIL
+        'devices'                   => '¿Dispone de dispositivos?',
+        'devicesHint'               => 'Recomendamos la adquisición de hardware nuevo, pero en caso necesitar usar el actual, debe especificarse todo el material (modelo y año) para la correcta identificación y evaluación por parte de REVO.',
+        'devicesHintPlaceholder'    => 'Especificar dispositivos',
+        // > XEF
+        'xefPosCriticalQuantity'    => 'Nº de comanderos entorno crítico',
+        'xefCashQuantity'           => 'Nº de cajas de cobro',
+        'xefPrintersQuantity'       => 'Nº de impresoras en cocina',
+        'xefKds'                    => '¿Desea trabajar con pantallas en cocina?',
+        'xefKdsQuantity'            => 'Nº de pantallas',
+        // > XEF & RETAIL
+        'pos'                       => 'TPV actual',
+        // > RETAIL
+        'retailSaleMode'          => '¿Requiere una venta delante del cliente final?',
+        'retailSaleLocation'      => '¿Dónde se vende?',
+        // > XEF (isFranchise) & RETAIL (isFranchise)
+        'franchisePosExternal'      => '¿Tiene autorización para trabajar con otro TPV?',
+        // > XEF (isHotel)
+        'xefPms'                    => 'PMS actual',
+        // > XEF & RETAIL
+        'erp'                       => 'ERP actual',
+        // > XEF (Medium-Large)
+        //                'xefErp'                    => 'ERP actual',
+        'xefSoft'                   => 'Software del que dispone el cliente',
+        'xefSoftStock'              => 'Almacén y compras',
+        'xefSoftStaff'              => 'Gestión de personal',
+        'xefSoftBookings'           => 'Reservas',
+        'xefSoftDelivery'           => 'Delivery',
+        'xefSoftRecipes'            => 'Recetas',
+        // > RETAIL (Franchise)
+        //                'retailErp'                    => 'ERP actual',
+        'retailSoft'                   => 'Otros software del cliente',
+        'retailSoftStaff'              => 'Gestión de personal',
+        'retailSoftDelivery'           => 'Delivery',
 
         // OTHERS
-	    'other'                     => 'Otro',
-	    'none'                      => 'Ninguno',
-	    'specify'                   => 'Especificar otro',
+        'other'                     => 'Otro',
+        'none'                      => 'Ninguno',
+        'specify'                   => 'Especificar otro',
 
         // BUTTONS
-	    'saveLead'                  => 'Registrar Lead',
+        'saveLead'                  => 'Registrar Lead',
     ],
 
-    'pages' =>[
+    'pages' => [
         'home'          => 'Inicio',
         'revo'          => 'Revo',
         'contact'       => 'Contacto',
@@ -112,20 +107,20 @@ return [
         'crm'           => 'CRM',
     ],
 
-    'errors' =>[
+    'errors' => [
        'leadException' => 'Se ha producido un error al crear el Lead.'
     ],
 
-    'proposal' =>[
-        'nav_software' => 'Software',
-        'nav_hardware' => 'Hardware y accesorios',
-        'nav_services' => 'Servicios',
-        'nav_proposals'=> 'Propuestas',
-        'download'  => 'Descargar propuesta',
+    'proposal' => [
+        'nav_software'   => 'Software',
+        'nav_hardware'   => 'Hardware y accesorios',
+        'nav_services'   => 'Servicios',
+        'nav_proposals'  => 'Propuestas',
+        'download'       => 'Descargar propuesta',
         'download_hint'  => 'Puede tardar unos segundos en generar el archivo PDF',
     ],
 
-    'hardware' =>[
+    'hardware' => [
         'type_warehouse'    => 'Almacén',
         'type_balances'     => 'Balanzas y lectores',
         'type_cash'         => 'Caja',
@@ -189,7 +184,7 @@ return [
         'ipad_ipmini_type_ware'     => 'iPad o iPad Mini para Revo STOCK en almacén. El tamaño varía en función de las necesidades, siendo el iPad 9.7" el más utilizado.',
     ],
 
-    'services' =>[
+    'services' => [
         'title'         => '¿Qué podemos hacer por ti?',
         'setup'         => 'SET-UP',
         'maintenance'   => 'MANTENIMIENTO',
@@ -234,14 +229,14 @@ return [
     ],
 
 
-    'contact' =>[
+    'contact' => [
         'title'         => '¿Tienes dudas? ¡Contáctanos!',
         'commercial'    => 'Asesoramiento Técnico / Comercial',
         'support'       => 'Soporte',
         'marketing'     => 'Marketing',
     ],
 
-    'resources' =>[
+    'resources' => [
         'highlights'                    => 'Highlights',
         'highlights_txt'                => 'Factor diferencial',
         'highlights_dw'                 => '/download/highlights/REVO_Highlights.pdf',
@@ -295,7 +290,7 @@ return [
         'testimonials_title_xef'        => 'Testimonios Revo XEF',
         'testimonials_title_retail'     => 'Testimonios Revo RETAIL',
 
-        'testimonials_llevant_img'      => '/images/resources/video-llevant.jpg',
+        'testimonials_llevant_img'          => '/images/resources/video-llevant.jpg',
         'testimonials_llevant_video'        => 'https://www.youtube.com/watch?v=j8F3xkJQra8',
 
         'testimonials_despiece_img'     => '/images/resources/video-despiece.jpg',

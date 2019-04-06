@@ -13,7 +13,6 @@ class CreateLeadRetailSaleLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_retail_sale_locations');
         Schema::create('lead_retail_sale_locations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

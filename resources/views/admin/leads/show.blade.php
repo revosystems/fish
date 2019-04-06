@@ -12,7 +12,6 @@
         </a>
     </div>
 
-
     <div class="description comment lead-show">
         {{ Form::open(["url" => route('leads.update', $lead), 'method' => "PUT"]) }}
             @include('components.lead.fields', ["lead" => $lead])

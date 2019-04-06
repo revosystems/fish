@@ -13,13 +13,12 @@ class CreateLeadPosTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_pos');
         Schema::create('lead_pos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('pos_type_id')->unsigned();
+            $table->integer('type_id')->unsigned();
             $table->timestamps();
-            $table->foreign('pos_type_id')->references('id')->on('lead_pos_types');
+            $table->foreign('type_id')->references('id')->on('lead_pos_types');
         });
     }
 

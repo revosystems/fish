@@ -13,7 +13,6 @@ class CreateLeadXefPmsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_xef_pms');
         Schema::create('lead_xef_pms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

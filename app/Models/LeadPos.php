@@ -8,13 +8,13 @@ class LeadPos extends Model
 {
     protected $table = 'lead_pos';
 
-    public function type()
+/*    public function type()
     {
         return $this->belongsTo(LeadType::class);
-    }
+    }*/
 
     public function posType()
     {
-        return $this->belongsTo(LeadPosType::class,'pos_type_id');
+        return $this->belongsTo(LeadPosType::class);
     }
 }

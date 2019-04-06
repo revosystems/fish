@@ -13,7 +13,6 @@ class CreateLeadXefKdsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_xef_kds');
         Schema::create('lead_xef_kds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
