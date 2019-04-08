@@ -7,8 +7,9 @@
         Route::get('/contact', 'ContactController@index')->middleware("verified")->middleware("user.active")->name("contact");
         Route::get('/resources', 'ResourcesController@index')->middleware("verified")->middleware("user.active")->name("resources");
 
+		Route::any('/lead/typeSegmentsFetch', 'LeadController@fetchSegments')->middleware("verified")->middleware("user.active")->name("lead.fetch");
 		Route::post('/lead/typeSegmentsFetch', 'LeadController@fetchSegments')->middleware("verified")->middleware("user.active")->name("lead.fetch");
-		Route::resource("lead", 'LeadController');
+		Route::resource("lead", 'LeadController')->middleware(['auth','verified']);
         Route::get('/lead/{leadId}/download', 'LeadController@download')->middleware("verified")->middleware("user.active")->name("lead.download");
 
         Route::get('/download/{folder}/{file}', 'DownloadsController@download');

@@ -15,49 +15,7 @@ class Lead extends Model
     const STATUS_COMPLETED     = 4;
     const STATUS_FAILED        = 5;
 
-    protected $fillable = [
-        'user_id',
-        'organization_id',
-        'trade_name',
-        'name',
-        'surname1',
-        'surname2',
-        'email',
-        'phone',
-        'city',
-        'type',
-        'type_segment',
-        'xef_typology_general',
-        'xef_typology_specific',
-        'retail_typology_general',
-        'xef_property_quantity',
-        'xef_property_franchise',
-        'xef_property_spaces',
-        'xef_property_capacity',
-        'retail_property_quantity',
-        'retail_property_spaces',
-        'retail_property_staff_quantity',
-        'devices',
-        'devices_current',
-        'xef_pos_critical_quantity',
-        'xef_cash_quantity',
-        'xef_printers_quantity',
-        'xef_kds',
-        'xef_kds_quantity',
-        'pos',
-        'retail_sale_mode',
-        'retail_sale_location',
-        'franchise_pos_external',
-        'xef_pms',
-        'xef_pms_other',
-        'erp',
-        'erp_other',
-        'xef_soft',
-        'xef_soft_other',
-        'retail_soft',
-        'retail_soft_other',
-        'status',
-    ];
+    protected $guarded = [];
 
     public function organization()
     {
@@ -69,9 +27,65 @@ class Lead extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function typeV()
+    /*
+    public function type()
     {
-        return $this->hasOne(LeadType::class, 'id');
+        return $this->hasOne(LeadType::class);
+    }*/
+
+    public function typeSegment()
+    {
+        return $this->belongsTo(LeadTypesSegment::class);
+    }
+
+    public function generalTypology()
+    {
+        return $this->belongsTo(LeadGeneralTypology::class);
+    }
+
+    public function xefSpecificTypology()
+    {
+        return $this->belongsTo(LeadXefSpecificTypology::class);
+    }
+
+    public function xefPropertyFranchise()
+    {
+        return $this->belongsTo(LeadXefPropertyFranchise::class);
+    }
+
+    public function xefKds()
+    {
+        return $this->belongsTo(LeadXefKds::class);
+    }
+
+    public function pos()
+    {
+        return $this->belongsTo(LeadPos::class);
+    }
+
+    public function retailSaleMode()
+    {
+        return $this->belongsTo(LeadRetailSaleMode::class);
+    }
+
+    public function retailSaleLocation()
+    {
+        return $this->belongsTo(LeadRetailSaleLocation::class);
+    }
+
+    public function franchisePosExternal()
+    {
+        return $this->belongsTo(LeadFranchisePosExternal::class);
+    }
+
+    public function xefPms()
+    {
+        return $this->belongsTo(LeadXefPms::class);
+    }
+
+    public function erp()
+    {
+        return $this->belongsTo(LeadErp::class);
     }
 
     public function tags()

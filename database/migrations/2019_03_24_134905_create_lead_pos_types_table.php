@@ -13,7 +13,6 @@ class CreateLeadPosTypesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_pos_types');
         Schema::create('lead_pos_types', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('related_proposal_id')->unsigned();

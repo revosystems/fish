@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
-use App\ThrustHelpers\Metrics\LeadStatusMetric;
 use App\ThrustHelpers\Metrics\NewLeadsMetric;
 
 class ReportsController extends Controller

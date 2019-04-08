@@ -1,6 +1,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <title>PROPUESTA {{$trade_name}}</title>
+        <title>PROPUESTA {{$tradeName}}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('modules/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css') }}">
@@ -8,15 +8,15 @@
     </head>
     <body class="pdf">
 
-        <img src="{{ asset('images/revo-icon-'.$revo_version_css.'.png') }}" class="revo-icon" />
+        <img src="{{ asset("images/revo-icon-{$revoVersionCss}.png") }}" class="revo-icon" />
         <img src="{{ asset('images/erre.png') }}" class="revo-erre" />
 
-        <div class="revo-bg {{$revo_version_css}}"></div>
+        <div class="revo-bg {{$revoVersionCss}}"></div>
         <img src="{{ asset('images/orange.jpg') }}" class="orange-hero" />
-        <img src="{{ asset('images/revo-logo-'.$revo_version_css.'.png') }}" class="revo-logo {{$revo_version_css}}" />
+        <img src="{{ asset("images/revo-logo-{$revoVersionCss}.png") }}" class="revo-logo {{$revoVersionCss}}" />
 
-        <div class="trade-name title absolute ">{{$trade_name}} | <span class="text-capitalize">{{$client_name}} {{$client_surname1}}</span></div>
-        <div class="client-name title absolute">{{$client_name}}</div>
+        <div class="trade-name title absolute ">{{$tradeName}} | <span class="text-capitalize">{{$clientName}} {{$clientSurname1}}</span></div>
+        <div class="client-name title absolute">{{$clientName}}</div>
 
         <div class="page_break"></div>
         <img src="{{ asset('images/orange.jpg') }}" class="orange" />
@@ -34,31 +34,31 @@
                     <tbody>
                     <tr>
                         <td>Nombre comercial</td>
-                        <td>{{$trade_name}}</td>
+                        <td>{{$tradeName}}</td>
                     </tr>
                     <tr>
                         <td>Nombre y apellidos</td>
-                        <td>{{$client_name}}</td>
+                        <td>{{$clientName}}</td>
                     </tr>
                     <tr>
                         <td>Primer apellido</td>
-                        <td>{{$client_surname1}}</td>
+                        <td>{{$clientSurname1}}</td>
                     </tr>
                     <tr>
                         <td>Segundo apellido</td>
-                        <td>{{$client_surname2}}</td>
+                        <td>{{$clientSurname2}}</td>
                     </tr>
                     <tr>
                         <td>Correo electrónico</td>
-                        <td>{{$client_email}}</td>
+                        <td>{{$clientEmail}}</td>
                     </tr>
                     <tr>
                         <td>Teléfono</td>
-                        <td>{{$client_phone}}</td>
+                        <td>{{$clientPhone}}</td>
                     </tr>
                     <tr>
                         <td>Población</td>
-                        <td>{{$client_city}}</td>
+                        <td>{{$clientCity}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -121,44 +121,44 @@
                     </tr>
                     <tr>
                         <td>Nº de locales</td>
-                        <td>{{$property_qty}}</td>
+                        <td>{{$propertyQty}}</td>
                     </tr>
                     <tr>
                         <td>Espacios</td>
-                        <td>{{$property_spaces}}</td>
+                        <td>{{$propertySpaces}}</td>
                     </tr>
-                    @if($type==1)
+                    @if($type == App\Models\LeadType::XEF)
                         <tr>
                             <td>Aforo del local</td>
-                            <td>{{$xef_property_capacity}}</td>
+                            <td>{{$xefPropertyCapacity}}</td>
                         </tr>
                     @endif
-                    @if($type==2)
+                    @if($type == App\Models\LeadType::RETAIL)
                         <tr>
                             <td>Nº empleados / comerciales</td>
-                            <td>{{$property_staff_quantity}}</td>
+                            <td>{{$propertyStaffQuantity}}</td>
                         </tr>
                     @endif
 
-                    @if($type==1)
+                    @if($type == App\Models\LeadType::XEF)
                         <tr>
                             <td>Nº comanderos entorno crítico</td>
-                            <td>{{$xef_pos_critical_quantity}}</td>
+                            <td>{{$xefPosCriticalQuantity}}</td>
                         </tr>
                         <tr>
                             <td>Nº de cajas de cobro</td>
-                            <td>{{$xef_cash_quantity}}</td>
+                            <td>{{$xefCashQuantity}}</td>
                         </tr>
                         <tr>
                             <td>Nº de impresoras en cocina</td>
-                            <td>{{$xef_printers_quantity}}</td>
+                            <td>{{$xefPrintersQuantity}}</td>
                         </tr>
                         <tr>
                             <td>Desea trabajar con pantallas en cocina</td>
-                            <td>{{$xef_kds}}</td>
+                            <td>{{$xefKds}}</td>
                         </tr>
                     @endif
-                    @if($type==2)
+                    @if($type == App\Models\LeadType::RETAIL)
                         <tr>
                             <td>Requiere venta delante del cliente final</td>
                             <td>{{$retail_sale_mode}}</td>
@@ -177,25 +177,25 @@
                         <td>TPV actual</td>
                         <td>{{$pos}}</td>
                     </tr>
-                    @if($franchise_pos_external!=null)
+                    @if($franchisePosExternal)
                         <tr>
                             <td>Autorizado para trabajar con TPV externo</td>
-                            <td>{{$franchise_pos_external}}</td>
+                            <td>{{$franchisePosExternal}}</td>
                         </tr>
                     @endif
-                    @if($xef_pms!=null)
+                    @if($xefPms)
                         <tr>
                             <td>PMS actual</td>
-                            <td>{{$xef_pms}}</td>
+                            <td>{{$xefPms}}</td>
                         </tr>
                     @endif
-                    @if($erp!=null)
+                    @if($erp)
                         <tr>
                             <td>ERP actual</td>
                             <td>{{$erp}}</td>
                         </tr>
                     @endif
-                    @if($software!="")
+                    @if($software)
                         <tr>
                             <td>Otro software del cliente</td>
                             <td>{{$software}}</td>
@@ -228,7 +228,7 @@
         <img src="{{ asset('images/orange.jpg') }}" class="orange" />
         <div class="profile title absolute">HARDWARE Y ACCESORIOS</div>
         <div class="divider">&nbsp;</div>
-        <div class="hardware" style="{{  $type === 2 ? "display:none" : "display:block" }}">
+        <div class="hardware" style="{{  $type == App\Models\LeadType::RETAIL ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash')}}</h3></div>
             </div>
@@ -330,7 +330,7 @@
                 </div>
             </div>
         </div>
-        <div  class="hardware" style="{{  $type === 1 ? "display:none" : "display:block" }}">
+        <div  class="hardware" style="{{ $type == App\Models\LeadType::XEF ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash_display')}}</h3></div>
             </div>

@@ -13,7 +13,6 @@ class CreateLeadXefPropertyFranchiseTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_xef_property_franchise');
         Schema::create('lead_xef_property_franchise', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

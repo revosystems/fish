@@ -13,7 +13,6 @@ class CreateLeadDevicesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_devices');
         Schema::create('lead_devices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

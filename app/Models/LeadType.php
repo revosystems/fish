@@ -7,8 +7,10 @@ use function PHPSTORM_META\type;
 
 class LeadType extends Model
 {
+    const XEF       = 1;
+    const RETAIL    = 2;
 //    protected $table = 'lead_types';
-    public function segments()
+/*    public function segments()
     {
         return $this->hasMany(LeadTypesSegment::class);
     }
@@ -27,4 +29,5 @@ class LeadType extends Model
     {
         return $this->hasMany(LeadPos::class);
     }
+*/
 }

@@ -13,7 +13,6 @@ class CreateLeadErpTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('lead_erp');
         Schema::create('lead_erp', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

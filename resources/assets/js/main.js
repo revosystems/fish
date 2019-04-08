@@ -185,7 +185,7 @@ var Lead = function() {
                 Lead.typeSegmentsDependancy($(this),true);
             });
 
-            $('#type_segment').on('change', function () {
+            $('#type_segment_id').on('change', function () {
                 Lead.typeSegmentsDependancy($(this),false);
                 Lead.posRetailHandler();
             });
@@ -200,8 +200,8 @@ var Lead = function() {
         },
 
         typeSegmentsFetch: function (input) {
-            var $typeSegmentOld = $("#type_segment_old"),
-                value = input.val();
+            var $typeSegmentOld = $("#type_segment_id_old"),
+            value = input.val();
 
             $.ajax({
                 url: '/lead/typeSegmentsFetch',
@@ -211,18 +211,18 @@ var Lead = function() {
                     _token: $('input[name="_token"]').val(),
                 },
                 success:function(result){
-                    $('#type_segment')
+                    $('#type_segment_id')
                         .html(result)
                         .selectpicker('refresh')
                         .closest(".bootstrap-select").removeClass("started");
 
                     if($typeSegmentOld.val()!==""){
-                        $('select[name=type_segment]')
+                        $('select[name=type_segment_id]')
                             .val($typeSegmentOld.val())
                             .selectpicker('refresh')
                             .closest(".bootstrap-select").addClass("started");
                     }
-                    Lead.typeSegmentsDependancy($('select[name=type_segment]'),false);
+                    Lead.typeSegmentsDependancy($('select[name=type_segment_id]'),false);
                     Lead.posRetailHandler();
                 }
             });
@@ -242,7 +242,7 @@ var Lead = function() {
                     //$('div[class*="dep_"]').not('div[class*="'+dependancyType+'"]').hide();
                 }
                 else{
-                    $('#type_segment').closest(".bootstrap-select").removeClass("started");
+                    $('#type_segment_id').closest(".bootstrap-select").removeClass("started");
                 }
             }
         },
@@ -259,7 +259,7 @@ var Lead = function() {
         },
 
         kdsHandler: function(){
-            $('#xef_kds').on('change', function () {
+            $('#xef_kds_id').on('change', function () {
                 if($(this).val()==1){
                     $('#xef_kds_quantity').prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
@@ -270,20 +270,20 @@ var Lead = function() {
         },
 
         pmsHandler: function(){
-            $('#xef_typology_general').on('change', function () {
+            $('#xef_general_typology_id').on('change', function () {
                 if($(this).val()==7){
-                    $('#xef_pms').prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
+                    $('#xef_pms_id').prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
                     if($('#xef_pms_other').val()!=""){
                         $('#xef_pms_other').prop("disabled", false).closest(".form-group").removeClass("disabled");
                     }
                 }
                 else{
-                    $('#xef_pms').prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
+                    $('#xef_pms_id').prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
                     $('#xef_pms_other').prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
 
-            $('#xef_pms').on('change', function () {
+            $('#xef_pms_id').on('change', function () {
                 if($(this).val()==-1){
                     $('#xef_pms_other').prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
@@ -294,27 +294,27 @@ var Lead = function() {
         },
 
         posHandler: function(){
-            $('#xef_property_franchise').on('change', function () {
+            $('#xef_property_franchise_id').on('change', function () {
                 if($(this).val()!=2){
-                    $('#franchise_pos_external').prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
+                    $('#franchise_pos_external_id').prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
                 }
                 else{
-                    $('#franchise_pos_external').prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
+                    $('#franchise_pos_external_id').prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
                 }
             });
         },
 
         posRetailHandler:function(){
-            if(($("#type").val()==1 && $("#xef_property_franchise").val()==1) || $("#type").val()==2 && $("#type_segment").val()==5){
-                $('#franchise_pos_external').prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
+            if(($("#type").val()==1 && $("#xef_property_franchise_id").val()==1) || $("#type").val()==2 && $("#type_segment_id").val()==5){
+                $('#franchise_pos_external_id').prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
             }
             else{
-                $('#franchise_pos_external').prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
+                $('#franchise_pos_external_id').prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
             }
         },
 
         erpHandler: function(){
-            $('#erp,#xef_erp,#retail_erp').on('change', function () {
+            $('#erp_id,#xef_erp_id,#retail_erp_id').on('change', function () {
                 if($(this).val()==-1){
                     $('#'+$(this).attr("id")+'_other').prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
