@@ -190,13 +190,13 @@
                 <td>
                     {{--<input type="hidden" name="xef_soft[]" value="">--}}
                     <select class="selectpicker" name="xef_soft[]" id="xef_soft" title="{{ __('app.lead.xefSoft') }}"  data-size="5" multiple>
-                        @foreach(App\Models\LeadSoft::whereType(App\Models\LeadType::XEF)->orderBy("name")->groupBy("soft_type_id")->get() as $xefSofts)
+                        @foreach($leadXefSofts as $xefSofts)
                             <optgroup label="{{ $xefSofts->first()->softType->name}}">
-                                {{--@foreach($xefSofts as $soft)--}}
+                                @foreach($xefSofts as $soft)
                                     {{--<option value='{{$soft->id}}' @if ($lead->xef_soft != '' && in_array($soft->id, $lead->xef_soft)) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">--}}
                                         {{--{{ $soft->name }}--}}
                                     {{--</option>--}}
-                                {{--@endforeach--}}
+                                @endforeach
                             </optgroup>
                         @endforeach
 {{--                        <option value='other' @if ($lead->xef_soft) {{ in_array(('other'), $lead->xef_soft) ? ' selected' : '' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>--}}
@@ -208,13 +208,13 @@
                 <td>
                     {{--<input type="hidden" name="retail_soft[]" value="">--}}
                     <select class="selectpicker" name="retail_soft[]" id="retail_soft" title="{{ __('app.lead.retailSoft') }}"  data-size="5" multiple>
-                        @foreach(App\Models\LeadSoft::whereType(App\Models\LeadType::RETAIL)->orderBy("name")->groupBy("soft_type_id")->get() as $retailSofts)
+                        @foreach($leadRetailSofts as $retailSofts)
                             <optgroup label="{{ $retailSofts->first()->softType->name}}">
-                                {{--@foreach($retailSofts as $soft)--}}
+                                @foreach($retailSofts as $soft)
                                     {{--<option value='{{$soft->id}}' @if ($lead->retail_soft != '' && in_array($soft->id, $lead->retail_soft)) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">--}}
                                         {{--{{ $soft->name }}--}}
                                     {{--</option>--}}
-                                {{--@endforeach--}}
+                                @endforeach
                             </optgroup>
                         @endforeach
 {{--                        <option value='other' @if ($lead->retail_soft) {{ in_array(('other'), $lead->retail_soft) ? ' selected' : '' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>--}}

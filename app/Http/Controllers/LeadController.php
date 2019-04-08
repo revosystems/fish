@@ -47,22 +47,10 @@ class LeadController extends Controller
         return view('lead.create', [
             "leadXefGeneralTypologies"      => LeadGeneralTypology::whereType(LeadType::XEF)->orderBy("name")->get(),
             "leadRetailGeneralTypologies"   => LeadGeneralTypology::whereType(LeadType::RETAIL)->orderBy("name")->get(),
-            "leadXefSpecificTypologies"     => LeadXefSpecificTypology::all(),
-            // PROPERTY
-            "leadXefPropertyFranchises"     => LeadXefPropertyFranchise::all(),
             "leadXefPropertySpaces"         => LeadPropertySpaces::whereType(LeadType::XEF)->get(),
             "leadRetailPropertySpaces"      => LeadPropertySpaces::whereType(LeadType::RETAIL)->get(),
-            // CONFIGURATION
-            "leadDevices"                   => LeadDevice::all(),
-            "leadXefKds"                    => LeadXefKds::all(),
-            "leadPos"                       => LeadPos::all()->sortBy("name"),
-            "leadRetailSaleModes"           => LeadRetailSaleMode::all(),
-            "leadRetailSaleLocations"       => LeadRetailSaleLocation::all(),
-            "leadFranchisePosExternals"     => LeadFranchisePosExternal::all(),
-            "leadXefPms"                    => LeadXefPms::all()->sortBy("name"),
-            "leadErps"                      => LeadErp::all()->sortBy("name"),
-            "leadXefSofts"                  => LeadSoft::whereType(LeadType::XEF)->orderBy("name")->groupBy("soft_type_id")->get(),
-            "leadRetailSofts"               => LeadSoft::whereType(LeadType::RETAIL)->orderBy("name")->groupBy("soft_type_id")->get(),
+            "leadXefSofts"                  => LeadSoft::whereType(LeadType::XEF)->orderBy("name")->get()->groupBy("soft_type_id"),
+            "leadRetailSofts"               => LeadSoft::whereType(LeadType::RETAIL)->orderBy("name")->get()->groupBy("soft_type_id"),
         ]);
     }
 

@@ -70,14 +70,14 @@
                         <div class="col-sm-6">
                             <div class="form-group isPicker {{ $errors->has('xef_specific_typology_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('xef_specific_typology_id') !='') started @endif" name="xef_specific_typology_id" id="type_specific" title="{{ __('app.lead.xefSpecificTypology') }}"  data-size="5">
-                                    @foreach($leadXefSpecificTypologies as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('xef_specific_typology_id') == $type->id)
+                                    @foreach(App\Models\LeadXefSpecificTypology::all() as $specificTypology)
+                                        <option value='{{$specificTypology->id}}'
+                                                @if (old('xef_specific_typology_id') == $specificTypology->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.xefSpecificTypology') }} </div><div class='colored'> {{ $type->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.xefSpecificTypology') }} </div><div class='colored'> {{ $specificTypology->name }}</div>"
                                         >
-                                            {{ $type->name }}
+                                            {{ $specificTypology->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -92,14 +92,14 @@
                         <div class="col-sm-12">
                             <div class="form-group isPicker {{ $errors->has('retail_general_typology_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_general_typology_id') !='') started @endif" name="retail_general_typology_id" id="retail_general_typology_id" title="{{ __('app.lead.generalTypology') }}"  data-size="5">
-                                    @foreach($leadRetailGeneralTypologies as $typology)
-                                        <option value='{{$typology->id}}'
-                                                @if (old('retail_general_typology_id') == $typology->id)
+                                    @foreach($leadRetailGeneralTypologies as $generalTypology)
+                                        <option value='{{$generalTypology->id}}'
+                                                @if (old('retail_general_typology_id') == $generalTypology->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.generalTypology') }} </div><div class='colored'> {{ $typology->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.generalTypology') }} </div><div class='colored'> {{ $generalTypology->name }}</div>"
                                         >
-                                            {{ $typology->name }}
+                                            {{ $generalTypology->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -202,14 +202,14 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('xef_property_franchise_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('xef_property_franchise_id') !='') started @endif" name="xef_property_franchise_id" id="xef_property_franchise_id" title="{{ __('app.lead.xefPropertyFranchise') }}"  data-size="5">
-                                    @foreach($leadXefPropertyFranchises as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('xef_property_franchise_id') == $type->id)
+                                    @foreach(App\Models\LeadXefPropertyFranchise::all() as $propertyFranchise)
+                                        <option value='{{$propertyFranchise->id}}'
+                                                @if (old('xef_property_franchise_id') == $propertyFranchise->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.xefPropertyFranchise') }} </div><div class='colored'> {{ $type->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.xefPropertyFranchise') }} </div><div class='colored'> {{ $propertyFranchise->name }}</div>"
                                         >
-                                            {{ $type->name }}
+                                            {{ $propertyFranchise->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -301,14 +301,14 @@
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group isPicker {{ $errors->has('devices') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('devices') !='') started @endif" name="devices" id="devices" title="{{ __('app.lead.devices') }}"  data-size="5">
-                                    @foreach($leadDevices as $response)
-                                        <option value='{{$response->id}}'
-                                                @if (old('devices') == $response->id)
+                                    @foreach(App\Models\LeadDevice::all() as $device)
+                                        <option value='{{$device->id}}'
+                                                @if (old('devices') == $device->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.devices') }} </div><div class='colored'> {{ $response->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.devices') }} </div><div class='colored'> {{ $device->name }}</div>"
                                         >
-                                            {{ $response->name }}
+                                            {{ $device->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -364,14 +364,14 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('xef_kds_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('xef_kds_id') !='') started @endif" name="xef_kds_id" id="xef_kds_id" title="{{ __('app.lead.xefKds') }}"  data-size="5">
-                                    @foreach($leadXefKds as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('xef_kds_id') == $type->id)
+                                    @foreach(App\Models\LeadXefKds::all() as $xefKds)
+                                        <option value='{{$xefKds->id}}'
+                                                @if (old('xef_kds_id') == $xefKds->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'> {{ $type->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'> {{ $xefKds->name }}</div>"
                                         >
-                                            {{ $type->name }}
+                                            {{ $xefKds->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -405,14 +405,14 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('retail_sale_mode_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_sale_mode_id') !='') started @endif" name="retail_sale_mode_id" id="retail_sale_mode_id" title="{{ __('app.lead.retailSaleMode') }}" data-size="5">
-                                    @foreach($leadRetailSaleModes as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('retail_sale_mode_id') == $type->id)
+                                    @foreach(App\Models\LeadRetailSaleMode::all() as $saleMode)
+                                        <option value='{{$saleMode->id}}'
+                                                @if (old('retail_sale_mode_id') == $saleMode->id)
                                                 {{ 'selected' }}
                                                 @endif
 
-                                                data-content="<div class='hideHint'>{{ __('app.lead.retailSaleMode') }} </div><div class='colored'> {{ $type->name }}</div>">
-                                            {{ $type->name }}
+                                                data-content="<div class='hideHint'>{{ __('app.lead.retailSaleMode') }} </div><div class='colored'> {{ $saleMode->name }}</div>">
+                                            {{ $saleMode->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -425,14 +425,14 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('retail_sale_location_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_sale_location_id') !='') started @endif" name="retail_sale_location_id" id="retail_sale_location_id" title="{{ __('app.lead.retailSaleLocation') }}" data-size="5">
-                                    @foreach($leadRetailSaleLocations as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('retail_sale_location_id') == $type->id)
+                                    @foreach(App\Models\LeadRetailSaleLocation::all() as $saleLocation)
+                                        <option value='{{$saleLocation->id}}'
+                                                @if (old('retail_sale_location_id') == $saleLocation->id)
                                                 {{ 'selected' }}
                                                 @endif
 
-                                                data-content="<div class='hideHint'>{{ __('app.lead.retailSaleLocation') }} </div><div class='colored'> {{ $type->name }}</div>">
-                                            {{ $type->name }}
+                                                data-content="<div class='hideHint'>{{ __('app.lead.retailSaleLocation') }} </div><div class='colored'> {{ $saleLocation->name }}</div>">
+                                            {{ $saleLocation->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -447,14 +447,14 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('pos_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('pos_id') !='') started @endif" name="pos_id" id="pos_id" title="{{ __('app.lead.pos') }}" data-size="5">
-                                    @foreach($leadPos as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('pos_id') == $type->id)
+                                    @foreach(App\Models\LeadPos::all()->sortBy("name") as $pos)
+                                        <option value='{{$pos->id}}'
+                                                @if (old('pos_id') == $pos->id)
                                                 {{ 'selected' }}
                                                 @endif
 
-                                                data-content="<div class='hideHint'>{{ __('app.lead.pos') }} </div><div class='colored'> {{ $type->name }}</div>">
-                                            {{ $type->name }}
+                                                data-content="<div class='hideHint'>{{ __('app.lead.pos') }} </div><div class='colored'> {{ $pos->name }}</div>">
+                                            {{ $pos->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -476,14 +476,14 @@
                                     {{ 'disabled' }}
                                         @endif
                                 >
-                                    @foreach($leadFranchisePosExternals as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('franchise_pos_external_id') == $type->id)
+                                    @foreach(App\Models\LeadFranchisePosExternal::all() as $franchisePosExternal)
+                                        <option value='{{$franchisePosExternal->id}}'
+                                                @if (old('franchise_pos_external_id') == $franchisePosExternal->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.franchisePosExternal') }} </div><div class='colored'> {{ $type->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.franchisePosExternal') }} </div><div class='colored'> {{ $franchisePosExternal->name }}</div>"
                                         >
-                                            {{ $type->name }}
+                                            {{ $franchisePosExternal->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -507,14 +507,14 @@
                                     {{ 'disabled' }}
                                         @endif
                                 >
-                                    @foreach($leadXefPms as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('xef_pms_id') == $type->id)
+                                    @foreach(App\Models\LeadXefPms::all()->sortBy("name") as $xefPms)
+                                        <option value='{{$xefPms->id}}'
+                                                @if (old('xef_pms_id') == $xefPms->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.xefPms') }} </div><div class='colored'> {{ $type->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.xefPms') }} </div><div class='colored'> {{ $xefPms->name }}</div>"
                                         >
-                                            {{ $type->name }}
+                                            {{ $xefPms->name }}
                                         </option>
                                     @endforeach
                                         <option data-divider="true"></option>
@@ -551,14 +551,14 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker {{ $errors->has('erp_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('erp_id') !='') started @endif" name="erp_id" id="erp_id" title="{{ __('app.lead.erp') }}"  data-size="5">
-                                    @foreach($leadErps as $type)
-                                        <option value='{{$type->id}}'
-                                                @if (old('erp_id') == $type->id)
+                                    @foreach(App\Models\LeadErp::all()->sortBy("name") as $erp)
+                                        <option value='{{$erp->id}}'
+                                                @if (old('erp_id') == $erp->id)
                                                 {{ 'selected' }}
                                                 @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.erp') }} </div><div class='colored'> {{ $type->name }}</div>"
+                                                data-content="<div class='hideHint'>{{ __('app.lead.erp') }} </div><div class='colored'> {{ $erp->name }}</div>"
                                         >
-                                            {{ $type->name }}
+                                            {{ $erp->name }}
                                         </option>
                                     @endforeach
                                     <option data-divider="true"></option>
@@ -596,9 +596,9 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker hasOverflow {{ $errors->has('xef_soft') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('xef_soft') !='') started @endif" name="xef_soft[]" id="xef_soft" title="{{ __('app.lead.xefSoft') }}"  data-size="5" multiple>
-                                    @foreach($leadXefSofts as $types)
-                                        <optgroup label="{{ $types->first()->softType->name}}">
-                                            @foreach($types as $soft)
+                                    @foreach($leadXefSofts as $xefSofts)
+                                        <optgroup label="{{ $xefSofts->first()->softType->name}}">
+                                            @foreach($xefSofts as $soft)
                                                 <option value='{{$soft->id}}' @if (old('xef_soft') !='' && in_array($soft->id,old('xef_soft'))) {{ 'selected' }} @endif
                                                         data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">
                                                     {{ $soft->name }}
@@ -641,9 +641,9 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker hasOverflow {{ $errors->has('retail_soft') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_soft') !='') started @endif" name="retail_soft[]" id="retail_soft" title="{{ __('app.lead.retailSoft') }}"  data-size="5" multiple>
-                                    @foreach($leadRetailSofts as $types)
-                                        <optgroup label="{{ $types->first()->softType->name}}">
-                                            @foreach($types as $soft)
+                                    @foreach($leadRetailSofts as $retailSofts)
+                                        <optgroup label="{{ $retailSofts->first()->softType->name}}">
+                                            @foreach($retailSofts as $soft)
                                                 <option value='{{$soft->id}}' @if (old('retail_soft') !='' && in_array($soft->id,old('retail_soft'))) {{ 'selected' }} @endif
                                                         data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">
                                                   {{ $soft->name }}
