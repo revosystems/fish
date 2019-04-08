@@ -597,7 +597,7 @@
                             <div class="form-group isPicker hasOverflow {{ $errors->has('xef_soft') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('xef_soft') !='') {{ 'started' }} @endif" name="xef_soft[]" id="xef_soft" title="{{ __('app.lead.xefSoft') }}"  data-size="5" multiple>
                                     @foreach($leadXefSofts as $types)
-                                        <optgroup label="{{ $types->first()->typeCat->name}}">
+                                        <optgroup label="{{ $types->first()->softType->name}}">
                                             @foreach($types as $soft)
                                                 <option value='{{$soft->id}}' @if (old('xef_soft') !='' && in_array($soft->id,old('xef_soft'))) {{ 'selected' }} @endif
                                                         data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">
@@ -642,7 +642,7 @@
                             <div class="form-group isPicker hasOverflow {{ $errors->has('retail_soft') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_soft') !='') {{ 'started' }} @endif" name="retail_soft[]" id="retail_soft" title="{{ __('app.lead.retailSoft') }}"  data-size="5" multiple>
                                     @foreach($leadRetailSofts as $types)
-                                        <optgroup label="{{ $types->first()->typeCat->name}}">
+                                        <optgroup label="{{ $types->first()->softType->name}}">
                                             @foreach($types as $soft)
                                                 <option value='{{$soft->id}}' @if (old('retail_soft') !='' && in_array($soft->id,old('retail_soft'))) {{ 'selected' }} @endif
                                                         data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">

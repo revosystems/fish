@@ -19,6 +19,7 @@ class CreateLeadProposalsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('media');
+            $table->string('hero');
             $table->timestamps();
         });
     }

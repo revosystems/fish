@@ -12,7 +12,7 @@ class LeadSoft extends Model
         return $this->belongsTo(LeadType::class);
     }
 */
-    public function typeCat()
+    public function softType()
     {
         return $this->belongsTo(LeadSoftType::class, 'soft_type_id');
     }
