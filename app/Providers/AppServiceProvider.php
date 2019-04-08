@@ -17,6 +17,15 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('icon', function ($icon) {
             return icon($icon);
         });
+
+        Blade::directive('busy', function () {
+            return  "<span class='busy'>".\FA::spin('circle-o-notch').'</span>';
+        });
+
+        Blade::directive('gravatar', function ($email) {
+            return "<?php echo gravatar({$email} ?? null); ?>";
+        });
+
     }
 
     /**

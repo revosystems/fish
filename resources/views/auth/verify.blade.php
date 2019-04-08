@@ -1,24 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                @if (session('resent'))
+                    <div class="alert text-center" role="alert">
+                        @lang('auth.register.verifyNotification')
+                    </div>
+                @endif
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+                <div class="box-info">
+                    <h3>@lang('auth.register.verifyTitle')</h3><br />
+                    @lang('auth.register.verifyHint')
+                    <br /><br />
+                    @lang('auth.register.verifyLinkIntro'), <br /><a href="{{ route('verification.resend') }}" class="btn-simlynk-inline align-center">@lang('auth.register.verifyLinkClick').</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection

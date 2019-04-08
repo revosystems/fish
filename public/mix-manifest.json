@@ -1,5 +1,9 @@
 {
-    "/../resources/css/style.css": "/../resources/css/style.css",
+    "/../resources/assets/css/less-app.css": "/../resources/assets/css/less-app.css",
+    "/../resources/assets/css/style.css": "/../resources/assets/css/style.css",
     "/js/app.js": "/js/app.js",
-    "/css/all.css": "/css/all.css"
+    "/js/main.js": "/js/main.js",
+    "/css/app.css": "/css/app.css",
+    "/css/all.css": "/css/all.css",
+    "/css/pdf.css": "/css/pdf.css"
 }

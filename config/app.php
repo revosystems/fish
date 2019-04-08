@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Sales Platform - REVO Overview'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' =>  'Europe/Madrid',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,20 +80,35 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Fallback Locale
-    |--------------------------------------------------------------------------
-    |
-    | The fallback locale determines the locale to use when the current one
-    | is not available. You may change the value to correspond to any of
-    | the language folders that are provided through your application.
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Application available Languages
+	|--------------------------------------------------------------------------
+	|
+	| A list of available languages defined from their ISO Language Codes codes,
+	| see more: http://www.w3schools.com/tags/ref_language_codes.asp.
+	| If the code isn't in the list, fallback_locale (see above) will be used.
+	| To set new language, please create a folder in /resources/lang/{ISO-CODE}
+	|
+	*/
 
-    'fallback_locale' => 'en',
+	'languages' => ['es'],
+
+
+	/*
+	|--------------------------------------------------------------------------
+	| Application Fallback Locale
+	|--------------------------------------------------------------------------
+	|
+	| The fallback locale determines the locale to use when the current one
+	| is not available. You may change the value to correspond to any of
+	| the language folders that are provided through your application.
+	|
+	*/
+
+    'fallback_locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +121,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'es_ES',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +180,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -174,6 +190,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        BadChoice\Grog\GrogServiceProvider::class,
 
     ],
 
@@ -223,6 +240,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

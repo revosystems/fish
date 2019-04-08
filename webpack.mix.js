@@ -12,15 +12,29 @@ const mix = require('laravel-mix');
  */
 
 mix.babel([
-    //'resources/assets/js/app.js',
-        'vendor/badchoice/thrust/src/resources/js/thrust.min.js',
-        //'resources/js/utils.js',
-        'resources/js/libs/jquery.tagsinput.min.js',  //http://xoxco.com/projects/code/tagsinput/
-        'resources/js/libs/mention.js/bootstrap-typeahead.js',  //https://github.com/ivirabyan/jquery-mentions
-        'resources/js/libs/mention.js/mention.js',  //https://github.com/ivirabyan/jquery-mentions
-    ], 'public/js/app.js')
-    .less('resources/less/style.less', '../resources/css/style.css')
+    'vendor/badchoice/thrust/src/resources/js/thrust.min.js',
+    'node_modules/jquery-tags-input/dist/jquery.tagsinput.js',
+    'resources/assets/js/libs/mention.js/bootstrap-typeahead.js',
+    'resources/assets/js/libs/mention.js/mention.js',
+], 'public/js/app.js')
+
+    // WEB JS
+    .babel(['resources/assets/js/main.js'], 'public/js/main.js')
+
+    // WEB STYLES
+    .less('resources/assets/less/app.less', '../resources/assets/css/less-app.css')
+    .less('resources/assets/less/style.less', '../resources/assets/css/style.css')
     .styles([
-        'resources/css/libs/jquery.tagsinput.min.css',
-        'resources/css/style.css'
-    ],'public/css/all.css');
+        'resources/assets/css/app.css',
+        'resources/assets/css/less-app.css',
+    ],'public/css/app.css')
+    .styles([
+        'resources/assets/css/thrust.css',
+        'resources/assets/css/libs/jquery.tagsinput.min.css',
+        'resources/assets/css/style.css'
+    ], 'public/css/all.css')
+
+
+    // PROPOSAL PDF
+    .styles(['resources/assets/css/pdf.css'], 'public/css/pdf.css')
+;
