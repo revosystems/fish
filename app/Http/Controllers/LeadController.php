@@ -51,7 +51,7 @@ class LeadController extends Controller
             // PROPERTY
             "leadXefPropertyFranchises"     => LeadXefPropertyFranchise::all(),
             "leadXefPropertySpaces"         => LeadPropertySpaces::whereType(LeadType::XEF)->get(),
-            "leadRetailPropertySpaces"      => LeadPropertySpaces::whereType(LeadType::XEF)->get(),
+            "leadRetailPropertySpaces"      => LeadPropertySpaces::whereType(LeadType::RETAIL)->get(),
             // CONFIGURATION
             "leadDevices"                   => LeadDevice::all(),
             "leadXefKds"                    => LeadXefKds::all(),
