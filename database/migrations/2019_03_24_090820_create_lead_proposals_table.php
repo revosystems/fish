@@ -13,6 +13,7 @@ class CreateLeadProposalsTable extends Migration
      */
     public function up()
     {
+
         Schema::create('lead_proposals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key')->unique();

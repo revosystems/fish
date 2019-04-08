@@ -24,6 +24,7 @@ use App\Models\LeadXefPms;
 use App\Models\LeadXefPropertyFranchise;
 use App\Models\LeadGeneralTypology;
 use App\Models\LeadXefSpecificTypology;
+use PhpParser\Node\Stmt\DeclareDeclare;
 
 class LeadController extends Controller
 {
@@ -380,10 +381,9 @@ class LeadController extends Controller
         }
 
         // RELATED PROPOSALS
-        $relatedTypology = explode(",", $lead->generalTypology->related_proposal_id);
-        foreach ($relatedTypology as $typology) {
-            $proposals->push(LeadProposal::find($typology));
-        }
+        $lead->generalTypology->relatedProposals->each(function ($relatedProposal) use ($proposals) {
+            $proposals->push($relatedProposal);
+        });
 
         // BACK-MASTER
         $back_proposal = $lead->property_quantity > 1 ? 7 : 6;
@@ -410,8 +410,7 @@ class LeadController extends Controller
                     if (! in_array($soft_type, $soft_cat_types)) {
                         $soft_cat_types[]= $soft_type;
 
-                        $related = LeadSoftType::find($soft_type)->related_proposal_id;
-                        $proposals->push(LeadProposal::find($related));
+                        $proposals->push(LeadSoftType::find($soft_type)->relatedProposal);
                     }
                 } else {
                     if ($soft == "other") {
