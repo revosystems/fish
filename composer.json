@@ -11,7 +11,7 @@
         "php": "^7.1.3",
         "badchoice/grog": "^1.6",
         "badchoice/hurricane": "^1.0",
-        "badchoice/thrust": "^0.4.2",
+        "badchoice/thrust": "^0.4.3",
         "barryvdh/laravel-dompdf": "^0.8.4",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",

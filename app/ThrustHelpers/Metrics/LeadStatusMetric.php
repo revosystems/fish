@@ -10,7 +10,9 @@ class LeadStatusMetric extends PartitionMetric
 {
     public function calculate()
     {
-        return $this->count(Lead::class, 'status');
+        return $this->count(Lead::class, 'status')->names(function($lead){
+            return ucFirst(Lead::getStatusText($lead->status));
+        });
     }
 
     public function uriKey()
