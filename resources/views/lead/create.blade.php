@@ -1,3 +1,6 @@
+@php
+use App\Models\Lead;
+@endphp
 @extends('layouts.app')
 @section('section', 'onLead')
 @section('title', __('app.pageTitles.createLead').' - ')
@@ -19,16 +22,12 @@
                         <div class="col-sm-6">
                             <div class="form-group isPicker {{ $errors->has('type') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('type') !='') started @endif" name="type" id="type" title="{{ __('app.lead.type') }}"  data-size="5">
-                                    @foreach(App\Models\LeadType::all() as $type)
-                                        <option class='{{ $type->class }}' value='{{$type->id}}'
-                                                @if (old('type') == $type->id)
-                                                {{ 'selected' }}
-                                                @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'> {{ $type->name }}</div>"
-                                        >
-                                            {{ $type->name }}
-                                        </option>
-                                    @endforeach
+                                    <option class='dep.xef' value='{{Lead::TYPE_XEF}}' @if (old('type') == Lead::TYPE_XEF) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Xef</div>">
+                                        Xef
+                                    </option>
+                                    <option class='dep.retail' value='{{Lead::TYPE_RETAIL}}' @if (old('type') == Lead::TYPE_RETAIL) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Retail</div>">
+                                        Retail
+                                    </option>
                                 </select>
 
                                 @if ($errors->has('type'))

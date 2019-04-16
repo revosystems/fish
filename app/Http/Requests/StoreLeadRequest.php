@@ -25,7 +25,7 @@ class StoreLeadRequest extends FormRequest
     {
         return [
             // CLIENT
-            'type'          => 'required',
+            'type'             => 'required',
             'type_segment_id'  => 'required',
             // > XEF
             'xef_general_typology_id'    => 'required_if:type,1',
@@ -44,9 +44,9 @@ class StoreLeadRequest extends FormRequest
 
             // PROPERTY
             // > XEF
-            'xef_property_quantity'     => 'required_if:type,1|nullable|numeric',
+            'xef_property_quantity'        => 'required_if:type,1|nullable|numeric',
             'xef_property_franchise_id'    => 'required_if:type,1',
-            'xef_property_spaces'       => [function ($attribute, $value, $fail) {
+            'xef_property_spaces'          => [function ($attribute, $value, $fail) {
                 if (request("type") == 1 && count($value) <= 1) {
                     $fail(__('validation.custom.xef_property_spaces.required'));
                 }
@@ -85,7 +85,7 @@ class StoreLeadRequest extends FormRequest
             }],
             // > XEF (isHotel)
             'xef_pms_id'                   => 'required_if:xef_general_typology_id,7',
-            'xef_pms_other'             => 'required_if:xef_erp_id,-1|string|min_id:2|max:255',
+            'xef_pms_other'                => 'required_if:xef_erp_id,-1|string|min_id:2|max:255',
             // > XEF (Medium-Large) & RETAIL (Medium-Large)
             'erp_id'                       => [function ($attribute, $value, $fail) {
                 if ((request("type") == 1 && request("type_segment_id") != 1 && request("type_segment_id") != 4 && $value == "") ||

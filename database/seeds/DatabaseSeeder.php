@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LeadGeneralTypologyTableSeeder::class);
         $this->call(LeadRetailSaleLocationsTableSeeder::class);
         $this->call(LeadRetailSaleModesTableSeeder::class);
-        $this->call(LeadTypesTableSeeder::class);
         $this->call(LeadTypesSegmentsTableSeeder::class);
         $this->call(LeadXefKdsTableSeeder::class);
         $this->call(LeadXefPmsTableSeeder::class);

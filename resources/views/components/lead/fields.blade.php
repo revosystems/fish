@@ -4,7 +4,7 @@
         <table class="no-padding">
             <tr>
                 <td>{{ __('app.lead.type') }}:</td>
-                <td>{{ Form::select('type', createSelectArray( \App\Models\LeadType::all()->sortBy("order"), true), $lead->type) }}</td>
+                <td>{{ Form::select('type', [App\Models\Lead::TYPE_XEF => "Xef", App\Models\Lead::TYPE_RETAIL => "Retail"], $lead->type) }}</td>
             </tr>
 
             {{--<input type="hidden" name="type_segment_id_old" id="type_segment_id_old" value="{{old('type_segment_id')}}" />--}}

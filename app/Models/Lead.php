@@ -9,6 +9,10 @@ class Lead extends Model
 {
     use Taggable;
 
+    const TYPE_XEF       = 1;
+    const TYPE_RETAIL    = 2;
+
+
     const STATUS_NEW           = 1;
     const STATUS_FIRST_CONTACT = 2;
     const STATUS_VISITED       = 3;
@@ -26,12 +30,6 @@ class Lead extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /*
-    public function type()
-    {
-        return $this->hasOne(LeadType::class);
-    }*/
 
     public function typeSegment()
     {
@@ -91,6 +89,11 @@ class Lead extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function getRelatedProposal()
+    {
+        return $this->pos->posType->relatedProposal;
     }
 
     public function statusName()

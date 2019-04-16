@@ -12,19 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Lead;
 use App\Models\LeadDevice;
-use App\Models\LeadErp;
-use App\Models\LeadFranchisePosExternal;
-use App\Models\LeadPos;
 use App\Models\LeadProposal;
-use App\Models\LeadRetailSaleLocation;
-use App\Models\LeadRetailSaleMode;
-use App\Models\LeadType;
-use App\Models\LeadXefKds;
-use App\Models\LeadXefPms;
-use App\Models\LeadXefPropertyFranchise;
 use App\Models\LeadGeneralTypology;
-use App\Models\LeadXefSpecificTypology;
-use PhpParser\Node\Stmt\DeclareDeclare;
 
 class LeadController extends Controller
 {
@@ -46,12 +35,12 @@ class LeadController extends Controller
     public function create()
     {
         return view('lead.create', [
-            "leadXefGeneralTypologies"      => LeadGeneralTypology::whereType(LeadType::XEF)->orderBy("name")->get(),
-            "leadRetailGeneralTypologies"   => LeadGeneralTypology::whereType(LeadType::RETAIL)->orderBy("name")->get(),
-            "leadXefPropertySpaces"         => LeadPropertySpaces::whereType(LeadType::XEF)->get(),
-            "leadRetailPropertySpaces"      => LeadPropertySpaces::whereType(LeadType::RETAIL)->get(),
-            "leadXefSofts"                  => LeadSoft::whereType(LeadType::XEF)->orderBy("name")->get()->groupBy("soft_type_id"),
-            "leadRetailSofts"               => LeadSoft::whereType(LeadType::RETAIL)->orderBy("name")->get()->groupBy("soft_type_id"),
+            "leadXefGeneralTypologies"      => LeadGeneralTypology::whereType(Lead::TYPE_XEF)->orderBy("name")->get(),
+            "leadRetailGeneralTypologies"   => LeadGeneralTypology::whereType(Lead::TYPE_RETAIL)->orderBy("name")->get(),
+            "leadXefPropertySpaces"         => LeadPropertySpaces::whereType(Lead::TYPE_XEF)->get(),
+            "leadRetailPropertySpaces"      => LeadPropertySpaces::whereType(Lead::TYPE_RETAIL)->get(),
+            "leadXefSofts"                  => LeadSoft::whereType(Lead::TYPE_XEF)->orderBy("name")->get()->groupBy("soft_type_id"),
+            "leadRetailSofts"               => LeadSoft::whereType(Lead::TYPE_RETAIL)->orderBy("name")->get()->groupBy("soft_type_id"),
         ]);
     }
 
@@ -150,30 +139,30 @@ class LeadController extends Controller
 
         $proposals          = $this->getProposals($lead);
         $type               = $lead->type;
-        $revoVersionCss   = ($type == 1) ? "xef" : "retail";
-        $revoVersion       = ($type == 1) ? "XEF" : "RETAIL";
+        $revoVersionCss     = ($type == 1) ? "xef" : "retail";
+        $revoVersion        = ($type == 1) ? "XEF" : "RETAIL";
         $revo_version_fname = ($type == 1) ? "XEF" : "RETAIL";
 
         $hardware_retail = [ 'Caja & Display cliente', 'Caja móvil / autoventa', 'Payment', 'Balanzas y lectores', 'Almacén', 'Printers', 'Wifi' ];
         $hardware_xef    = [ 'Caja', 'Comandero', 'KDS cocina', 'KIOSK "Pre-Order, In-Room & In-Table"', 'Payment', 'Printers', 'Wifi', 'Balanzas y lectores' ];
         $hardware        = ($type == 1) ? $hardware_xef : $hardware_retail;
 
-        $propertyStaffQuantity   = null;
-        $retailSaleMode          = null;
-        $retailSaleLocation      = null;
-        $franchisePosExternal    = null;
+        $propertyStaffQuantity     = null;
+        $retailSaleMode            = null;
+        $retailSaleLocation        = null;
+        $franchisePosExternal      = null;
         $erp                       = null;
         $software                  = "";
         $softHasOther              = 0;
         $softHasNone               = 0;
-        $xefPropertyCapacity     = null;
-        $xefPosCriticalQuantity = null;
-        $xefCashQuantity         = null;
-        $xefPrintersQuantity     = null;
-        $xefKds                   = null;
-        $xefPms                   = null;
+        $xefPropertyCapacity       = null;
+        $xefPosCriticalQuantity    = null;
+        $xefCashQuantity           = null;
+        $xefPrintersQuantity       = null;
+        $xefKds                    = null;
+        $xefPms                    = null;
 
-        $revoVersion   .= " ({$lead->typeSegment->name})";
+        $revoVersion .= " ({$lead->typeSegment->name})";
         $typology       = $lead->generalTypology->name;
 //        $propertySpaces    = $lead->propertySpaces->map(function ($space) {
 //            return LeadPropertySpaces::find($space)->name;
@@ -199,7 +188,7 @@ class LeadController extends Controller
             }
 
             $xefPropertyCapacity     = $lead->xef_property_capacity;
-            $xefPosCriticalQuantity = $lead->xef_pos_critical_quantity;
+            $xefPosCriticalQuantity  = $lead->xef_pos_critical_quantity;
             $xefCashQuantity         = $lead->xef_cash_quantity;
             $xefPrintersQuantity     = $lead->xef_printers_quantity;
 
@@ -298,36 +287,36 @@ class LeadController extends Controller
 
         $pdf = \PDF::loadView('lead.pdf', [
             'type'                      => $type,
-            "revoVersionCss"          => $revoVersionCss,
-            "revoVersion"              => $revoVersion,
-            "tradeName"                => $lead->trade_name,
-            "clientName"               => $lead->name,
-            "clientSurname1"           => $lead->surname1,
-            "clientSurname2"           => $lead->surname2,
-            "clientEmail"              => $lead->email,
-            "clientPhone"              => $lead->phone,
-            "clientCity"               => $lead->city,
+            "revoVersionCss"            => $revoVersionCss,
+            "revoVersion"               => $revoVersion,
+            "tradeName"                 => $lead->trade_name,
+            "clientName"                => $lead->name,
+            "clientSurname1"            => $lead->surname1,
+            "clientSurname2"            => $lead->surname2,
+            "clientEmail"               => $lead->email,
+            "clientPhone"               => $lead->phone,
+            "clientCity"                => $lead->city,
             "proposals"                 => $proposals,
             'hardware'                  => $hardware,
             'profile'                   => $revoVersion,
             'typology'                  => $typology,
-            'propertyQty'              => $lead->property_quantity,
-            'propertySpaces'           => $propertySpaces,
-            'propertyStaffQuantity'   => $propertyStaffQuantity,
+            'propertyQty'               => $lead->property_quantity,
+            'propertySpaces'            => $propertySpaces,
+            'propertyStaffQuantity'     => $propertyStaffQuantity,
             'devices'                   => $devices,
-            'retailSaleMode'          => $retailSaleMode,
-            'retailSaleLocation'      => $retailSaleLocation,
+            'retailSaleMode'            => $retailSaleMode,
+            'retailSaleLocation'        => $retailSaleLocation,
             'pos'                       => $pos,
             'franchise'                 => $franchise,
-            'franchisePosExternal'    => $franchisePosExternal,
+            'franchisePosExternal'      => $franchisePosExternal,
             'erp'                       => $erp,
             'software'                  => $software,
-            'xefPropertyCapacity'     => $xefPropertyCapacity,
-            'xefPosCriticalQuantity' => $xefPosCriticalQuantity,
-            'xefCashQuantity'         => $xefCashQuantity,
-            'xefPrintersQuantity'     => $xefPrintersQuantity,
-            'xefKds'                   => $xefKds,
-            'xefPms'                   => $xefPms
+            'xefPropertyCapacity'       => $xefPropertyCapacity,
+            'xefPosCriticalQuantity'    => $xefPosCriticalQuantity,
+            'xefCashQuantity'           => $xefCashQuantity,
+            'xefPrintersQuantity'       => $xefPrintersQuantity,
+            'xefKds'                    => $xefKds,
+            'xefPms'                    => $xefPms
 
 
         ]);
@@ -353,13 +342,13 @@ class LeadController extends Controller
     {
         $proposals = collect();
         // POS
-        $proposals->push($lead->pos->posType->relatedProposal);
+        $proposals->push($lead->getRelatedProposal());
         // HERO PROPOSAL
         $proposals->push($lead->generalTypology->proposal);
 
-        if ($lead->type == LeadType::XEF) {
-            $xefProposal     = 1; // BASIC
-            $xefDevices = $lead->xef_pos_critical_quantity + $lead->xef_cash_quantity;
+        if ($lead->type == Lead::TYPE_XEF) {
+            $xefProposal      = 1; // BASIC
+            $xefDevices       = $lead->xef_pos_critical_quantity + $lead->xef_cash_quantity;
             $xef_printers     = $lead->xef_printers_quantity + ($lead->xef_kds == 1 ? $lead->xef_kds_quantity : 0);
             if ($xefDevices > 1 || $xef_printers > 2) { // PLUS
                 $xefProposal = 2;
@@ -369,7 +358,7 @@ class LeadController extends Controller
                 }
             }
             $proposals->push(LeadProposal::find($xefProposal));
-        } elseif ($lead->type == LeadType::RETAIL) {
+        } elseif ($lead->type == Lead::TYPE_RETAIL) {
             // VERSION
             $proposals->push(LeadProposal::find(4));
         }
@@ -402,7 +391,7 @@ class LeadController extends Controller
         // SOFT
         if ($lead->xef_soft || $lead->retail_soft) {
             $soft_cat_types = [];
-            $software = ($lead->type == 1) ? explode(",", $lead->xef_soft) : explode(",", $lead->retail_soft);
+            $software       = ($lead->type == 1) ? explode(",", $lead->xef_soft) : explode(",", $lead->retail_soft);
             foreach ($software as $soft) {
                 if ($soft != "other" && $soft != "none") {
                     $soft_type = LeadSoft::find($soft)->soft_type_id;

@@ -127,20 +127,20 @@
                         <td>Espacios</td>
                         <td>{{$propertySpaces}}</td>
                     </tr>
-                    @if($type == App\Models\LeadType::XEF)
+                    @if($type == App\Models\Lead::TYPE_XEF)
                         <tr>
                             <td>Aforo del local</td>
                             <td>{{$xefPropertyCapacity}}</td>
                         </tr>
                     @endif
-                    @if($type == App\Models\LeadType::RETAIL)
+                    @if($type == App\Models\Lead::TYPE_RETAIL)
                         <tr>
                             <td>Nº empleados / comerciales</td>
                             <td>{{$propertyStaffQuantity}}</td>
                         </tr>
                     @endif
 
-                    @if($type == App\Models\LeadType::XEF)
+                    @if($type == App\Models\Lead::TYPE_XEF)
                         <tr>
                             <td>Nº comanderos entorno crítico</td>
                             <td>{{$xefPosCriticalQuantity}}</td>
@@ -158,7 +158,7 @@
                             <td>{{$xefKds}}</td>
                         </tr>
                     @endif
-                    @if($type == App\Models\LeadType::RETAIL)
+                    @if($type == App\Models\Lead::TYPE_RETAIL)
                         <tr>
                             <td>Requiere venta delante del cliente final</td>
                             <td>{{$retail_sale_mode}}</td>
@@ -228,7 +228,7 @@
         <img src="{{ asset('images/orange.jpg') }}" class="orange" />
         <div class="profile title absolute">HARDWARE Y ACCESORIOS</div>
         <div class="divider">&nbsp;</div>
-        <div class="hardware" style="{{  $type == App\Models\LeadType::RETAIL ? "display:none" : "display:block" }}">
+        <div class="hardware" style="{{  $type == App\Models\Lead::TYPE_RETAIL ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash')}}</h3></div>
             </div>
@@ -330,7 +330,7 @@
                 </div>
             </div>
         </div>
-        <div  class="hardware" style="{{ $type == App\Models\LeadType::XEF ? "display:none" : "display:block" }}">
+        <div  class="hardware" style="{{ $type == App\Models\Lead::TYPE_XEF ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash_display')}}</h3></div>
             </div>
