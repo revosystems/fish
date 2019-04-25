@@ -15,7 +15,7 @@ class LeadPosTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('lead_pos')->truncate();
         DB::table('lead_pos')->insert([
-            ['name' => 'Ágora','typde_id' => 1,'created_at' => new DateTime,'updated_at' => new DateTime],
+            ['name' => 'Ágora','type_id' => 1,'created_at' => new DateTime,'updated_at' => new DateTime],
             ['name' => 'BDP','type_id' => 1,'created_at' => new DateTime,'updated_at' => new DateTime],
             ['name' => 'Cuiner','type_id' => 1,'created_at' => new DateTime,'updated_at' => new DateTime],
             ['name' => 'Dual link','type_id' => 3,'created_at' => new DateTime,'updated_at' => new DateTime],
