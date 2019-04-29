@@ -35,9 +35,6 @@
     <title>@yield("title") {{ config('app.name') }}</title>
 
     <!-- STYLES -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('modules/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('modules/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans%7CRoboto:400,300,700%7CPermanent+Marker">
-    <link rel="stylesheet" type="text/css" href="{{ asset('modules/gridder/dist/css/jquery.gridder.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans%7CRoboto:400,300,700%7CPermanent+Marker">
 </head>

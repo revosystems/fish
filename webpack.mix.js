@@ -19,12 +19,23 @@ mix.babel([
 ], 'public/js/app.js')
 
     // WEB JS
-    .babel(['resources/assets/js/main.js'], 'public/js/main.js')
+    .babel([
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/imagesloaded/imagesloaded.pkgd.js',
+        'node_modules/bootstrap/dist/js/bootstrap.js',
+        'node_modules/bootstrap-select/dist/js/bootstrap-select.js',
+        'public/modules/gridder/dist/js/jquery.gridder.min.js',
+        'public/modules/Animated-Placeholder/js/animated-placeholder.js',
+        'resources/assets/js/main.js',
+    ], 'public/js/main.js')
 
     // WEB STYLES
     .less('resources/assets/less/app.less', '../resources/assets/css/less-app.css')
     .less('resources/assets/less/style.less', '../resources/assets/css/style.css')
     .styles([
+        'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/bootstrap-select/dist/css/bootstrap-select.css',
+        'public/modules/gridder/dist/css/jquery.gridder.min.css',
         'resources/assets/css/app.css',
         'resources/assets/css/less-app.css',
     ],'public/css/app.css')

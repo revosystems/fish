@@ -450,6 +450,7 @@ textarea {
 }
 .bootstrap-select .filter-option .colored {
 	font-weight: normal;
+	padding-bottom:3px;
 }
 
 .bootstrap-select .filter-option .hideHint {
@@ -1782,7 +1783,6 @@ button[type="submit"] {
 
 
 .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
-	padding-left: 12px;
 	line-height: 48px;
 }
 
@@ -1797,18 +1797,18 @@ button[type="submit"] {
 }
 
 .bootstrap-select .dropdown-toggle .filter-option {
-	position: absolute;
+	/*position: absolute;
 	top: 0;
 	left: 0;
 	height: 100%;
 	width: 100%;
-	text-align: left;
+	text-align: left;*/
 	padding: 0;
 }
 
 .bootstrap-select button {
-	padding-top: 12px;
-	padding-bottom: 14px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
 
