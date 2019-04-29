@@ -37,7 +37,7 @@ class LeadGeneralTypologyTableSeeder extends Seeder
             ['type' => 2, 'proposal_id' => 36,'name' => 'Eventos / corners','created_at' => new DateTime,'updated_at' => new DateTime],
             ['type' => 2, 'proposal_id' => 35,'name' => 'Espectáculos','created_at' => new DateTime,'updated_at' => new DateTime],
         ]);
-        DB::table('lead_general_typologies_related_proposals')->insert([
+        DB::table('general_typologies_related_proposals')->insert([
             ['general_typology_id' => 20,'related_proposal_id' => 5],
             ['general_typology_id' => 20,'related_proposal_id' => 15],
             ['general_typology_id' => 20,'related_proposal_id' => 8],
