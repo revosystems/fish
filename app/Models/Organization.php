@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
-    protected $fillable = ['name'];
-
+    protected $guarded = [];
     public function organizations()
     {
         return $this->hasMany(Organization::class);
     }
 
-    public function parentOrganization(){
+    public function parentOrganization()
+    {
         return $this->belongsTo(Organization::class, 'organization_id');
     }
 
