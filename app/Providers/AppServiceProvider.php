@@ -14,6 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::directive('setActive', function ($routeName) {
+            return request()->routeIs($routeName) ? 'current' : '';
+        });
+
         Blade::directive('icon', function ($icon) {
             return icon($icon);
         });

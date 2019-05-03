@@ -1,0 +1,9 @@
+.thrust-table{
+  @extend .table;
+  @extend .table-striped;
+  @extend .table-sm;
+}
+
+.thrust-table-density {
+  display:none;
+}

@@ -1,10 +1,5 @@
 <?php
 
-function setActive($routeName)
-{
-    return request()->routeIs($routeName) ? 'current' : '';
-}
-
 function gravatar($email, $size = 40)
 {
     $gravatarURL  = gravatarUrl($email, $size);
