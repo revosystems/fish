@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6ae12ae29cd7a77f08f82746743c473",
+    "content-hash": "70a219ce96d7b2fa7ac3807ef58693e9",
     "packages": [
         {
             "name": "badchoice/grog",
@@ -72,16 +72,16 @@
         },
         {
             "name": "badchoice/thrust",
-            "version": "0.4.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BadChoice/thrust.git",
-                "reference": "dfe04fea4e245076e82b37367bab28a39cff8d4c"
+                "reference": "59fa733560ad8413b4ec018352b4257ab9a5e90c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadChoice/thrust/zipball/dfe04fea4e245076e82b37367bab28a39cff8d4c",
-                "reference": "dfe04fea4e245076e82b37367bab28a39cff8d4c",
+                "url": "https://api.github.com/repos/BadChoice/thrust/zipball/59fa733560ad8413b4ec018352b4257ab9a5e90c",
+                "reference": "59fa733560ad8413b4ec018352b4257ab9a5e90c",
                 "shasum": ""
             },
             "require": {
@@ -115,7 +115,7 @@
                 }
             ],
             "description": "A simple resource crud generator",
-            "time": "2019-04-09T15:57:06+00:00"
+            "time": "2019-05-03T14:02:00+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1490,7 +1490,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -5718,7 +5718,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "badchoice/thrust": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
