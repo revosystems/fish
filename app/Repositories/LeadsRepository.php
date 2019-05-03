@@ -7,12 +7,12 @@ use Carbon\Carbon;
 
 class LeadsRepository
 {
-    public static function  assignedToMe()
+    public static function assignedToMe()
     {
         return auth()->user()->leads()->where('status', '<', Lead::STATUS_COMPLETED);
     }
 
-    public function unassigned()
+    public static function unassigned()
     {
         if (auth()->user()->admin) {
             return Lead::whereNull('user_id')->where('status', '<', Lead::STATUS_COMPLETED);
@@ -21,21 +21,20 @@ class LeadsRepository
         return auth()->user()->teamsLeads()->whereRaw('tickets.user_id is NULL')->where('status', '<', Lead::STATUS_COMPLETED);
     }
 
-    public function all()
+    public static function all()
     {
         if (auth()->user()->admin) {
             return Lead::where('status', '<', Lead::STATUS_COMPLETED);
         }
-
         return auth()->user()->teamsLeads()->where('status', '<', Lead::STATUS_COMPLETED);
     }
 
-    public function recentlyUpdated()
+    public static function recentlyUpdated()
     {
-        return $this->all()->whereRaw("leads.updated_at > '".Carbon::parse('-1 days')->toDateTimeString()."'");
+        return static::all()->whereRaw("leads.updated_at > '".Carbon::parse('-1 days')->toDateTimeString()."'");
     }
 
-    public function completed()
+    public static function completed()
     {
         if (auth()->user()->admin) {
             return Lead::where('status', '=', Lead::STATUS_COMPLETED);
@@ -44,7 +43,7 @@ class LeadsRepository
         return auth()->user()->teamsLeads()->where('status', '=', Lead::STATUS_COMPLETED);
     }
 
-    public function failed()
+    public static function failed()
     {
         if (auth()->user()->admin) {
             return Lead::where('status', '=', Lead::STATUS_FAILED);
@@ -53,7 +52,7 @@ class LeadsRepository
         return auth()->user()->teamsLeads()->where('status', '=', Lead::STATUS_FAILED);
     }
 
-    public function search($text)
+    public static function search($text)
     {
         if (auth()->user()->admin) {
             $leadsQuery = Lead::query();

@@ -9,7 +9,7 @@ function gravatar($email, $size = 40)
 {
     $gravatarURL  = gravatarUrl($email, $size);
 
-    return '<img id = '.$email.''.$size.' alt="user" class="gravatar user-avatar rounded-circle mr-2" src="'.$gravatarURL.'" width="'.$size.'">';
+    return "<img id = {$email} alt=\"user\" class=\"gravatar user-avatar rounded-circle mr-2\" src=\"{$gravatarURL}\" width=\"{$size}\">";
 }
 
 function gravatarUrl($email, $size)
