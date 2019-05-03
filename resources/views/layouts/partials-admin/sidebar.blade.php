@@ -20,12 +20,11 @@
                  "icon"     => 'library_add',
             ])
 
-            @php ( $repository = new App\Repositories\LeadsRepository )
             @include('components.sidebarItem', [
                  "url"      => route('thrust.index', ['leads']),
                  "title"    => trans_choice('admin.lead', 2),
                  "icon"     => 'assignment',
-                 "count"    => $repository->all()->count()
+                 "count"    => App\Repositories\LeadsRepository::all()->count()
             ])
 
             @include('components.sidebarItem', [
