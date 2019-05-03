@@ -1,0 +1,47 @@
+// Main navbar adjustments
+
+.main-navbar .navbar {
+  height: $main-navbar-height;
+  background: $accent-bg;
+
+
+  > * {
+    display: flex;
+  }
+
+  ul {
+    margin-left: auto;
+  }
+
+  .nav{
+    box-shadow: 0 0px 20px hsla(0,0%,69.8%,.12);
+    padding-left: 5px;
+  }
+
+  .nav-link {
+    min-width: $main-navbar-nav-link-min-width;
+    color: #fff!important;
+  }
+
+
+  // Navbar
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+
+  .nav-link-icon i {
+    line-height: $main-navbar-nav-link-icon-line-height;
+  }
+}
+
+// Main navbar shadow.
+.main-content > .main-navbar,
+.main-content .header-navbar {
+  box-shadow: $main-navbar-box-shadow;
+}
+

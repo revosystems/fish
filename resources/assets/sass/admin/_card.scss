@@ -1,0 +1,21 @@
+// VARIABLES //////////////////////////////
+$card-headings-font-weight: 500 !default;
+$card-header-background: #ffffff !default;
+$card-border-radius: .625rem;
+///////////////////////////////////////////
+
+.card{
+  border-radius: $card-border-radius;
+}
+
+.card-header {
+  background: $card-header-background;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: $card-headings-font-weight;
+  }
+
+  &:first-child{
+    border-radius: $card-border-radius $card-border-radius 0 0;
+  }
+}

@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/bootstrap";
+@import "admin/ui-set";
+
+@import "admin/variables";
+
+@import "admin/init";
+
+@import "admin/buttons";
+@import "admin/navbar";
+@import "admin/alert";
+@import "admin/input-group";
+@import "admin/images";
+@import "admin/icons";
+@import "admin/dropdown";
+@import "admin/card";
+@import "admin/borders";
+
+
+// Blocks
+@import "admin/blocks/main-navbar";
+@import "admin/blocks/main-sidebar";
+@import "admin/blocks/main-content";
+@import "admin/blocks/main-footer";
+@import "admin/blocks/page-header";
