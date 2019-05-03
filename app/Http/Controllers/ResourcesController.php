@@ -23,6 +23,6 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        return view('resources');
+        return view('app.resources');
     }
 }

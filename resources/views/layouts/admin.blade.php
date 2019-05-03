@@ -1,42 +1,44 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="no-js h-100">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Revo Fish') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @include('layouts.partials-admin.head')
 </head>
-<body>
+<body class="h-100">
+    <div class="container-fluid">
+        <div class="row">
+            @include('layouts.partials-admin.sidebar')
 
-@include('layouts.tinyHeader')
-@include('layouts.sidebar')
+            <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+                <div class="main-navbar sticky-top bg-white">
+                    @include('layouts.partials-admin.header')
+                </div>
+                <div class="main-content-container container-fluid px-4">
+                    @include('components.errors')
+                    @include('layouts.partials-admin.breadcrumb')
 
-<div class="content container-fluid">
-    @include('components.errors')
-    @yield('content')
-</div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card card-small mb-4">
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Organizaciones</h6>
+                                </div>
+                                <div class="card-body p-0">
+                                    @yield('content')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @include('layouts.partials-admin.footer')
+            </main>
+        </div>
+    </div>
 
-<script>
-    var lang = {!! json_encode(Lang::get('javascript')) !!};
-    function toggleSidebar(){
-        var position = 0;
-        if( $('#sidebar').position().left == 0) {
-            position = -350;
-        }
-        $('#sidebar').animate({"left":position + "px"}, 200);
-    }
-</script>
-@include('layouts.popup')
-<script src="{{ asset('js/app.js') }}"></script>
-@yield('scripts')
-@stack('edit-scripts')
+
+    @include('layouts.partials-admin.popup')
+    <script src="{{ asset('js/admin.js') }}"></script>
+
+    @yield('scripts')
+    @stack('edit-scripts')
 </body>
 </html>

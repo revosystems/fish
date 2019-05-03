@@ -34,7 +34,7 @@ class LeadController extends Controller
      */
     public function create()
     {
-        return view('lead.create', [
+        return view('app.lead.create', [
             "leadXefGeneralTypologies"      => LeadGeneralTypology::whereType(Lead::TYPE_XEF)->orderBy("name")->get(),
             "leadRetailGeneralTypologies"   => LeadGeneralTypology::whereType(Lead::TYPE_RETAIL)->orderBy("name")->get(),
             "leadXefPropertySpaces"         => LeadPropertySpaces::whereType(Lead::TYPE_XEF)->get(),
@@ -82,7 +82,7 @@ class LeadController extends Controller
         $lead      = Lead::findOrFail($id);
         $proposals = $this->getProposals($lead);
         if (Auth::id() === $lead->user_id) {
-            return view('lead.show')
+            return view('app.lead.show')
                 ->with('proposals', $proposals)
                 ->with('type', $lead->type)
                 ->with('trade_name', $lead->trade_name)

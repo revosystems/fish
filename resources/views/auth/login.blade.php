@@ -2,7 +2,7 @@
 
 @section('content')
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4 offset-md-4">
                 @if (session('errorMsg'))
                     <div class="alert text-center" role="alert">
                         @lang(session('errorMsg'))

@@ -15,7 +15,7 @@
             </div>
             <div class="container dossier xxs slim-b">
                 <div class="row">
-                    <div class="col-xs-6 col-sm-offset-2 col-sm-4 mb-40">
+                    <div class="col-xs-6 offset-sm-2 col-sm-4 mb-40">
                         <a href="{{__('app.resources.highlights_dw')}}" target="_blank">
                             <span class="btn">{{__('app.resources.highlights')}}</span>
                             <div class="item featured text-center">
@@ -37,7 +37,7 @@
             </div>
             <div class="container dossier xxs slim-t slim-t-0">
                 <div class="row">
-                    <div class="col-xs-12 visible-xs hero-special">
+                    <div class="col-xs-12 d-block d-sm-none hero-special">
                             <span class="btn">{{__('app.resources.catalogs')}}</span>
                     </div>
                     <div class="col-xs-6 col-sm-4 col-md-4">
@@ -58,7 +58,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4 hidden-xs">
+                    <div class="col-xs-6 col-sm-4 col-md-4 d-none d-sm-block">
                         <div class="item no-mt no-pl">
                             <div>
                                 <span class="btn">{{__('app.resources.catalogs')}}</span>
@@ -97,12 +97,12 @@
                 </div>
             </div>
             <div class="full">
-                <div class="full-inner col-md-5 visible-md visible-lg">
+                <div class="full-inner col-md-5 d-none d-md-block d-lg-block">
                     <div class="full-inner-img"></div>
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-7 col-md-offset-5 dossier xxs">
+                        <div class="col-md-7 offset-md-5 dossier xxs">
                             <span class="btn">{{__('app.resources.dossiers')}}</span>
                             <br />
                             {{__('app.resources.dossiers_txt')}}

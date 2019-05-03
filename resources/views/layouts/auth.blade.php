@@ -5,7 +5,7 @@
         @include("layouts.partials.loaders.preloader")
         <div class="container login-container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-4 offset-md-4">
                     <div class="login-logo-wrap">
                         <img class="login-logo" alt="@lang('app.subtitle') - @lang('app.title') " src="{{ asset('images/logo-overview.png') }}">
                         <span class="login-subtitle">@lang('app.subtitle')</span>

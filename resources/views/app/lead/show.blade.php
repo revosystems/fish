@@ -5,10 +5,10 @@
         <div class="section">
             <div class="container">
                 <ul class="nav nav-pills mobileTab text-center" role="tablist">
-                    <li role="presentation" class="active hidden-xs"><a role="tab" data-toggle="tab" href="#software">{{__('app.proposal.nav_software')}}</a></li>
-                    <li role="presentation" class="hidden-xs"><a class="hasArrow" role="tab" data-toggle="tab" href="#hardware">{{__('app.proposal.nav_hardware')}}</a></li>
-                    <li role="presentation" class="hidden-xs"><a class="hasArrow" role="tab" data-toggle="tab" href="#services">{{__('app.proposal.nav_services')}}</a></li>
-                    <li role="presentation" class="dropdown visible-xs customSelect">
+                    <li role="presentation" class="active d-none d-sm-block"><a role="tab" data-toggle="tab" href="#software">{{__('app.proposal.nav_software')}}</a></li>
+                    <li role="presentation" class="d-none d-sm-block"><a class="hasArrow" role="tab" data-toggle="tab" href="#hardware">{{__('app.proposal.nav_hardware')}}</a></li>
+                    <li role="presentation" class="d-none d-sm-blocks"><a class="hasArrow" role="tab" data-toggle="tab" href="#services">{{__('app.proposal.nav_services')}}</a></li>
+                    <li role="presentation" class="dropdown d-block d-sm-none customSelect">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="txt">{{__('app.proposal.nav_software')}}</span> <i class='fa fa-chevron-down right'></i>
                         </a>
@@ -317,7 +317,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6 col-md-offset-3 col-md-3 text-center">
+                            <div class="col-sm-6 offset-md-3 col-md-3 text-center">
                                 <img src="{{ asset(__('app.services.hosting_img')) }}">
                                 <span class="product block text-center">{{__('app.services.hosting')}}</span>
                                 {{__('app.services.hosting_txt')}}
@@ -331,7 +331,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3 text-center">
+                    <div class="col-md-6 offset-md-3 text-center">
                         <div class="dossier">
                             <a href="{{Request::url()}}/download">
                                 <div class="item featured">

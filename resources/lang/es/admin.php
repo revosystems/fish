@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'myProfile'     => 'Mi perfil',
+    'logout'        => 'Cerrar sesión',
+
     'lead'       => 'Lead|Leads',
     'newLead'    => 'Nuevo Lead',
     'status'     => 'Estado|Estados',

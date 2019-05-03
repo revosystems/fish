@@ -5,7 +5,7 @@
         <!-- Social Links -->
         <div class="footer-soc-a">
             <a href="https://www.linkedin.com/company/revosystems" title="LinkedIn+" target="_blank"><i class="fa fa-linkedin"></i></a>
-            <a href="https://www.youtube.com/channel/UCbSKbWKGuhNxrXlP1kKBRyA" title="Dribbble" target="_blank"><i class="fa fa-youtube"></i></a>
+            <a href="https://www.youtube.com/channel/UCbSKbWKGuhNxrXlP1kKBRyA" title="YouTube" target="_blank"><i class="fa fa-youtube"></i></a>
         </div>
 
         <!-- Copyright -->

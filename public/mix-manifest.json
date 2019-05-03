@@ -1,9 +1,8 @@
 {
-    "/../resources/assets/css/less-app.css": "/../resources/assets/css/less-app.css",
-    "/../resources/assets/css/style.css": "/../resources/assets/css/style.css",
+    "/css/admin.css": "/css/admin.css",
+    "/../resources/assets/css/app-sass.css": "/../resources/assets/css/app-sass.css",
+    "/js/admin.js": "/js/admin.js",
     "/js/app.js": "/js/app.js",
-    "/js/main.js": "/js/main.js",
     "/css/app.css": "/css/app.css",
-    "/css/all.css": "/css/all.css",
     "/css/pdf.css": "/css/pdf.css"
 }

@@ -120,10 +120,10 @@ var App = function() {
                     maxHeight = ($(this).innerHeight()>maxHeight) ? $(this).innerHeight():maxHeight;
                 });
 
-                toEq.children("div[class*=col-]").height(maxHeight)
+                toEq.children("div[class*=col-]").height(maxHeight);
             });
         }
-    }
+    };
 }();
 
 var Forms = function() {
@@ -170,9 +170,9 @@ var Forms = function() {
 
         clearErrors: function(){
             $(".is-invalid").removeClass("is-invalid");
-            $(".invalid-feedback").remove()
+            $(".invalid-feedback").remove();
         }
-    }
+    };
 }();
 
 var Lead = function() {
@@ -432,7 +432,7 @@ var Lead = function() {
                 //$(".mobileTab a[href*='#"+id+"']").closest("li").addClass("active");
             });
         }
-    }
+    };
 }();
 
 /* -- DOCUMENT.READY ------------------------ */
