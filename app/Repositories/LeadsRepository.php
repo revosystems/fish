@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class LeadsRepository
 {
-    public function assignedToMe()
+    public static function  assignedToMe()
     {
         return auth()->user()->leads()->where('status', '<', Lead::STATUS_COMPLETED);
     }
