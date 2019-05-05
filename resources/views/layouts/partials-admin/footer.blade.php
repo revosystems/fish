@@ -1,4 +1,4 @@
-<footer class="main-footer d-flex p-2 px-3 bg-white border-top">
+<footer class="main-footer d-flex px-4 bg-white border-top">
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{route("home")}}">{{__("app.pages.home")}}</a>
@@ -10,7 +10,7 @@
 <a class="nav-link" href="http://support.revo.works/es" target="_blank">{{__("app.pages.support")}}</a>
 </li>
 </ul>
-<span class="copyright ml-auto my-auto mr-2">&copy; <?=date("Y")?>
+<span class="copyright ml-auto">&copy; <?=date("Y")?>
         <a href="revo.works" rel="nofollow" target="_blank">REVO SYSTEMS</a>
     </span>
 </footer>

@@ -22,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
             return icon($icon);
         });
 
+        Blade::directive('iconMt', function ($icon) {
+            return "<i class='material-icons'>".$icon."</i>";
+        });
+
         Blade::directive('busy', function () {
             return  "<span class='busy'>".\FA::spin('circle-o-notch').'</span>';
         });

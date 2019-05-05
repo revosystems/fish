@@ -19,12 +19,12 @@
                     <div class="row">
                         <div class="col">
                             <div class="card card-small mb-4">
-                                <div class="card-header border-bottom">
-                                    {{--<h6 class="m-0">--}}
-                                        {{--{{ trans_choice(config('thrust.translationsPrefix') . str_singular($resourceName), 2) }} ({{ $resource->count() }})--}}
-                                    {{--</h6>--}}
+                                {{--<div class="card-header border-bottom">
+                                    <h6 class="m-0">
+                                        {{ trans_choice(config('thrust.translationsPrefix') . str_singular($resourceName), 2) }} ({{ $resource->count() }})
+                                    </h6>
                                     <h6 class="m-0">Organizaciones</h6>
-                                </div>
+                                </div>--}}
                                 <div class="card-body p-0">
                                     @yield('content')
                                 </div>

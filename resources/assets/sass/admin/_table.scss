@@ -1,9 +1,85 @@
-.thrust-table{
+.thrust-table,
+table.list.striped{
   @extend .table;
   @extend .table-striped;
   @extend .table-sm;
 }
 
+.thrust-table td,
+table.list td{
+  vertical-align: middle!important;
+}
+
+.thrust-index-header,
+.description{
+  @extend .card-header;
+  @extend .border-bottom;
+  overflow: hidden;
+}
+
+.thrust-index-title,
+.description .title{
+  @extend  h6;
+  @extend .m-0;
+  float: left;
+  padding-top: 0.58rem;
+}
+
+table thead .sortArrows{
+  float: right;
+}
+
+.description br{
+  display: none;
+}
+
+
 .thrust-table-density {
   display:none;
+}
+
+.pagination{
+  @extend .mt-3;
+  @extend .mb-3;
+  display: flex;
+  justify-content: center;
+}
+
+.resourceSearch{
+  float: right;
+  position: relative;
+}
+
+.resourceSearch div{
+  transform: translateY(-50%)!important;
+  top:50%;
+  margin: 0!important;
+  right: 0.75rem!important;
+}
+
+input{
+  @extend .form-control;
+}
+
+input[type=checkbox]{
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: #fff;
+  border: 1px solid #e1e5eb;
+  transition: all 250ms cubic-bezier(.27,.01,.38,1.06);
+  box-shadow: none;
+  margin: 0 auto;
+}
+
+.page-item.active .page-link{
+  border-color: $accent-bg;
+  background-color: $accent-bg;
+}
+
+.page-link{
+  color: $accent-bg;
+
+  &:hover{
+    color: darken($accent-color, 20%);
+  }
 }
