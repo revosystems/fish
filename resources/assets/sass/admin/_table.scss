@@ -4,6 +4,10 @@ table.list.striped{
   @extend .table-striped;
   @extend .table-sm;
 }
+.thrust-table th,
+table.list.striped th{
+  font-weight: 600;
+}
 
 .thrust-table td,
 table.list td{
@@ -27,6 +31,10 @@ table.list td{
 
 table thead .sortArrows{
   float: right;
+
+  a{
+    color: lighten($accent-bg, 25%);
+  }
 }
 
 .description br{
@@ -81,5 +89,32 @@ input[type=checkbox]{
 
   &:hover{
     color: darken($accent-color, 20%);
+  }
+}
+
+.thrust-main-actions{
+  @extend .ml-2;
+  float: right;
+}
+.thrust-main-actions a.button{
+  @extend .btn;
+  border-color: lighten($accent-bg, 25%);
+  background-color: lighten($accent-bg, 25%);
+  color: #fff;
+}
+
+.thrust-actions{
+  float: right;
+}
+
+.thrust-actions .dropdown button{
+  @extend .btn;
+  @extend .mr-2;
+  color: #fff;
+  border-color: lighten($accent-bg, 25%);
+  background-color: lighten($accent-bg, 25%);
+  
+  .fa{
+    color: #fff;
   }
 }

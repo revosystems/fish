@@ -4,7 +4,7 @@
         @iconMaterial({{$icon}})
         <span>{{ $title }}</span>
         @if( isset($count) && $count > 0)
-            <span class="badge badge-pill badge-accent">{{ $count }}</span>
+            <span class="badge badge-accent">{{ $count }}</span>
         @endif
     </a>
 </li>
