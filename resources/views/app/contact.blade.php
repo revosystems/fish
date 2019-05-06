@@ -10,7 +10,7 @@
                     <div class="col-sm-12 text-center"><div class="intro">{{__('app.contact.title')}}</div></div>
                 </div>
                 <div class="row">
-                    <div class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
+                    <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
                         <div class="contact-card">
                             <h3 class="subtitle">{{__('app.contact.commercial')}}</h3>
                             <span class="card-name"><a href="https://www.linkedin.com/in/toniforcano" target="_blank"><i class="fa fa-linkedin"></i></a>Toni Forcano <span class="dividerr">|</span> <span>Telecom Business Development</span></span>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
+                    <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
                         <div class="contact-card">
                             <h3 class="subtitle">{{__('app.contact.support')}}</h3>
                             <span class="card-name"><a href="https://www.linkedin.com/in/ramon-pi%C3%B1ot-5651219" target="_blank"><i class="fa fa-linkedin"></i></a>Ramon Piñot <span class="dividerr">|</span> <span>Support & Onboarding Manager</span></span>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
+                    <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
                        <div class="contact-card">
                            <h3 class="subtitle">{{__('app.contact.marketing')}}</h3>
                            <span class="card-name"><a href="https://www.linkedin.com/in/evagarciafernandez" target="_blank"><i class="fa fa-linkedin"></i></a>Eva García <span class="dividerr">|</span> <span>CMO</span></span>

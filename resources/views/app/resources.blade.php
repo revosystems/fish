@@ -15,7 +15,7 @@
             </div>
             <div class="container dossier xxs slim-b">
                 <div class="row">
-                    <div class="col-xs-6 offset-sm-2 col-sm-4 mb-40">
+                    <div class="col-xs-6 offset-sm-1 col-sm-5 mb-40">
                         <a href="{{__('app.resources.highlights_dw')}}" target="_blank">
                             <span class="btn">{{__('app.resources.highlights')}}</span>
                             <div class="item featured text-center">
@@ -24,7 +24,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xs-6 col-sm-4">
+                    <div class="col-xs-6 col-sm-5">
                         <a href="{{__('app.resources.references_dw')}}" target="_blank">
                             <span class="btn">{{__('app.resources.references')}}</span>
                             <div class="item featured text-center">
@@ -35,12 +35,12 @@
                     </div>
                 </div>
             </div>
-            <div class="container dossier xxs slim-t slim-t-0">
+            <div class="container dossier xxs slim-t">
                 <div class="row">
-                    <div class="col-xs-12 d-block d-sm-none hero-special">
+                    <div class="d-xs-block d-sm-block d-md-none col-12 hero-special ">
                             <span class="btn">{{__('app.resources.catalogs')}}</span>
                     </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4">
+                    <div class="col-xs-6 col-sm-6 col-md-4">
                         <a href="{{__('app.resources.catalogs_xef_dw')}}" target="_blank">
                             <div class="item no-mt">
                                 <div class="icon"><div class="download">&nbsp;</div></div>
@@ -49,7 +49,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4 ">
+                    <div class="col-xs-6 col-sm-6 col-md-4 ">
                         <a href="{{__('app.resources.catalogs_retail_dw')}}" target="_blank">
                             <div class="item no-mt">
                                 <div class="icon"><div class="download">&nbsp;</div></div>
@@ -58,7 +58,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4 d-none d-sm-block">
+                    <div class="col-xs-6 col-sm-6 col-md-4 d-none d-md-block">
                         <div class="item no-mt no-pl">
                             <div>
                                 <span class="btn">{{__('app.resources.catalogs')}}</span>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-6 col-sm-4 col-md-4">
+                    <div class="col-xs-6 col-sm-6 col-md-4">
                         <a href="{{__('app.resources.catalogs_flow_dwogs_txt')}}" target="_blank">
                             <div class="item">
                                 <div class="icon"><div class="download">&nbsp;</div></div>
@@ -76,7 +76,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4">
+                    <div class="col-xs-6 col-sm-6 col-md-4">
                         <a href="{{__('app.resources.catalogs_intouch_dw')}}" target="_blank">
                             <div class="item">
                                 <div class="icon"><div class="download">&nbsp;</div></div>
@@ -85,7 +85,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4">
+                    <div class="col-xs-6 col-sm-6 col-md-4">
                         <a href="{{__('app.resources.catalogs_hotels_dw')}}" target="_blank">
                             <div class="item">
                                 <div class="icon"><div class="download">&nbsp;</div></div>

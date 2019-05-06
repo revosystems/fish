@@ -21,35 +21,29 @@
       width: 100%;
       padding: 1rem;
       text-align: center;
+
+      >a{
+        line-height: inherit;
+      }
     }
   }
 }
 
 
-/*
 .main-footer,
 .main-footer a{
   font-family: inherit;
-  font-size: 0.8rem;
+  text-decoration: none;
 }
 .main-footer a{
   color: #818EA3;
   transition: all 0.2s ease-in-out;
-  padding: 0.5rem 2rem 0.5rem 0rem;
+  line-height: $main-footer-height;
+  padding-top: 0;
+  padding-bottom: 0;
+
 
   &:hover{
     color: darken(#818EA3, 40%);
   }
-}
-
-.main-footer .copyright{
-  padding: 0.5rem 0rem 0.5rem 2rem;
-
-  > a{
-    text-decoration: none;
-  }
-}*/
-
-.badge-accent{
-  background-color: $accent-bg;
 }

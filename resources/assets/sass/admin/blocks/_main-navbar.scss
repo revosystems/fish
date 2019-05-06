@@ -21,6 +21,9 @@
   .nav-link {
     min-width: $main-navbar-nav-link-min-width;
     color: #fff!important;
+    &:focus{
+      outline: none;
+    }
   }
 
 

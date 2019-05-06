@@ -381,13 +381,13 @@ use App\Models\Lead;
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group
+                            <div class="form-group hasDW
                             @if (old('xef_kds_id') != 1)
                             {{ 'disabled' }}
                             @endif
                                     ">
-                                <div class="input-group {{ $errors->has('xef_kds_quantity') ? ' is-invalid' : '' }} hasDependancy">
-                                    <span class="input-group-addon"><i class="fa fa-angle-double-left"></i></span>
+                                <div class="input-group-text {{ $errors->has('xef_kds_quantity') ? ' is-invalid' : '' }} hasDependancy">
+                                    <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
                                     <input type="text" name="xef_kds_quantity" id="xef_kds_quantity" value="{{ old('xef_kds_quantity') }}" placeholder="{{ __('app.lead.xefKdsQuantity') }}" class="form-control"
                                         @if (old('xef_kds_id') != 1)
                                             {{ 'disabled' }}
@@ -526,14 +526,14 @@ use App\Models\Lead;
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group
+                            <div class="form-group hasDW
                             @if (old('xef_pms_id') != -1)
                             {{ 'disabled' }}
                             @endif
 
                                     ">
-                                <div class="input-group {{ $errors->has('xef_pms_other') ? ' is-invalid' : '' }} hasDependancy">
-                                    <span class="input-group-addon"><i class="fa fa-angle-double-left"></i></span>
+                                <div class="input-group-text {{ $errors->has('xef_pms_other') ? ' is-invalid' : '' }} hasDependancy">
+                                    <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
                                     <input type="text" name="xef_pms_other" id="xef_pms_other" value="{{ old('xef_pms_other') }}" placeholder="{{ __('app.lead.specify') }}" class="form-control"
                                     @if (old('xef_pms') != -1)
                                         {{ 'disabled' }}
@@ -570,14 +570,14 @@ use App\Models\Lead;
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group
+                            <div class="form-group hasDW
                             @if (old('erp_id') != -1)
                             {{ 'disabled' }}
                             @endif
 
                                     ">
-                                <div class="input-group {{ $errors->has('erp_other') ? ' is-invalid' : '' }} hasDependancy">
-                                    <span class="input-group-addon"><i class="fa fa-angle-double-left"></i></span>
+                                <div class="input-group-text {{ $errors->has('erp_other') ? ' is-invalid' : '' }} hasDependancy">
+                                    <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
                                     <input type="text" name="erp_other" id="erp_other" value="{{ old('erp_other') }}" placeholder="{{ __('app.lead.specify') }}" class="form-control"
                                     @if (old('erp_id') != -1)
                                         {{ 'disabled' }}
@@ -615,14 +615,14 @@ use App\Models\Lead;
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group
+                            <div class="form-group hasDW
                             @if (old('xef_soft') != -1)
                             {{ 'disabled' }}
                             @endif
 
                                     ">
-                                <div class="input-group {{ $errors->has('xef_soft_other') ? ' is-invalid' : '' }} hasDependancy">
-                                    <span class="input-group-addon"><i class="fa fa-angle-double-left"></i></span>
+                                <div class="input-group-text {{ $errors->has('xef_soft_other') ? ' is-invalid' : '' }} hasDependancy">
+                                    <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
                                     <input type="text" name="xef_soft_other" id="xef_soft_other" value="{{ old('xef_soft_other') }}" placeholder="{{ __('app.lead.specify') }}" class="form-control"
                                     @if (old('xef_soft') != -1)
                                         {{ 'disabled' }}
@@ -660,14 +660,14 @@ use App\Models\Lead;
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group
+                            <div class="form-group hasDW
                             @if (old('retail_soft') != -1)
                             {{ 'disabled' }}
                             @endif
 
                                     ">
-                                <div class="input-group {{ $errors->has('retail_soft_other') ? ' is-invalid' : '' }} hasDependancy">
-                                    <span class="input-group-addon"><i class="fa fa-angle-double-left"></i></span>
+                                <div class="input-group-text {{ $errors->has('retail_soft_other') ? ' is-invalid' : '' }} hasDependancy">
+                                    <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
                                     <input type="text" name="retail_soft_other" id="retail_soft_other" value="{{ old('retail_soft_other') }}" placeholder="{{ __('app.lead.specify') }}" class="form-control"
                                     @if (old('retail_soft') != -1)
                                         {{ 'disabled' }}

@@ -1,3 +1,5 @@
+$.fn.selectpicker.Constructor.DEFAULTS.style = "btn";
+
 var App = function() {
     var size_point = 991;//$this.data().responsive
 
@@ -273,15 +275,19 @@ var Lead = function() {
             $('#xef_general_typology_id').on('change', function () {
                 if($(this).val()==7){
                     $('#xef_pms_id').prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
-                    if($('#xef_pms_other').val()!=""){
-                        $('#xef_pms_other').prop("disabled", false).closest(".form-group").removeClass("disabled");
-                    }
+                    // if($('#xef_pms_id').val()==-1){
+                    //     $('#xef_pms_other').prop("disabled", false).closest(".form-group").removeClass("disabled");
+                    // }
                 }
                 else{
                     $('#xef_pms_id').prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
                     $('#xef_pms_other').prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
+
+            if($('#xef_pms_id').val()==-1){
+                $('#xef_pms_other').prop("disabled", false).closest(".form-group").removeClass("disabled");
+            }
 
             $('#xef_pms_id').on('change', function () {
                 if($(this).val()==-1){
@@ -315,11 +321,14 @@ var Lead = function() {
 
         erpHandler: function(){
             $('#erp_id,#xef_erp_id,#retail_erp_id').on('change', function () {
+
+                var base_id = $(this).attr("id").replace("_id", "");
+
                 if($(this).val()==-1){
-                    $('#'+$(this).attr("id")+'_other').prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
+                    $('#'+base_id+'_other').prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
                 else{
-                    $('#'+$(this).attr("id")+'_other').prop("disabled", true).closest(".form-group").addClass("disabled");
+                    $('#'+base_id+'_other').prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
         },

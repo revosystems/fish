@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Sales Platform - REVO Overview'),
+    'name' => 'Sales Platform - REVO Overview',
 
     /*
     |--------------------------------------------------------------------------

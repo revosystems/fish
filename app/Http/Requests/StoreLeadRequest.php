@@ -77,15 +77,15 @@ class StoreLeadRequest extends FormRequest
             'retail_sale_mode_id'       => 'required_if:type,2',
             'retail_sale_location_id'   => 'required_if:type,2',
             // > XEF (isFranchise) & RETAIL (isFranchise)
-            'franchise_pos_external'    => [function ($attribute, $value, $fail) {
+            'franchise_pos_external_id'    => [function ($attribute, $value, $fail) {
                 if ((request("type") == 1 && request("xef_property_franchise_id") == 1 && $value == "") ||
                     (request("type_segment_id") == 5 && request("type") == 2 && $value == "")) {
-                    $fail(__('validation.custom.erp.required'));
+                    $fail(__('validation.custom.franchise_pos_external.required_if'));
                 }
             }],
             // > XEF (isHotel)
             'xef_pms_id'                   => 'required_if:xef_general_typology_id,7',
-            'xef_pms_other'                => 'required_if:xef_erp_id,-1|string|min_id:2|max:255',
+            'xef_pms_other'                => 'required_if:xef_pms_id,-1|string|min:2|max:255',
             // > XEF (Medium-Large) & RETAIL (Medium-Large)
             'erp_id'                       => [function ($attribute, $value, $fail) {
                 if ((request("type") == 1 && request("type_segment_id") != 1 && request("type_segment_id") != 4 && $value == "") ||

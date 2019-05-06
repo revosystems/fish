@@ -221,11 +221,14 @@ return [
             'type_segment_id' => [
                 'required'  => 'Debe seleccionar una opción',
             ],
-            'general_typology' => [
+            'xef_general_typology_id' => [
                 'required_if'  => 'Debe seleccionar una opción',
             ],
+            'retail_general_typology_id' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
             // > XEF
-            'xef_specific_typology' => [
+            'xef_specific_typology_id' => [
                 'required_if'  => 'Debe seleccionar una opción',
             ],
 
@@ -237,7 +240,11 @@ return [
             ],
 
             // PROPERTY
-            'property_quantity' => [
+            'retail_property_quantity' => [
+                'required_if'  => 'Campo obligatorio',
+                'numeric'   => 'Debe ser numérico',
+            ],
+            'xef_property_quantity' => [
                 'required_if'  => 'Campo obligatorio',
                 'numeric'   => 'Debe ser numérico',
             ],
@@ -286,7 +293,7 @@ return [
                     'required_if'  => 'Campo obligatorio',
                     'numeric'   => 'Debe ser numérico',
                 ],
-                'xef_kds' => [
+                'xef_kds_id' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
                 'xef_kds_quantity' => [
@@ -294,14 +301,14 @@ return [
                     'numeric'   => 'Debe ser numérico',
                 ],
             // > XEF & RETAIL
-                'pos' => [
+                'pos_id' => [
                     'required'  => 'Debe seleccionar una opción',
                 ],
             // > RETAIL
-                'retail_sale_mode' => [
+                'retail_sale_mode_id' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
-                'retail_sale_location' => [
+                'retail_sale_location_id' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
             // > XEF (isFranchise) & RETAIL (isFranchise)
@@ -309,10 +316,11 @@ return [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
             // > XEF (isHotel)
-                'xef_pms' => [
+                'xef_pms_id' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
                 'xef_pms_other' => [
+                    'required_if'  => 'Campo obligatorio',
                     'string'    => 'Debe ser una cadena de caracteres',
                     'min'       => 'Mínimo :min caracteres',
                     'max'       => 'Máximo :max caracteres',
