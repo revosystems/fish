@@ -3,6 +3,7 @@ table.list.striped{
   @extend .table;
   @extend .table-striped;
   @extend .table-sm;
+  margin-bottom: 0!important;
 }
 .thrust-table th,
 table.list.striped th{
@@ -12,6 +13,16 @@ table.list.striped th{
 .thrust-table td,
 table.list td{
   vertical-align: middle!important;
+}
+
+.thrust-table tr:last-child td:first-child,
+table.list.striped tr:last-child td:first-child{
+  border-bottom-left-radius: .625rem;
+}
+
+.thrust-table tr:last-child td:last-child,
+table.list.striped tr:last-child td:last-child{
+  border-bottom-right-radius: .625rem;
 }
 
 .thrust-index-header,
