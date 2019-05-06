@@ -1,5 +1,7 @@
 <?php
 
+    Auth::routes(['verify' => true]);
+
     Route::group(["middleware" => ['verified', 'user.active']], function () {
         Route::get('/', 'HomeController@index')->name("home");
         Route::get('/contact', 'ContactController@index')->name("contact");
@@ -17,7 +19,5 @@
     Route::post('admin/leads/{lead}/status', 'Admin\LeadsStatusController@store')->name('leads.status.store');
     //        Route::get('admin/leads/{lead}/edit', 'Admin\LeadsController@edit')->name('leads.edit');
     Route::get('admin/reports', 'Admin\ReportsController@index')->name('reports');
-    Auth::routes(['verify' => true]);
 
     Route::get('logout', "Auth\LoginController@logout");
-
