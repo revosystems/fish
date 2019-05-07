@@ -10,6 +10,6 @@ class LeadPos extends Model
 
     public function posType()
     {
-        return $this->belongsTo(LeadPosType::class,"pos_type_id");
+        return $this->belongsTo(LeadPosType::class);
     }
 }

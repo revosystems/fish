@@ -285,7 +285,7 @@ class LeadController extends Controller
 
         $pos = $lead->pos->name;
 
-        $pdf = \PDF::loadView('lead.pdf', [
+        $pdf = \PDF::loadView('app.lead.pdf', [
             'type'                      => $type,
             "revoVersionCss"            => $revoVersionCss,
             "revoVersion"               => $revoVersion,
@@ -345,7 +345,6 @@ class LeadController extends Controller
         $proposals->push($lead->getRelatedProposal());
         // HERO PROPOSAL
         $proposals->push($lead->generalTypology->proposal);
-
         if ($lead->type == Lead::TYPE_XEF) {
             $xefProposal      = 1; // BASIC
             $xefDevices       = $lead->xef_pos_critical_quantity + $lead->xef_cash_quantity;
