@@ -25,11 +25,10 @@ table.list.striped tr:last-child td:last-child{
   border-bottom-right-radius: .625rem;
 }
 
-.thrust-index-header,
-.description{
+.thrust-index-header{
   @extend .card-header;
   @extend .border-bottom;
-  overflow: hidden;
+ text-align: right;
 }
 
 .thrust-index-title,
@@ -65,8 +64,20 @@ table thead .sortArrows{
 }
 
 .resourceSearch{
-  float: right;
+  display: inline-block;
   position: relative;
+}
+
+td .label{
+  @extend .badge;
+  @extend .badge-secondary;
+  font-weight: normal;
+  cursor: default;
+  font-size: 15px;
+
+  &:hover{
+    background-color: #6c757d!important;
+  }
 }
 
 .resourceSearch div{
@@ -115,7 +126,7 @@ input[type=checkbox]{
 }
 
 .thrust-actions{
-  float: right;
+  display: inline-block;
 }
 
 .thrust-actions .dropdown button{
@@ -128,4 +139,9 @@ input[type=checkbox]{
   .fa{
     color: #fff;
   }
+}
+
+.thrust-actions .dropdown,
+.thrust-actions .dropdown-container{
+  display: none;
 }
