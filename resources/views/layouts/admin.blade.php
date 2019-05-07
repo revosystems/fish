@@ -43,5 +43,11 @@
 
     @yield('scripts')
     @stack('edit-scripts')
+
+<script>
+    $('.toggle-sidebar').click(function (e) {
+        $('.main-sidebar').toggleClass('open');
+    });
+</script>
 </body>
 </html>
