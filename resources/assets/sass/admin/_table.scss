@@ -40,13 +40,27 @@ table.list.striped tr:last-child td:last-child{
 }
 
 table thead .sortArrows{
-  float: right;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
 
   a{
     color: lighten($accent-bg, 25%);
+    position: absolute;
+  }
+
+  a.sortUp{
+    margin-top: -5px;
+  }
+  a.sortDown{
+    margin-top: 7px;
   }
 }
 
+.sortableHeader{
+  display: flex;
+  flex-direction: row;
+}
 .description br{
   display: none;
 }
