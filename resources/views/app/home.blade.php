@@ -9,6 +9,7 @@
             {{--</a>--}}
         {{--</div>--}}
     {{--</div>--}}
+{{--    <div class="container" styele="display: table;min-height: calc(100% - 60px);">--}}
     <div class="section">
         <div class="home text-center">
             <img src="{{ asset('images/doing.png') }}" class="hero" alt="@lang('app.channel')"/>

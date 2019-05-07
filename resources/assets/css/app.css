@@ -68,10 +68,10 @@ body {
 	-webkit-font-smoothing: antialiased !important;
 	-webkit-text-size-adjust: 100% !important;
 }
-/*
+
 html, body {
 	height: 100%;
-}*/
+}
 
 img, video {
 	max-width: 100%;
@@ -1131,6 +1131,11 @@ html {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+.bodyy{
+	padding-bottom:40px;
+}
+
 body.auth {
 	width: 100%;
 	display: block;
@@ -1142,6 +1147,11 @@ body.auth {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}
+
+.cnt-f{
+	min-height:100%;
+	position:relative;
 }
 
 div.orange {
@@ -1336,7 +1346,7 @@ div.orange {
 
  .section{
 	 padding-top: 190px;
-     padding-bottom: 50px;
+     padding-bottom: 20px;
  }
 
  @media screen and (max-width: 991px) {
@@ -2825,3 +2835,29 @@ html.errors,
 	vertical-align: middle;
 	display: table-cell;
 }
+
+.legal-footer{
+	/*position: absolute;*/
+	/*position: fixed;*/
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	text-align: left;
+	margin-top: auto;
+	/*height: 40px;*/
+	/*line-height: 40px;*/
+	height: 60px;
+	line-height: 60px;
+}
+
+.homeHero .legal-footer{
+	position: fixed;
+}
+ .legal-footer a{
+	 color: rgba(255, 255, 255, 0.19);
+	 padding-right: 10px;
+ }
+ .legal-footer a:hover{
+	 color: rgba(255, 255, 255, 0.70);
+ }
