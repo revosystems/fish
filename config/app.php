@@ -12,8 +12,8 @@ return [
     | any other location as required by the application or its packages.
     |
     */
-    'platform' => "telefonica", // orange | telefonica
-    'name' => 'Sales Platform - REVO Overview',
+    'platform'  => env('APP_PLATFORM', 'telefonica'), // orange | telefonica
+    'name'      => env('APP_NAME', 'Sales Platform - REVO Overview'),
 
 
     /*

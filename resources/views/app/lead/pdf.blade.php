@@ -1,3 +1,6 @@
+@php
+$platform = config('app.platform');
+@endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <title>PROPUESTA {{$tradeName}}</title>
@@ -13,14 +16,7 @@
 
         <div class="revo-bg {{$revoVersionCss}}"></div>
 
-        @if(config('app.platform')==="orange"){
-            <img src="{{ asset('images/orange.jpg') }}" class="orange-hero" />
-        }
-        @elseif(config('app.platform')==="telefonica"){
-            <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica-hero" />
-        }
-        @endif
-
+        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}-hero" />
         <img src="{{ asset("images/revo-logo-{$revoVersionCss}.png") }}" class="revo-logo {{$revoVersionCss}}" />
 
         <div class="trade-name title absolute ">{{$tradeName}} | <span class="text-capitalize">{{$clientName}} {{$clientSurname1}}</span></div>
@@ -28,13 +24,7 @@
 
         <div class="page_break"></div>
 
-        @if(config('app.platform')==="orange"){
-            <img src="{{ asset('images/orange.jpg') }}" class="orange" />
-        }
-        @elseif(config('app.platform')==="telefonica"){
-            <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
-        }
-        @endif
+        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}" />
 
         <div class="profile title absolute">PROPUESTA</div>
         <div class="divider">&nbsp;</div>
@@ -116,13 +106,7 @@
         </div>
 
         <div class="page_break"></div>
-        @if(config('app.platform')==="orange"){
-        <img src="{{ asset('images/orange.jpg') }}" class="orange" />
-        }
-        @elseif(config('app.platform')==="telefonica"){
-        <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
-        }
-        @endif
+        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}" />
 
         <div class="profile title absolute">CARACTERÍSTICAS</div>
         <div class="divider">&nbsp;</div>
@@ -232,13 +216,7 @@
 
 
         <div class="page_break"></div>
-        @if(config('app.platform')==="orange"){
-        <img src="{{ asset('images/orange.jpg') }}" class="orange" />
-        }
-        @elseif(config('app.platform')==="telefonica"){
-        <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
-        }
-        @endif
+        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}" />
         <div class="profile title absolute">ARGUMENTARIOS</div>
         <div class="divider">&nbsp;</div>
 
@@ -254,13 +232,7 @@
         @endforeach
 
         <div class="page_break"></div>
-        @if(config('app.platform')==="orange"){
-        <img src="{{ asset('images/orange.jpg') }}" class="orange" />
-        }
-        @elseif(config('app.platform')==="telefonica"){
-        <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
-        }
-        @endif
+        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}" />
         <div class="profile title absolute">HARDWARE Y ACCESORIOS</div>
         <div class="divider">&nbsp;</div>
         <div class="hardware" style="{{  $type == App\Models\Lead::TYPE_RETAIL ? "display:none" : "display:block" }}">
