@@ -1,0 +1,64 @@
+.lead-status-new{
+  @extend .font-weight-bold;
+  @extend .text-white;
+  background-color:black;
+}
+
+.lead-status-first-contact{
+  @extend .font-weight-bold;
+  @extend .text-white;
+  background-color:gray;
+}
+
+.lead-status-visited{
+  @extend .font-weight-bold;
+  @extend .text-white;
+  background-color:orange;
+}
+
+.lead-status-completed{
+  @extend .font-weight-bold;
+  @extend .text-white;
+  @extend .bg-success;
+}
+
+.lead-status-failed{
+  @extend .font-weight-bold;
+  @extend .text-white;
+  @extend .bg-danger;
+}
+
+.idea-status-new{
+  @extend .text-white;
+  @extend .bg-danger;
+}
+
+.idea-status-declined{
+  @extend .text-white;
+  @extend .bg-danger;
+}
+
+.idea-status-open{
+  @extend .text-white;
+  background-color:pink;
+}
+
+.idea-status-accepted{
+  @extend .text-white;
+  background-color:lightblue;
+}
+
+.idea-status-pending{
+  @extend .text-white;
+  background-color:orange;
+}
+
+.idea-status-solved{
+  @extend .text-white;
+  @extend .bg-success;
+}
+
+.idea-status-closed{
+  background-color:gray;
+  @extend .text-white;
+}

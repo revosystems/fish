@@ -23,37 +23,74 @@
             </div>
         </div>
 
-    <div class="p-3">
-        <div class="description comment lead-show">
-            {{ Form::open(["url" => route('leads.update', $lead), 'method' => "PUT"]) }}
-            @include('components.lead.fields', ["lead" => $lead])
-            <button class="btn btn-accent uppercase  mt-4"> {{ __('admin.update') }}</button>
-            {{ Form::close() }}
-        </div>
-<br /><br />
-        <div class="comment new-comment mt4">
-            <h4>{{ __('admin.newComment') }}</h4>
-            {{ Form::open(["url" => route("leads.status.store", $lead), "files" => true, "id" => "comment-form"]) }}
-            <textarea class="form-control" name="body"></textarea>
-            <br>
-            @include('components.uploadAttachment', ["attachable" => $lead, "type" => "leads"])
-            {{ Form::hidden("new_status", $lead->status, ["id" => "new_status"]) }}
-
-            <div class="dropdown">
-                <button class="btn btn-accent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @icon(comment) {{ __('admin.commentAs') }} ... {{-- __("admin." . $lead->statusName()) --}}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @foreach(App\Models\Lead::availableStatus() as $value => $status)
-                            <a class="dropdown-item" onClick="setStatusAndSubmit( {{ $value    }} )"><div style="width:10px; height:10px" class="circle inline lead-status-{{$status}} mr1"></div> {{ __('admin.commentAs') }} <b>{{ __("admin.$status") }}   </b> </a>
-                        @endforeach
-
+    <div class="row">
+        <div class="col col-xs-12">
+            <div class="p-3">
+                <div class="description comment lead-show">
+                    {{ Form::open(["url" => route('leads.update', $lead), 'method' => "PUT"]) }}
+                    @include('components.lead.fields', ["lead" => $lead])
+                    <button class="btn btn-accent uppercase  mt-4"> {{ __('admin.update') }}</button>
+                    {{ Form::close() }}
                 </div>
             </div>
-
-            {{ Form::close() }}
         </div>
-        @include('components.leadStatus')
+    </div>
+
+{{--        FAKE NEW CARD--}}
+        </div></div>
+        <div class="card card-small mb-4">
+{{--        ####--}}
+            <div class="card-header border-bottom">
+                <h6 class="m-0">
+                    {{ __('admin.newComment') }}
+                </h6>
+            </div>
+            <div class="card-body p-0">
+{{--        ####--}}
+    <div class="row">
+        <div class="col col-xs-12">
+            <div class="comment new-comment p-3 mb-4 pt-4 pb-4 border-bottom ">
+
+                {{ Form::open(["url" => route("leads.status.store", $lead), "files" => true, "id" => "comment-form"]) }}
+
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <textarea class="form-control mb-3" name="body"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            {{ Form::hidden("new_status", $lead->status, ["id" => "new_status"]) }}
+                            <div class="dropdown comment-status-dropdown">
+                                <button class="btn btn-accent dropdown-toggle" type="button" data-toggle="dropdown">
+                                    @iconMaterial(insert_comment) {{ __('admin.commentAs') }} ... {{-- __("admin." . $lead->statusName()) --}}
+                                </button>
+                                <div class="dropdown-menu">
+                                    @foreach(App\Models\Lead::availableStatus() as $value => $status)
+                                        <a class="dropdown-item" onClick="setStatusAndSubmit( {{ $value}} )">
+                                            <div class="dot-wrap">
+                                                <div class="rounded-circle dot lead-status-{{$status}}"></div>
+                                            </div>
+                                            {{ __('admin.commentAs') }} <b>{{ __("admin.$status") }} </b>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            @include('components.uploadAttachment', ["attachable" => $lead, "type" => "leads"])
+                        </div>
+                    </div>
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-xs-12">
+            <div class="p-3 comments-block">
+                @include('components.leadStatus')
+            </div>
+        </div>
     </div>
 
 @endsection
@@ -65,5 +102,11 @@
             $("#new_status").val(new_status);
             $("#comment-form").submit();
         }
+
+        $(document).ready(function(){
+            $('input[type="file"]').change(function(e){
+                $(".attachment-selected").html(e.target.files[0].name);
+            });
+        });
     </script>
 @endsection
