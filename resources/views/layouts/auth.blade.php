@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include("layouts.partials.header.head")
-    <body class="auth">
+    <body class="auth {{ config('app.platform') }}">
         @include("layouts.partials.loaders.preloader")
         <div class="container login-container">
             <div class="row">

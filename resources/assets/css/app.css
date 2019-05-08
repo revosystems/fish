@@ -1154,7 +1154,7 @@ body.auth {
 	position:relative;
 }
 
-div.orange {
+div.platform_orange {
 	background-image: url('/images/orange_inverted.jpg');
 	/*width: 125px;
 	height: 125px;*/
@@ -1167,6 +1167,20 @@ div.orange {
 	-ms-transition: all 0.1s ease;
 	-o-transition: all 0.1s ease;
 }
+
+ div.platform_telefonica {
+	 background-image: url('/images/telefonica.jpg');
+	 /*width: 125px;
+     height: 125px;*/
+	 width: 101px;
+	 height: 84px;
+	 background-size: cover;
+	 float: left;
+	 -webkit-transition: all 0.1s ease;
+	 -moz-transition: all 0.1s ease;
+	 -ms-transition: all 0.1s ease;
+	 -o-transition: all 0.1s ease;
+ }
 
 .subtitle {
 	font-size: 29px;
@@ -1222,12 +1236,24 @@ div.orange {
      top: 0;
      float: none;
      margin: 0 auto;
-     width: 203px;
  }
 
- .header_mobile .orange{
+ .orange .header_mobile .platform{
+	 width: 203px;
+ }
+
+ .telefonica .header_mobile .platform{
+	 width: 215px;
+ }
+
+ .header_mobile .platform_orange{
      max-height: 44px;
      max-width: 44px;
+ }
+
+ .header_mobile .platform_telefonica{
+	 max-height: 44px;
+	 max-width: 53px;
  }
 
  .header_mobile .trade img{
@@ -1250,7 +1276,7 @@ div.orange {
          width: 203px;
      }
 
-     .header_mobile .orange{
+     .header_mobile .platform_orange{
          max-height: 35px;
          max-width: 35px;
      }
@@ -1271,18 +1297,33 @@ div.orange {
 	top: 9px;
 }
 
-.is-sticky.platform .trade:not(.mobileLogo .trade) {
-	margin-top: 3px;
+ .header_mobile .is-sticky.platform:not(.mobileLogo .platform) {*/
+	top: 0px;
 }
+
+.is-sticky.platform .trade:not(.mobileLogo .trade) {
+	margin-top: 2px;
+}
+
+ .header_mobile .is-sticky.platform .trade:not(.mobileLogo .trade) {
+	margin-top: 0px;
+}
+
 .is-sticky.platform .slogan,
 .is-mobile.platform {
 	display: none;
 }
 
-.is-sticky.platform .orange:not(.mobileLogo .orange) {
+.is-sticky.platform .platform_orange:not(.mobileLogo .platform_orange) {
 	height: 45px;
 	width: 45px;
 }
+
+ .is-sticky.platform .platform_telefonica:not(.mobileLogo .platform_telefonica) {
+	 height: 45px;
+	 width: 54px;
+ }
+
 .is-sticky.platform  .logo-img:not(.mobileLogo .logo-img) {
 	max-height: 18px;
 	
@@ -1290,8 +1331,14 @@ div.orange {
 
 .is-sticky.platform .subtitle:not(.mobileLogo .subtitle) {
 	font-size: 21px;
-	margin-top: 2px;
+	margin-top: 12px;
+	line-height: 12px;
 }
+
+ .header-mobile .is-sticky.platform .subtitle:not(.mobileLogo .subtitle) {
+	 font-size: 21px;
+	 margin-top: 2px;
+ }
 
 
 

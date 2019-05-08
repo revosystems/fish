@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="@yield('html')">
     @include("layouts.partials.header.head")
-    <body class="app @yield('section')">
+    <body class="app @yield('section') {{ config('app.platform') }}">
 {{--        <div class="cnt-f">--}}
 {{--           <div class="bodyy">--}}
                 @include("layouts.partials.loaders.preloader")

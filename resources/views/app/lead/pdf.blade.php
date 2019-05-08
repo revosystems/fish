@@ -2,24 +2,40 @@
     <head>
         <title>PROPUESTA {{$tradeName}}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{ asset('modules/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('modules/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css') }}">
 
     </head>
-    <body class="pdf">
+    <body class="pdf ">
 
         <img src="{{ asset("images/revo-icon-{$revoVersionCss}.png") }}" class="revo-icon" />
         <img src="{{ asset('images/erre.png') }}" class="revo-erre" />
 
         <div class="revo-bg {{$revoVersionCss}}"></div>
-        <img src="{{ asset('images/orange.jpg') }}" class="orange-hero" />
+
+        @if(config('app.platform')==="orange"){
+            <img src="{{ asset('images/orange.jpg') }}" class="orange-hero" />
+        }
+        @elseif(config('app.platform')==="telefonica"){
+            <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica-hero" />
+        }
+        @endif
+
         <img src="{{ asset("images/revo-logo-{$revoVersionCss}.png") }}" class="revo-logo {{$revoVersionCss}}" />
 
         <div class="trade-name title absolute ">{{$tradeName}} | <span class="text-capitalize">{{$clientName}} {{$clientSurname1}}</span></div>
         <div class="client-name title absolute">{{$clientName}}</div>
 
         <div class="page_break"></div>
-        <img src="{{ asset('images/orange.jpg') }}" class="orange" />
+
+        @if(config('app.platform')==="orange"){
+            <img src="{{ asset('images/orange.jpg') }}" class="orange" />
+        }
+        @elseif(config('app.platform')==="telefonica"){
+            <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
+        }
+        @endif
+
         <div class="profile title absolute">PROPUESTA</div>
         <div class="divider">&nbsp;</div>
         <div class="row">
@@ -100,7 +116,14 @@
         </div>
 
         <div class="page_break"></div>
-        <img src="{{ asset('images/orange.jpg') }}" class="orange" alt="Características"/>
+        @if(config('app.platform')==="orange"){
+        <img src="{{ asset('images/orange.jpg') }}" class="orange" />
+        }
+        @elseif(config('app.platform')==="telefonica"){
+        <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
+        }
+        @endif
+
         <div class="profile title absolute">CARACTERÍSTICAS</div>
         <div class="divider">&nbsp;</div>
         <div class="row">
@@ -209,7 +232,13 @@
 
 
         <div class="page_break"></div>
+        @if(config('app.platform')==="orange"){
         <img src="{{ asset('images/orange.jpg') }}" class="orange" />
+        }
+        @elseif(config('app.platform')==="telefonica"){
+        <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
+        }
+        @endif
         <div class="profile title absolute">ARGUMENTARIOS</div>
         <div class="divider">&nbsp;</div>
 
@@ -225,7 +254,13 @@
         @endforeach
 
         <div class="page_break"></div>
+        @if(config('app.platform')==="orange"){
         <img src="{{ asset('images/orange.jpg') }}" class="orange" />
+        }
+        @elseif(config('app.platform')==="telefonica"){
+        <img src="{{ asset('images/telefonica.jpg') }}" class="telefonica" />
+        }
+        @endif
         <div class="profile title absolute">HARDWARE Y ACCESORIOS</div>
         <div class="divider">&nbsp;</div>
         <div class="hardware" style="{{  $type == App\Models\Lead::TYPE_RETAIL ? "display:none" : "display:block" }}">
