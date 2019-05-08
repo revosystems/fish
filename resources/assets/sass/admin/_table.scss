@@ -84,7 +84,6 @@ table thead .sortArrows{
 
 td .label{
   @extend .badge;
-  @extend .badge-secondary;
   font-weight: normal;
   cursor: default;
   font-size: 15px;
@@ -154,8 +153,25 @@ input[type=checkbox]{
     color: #fff;
   }
 }
-
+/*fix dropdown  - future*/
+.thrust-actions,
 .thrust-actions .dropdown,
 .thrust-actions .dropdown-container{
   display: none;
+}
+
+.thrust-index-header + #all{
+  @extend .table-responsive;
+}
+
+
+
+.resourceSearch{
+  width: 100%;
+  margin-top: 10px;
+
+  @include media-breakpoint-up(sm) {
+    width: 180px;
+    margin-top: 0;
+  }
 }
