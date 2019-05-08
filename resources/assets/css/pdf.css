@@ -31,6 +31,16 @@
     height: 100px;
 }
 
+.telefonica{
+    position: absolute;
+    /*top: -25px;
+    left: -25px;*/
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 83px;
+}
+
 
 .revo{
     position: absolute;
@@ -83,12 +93,22 @@
     background-color: #3c3431;
 }
 
-.orange-hero{
+
+ .orange-hero{
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 150px;
     height: 150px;
+}
+
+.telefonica-hero{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 124px;
 }
 
 .revo-logo{

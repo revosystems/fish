@@ -1,18 +1,28 @@
-
 <div class="row row_title  bold upper"><div class="col-sm-12">{{ __('app.lead.clientTitle') }}</div></div>
 
 <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 col-form-label">{{ __('app.lead.type') }}</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="##">
-{{--        {{ Form::select('type', [App\Models\Lead::TYPE_XEF => "Xef", App\Models\Lead::TYPE_RETAIL => "Retail"], $lead->type) }}--}}
+        <select class="selectpicker form-control @if (old('type') !='') started @endif" name="type" id="type" title="{{ __('app.lead.type') }}"  data-size="5">
+            <option class='dep.xef' value='{{App\Models\Lead::TYPE_XEF}}' @if (old('type') == App\Models\Lead::TYPE_XEF) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Xef</div>">
+                Xef
+            </option>
+            <option class='dep.retail' value='{{App\Models\Lead::TYPE_RETAIL}}' @if (old('type') == App\Models\Lead::TYPE_RETAIL) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Retail</div>">
+                Retail
+            </option>
+        </select>
     </div>
 </div>
 <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 col-form-label">{{ __('app.lead.type_segment') }}</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" id="##">
-        {{--        {{ Form::select('type_segment_id', createSelectArray( \App\Models\LeadTypesSegment::all()->sortBy("order"), true), $lead->type_segment_id) --}}
+        <select class="selectpicker form-control" name="type_segment_id" id="type_segment_id" title ="{{ __('app.lead.type_segment') }}"  data-size="5"></select>
+
+        @if ($errors->has('type_segment_id'))
+            <span class="invalid-feedback" role="alert">{{ $errors->first('type_segment_id') }}</span>
+        @endif
+{{--        {{ Form::select('type_segment_id', createSelectArray( \App\Models\LeadTypesSegment::all()->sortBy("order"), true), $lead->type_segment_id)}}--}}
     </div>
 </div>
 <div class="form-group row">

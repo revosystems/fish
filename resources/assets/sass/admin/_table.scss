@@ -28,7 +28,7 @@ table.list.striped tr:last-child td:last-child{
 .thrust-index-header{
   @extend .card-header;
   @extend .border-bottom;
- text-align: right;
+  text-align: right;
 }
 
 .thrust-index-title,
@@ -52,6 +52,7 @@ table thead .sortArrows{
   a.sortUp{
     margin-top: -5px;
   }
+
   a.sortDown{
     margin-top: 7px;
   }
@@ -61,10 +62,10 @@ table thead .sortArrows{
   display: flex;
   flex-direction: row;
 }
+
 .description br{
   display: none;
 }
-
 
 .thrust-table-density {
   display:none;
@@ -131,6 +132,7 @@ input[type=checkbox]{
   @extend .ml-2;
   float: right;
 }
+
 .thrust-main-actions a.button{
   @extend .btn;
   border-color: lighten($accent-bg, 25%);
@@ -153,6 +155,7 @@ input[type=checkbox]{
     color: #fff;
   }
 }
+
 /*fix dropdown  - future*/
 .thrust-actions,
 .thrust-actions .dropdown,
@@ -163,8 +166,6 @@ input[type=checkbox]{
 .thrust-index-header + #all{
   @extend .table-responsive;
 }
-
-
 
 .resourceSearch{
   width: 100%;

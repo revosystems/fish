@@ -329,7 +329,7 @@ class LeadController extends Controller
         ]);
         $pdf->setPaper("a4", "landscape");
 
-        return $pdf->download("Orange_Lead_".$revo_version_fname."_".date('Y_m_d_hia').".pdf");
+        return $pdf->download(ucwords(config('app.platform'))."_Lead_".$revo_version_fname."_".date('Y_m_d_hia').".pdf");
     }
 
     /**

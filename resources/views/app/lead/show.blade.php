@@ -4,12 +4,12 @@
 @section('content')
         <div class="section">
             <div class="container">
-                <ul class="nav nav-pills mobileTab text-center" role="tablist">
-                    <li role="presentation" class="active d-none d-sm-block"><a role="tab" data-toggle="tab" href="#software">{{__('app.proposal.nav_software')}}</a></li>
-                    <li role="presentation" class="d-none d-sm-block"><a class="hasArrow" role="tab" data-toggle="tab" href="#hardware">{{__('app.proposal.nav_hardware')}}</a></li>
-                    <li role="presentation" class="d-none d-sm-blocks"><a class="hasArrow" role="tab" data-toggle="tab" href="#services">{{__('app.proposal.nav_services')}}</a></li>
+                <ul class="nav nav-pills nav-fill mobileTab text-center" role="tablist">
+                    <li role="presentation" class="nav-item d-none d-sm-block"><a class="nav-link active" id="software_tab" role="tab" data-toggle="tab" href="#software">{{__('app.proposal.nav_software')}}</a></li>
+                    <li role="presentation" class="nav-item d-none d-sm-block"><a class="nav-link hasArrow" id="hardware_tab" role="tab" data-toggle="tab" href="#hardware">{{__('app.proposal.nav_hardware')}}</a></li>
+                    <li role="presentation" class="nav-item d-none d-sm-block"><a class="nav-link hasArrow" id="services_tab" role="tab" data-toggle="tab" href="#services">{{__('app.proposal.nav_services')}}</a></li>
                     <li role="presentation" class="dropdown d-block d-sm-none customSelect">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="txt">{{__('app.proposal.nav_software')}}</span> <i class='fa fa-chevron-down right'></i>
                         </a>
                         <ul class="dropdown-menu">
@@ -21,24 +21,28 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="software">
-                        <ul class="gridder row">
-                            @foreach($proposals as $item)
-                                <li class="gridder-list" data-griddercontent="#content{{$loop->index}}">
-                                    <div class="img-wrap"><img src="{{$item->media}}" /></div>
-                                </li>
-                                <div id="content{{$loop->index}}" class="gridder-content">
-                                    <div class="row">
-                                        <div class="col-sm-7">
-                                            <h3 class="subtitle">{!!$item->name!!}</h3>
-                                            {!!$item->description!!}
+                        <div class="row">
+                            <div class="col">
+                                <ul class="gridder">
+                                    @foreach($proposals as $item)
+                                        <li class="gridder-list" data-griddercontent="#content{{$loop->index}}">
+                                            <div class="img-wrap"><img src="{{$item->media}}" /></div>
+                                        </li>
+                                        <div id="content{{$loop->index}}" class="gridder-content">
+                                            <div class="row">
+                                                <div class="col-sm-7">
+                                                    <h3 class="subtitle">{!!$item->name!!}</h3>
+                                                    {!!$item->description!!}
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <img src="{{$item->hero}}" />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-5">
-                                            <img src="{{$item->hero}}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </ul>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div role="tabpanel" class="tab-pane gridder-show" id="hardware">
                         <div class="row">
