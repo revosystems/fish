@@ -221,14 +221,14 @@
             @foreach($leadXefSofts as $xefSofts)
                 <optgroup label="{{ $xefSofts->first()->softType->name}}">
                     @foreach($xefSofts as $soft)
-                        <option value='{{$soft->id}}' @if ($lead->xef_soft != '' && in_array($soft->id, $lead->xef_soft)) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">
+                        <option value='{{$soft->id}}' @if (in_array($soft->id, is_array($lead->xef_soft) ? $lead->xef_soft : [$lead->xef_soft]) ) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">
                             {{ $soft->name }}
                         </option>
                     @endforeach
                 </optgroup>
             @endforeach
-            <option value='other' @if ($lead->xef_soft) {{ in_array(('other'), $lead->xef_soft) ? ' selected' : '' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
-            <option value='none' @if ($lead->xef_soft) {{ in_array(('none'), $lead->xef_soft) ? ' selected' : '' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
+            <option value='other' {{ in_array('other', is_array($lead->xef_soft) ? $lead->xef_soft : [$lead->xef_soft]) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
+            <option value='none' {{ in_array('none', is_array($lead->xef_soft) ? $lead->xef_soft : [$lead->xef_soft]) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
         </select>
     </div>
 </div>
@@ -240,14 +240,14 @@
             @foreach($leadRetailSofts as $retailSofts)
                 <optgroup label="{{ $retailSofts->first()->softType->name}}">
                     @foreach($retailSofts as $soft)
-                        <option value='{{$soft->id}}' @if ($lead->retail_soft != '' && in_array($soft->id, $lead->retail_soft)) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">
+                        <option value='{{$soft->id}}' {{ in_array($soft->id, is_array($lead->retail_soft) ? $lead->retail_soft : [$lead->retail_soft]) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ $soft->name }}</span>">
                             {{ $soft->name }}
                         </option>
                     @endforeach
                 </optgroup>
             @endforeach
-            <option value='other' @if ($lead->retail_soft) {{ in_array(('other'), $lead->retail_soft) ? ' selected' : '' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
-            <option value='none' @if ($lead->retail_soft) {{ in_array(('none'), $lead->retail_soft) ? ' selected' : '' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
+            <option value='other' {{ in_array('other', is_array($lead->retail_soft) ? $lead->retail_soft : [$lead->retail_soft]) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
+            <option value='none' {{ in_array('none', is_array($lead->retail_soft) ? $lead->retail_soft : [$lead->retail_soft]) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
         </select>
     </div>
 </div>
