@@ -1988,7 +1988,7 @@ border-bottom-left-radius: 0!important;
 	 padding: 0;
 	 list-style-type: none;
 	 font-size: 0;
-	 text-align: center;
+	 text-align: left;
  }
 
  .gridder .gridder-list {
@@ -2255,29 +2255,42 @@ border-bottom-left-radius: 0!important;
 	 display: inline-block;
 	 float: none;
  }
-
- .onProposal .nav-pills>li.active>a,
- .onProposal .nav-pills>li.active>a:focus,
- .onProposal .nav-pills>li.active>a:hover{
-	 background: #e85e30;
-	 border: none;
-	 color: #fff;
-
-	 box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+ .onProposal .nav-pills .dropdown-toggle i{
+	 margin-left: 10px;
+	 margin-top: 3px;
  }
 
- .onProposal .nav-pills>li>a{
-	 color: #e85e30;
-	 border: none;
+ .onProposal .nav-pills .dropdown-toggle{
 	 text-transform: uppercase;
 	 font-weight: bold;
  }
 
- .onProposal .nav-pills>li>a:hover{
-	 color: #fff;
-	 background: transparent;
-	 border: none;
-	 opacity: 1;
+ .onProposal .nav-pills .dropdown-toggle:after{
+	 display: none;
+ }
+
+ .onProposal .nav-pills .nav-item>a.active,
+ .onProposal .nav-pills .nav-item>a.active:focus,
+ .onProposal .nav-pills .nav-item>a.active:hover{
+	 background: #e85e30!important;
+	 border: none!important;
+	 color: #fff!important;
+
+	 box-shadow: 0 0 8px rgba(0, 0, 0, 0.2)!important;
+ }
+
+ .onProposal .nav-pills>.nav-item>a{
+	 color: #e85e30!important;
+	 border: none!important;
+	 text-transform: uppercase!important;
+	 font-weight: bold!important;
+ }
+
+ .onProposal .nav-pills>.nav-item>a:hover{
+	 color: #fff!important;
+	 background: transparent!important;
+	 border: none!important;
+	 opacity: 1!important;
  }
 
  .intro{
@@ -2404,10 +2417,13 @@ border-bottom-left-radius: 0!important;
 	 color: #fff;
 	 box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 	 border-radius: 4px;
+	 width: 100%;
  }
 
  .onProposal .customSelect a{
 	 color:#fff!important;
+	 display: block;
+	 padding: 0.635rem;
  }
  .customSelect>a{
 	 background: #e85e30!important;
@@ -2847,8 +2863,8 @@ html.errors,
 	margin-top: auto;
 	/*height: 40px;*/
 	/*line-height: 40px;*/
-	height: 60px;
-	line-height: 60px;
+	height: 40px;
+	line-height: 40px;
 }
 
 .homeHero .legal-footer{
