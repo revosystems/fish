@@ -28,6 +28,10 @@
 
 
   // Navbar
+
+  .navbar-nav .gravatar{
+    @extend .mr-2;
+  }
   .navbar-nav .dropdown-menu {
     position: absolute;
     right: 0;
