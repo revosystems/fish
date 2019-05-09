@@ -108,7 +108,7 @@
                             {{__('app.resources.dossiers_txt')}}
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6">
-                                    <a href="{{__('app.resources.dossiers_xef_dw')}}" target="_blank">
+                                    <a href="{{__('app.resources.dossiers_xef_dw_' . auth()->user()->getOrganizationName() )}}" target="_blank">
                                         <div class="item">
                                             <div class="icon"><div class="download">&nbsp;</div></div>
                                             <span class="product">{{__('app.resources.dossiers_xef')}}</span>
@@ -117,7 +117,7 @@
                                     </a>
                                 </div>
                                 <div class="col-xs-6 col-sm-6">
-                                    <a href="{{__('app.resources.dossiers_retail_dw')}}" target="_blank">
+                                    <a href="{{__('app.resources.dossiers_retail_dw_' . auth()->user()->getOrganizationName() )}}" target="_blank">
                                         <div class="item">
                                             <div class="icon"><div class="download">&nbsp;</div></div>
                                             <span class="product">{{__('app.resources.dossiers_retail')}}</span>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6">
-                                    <a href="{{__('app.resources.dossiers_flow_dw')}}" target="_blank">
+                                    <a href="{{__('app.resources.dossiers_flow_dw_' . auth()->user()->getOrganizationName() )}}" target="_blank">
                                         <div class="item">
                                             <div class="icon"><div class="download">&nbsp;</div></div>
                                             <span class="product">{{__('app.resources.dossiers_flow')}}</span>
@@ -137,7 +137,7 @@
                                     </a>
                                 </div>
                                 <div class="col-xs-6 col-sm-6">
-                                    <a href="{{__('app.resources.dossiers_intouch_dw')}}" target="_blank">
+                                    <a href="{{__('app.resources.dossiers_intouch_dw_' . auth()->user()->getOrganizationName() )}}" target="_blank">
                                         <div class="item">
                                             <div class="icon"><div class="download">&nbsp;</div></div>
                                             <span class="product">{{__('app.resources.dossiers_intouch')}}</span>
