@@ -273,19 +273,23 @@ return [
 
         'dossiers_xef'                  => 'Revo XEF',
         'dossiers_xef_txt'              => 'App para la gestión integral y de ventas de negocios HORECA',
-        'dossiers_xef_dw'               => '/download/dossiers/Orange_Revo_XEF_Dossier_Producto.pdf',
+        'dossiers_xef_dw_orange'        => '/downloadDossier/Orange_Revo_XEF_Dossier_Producto.pdf',
+        'dossiers_xef_dw_telefonica'    => '/downloadDossier/Telefonica_Revo_XEF_Dossier_Producto.pdf',
 
         'dossiers_retail'               => 'Revo RETAIL',
         'dossiers_retail_txt'           => 'App para la gestión integral y de ventas de comercios retail',
-        'dossiers_retail_dw'            => '/download/dossiers/Orange_Revo_RETAIL_Dossier_Producto.pdf',
+        'dossiers_retail_dw_orange'     => '/downloadDossier/Orange_Revo_RETAIL_Dossier_Producto.pdf',
+        'dossiers_retail_dw_telefonica' => '/downloadDossier/Telefonica_Revo_RETAIL_Dossier_Producto.pdf',
 
         'dossiers_flow'                 => 'Revo FLOW',
         'dossiers_flow_txt'             => 'App para la gestión online inteligente de reservas',
-        'dossiers_flow_dw'              => '/download/dossiers/Orange_Revo_FLOW_Dossier_Producto.pdf',
+        'dossiers_flow_dw_orange'       => '/downloadDossier/Orange_Revo_FLOW_Dossier_Producto.pdf',
+        'dossiers_flow_dw_telefonica'   => '/downloadDossier/Telefonica_Revo_FLOW_Dossier_Producto.pdf',
 
         'dossiers_intouch'              => 'Revo InTouch',
         'dossiers_intouch_txt'          => 'App de fidelización de clientes',
-        'dossiers_intouch_dw'           => '/download/dossiers/Orange_Revo_InTOUCH_Dossier_Producto.pdf',
+        'dossiers_intouch_dw_orange'    => '/downloadDossier/Orange_Revo_InTOUCH_Dossier_Producto.pdf',
+        'dossiers_intouch_dw_telefonica'=> '/downloadDossier/Telefonica_Revo_InTOUCH_Dossier_Producto.pdf',
 
         'testimonials_title_xef'        => 'Testimonios Revo XEF',
         'testimonials_title_retail'     => 'Testimonios Revo RETAIL',

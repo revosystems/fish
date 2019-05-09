@@ -10,4 +10,9 @@ class DownloadsController extends Controller
         $file_path = public_path('docs/'.$folder.'/'.$file_name);
         return response()->download($file_path);
     }
+
+    public function downloadDossier($file_name) {
+        $file_path = public_path('docs/dossiers/'.config('app.platform').'/'.$file_name);
+        return response()->download($file_path);
+    }
 }
