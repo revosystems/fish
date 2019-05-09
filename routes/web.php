@@ -13,6 +13,7 @@
         Route::get('/lead/{leadId}/download', 'LeadController@download')->name("lead.download");
 
         Route::get('/download/{folder}/{file}', 'DownloadsController@download');
+        Route::get('/downloadDossier/{file}', 'DownloadsController@downloadDossier');
 
         Route::resource('admin/leads', 'Admin\LeadsController', ["only" => ['show', 'update']]);
         Route::post('admin/leads/{lead}/status', 'Admin\LeadsStatusController@store')->name('leads.status.store');
