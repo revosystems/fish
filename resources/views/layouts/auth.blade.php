@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include("layouts.partials.header.head")
-    {{--    <body class="auth {{ auth()->user()->getOrganizationName() }}">--}}
     <body class="auth">
         @include("layouts.partials.loaders.preloader")
         <div class="container login-container">
