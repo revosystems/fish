@@ -299,7 +299,7 @@ var Lead = function() {
             });
         },
 
-        posHandler: function(){
+        posExternalHandler: function(){
             $("#xef_property_franchise_id").on("change", function () {
                 if($(this).val()!=2){
                     $("#franchise_pos_external_id").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
@@ -325,6 +325,20 @@ var Lead = function() {
                 var base_id = $(this).attr("id").replace("_id", "");
 
                 if($(this).val()==-1){
+                    $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
+                }
+                else{
+                    $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
+                }
+            });
+        },
+
+        posHandler: function(){
+            $("#pos_id").on("change", function () {
+
+                var base_id = $(this).attr("id").replace("_id", "");
+
+                if($(this).val()=="-1"){
                     $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
                 else{
@@ -456,6 +470,7 @@ $(document).ready(function(){
     Lead.devicesHandler();
     Lead.kdsHandler();
     Lead.pmsHandler();
+    Lead.posExternalHandler();
     Lead.posHandler();
     Lead.erpHandler();
     Lead.multiselectHandler();

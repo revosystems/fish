@@ -73,6 +73,7 @@ class StoreLeadRequest extends FormRequest
             'xef_kds_quantity'          => 'required_if:xef_kds_id,1|nullable|numeric',
             // > XEF & RETAIL
             'pos_id'                    => 'required',
+            'pos_other'                 => 'required_if:pos_id,-1|string|min:2|max:255',
             // > RETAIL
             'retail_sale_mode_id'       => 'required_if:type,2',
             'retail_sale_location_id'   => 'required_if:type,2',

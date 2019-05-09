@@ -304,6 +304,12 @@ return [
                 'pos_id' => [
                     'required'  => 'Debe seleccionar una opción',
                 ],
+                'pos_other' => [
+                    'required_if'  => 'Campo obligatorio',
+                    'string'    => 'Debe ser una cadena de caracteres',
+                    'min'       => 'Mínimo :min caracteres',
+                    'max'       => 'Máximo :max caracteres',
+                ],
             // > RETAIL
                 'retail_sale_mode_id' => [
                     'required_if'  => 'Debe seleccionar una opción',

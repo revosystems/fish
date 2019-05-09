@@ -94,6 +94,9 @@ class Lead extends Model
     public function getRelatedProposal()
     {
         //dd($this->pos()->posType()->relatedProposal());
+        if (! $this->pos) {
+            return null;
+        }
         return $this->pos->posType->relatedProposal;
     }
 

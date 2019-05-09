@@ -456,6 +456,9 @@ use App\Models\Lead;
                                             {{ $pos->name }}
                                         </option>
                                     @endforeach
+                                    <option data-divider="true"></option>
+                                    <option value='-1' @if (old('pos_id') == -1) {{ 'selected' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.pos') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
+                                    <option value='-2' @if (old('pos_id') == -2) {{ 'selected' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.pos') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
                                 </select>
 
                                 @if ($errors->has('pos_id'))
@@ -464,6 +467,28 @@ use App\Models\Lead;
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
+                            <div class="form-group hasDW
+                            @if (old('pos_id') != "-1")
+                            {{ 'disabled' }}
+                            @endif
+
+                                    ">
+                                <div class="input-group-text {{ $errors->has('pos_other') ? ' is-invalid' : '' }} hasDependancy">
+                                    <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
+                                    <input type="text" name="pos_other" id="pos_other" value="{{ old('pos_other') }}" placeholder="{{ __('app.lead.specify') }}" class="form-control"
+                                    @if (old('pos_id') != -1)
+                                        {{ 'disabled' }}
+                                            @endif
+                                    >
+                                </div>
+                                @if ($errors->has('pos_other'))
+                                    <span class="invalid-feedback" role="alert">{{ $errors->first('pos_other') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row  dep_xef_small dep_xef_medium-large dep_retail_store dep_retail_franchise" style="display: none;">
+                        <div class="col-sm-12 col-md-12">
                             <div class="form-group isPicker {{ $errors->has('franchise_pos_external_id') ? ' is-invalid' : '' }}
                             @if (old('xef_property_franchise_id') != 1)
                             {{ 'disabled' }}
@@ -535,7 +560,7 @@ use App\Models\Lead;
                                 <div class="input-group-text {{ $errors->has('xef_pms_other') ? ' is-invalid' : '' }} hasDependancy">
                                     <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
                                     <input type="text" name="xef_pms_other" id="xef_pms_other" value="{{ old('xef_pms_other') }}" placeholder="{{ __('app.lead.specify') }}" class="form-control"
-                                    @if (old('xef_pms') != -1)
+                                    @if (old('xef_pms_id') != -1)
                                         {{ 'disabled' }}
                                             @endif
                                     >

@@ -283,7 +283,15 @@ class LeadController extends Controller
             $erp .= "Otro: {$lead->erp_other}";
         }
 
-        $pos = $lead->pos->name;
+        if($lead->pos_id==-1){
+            $pos = "Otro: ".$lead->pos_other;
+        }
+        else if($lead->pos_id==-2){
+            $pos = "Ninguno";
+        }
+        else{
+            $pos = $lead->pos->name;
+        }
 
         $pdf = \PDF::loadView('app.lead.pdf', [
             'type'                      => $type,
