@@ -1,5 +1,5 @@
 @php
-$platform = config('app.platform');
+    $platform = auth()->user()->getOrganizationName();
 @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
