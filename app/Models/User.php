@@ -50,4 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function getOrganizationName()
+    {
+        return strtolower(auth()->user()->organization->name ? : 'telefonica');
+    }
 }

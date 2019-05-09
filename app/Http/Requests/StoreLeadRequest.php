@@ -64,7 +64,7 @@ class StoreLeadRequest extends FormRequest
             // CONFIGURATION
             // > XEF & RETAIL
             'devices'                   => 'required',
-            'devices_current'           => 'required_if:devices,1|nullable|string|min:2',
+            'devices_current'           => 'required_if:devices,1|nullable|string|min:1',
             // > XEF
             'xef_pos_critical_quantity' => 'required_if:type,1|nullable|numeric',
             'xef_cash_quantity'         => 'required_if:type,1|nullable|numeric',

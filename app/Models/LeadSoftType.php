@@ -13,6 +13,6 @@ class LeadSoftType extends Model
 
     public function relatedProposal()
     {
-        return $this->belongsToMany(LeadProposal::class, 'related_proposal_id');
+        return $this->belongsTo(LeadProposal::class);
     }
 }
