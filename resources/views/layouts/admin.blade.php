@@ -14,20 +14,12 @@
                 </div>
                 <div class="main-content-container container-fluid px-4">
                     @include('components.errors')
-                    @include('layouts.partials-admin.breadcrumb')
+{{--                   // @include('layouts.partials-admin.breadcrumb')--}}
 
-                    <div class="row">
+                    <div class="row pt-4">
                         <div class="col">
                             <div class="card card-small mb-4">
-                                {{--<div class="card-header border-bottom">
-                                    <h6 class="m-0">
-                                        {{ trans_choice(config('thrust.translationsPrefix') . str_singular($resourceName), 2) }} ({{ $resource->count() }})
-                                    </h6>
-                                    <h6 class="m-0">Organizaciones</h6>
-                                </div>--}}
-                                <div class="card-body p-0">
                                     @yield('content')
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,11 +35,5 @@
 
     @yield('scripts')
     @stack('edit-scripts')
-
-<script>
-    $('.toggle-sidebar').click(function (e) {
-        $('.main-sidebar').toggleClass('open');
-    });
-</script>
 </body>
 </html>

@@ -1,0 +1,196 @@
+:focus{
+  outline: 0!important;
+  outline: none!important;
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle{
+  outline: 0!important;
+  outline: none!important;
+}
+
+
+.bootstrap-select .filter-option-inner-inner{
+  text-overflow: ellipsis;
+}
+
+.bootstrap-select.started .filter-option-inner-inner {
+  line-height: inherit;
+}
+
+.bootstrap-select .filter-option .colored {
+  font-weight: normal;
+  padding-bottom:3px;
+}
+
+.bootstrap-select .filter-option .hideHint {
+  color: $accent-color;
+  font-weight: bold;
+  padding-left: 0;
+  margin: 5px 0 0 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  font-size: 13px;
+  line-height: inherit;
+}
+
+.bootstrap-select .dropdown-menu .hideHint {
+  display: none;
+}
+
+.bootstrap-select .dropdown-divider{
+  border-top:1px solid $accent-bg;
+}
+
+.bootstrap-select button {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 3px solid $light;
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+  border-color: $accent-color;
+  outline: 0!important;;
+  box-shadow: 0 .313rem .719rem rgba(0, 0, 0, 0.1),0 .156rem .125rem rgba(0,0,0,.06);
+}
+
+.form-control{
+  padding-bottom: 0.2rem;
+  padding-top: 1.33rem;
+  padding-left: 0.8rem;
+  background-color: #e9ecef;
+}
+
+.form-control:disabled{
+  background-color: $light;
+  border-color: rgba(206, 212, 218, 0.41);
+  opacity: 0.5;
+}
+
+.form-group:disabled label{
+  color:rgba(204, 204, 204, 0.7);
+}
+
+.form-control:hover{
+  border: 1px solid $accent-color;
+  box-shadow: 0 .156rem .125rem rgba(0,0,0,.06)
+}
+.form-control:focus,
+.form-control:focus:hover,
+input:focus:hover{
+  border-color: $accent-color;
+  box-shadow:
+  0 0 0 2px $accent-color,
+  0 .313rem .719rem rgba(0, 0, 0, 0.05),
+  0 .156rem .125rem rgba(0,0,0,.06)
+}
+
+
+
+
+
+.invalid-feedback {
+  margin-top: 5px;
+  display: block;
+  font-size: inherit!important;
+  color: $accent-color;
+
+}
+
+textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px!important;
+  padding-top: 24px!important;
+  resize: none;
+}
+
+.input-group.is-invalid,
+textarea.is-invalid,
+.isPicker.is-invalid .bootstrap-select {
+  border: 2px solid #e85e30!important;
+}
+
+.textarea-wrap{
+  margin-bottom: 10px;
+}
+
+.textarea-wrap label {
+  top: 9px!important;
+
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+  outline: none!important;
+}
+
+
+//.bootstrap-select .btn.disabled {
+//  opacity: 1;
+//}
+
+
+.form-group.disabled {
+  opacity: 0.15;
+}
+
+//.form-group.disabled .form-control {
+//  background: rgba(0, 0, 0, 0.41);
+//}
+
+
+.animatedplaceholder {
+  cursor:text;
+  font-weight: normal;
+  z-index: 10;
+  text-overflow: ellipsis!important;
+  width: 90%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* focus state placeholder */
+.animatedplaceholder.placeholder-focus {
+  color: #e85e30;
+  font-weight: bold;
+}
+
+.bootstrap-select ::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+  background: transparent;
+  width: 6px;
+}
+
+.bootstrap-select ::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bootstrap-select ::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb {
+  background: #e85e30; border-radius: 4px;
+}
+
+
+//.devices_wrapper {
+//  display: none;
+//  padding-left: 20px;
+//}
+//
+//.shown{
+//  display: block;
+//}
+//
+//.hasOverflow .filter-option-inner-inner{
+//  text-overflow: ellipsis;
+//  width: 94%;
+//}
+//
+.bootstrap-select.show-tick .dropdown-menu .selected span.check-mark{
+  top: 12px;
+}
+
+.update-button{
+  height: 50px;
+}

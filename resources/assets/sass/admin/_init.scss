@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: $body-background;
+  background: $accent-bg;
   font-size: 15px;
   //font-weight: 500;
 
@@ -51,8 +51,31 @@ label {
   background-color: $accent-bg;
 }
 
-.thrust-trend-metric {
-  padding: 20px;
+.thrust-trend-metric canvas,
+.thrust-trend-metric h1,
+.thrust-partition-metric canvas,
+.thrust-partition-metric h1{
+  @extend .p-3;
+}
+
+.thrust-trend-metric h4,
+.thrust-partition-metric h4{
+  @extend h6;
+  @extend .card-header;
+  @extend .border-bottom;
+}
+
+.thrust-partition-metric h4{
+  @extend .border-top;
+}
+
+.thrust-trend-metric h1,
+.thrust-partition-metric h1{
+  @extend h3;
+}
+
+.thrust-partition-metric{
+  @extend .mt-3;
 }
 
 .date{
@@ -63,4 +86,15 @@ label {
 .description .badge{
   font-size: 15px;
   font-weight: normal;
+}
+
+.download-proposal .btn{
+  padding-right: 40px;
+}
+
+.download-proposal i{
+  font-size: 25px;
+  position: absolute;
+  right: 8px;
+  top: 6px!important;
 }
