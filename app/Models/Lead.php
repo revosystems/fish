@@ -136,4 +136,9 @@ class Lead extends Model
 
         return $this->statusUpdates()->create(['user_id' => $user->id, 'new_status' => $status, 'body' => $body]);
     }
+
+    public function getParentOrganizations()
+    {
+        return $this->organization->getParentOrganizations()->push($this->organization);
+    }
 }

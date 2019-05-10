@@ -24,14 +24,14 @@ class CreateLeadGeneralTypologyTable extends Migration
             $table->foreign('proposal_id')->references('id')->on('lead_proposals');
         });
 
-        Schema::create('general_typologies_related_proposals', function (Blueprint $table) {
+        Schema::create('lead_general_typologies_related_proposals', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('related_proposal_id')->unsigned();
             $table->integer('general_typology_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('related_proposal_id')->references('id')->on('lead_proposals');
-            $table->foreign('general_typology_id')->references('id')->on('lead_general_typologies');
+            $table->foreign('related_proposal_id', 'general_typologies_rel_props_related_proposal_id_foreign')->references('id')->on('lead_proposals');
+            $table->foreign('general_typology_id', 'general_typologies_rel_props_general_typology_id_foreign')->references('id')->on('lead_general_typologies');
         });
     }
 

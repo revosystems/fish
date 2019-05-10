@@ -42,7 +42,9 @@ $factory->define(Organization::class, function( Faker $faker){
    return [
        'name'   => $faker->name,
        'email'  => $faker->unique()->safeEmail,
-       'token'  => str_random(24)
+       'token'  => str_random(24),
+       'organization_id' => null,
+       'slack_webhook_url' => null,
    ];
 });
 

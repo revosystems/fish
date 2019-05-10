@@ -14,12 +14,13 @@
 
         Route::get('/download/{folder}/{file}', 'DownloadsController@download');
         Route::get('/downloadDossier/{file}', 'DownloadsController@downloadDossier');
-
-        Route::resource('admin/leads', 'Admin\LeadsController', ["only" => ['show', 'update']]);
-        Route::post('admin/leads/{lead}/status', 'Admin\LeadsStatusController@store')->name('leads.status.store');
-        //        Route::get('admin/leads/{lead}/edit', 'Admin\LeadsController@edit')->name('leads.edit');
-        Route::get('admin/reports', 'Admin\ReportsController@index')->name('reports');
-
-        Route::get('logout', "Auth\LoginController@logout")->name('logout');
     });
 
+    Route::group(["prefix" => 'admin', 'namespace' => "Admin", "middleware" => ['verified', 'user.active']], function () {
+        Route::resource('leads', 'LeadsController', ["only" => ['show', 'update']])->middleware('can:see-lead,lead');
+        Route::post('leads/{lead}/status', 'LeadsStatusController@store')->name('leads.status.store');
+        //        Route::get('leads/{lead}/edit', 'LeadsController@edit')->name('leads.edit');
+        Route::get('reports', 'ReportsController@index')->name('reports');
+    });
+
+Route::get('logout', "Auth\LoginController@logout")->name('logout');
