@@ -7,19 +7,23 @@ mix
         'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
         'vendor/badchoice/thrust/src/resources/js/thrust.min.js',
         'node_modules/jquery-tags-input/dist/jquery.tagsinput.js',
+        'node_modules/bootstrap-select/dist/js/bootstrap-select.js',
+        'public/modules/Animated-Placeholder/js/animated-placeholder.js',
         'resources/assets/js/admin.js',
         'resources/assets/js/libs/mention.js/bootstrap-typeahead.js',
         'resources/assets/js/libs/mention.js/mention.js',
     ], 'public/js/admin.js')
 
-    //.less('resources/assets/less/style.less', '../resources/assets/css/style.css')
-    .sass('resources/assets/sass/admin.scss', 'public/css/admin.css')
+    .sass('resources/assets/sass/admin.scss', '../resources/assets/css/admin-sass.css')
+    .styles([
+        'resources/assets/css/admin-sass.css',
+        'node_modules/bootstrap-select/dist/css/bootstrap-select.css',
+    ],'public/css/admin.css')
 
     // WEB
     .babel([
         'node_modules/jquery/dist/jquery.js',
         'node_modules/imagesloaded/imagesloaded.pkgd.js',
-        //'node_modules/bootstrap-sass/javascripts/bootstrap.js',
         'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
         'node_modules/bootstrap-select/dist/js/bootstrap-select.js',
         'public/modules/gridder/dist/js/jquery.gridder.min.js',

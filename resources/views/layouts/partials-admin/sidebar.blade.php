@@ -31,7 +31,7 @@
                  "url"      => route('thrust.index', ['organizations']),
                  "title"    => trans_choice('admin.organization', 2),
                  "icon"     => 'recent_actors',
-                 "count"    => \App\Models\Organization::all()->count()
+                 "count"    => \App\Models\Organization::whereNull("organization_id")->count()
             ])
 
             @include('components.sidebarItem', [

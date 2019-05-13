@@ -236,8 +236,8 @@ use App\Models\Lead;
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('property_spaces'))
-                                    <span class="invalid-feedback" role="alert">{{ $errors->first('property_spaces') }}</span>
+                                @if ($errors->has('xef_property_spaces'))
+                                    <span class="invalid-feedback" role="alert">{{ $errors->first('xef_property_spaces') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -279,8 +279,8 @@ use App\Models\Lead;
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('property_spaces'))
-                                    <span class="invalid-feedback" role="alert">{{ $errors->first('property_spaces') }}</span>
+                                @if ($errors->has('retail_property_spaces'))
+                                    <span class="invalid-feedback" role="alert">{{ $errors->first('retail_property_spaces') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -619,6 +619,7 @@ use App\Models\Lead;
                         <input type="hidden" name="xef_soft[]" value="">
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group isPicker hasOverflow {{ $errors->has('xef_soft') ? ' is-invalid' : '' }}">
+
                                 <select class="selectpicker @if (old('xef_soft') !='') started @endif" name="xef_soft[]" id="xef_soft" title="{{ __('app.lead.xefSoft') }}"  data-size="5" multiple>
                                     @foreach($leadXefSofts as $xefSofts)
                                         <optgroup label="{{ $xefSofts->first()->softType->name}}">

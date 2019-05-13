@@ -23,10 +23,10 @@ class Lead extends ChildResource
     {
         return [
             Gravatar::make('email', '')->withDefault('https://raw.githubusercontent.com/BadChoice/handesk/master/public/images/default-avatar.png'),
-//            Text::make('id'),
+            Text::make('id')->sortable(),
             Link::make('id', __('admin.name'))->route('leads.show')->displayCallback(function ($lead) {
                 return $lead->name;
-            }),
+            })->sortable(),
             Email::make('email')->sortable(),
             HasMany::make('tags'),
             BelongsTo::make('organization'),
