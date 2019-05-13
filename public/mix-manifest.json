@@ -1,7 +1,8 @@
 {
-    "/css/admin.css": "/css/admin.css",
+    "/../resources/assets/css/admin-sass.css": "/../resources/assets/css/admin-sass.css",
     "/../resources/assets/css/app-sass.css": "/../resources/assets/css/app-sass.css",
     "/js/admin.js": "/js/admin.js",
+    "/css/admin.css": "/css/admin.css",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/pdf.css": "/css/pdf.css"
