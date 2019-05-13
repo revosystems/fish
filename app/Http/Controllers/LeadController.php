@@ -397,23 +397,17 @@ class LeadController extends Controller
 
         // SOFT
         if ($lead->xef_soft || $lead->retail_soft) {
-            $soft_cat_types = [];
-            $software       = ($lead->type == 1) ? explode(",", $lead->xef_soft) : explode(",", $lead->retail_soft);
-            foreach ($software as $soft) {
-                if ($soft != "other" && $soft != "none") {
-                    $soft_type = LeadSoft::find($soft)->soft_type_id;
+            $softCategoryTypes  = [];
+            $software           = collect(($lead->type == Lead::TYPE_XEF) ? explode(",", $lead->xef_soft) : explode(",", $lead->retail_soft));
+            $software->each(function ($soft) use ($proposals, $softCategoryTypes) {
+                if ($soft == "none")    return;
+                if ($soft == "other")   return $proposals->push(LeadProposal::find(51));
+                $soft = LeadSoft::find($soft);
+                if (in_array($soft->soft_type_id, $softCategoryTypes)) return;
 
-                    if (! in_array($soft_type, $soft_cat_types)) {
-                        $soft_cat_types[]= $soft_type;
-
-                        $proposals->push(LeadSoftType::find($soft_type)->relatedProposal);
-                    }
-                } else {
-                    if ($soft == "other") {
-                        $proposals->push(LeadProposal::find(51));
-                    }
-                }
-            }
+                $softCategoryTypes[] = $soft->soft_type_id;
+                $proposals->push($soft->softType->relatedProposal);
+            });
         }
         return $proposals->reject(null);
     }
