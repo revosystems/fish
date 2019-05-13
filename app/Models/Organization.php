@@ -39,13 +39,9 @@ class Organization extends Model
 
     public function getChildrenOrganizations()
     {
-        if (! $this->organizations->count()) {
-            return collect();
-        }
         $organizationsArray = $this->organizations;
-        return $this->organizations->each(function ($organization) use ($organizationsArray) {
-                $organizationsArray->push($organization->getChildrenOrganizations()->flatten());
-            })->flatten();
-        return $organizationsArray;
+        return $organizationsArray->each(function ($organization) use ($organizationsArray) {
+            $organizationsArray->push($organization->getChildrenOrganizations()->flatten());
+        })->flatten();
     }
 }
