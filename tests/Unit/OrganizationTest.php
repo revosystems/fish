@@ -96,4 +96,59 @@ class OrganizationTest extends TestCase
         $this->assertEquals("Child Organization 2", $parentOrganizations[2]->name);
         $this->assertEquals("Child Organization 3", $parentOrganizations[3]->name);
     }
+
+    /** @test */
+    public function can_get_children_organizations()
+    {
+        $organization1  = factory(Organization::class)->create(["name" => "Organization 1", "organization_id" => null]);
+        $organization2  = factory(Organization::class)->create(["name" => "Organization 2", "organization_id" => null]);
+        $organization11 = factory(Organization::class)->create(["name" => "Organization 1 1", "organization_id" => $organization1]);
+        $organization12 = factory(Organization::class)->create(["name" => "Organization 1 2", "organization_id" => $organization1]);
+        $organization21 = factory(Organization::class)->create(["name" => "Organization 2 1", "organization_id" => $organization2]);
+
+        $childrenOrganizations = $organization1->getChildrenOrganizations();
+
+        $this->assertCount(2, $childrenOrganizations);
+        $this->assertEquals("Organization 1 1", $childrenOrganizations[0]->name);
+        $this->assertEquals("Organization 1 2", $childrenOrganizations[1]->name);
+    }
+
+    /** @test */
+    public function can_get_children_organizations_when_organizations()
+    {
+        $organization1  = factory(Organization::class)->create(["name" => "Organization 1", "organization_id" => null]);
+        $organization2  = factory(Organization::class)->create(["name" => "Organization 2", "organization_id" => null]);
+
+        $childrenOrganizations = $organization1->getChildrenOrganizations();
+
+        $this->assertCount(0, $childrenOrganizations);
+    }
+
+    /** @test */
+    public function can_get_children_organizations_with_multiple_children()
+    {
+        $organization1  = factory(Organization::class)->create(["name" => "Organization 1", "organization_id" => null]);
+        $organization2  = factory(Organization::class)->create(["name" => "Organization 2", "organization_id" => null]);
+        $organization11 = factory(Organization::class)->create(["name" => "Organization 1 1", "organization_id" => $organization1]);
+        $organization111 = factory(Organization::class)->create(["name" => "Organization 1 1 1", "organization_id" => $organization11]);
+        $organization112 = factory(Organization::class)->create(["name" => "Organization 1 1 2", "organization_id" => $organization11]);
+        $organization12 = factory(Organization::class)->create(["name" => "Organization 1 2", "organization_id" => $organization1]);
+        $organization121 = factory(Organization::class)->create(["name" => "Organization 1 2 1", "organization_id" => $organization12]);
+        $organization21 = factory(Organization::class)->create(["name" => "Organization 2 1", "organization_id" => $organization2]);
+
+        $childrenOrganizations = $organization1->getChildrenOrganizations();
+
+        $this->assertCount(5, $childrenOrganizations);
+        $this->assertEquals("Organization 1 1", $childrenOrganizations[0]->name);
+        $this->assertEquals("Organization 1 2", $childrenOrganizations[1]->name);
+        $this->assertEquals("Organization 1 1 1", $childrenOrganizations[2]->name);
+        $this->assertEquals("Organization 1 1 2", $childrenOrganizations[3]->name);
+        $this->assertEquals("Organization 1 2 1", $childrenOrganizations[4]->name);
+
+        $childrenOrganizations = $organization11->getChildrenOrganizations();
+
+        $this->assertCount(2, $childrenOrganizations);
+        $this->assertEquals("Organization 1 1 1", $childrenOrganizations[0]->name);
+        $this->assertEquals("Organization 1 1 2", $childrenOrganizations[1]->name);
+    }
 }
