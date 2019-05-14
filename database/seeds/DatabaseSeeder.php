@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LeadRetailSaleLocationsTableSeeder::class);
         $this->call(LeadRetailSaleModesTableSeeder::class);
         $this->call(LeadTypesSegmentsTableSeeder::class);
-        $this->call(LeadXefKdsTableSeeder::class);
         $this->call(LeadXefPmsTableSeeder::class);
         $this->call(LeadXefPropertyFranchiseTableSeeder::class);
         $this->call(LeadXefTypologySpecificTableSeeder::class);

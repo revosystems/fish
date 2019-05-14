@@ -361,38 +361,22 @@ use App\Models\Lead;
                     </div>
                     <div class="row  dep_xef_small dep_xef_medium-large" style="display: none;">
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group isPicker {{ $errors->has('xef_kds_id') ? ' is-invalid' : '' }}">
-                                <select class="selectpicker @if (old('xef_kds_id') !='') started @endif" name="xef_kds_id" id="xef_kds_id" title="{{ __('app.lead.xefKds') }}"  data-size="5">
-                                    @foreach(App\Models\LeadXefKds::all() as $xefKds)
-                                        <option value='{{$xefKds->id}}'
-                                                @if (old('xef_kds_id') == $xefKds->id)
-                                                {{ 'selected' }}
-                                                @endif
-                                                data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'> {{ $xefKds->name }}</div>"
-                                        >
-                                            {{ $xefKds->name }}
-                                        </option>
-                                    @endforeach
+                            <div class="form-group isPicker {{ $errors->has('xef_kds') ? ' is-invalid' : '' }}">
+                                <select class="selectpicker @if (old('xef_kds') != '') started @endif" name="xef_kds" id="xef_kds" title="{{ __('app.lead.xefKds') }}"  data-size="5">
+                                    <option value='1' {{ old('xef_kds') ? 'selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'>{{ __('app.lead.yes') }}</div>">{{ __('app.lead.yes') }}</option>
+                                    <option value='0' {{ ! old('xef_kds') ? 'selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'>{{ __('app.lead.no') }}</div>">{{ __('app.lead.no') }}</option>
                                 </select>
 
-                                @if ($errors->has('xef_kds_id'))
-                                    <span class="invalid-feedback" role="alert">{{ $errors->first('xef_kds_id') }}</span>
+                                @if ($errors->has('xef_kds'))
+                                    <span class="invalid-feedback" role="alert">{{ $errors->first('xef_kds') }}</span>
                                 @endif
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group hasDW
-                            @if (old('xef_kds_id') != 1)
-                            {{ 'disabled' }}
-                            @endif
-                                    ">
+                            <div class="form-group hasDW {{ old('xef_kds') != 1 ? 'disabled' : '' }}">
                                 <div class="input-group-text {{ $errors->has('xef_kds_quantity') ? ' is-invalid' : '' }} hasDependancy">
                                     <span class="input-group-prepend"><i class="fa fa-angle-double-left"></i></span>
-                                    <input type="text" name="xef_kds_quantity" id="xef_kds_quantity" value="{{ old('xef_kds_quantity') }}" placeholder="{{ __('app.lead.xefKdsQuantity') }}" class="form-control"
-                                        @if (old('xef_kds_id') != 1)
-                                            {{ 'disabled' }}
-                                        @endif
-                                    >
+                                    <input type="text" name="xef_kds_quantity" id="xef_kds_quantity" value="{{ old('xef_kds_quantity') }}" placeholder="{{ __('app.lead.xefKdsQuantity') }}" class="form-control" {{ old('xef_kds') != 1 ? 'disabled' : '' }}>
                                 </div>
                                 @if ($errors->has('xef_kds_quantity'))
                                     <span class="invalid-feedback" role="alert">{{ $errors->first('xef_kds_quantity') }}</span>
@@ -405,12 +389,7 @@ use App\Models\Lead;
                             <div class="form-group isPicker {{ $errors->has('retail_sale_mode_id') ? ' is-invalid' : '' }}">
                                 <select class="selectpicker @if (old('retail_sale_mode_id') !='') started @endif" name="retail_sale_mode_id" id="retail_sale_mode_id" title="{{ __('app.lead.retailSaleMode') }}" data-size="5">
                                     @foreach(App\Models\LeadRetailSaleMode::all() as $saleMode)
-                                        <option value='{{$saleMode->id}}'
-                                                @if (old('retail_sale_mode_id') == $saleMode->id)
-                                                {{ 'selected' }}
-                                                @endif
-
-                                                data-content="<div class='hideHint'>{{ __('app.lead.retailSaleMode') }} </div><div class='colored'> {{ $saleMode->name }}</div>">
+                                        <option value='{{$saleMode->id}}' {{ old('retail_sale_mode_id') == $saleMode->id ? 'selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.retailSaleMode') }} </div><div class='colored'> {{ $saleMode->name }}</div>">
                                             {{ $saleMode->name }}
                                         </option>
                                     @endforeach

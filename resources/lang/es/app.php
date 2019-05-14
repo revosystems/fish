@@ -95,6 +95,8 @@ return [
 
         // BUTTONS
         'saveLead'                  => 'Registrar Lead',
+        'yes'                       => 'Sí',
+        'no'                        => 'No',
     ],
 
     'pages' => [

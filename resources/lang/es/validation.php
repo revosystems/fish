@@ -293,7 +293,7 @@ return [
                     'required_if'  => 'Campo obligatorio',
                     'numeric'   => 'Debe ser numérico',
                 ],
-                'xef_kds_id' => [
+                'xef_kds' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
                 'xef_kds_quantity' => [

@@ -261,7 +261,7 @@ var Lead = function() {
         },
 
         kdsHandler: function(){
-            $("#xef_kds_id").on("change", function () {
+            $("#xef_kds").on("change", function () {
                 if($(this).val()==1){
                     $("#xef_kds_quantity").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }

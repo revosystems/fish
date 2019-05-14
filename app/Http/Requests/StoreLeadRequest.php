@@ -69,8 +69,8 @@ class StoreLeadRequest extends FormRequest
             'xef_pos_critical_quantity' => 'required_if:type,1|nullable|numeric',
             'xef_cash_quantity'         => 'required_if:type,1|nullable|numeric',
             'xef_printers_quantity'     => 'required_if:type,1|nullable|numeric',
-            'xef_kds_id'                => 'required_if:type,1',
-            'xef_kds_quantity'          => 'required_if:xef_kds_id,1|nullable|numeric',
+            'xef_kds'                   => 'required_if:type,1',
+            'xef_kds_quantity'          => 'required_if:xef_kds,1|nullable|numeric',
             // > XEF & RETAIL
             'pos_id'                    => 'required',
             'pos_other'                 => 'required_if:pos_id,-1|string|min:2|max:255',

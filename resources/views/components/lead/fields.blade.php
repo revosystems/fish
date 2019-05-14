@@ -264,22 +264,14 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group isPicker {{ $errors->has('xef_kds_id') ? ' is-invalid' : '' }}">
-                        <select class="selectpicker form-control started" name="xef_kds_id" id="xef_kds_id" title="{{ __('app.lead.xefKds') }}"  data-style="btn-light" data-size="5">
-                            @foreach(App\Models\LeadXefKds::all()->sortBy("order") as $xefKds)
-                                <option value='{{$xefKds->id}}'
-                                        @if ($lead->xef_kds_id == $xefKds->id)
-                                        {{ 'selected' }}
-                                        @endif
-                                        data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'> {{ $xefKds->name }}</div>"
-                                >
-                                    {{ $xefKds->name }}
-                                </option>
-                            @endforeach
+                    <div class="form-group isPicker {{ $errors->has('xef_kds') ? ' is-invalid' : '' }}">
+                        <select class="selectpicker form-control started" name="xef_kds" id="xef_kds" title="{{ __('app.lead.xefKds') }}"  data-style="btn-light" data-size="5">
+                            <option value='1' {{ old('xef_kds') ? 'selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'>{{ __('app.lead.yes') }}</div>">{{ __('app.lead.yes') }}</option>
+                            <option value='0' {{ ! old('xef_kds') ? 'selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefKds') }} </div><div class='colored'>{{ __('app.lead.no') }}</div>">{{ __('app.lead.no') }}</option>
                         </select>
 
-                        @if ($errors->has('xef_kds_id'))
-                            <span class="invalid-feedback" role="alert">{{ $errors->first('xef_kds_id') }}</span>
+                        @if ($errors->has('xef_kds'))
+                            <span class="invalid-feedback" role="alert">{{ $errors->first('xef_kds') }}</span>
                         @endif
                     </div>
                 </div>

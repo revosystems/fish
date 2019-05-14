@@ -150,7 +150,6 @@ class LeadController extends Controller
         $propertyStaffQuantity     = null;
         $retailSaleMode            = null;
         $retailSaleLocation        = null;
-        $franchisePosExternal      = null;
         $erp                       = null;
         $software                  = "";
         $softHasOther              = 0;
@@ -159,7 +158,6 @@ class LeadController extends Controller
         $xefPosCriticalQuantity    = null;
         $xefCashQuantity           = null;
         $xefPrintersQuantity       = null;
-        $xefKds                    = null;
         $xefPms                    = null;
 
         $revoVersion .= " ({$lead->typeSegment->name})";
@@ -172,7 +170,7 @@ class LeadController extends Controller
                 return LeadPropertySpaces::find($space)->name;
             })->implode(', ');
             $xef_dispositives = $lead->xef_pos_critical_quantity + $lead->xef_cash_quantity;
-            $xef_printers     = $lead->xef_printers_quantity + ($lead->xef_kds == 1 ? $lead->xef_kds_quantity : 0);
+            $xef_printers     = $lead->xef_printers_quantity + ($lead->xef_kds ? $lead->xef_kds_quantity : 0);
 
 //            $versionTtype = "basic";
 //            if($xef_dispositives>1 || $xef_printers >2){ $versionTtype = "plus";
@@ -183,19 +181,10 @@ class LeadController extends Controller
             $typology .= " ({$lead->xefSpecificTypology->name})";
             $franchise = $lead->xefPropertyFranchise->name;
 
-            if ($lead->xef_property_franchise == 1) {
-                $franchisePosExternal = $lead->franchisePosExternal->name;
-            }
-
             $xefPropertyCapacity     = $lead->xef_property_capacity;
             $xefPosCriticalQuantity  = $lead->xef_pos_critical_quantity;
             $xefCashQuantity         = $lead->xef_cash_quantity;
             $xefPrintersQuantity     = $lead->xef_printers_quantity;
-
-            $xefKds = $lead->xefKds->name;
-            if ($lead->xef_kds == 1) {
-                $xefKds .= ", {$lead->xef_kds_quantity} pantallas";
-            }
 
             if ($lead->generalTypology->name == "Hotel") {
                 if ($lead->xef_pms == -1) {
@@ -241,10 +230,6 @@ class LeadController extends Controller
                 $franchise = "No";
             }
 
-            if ($lead->type_segment_id == 5) {
-                $franchisePosExternal = $lead->franchise_pos_external->name;
-            }
-
             foreach (explode(",", $lead->retail_soft) as $soft) {
                 if (! $soft) {
                     continue;
@@ -283,13 +268,12 @@ class LeadController extends Controller
             $erp .= "Otro: {$lead->erp_other}";
         }
 
-        if($lead->pos_id==-1){
-            $pos = "Otro: ".$lead->pos_other;
+        if ($lead->pos_id == -1) {
+            $pos = "Otro: {$lead->pos_other}";
         }
-        else if($lead->pos_id==-2){
+        else if ($lead->pos_id == -2) {
             $pos = "Ninguno";
-        }
-        else{
+        } else {
             $pos = $lead->pos->name;
         }
 
@@ -316,17 +300,15 @@ class LeadController extends Controller
             'retailSaleLocation'        => $retailSaleLocation,
             'pos'                       => $pos,
             'franchise'                 => $franchise,
-            'franchisePosExternal'      => $franchisePosExternal,
+            'franchisePosExternal'      => $this->getFranchisePosExternal($lead),
             'erp'                       => $erp,
             'software'                  => $software,
             'xefPropertyCapacity'       => $xefPropertyCapacity,
             'xefPosCriticalQuantity'    => $xefPosCriticalQuantity,
             'xefCashQuantity'           => $xefCashQuantity,
             'xefPrintersQuantity'       => $xefPrintersQuantity,
-            'xefKds'                    => $xefKds,
+            'xefKds'                    => $lead->xef_kds ? "Sí, {$lead->xef_kds_quantity} pantallas" : "No",
             'xefPms'                    => $xefPms
-
-
         ]);
 
         $pdf->setOptions([
@@ -356,7 +338,7 @@ class LeadController extends Controller
         if ($lead->type == Lead::TYPE_XEF) {
             $xefProposal      = 1; // BASIC
             $xefDevices       = $lead->xef_pos_critical_quantity + $lead->xef_cash_quantity;
-            $xef_printers     = $lead->xef_printers_quantity + ($lead->xef_kds == 1 ? $lead->xef_kds_quantity : 0);
+            $xef_printers     = $lead->xef_printers_quantity + ($lead->xef_kds ? $lead->xef_kds_quantity : 0);
             if ($xefDevices > 1 || $xef_printers > 2) { // PLUS
                 $xefProposal = 2;
 
@@ -376,7 +358,8 @@ class LeadController extends Controller
             $proposals->push(LeadProposal::find(41));
         }
 
-        // RELATED PROPOSALS
+        // RELATED PR
+        //OPOSALS
         $lead->generalTypology->relatedProposals->each(function ($relatedProposal) use ($proposals) {
             $proposals->push($relatedProposal);
         });
@@ -437,5 +420,15 @@ class LeadController extends Controller
             "general_typology_id"   => $request->get('xef_general_typology_id') ?: $request->get('retail_general_typology_id'),
             "property_quantity"     => $request->get('xef_property_quantity') ? : $request->get('retail_property_quantity')
         ]);
+    }
+
+    protected function getFranchisePosExternal($lead)
+    {
+        if ($lead->type_segment_id == 5) {
+            return $lead->franchise_pos_external->name;
+        } else if ($lead->xef_property_franchise == 1) {
+            return $lead->franchisePosExternal->name;
+        }
+        return null;
     }
 }

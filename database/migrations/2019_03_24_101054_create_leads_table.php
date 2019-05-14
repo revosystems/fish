@@ -40,7 +40,7 @@ class CreateLeadsTable extends Migration
             $table->integer('xef_pos_critical_quantity')->nullable()->default('0');
             $table->integer('xef_cash_quantity')->nullable()->default('0');
             $table->integer('xef_printers_quantity')->nullable()->default('0');
-            $table->integer('xef_kds_id')->nullable();
+            $table->boolean('xef_kds')->nullable()->default('0');
             $table->integer('xef_kds_quantity')->nullable()->default('0');
             $table->integer('pos_id')->nullable();
             $table->integer('retail_sale_mode_id')->nullable();

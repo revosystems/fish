@@ -51,11 +51,6 @@ class Lead extends Model
         return $this->belongsTo(LeadXefPropertyFranchise::class);
     }
 
-    public function xefKds()
-    {
-        return $this->belongsTo(LeadXefKds::class);
-    }
-
     public function pos()
     {
         return $this->belongsTo(LeadPos::class);
