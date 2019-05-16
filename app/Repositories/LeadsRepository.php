@@ -23,10 +23,12 @@ class LeadsRepository
 
     public static function all()
     {
-        if (auth()->user()->admin) {
+        if (auth()->user()->admin || ! auth()->user()->organization_id) {
             return Lead::where('status', '<', Lead::STATUS_COMPLETED);
         }
-        return auth()->user()->teamsLeads()->where('status', '<', Lead::STATUS_COMPLETED);
+        $organization = \App\Models\Organization::find(auth()->user()->organization_id);
+        // return auth()->user()->teamsLeads()->where('status', '<', Lead::STATUS_COMPLETED);
+        return Lead::where('status', '<', Lead::STATUS_COMPLETED)->whereIn('organization_id', $organization->getChildrenOrganizations()->push($organization)->pluck('id'));
     }
 
     public static function recentlyUpdated()

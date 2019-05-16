@@ -56,10 +56,10 @@ class Lead extends ChildResource
 
     protected function getBaseQuery()
     {
-        if (! auth()->user()->organization_id) {
+        if (auth()->user()->admin) {
             return parent::getBaseQuery();
         }
-        $organization = \App\Models\Organization::find(auth()->user()->organization_id);
+        $organization = \App\Models\Organization::findOrFail(auth()->user()->organization_id);
         return parent::getBaseQuery()->whereIn('organization_id', $organization->getChildrenOrganizations()->push($organization)->pluck('id'));
     }
 }
