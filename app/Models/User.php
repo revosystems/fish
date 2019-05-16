@@ -53,6 +53,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getOrganizationName()
     {
-        return strtolower(auth()->user()->organization->name ? : 'telefonica');
+        return strtolower(auth()->user()->organization->name ?? 'telefonica');
     }
 }
