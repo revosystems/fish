@@ -53,4 +53,13 @@ class Lead extends ChildResource
             new LeadStatusFilter
         ];
     }
+
+    protected function getBaseQuery()
+    {
+        if (auth()->user()->admin) {
+            return parent::getBaseQuery();
+        }
+        $organization = \App\Models\Organization::findOrFail(auth()->user()->organization_id);
+        return parent::getBaseQuery()->whereIn('organization_id', $organization->getChildrenOrganizations()->push($organization)->pluck('id'));
+    }
 }
