@@ -47,7 +47,7 @@ class StoreLeadRequest extends FormRequest
             // PROPERTY
             // > XEF
             'xef_property_quantity'        => 'required_if:product,1|nullable|numeric',
-            'xef_property_franchise_id'    => 'required_if:product,1',
+            'xef_property_franchise'    => 'required_if:product,1',
             'xef_property_spaces'          => [function ($attribute, $value, $fail) {
                 if (request("product") == Lead::PRODUCT_XEF && count($value) <= 1) {
                     $fail(__('validation.custom.xef_property_spaces.required'));
@@ -77,14 +77,14 @@ class StoreLeadRequest extends FormRequest
             'pos_id'                    => 'required',
             'pos_other'                 => 'required_if:pos_id,-1|string|min:2|max:255',
             // > RETAIL
-            'retail_sale_mode_id'       => 'required_if:product,2',
-            'retail_sale_location_id'   => 'required_if:product,2',
+            'retail_sale_mode'          => 'required_if:product,2',
+            'retail_sale_location'      => 'required_if:product,2',
             // > XEF (isFranchise) & RETAIL (isFranchise)
             'franchise_pos_external_id'    => [function ($attribute, $value, $fail) {
                 if ($value) {
                     return;
                 }
-                if (request("product") == Lead::PRODUCT_XEF && request("xef_property_franchise_id") == 1) {
+                if (request("product") == Lead::PRODUCT_XEF && request("xef_property_franchise") == 1) {
                     $fail(__('validation.custom.franchise_pos_external.required_if'));
                 }
                 if (request("product") == Lead::PRODUCT_RETAIL && request("type_segment") == LeadTypesSegment::RETAIL_SEGMENT_FRANCHISE) {

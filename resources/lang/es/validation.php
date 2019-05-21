@@ -249,7 +249,7 @@ return [
                 'numeric'   => 'Debe ser numérico',
             ],
             // > XEF
-                'xef_property_franchise_id' => [
+                'xef_property_franchise' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
                 'xef_property_spaces' => [
@@ -311,10 +311,10 @@ return [
                     'max'       => 'Máximo :max caracteres',
                 ],
             // > RETAIL
-                'retail_sale_mode_id' => [
+                'retail_sale_mode' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
-                'retail_sale_location_id' => [
+                'retail_sale_location' => [
                     'required_if'  => 'Debe seleccionar una opción',
                 ],
             // > XEF (isFranchise) & RETAIL (isFranchise)

@@ -30,6 +30,7 @@ return [
 
         // CLIENT
         'type'                  => 'Perfil',
+        'product'               => 'Perfil',
         'type_segment'          => 'Segmentación',
         'generalTypology'       => 'Tipología general',
         'xefSpecificTypology'   => 'Tipología específica',

@@ -174,7 +174,7 @@ class LeadController extends Controller
 //            $revo_version.=" ".$versionTtype." ({$lead->typeSegment->name}")";
 
             $typology .= " (" . LeadXefSpecificTypology::all()[$lead->xef_specific_typology_id] . ")";
-            $franchise = $lead->xef_property_franchise_id == 1 ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
+            $franchise = $lead->xef_property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
 
             $xefPropertyCapacity     = $lead->xef_property_capacity;
             $xefPosCriticalQuantity  = $lead->xef_pos_critical_quantity;
@@ -277,8 +277,8 @@ class LeadController extends Controller
             'propertySpaces'            => $propertySpaces,
             'propertyStaffQuantity'     => $propertyStaffQuantity,
             'devices'                   => $devices,
-            'retailSaleMode'            => $lead->retail_sale_mode == 1 ? __('app.lead.yes') : __('app.lead.no'),
-            'retailSaleLocation'        => $lead->retail_sale_location == 1 ? __('app.lead.onLocal') : __('app.lead.onMobility'),
+            'retailSaleMode'            => $lead->retail_sale_mode ? __('app.lead.yes') : __('app.lead.no'),
+            'retailSaleLocation'        => $lead->retail_sale_location ? __('app.lead.onLocal') : __('app.lead.onMobility'),
             'pos'                       => $pos,
             'franchise'                 => $franchise,
             'franchisePosExternal'      => $this->getFranchisePosExternal($lead),
@@ -405,11 +405,8 @@ class LeadController extends Controller
 
     protected function getFranchisePosExternal($lead)
     {
-        if ($lead->type_segment == LeadTypesSegment::RETAIL_SEGMENT_FRANCHISE) {
-            return $lead->franchise_pos_external == 1 ? __('app.lead.yes') : __('app.lead.no');
-        }
-        if ($lead->xef_property_franchise == LeadTypesSegment::XEF_SEGMENT_SMALL) {
-            return $lead->franchise_pos_external == 1 ? __('app.lead.yes') : __('app.lead.no');
+        if (in_array($lead->type_segment, [LeadTypesSegment::RETAIL_SEGMENT_FRANCHISE, LeadTypesSegment::XEF_SEGMENT_SMALL])) {
+            return $lead->franchise_pos_external ? __('app.lead.yes') : __('app.lead.no');
         }
         return null;
     }

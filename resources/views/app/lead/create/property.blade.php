@@ -7,7 +7,7 @@
         @include('components.lead.app-input', ['name' => 'xef_property_quantity', 'title' => 'propertyQuantity'])
     </div>
     <div class="col-sm-6 col-md-6">
-        @include('components.lead.app-select', ["options" => ['1' => __('app.lead.yes'), '2' => __('app.lead.noOwnLocal')], 'name' => 'xef_property_franchise_id', 'title' => 'xefPropertyFranchise'])
+        @include('components.lead.app-select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.noOwnLocal')], 'name' => 'xef_property_franchise', 'title' => 'xefPropertyFranchise'])
     </div>
 </div>
 

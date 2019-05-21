@@ -3,7 +3,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6">
-        @include('components.lead.app-select', ["options" => App\Models\Lead::products(), 'name' => 'product', 'title' => 'type'])
+        @include('components.lead.app-select', ["options" => App\Models\Lead::products(), 'name' => 'product'])
     </div>
     <div class="col-sm-6">
         <input type="hidden" id="type_segment_old" value="{{ old('type_segment') }}"/>

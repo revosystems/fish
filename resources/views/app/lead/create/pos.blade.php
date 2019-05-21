@@ -28,6 +28,6 @@
 </div>
 <div class="row @segmentClasses()" style="display: none;">
     <div class="col-sm-12 col-md-12">
-        @include('components.lead.app-select', ["options" => [1 => __('app.lead.yes'), 2 => __('app.lead.no')], 'name' => 'franchise_pos_external_id', 'title' => 'retailSaleMode', 'disabledOn' => 'xef_property_franchise_id'])
+        @include('components.lead.app-select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.no')], 'name' => 'franchise_pos_external_id', 'title' => 'retailSaleMode', 'disabledOn' => 'xef_property_franchise'])
     </div>
 </div>

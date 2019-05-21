@@ -30,7 +30,7 @@ class CreateLeadsTable extends Migration
             $table->integer('general_typology_id')->nullable();
             $table->integer('xef_specific_typology_id')->nullable();
             $table->integer('property_quantity')->nullable()->default('0');
-            $table->integer('xef_property_franchise_id')->nullable();
+            $table->boolean('xef_property_franchise')->default(0);
             $table->string('xef_property_spaces')->nullable();
             $table->integer('xef_property_capacity')->nullable()->default('0');
             $table->string('retail_property_spaces')->nullable();
@@ -43,8 +43,8 @@ class CreateLeadsTable extends Migration
             $table->boolean('xef_kds')->nullable()->default('0');
             $table->integer('xef_kds_quantity')->nullable()->default('0');
             $table->integer('pos_id')->nullable();
-            $table->integer('retail_sale_mode_id')->nullable();
-            $table->integer('retail_sale_location_id')->nullable();
+            $table->boolean('retail_sale_mode')->default(0);
+            $table->boolean('retail_sale_location')->default(0);
             $table->integer('franchise_pos_external_id')->nullable();
             $table->integer('xef_pms_id')->nullable();
             $table->string('xef_pms_other')->nullable();

@@ -1,6 +1,6 @@
 <div class="row @segmentClasses(App\Models\Lead::PRODUCT_XEF)" style="display: none;">
     <div class="col-sm-6 col-md-6">
-        @include('components.lead.app-select', ["options" => [1 => __('app.lead.yes'), 2 => __('app.lead.no')], 'name' => 'xef_kds', 'title' => 'xefKds'])
+        @include('components.lead.app-select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.no')], 'name' => 'xef_kds', 'title' => 'xefKds'])
     </div>
     <div class="col-sm-6 col-md-6">
         <div class="form-group hasDW @if (old('xef_kds') != 1)disabled @endif">

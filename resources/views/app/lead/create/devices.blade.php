@@ -1,6 +1,6 @@
 <div class="row @segmentClasses()" style="display: none;">
     <div class="col-sm-12 col-md-12">
-        @include('components.lead.app-select', ["options" => ['1' => __('app.lead.yes'), '2' => __('app.lead.no')], 'name' => 'devices'])
+        @include('components.lead.app-select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.no')], 'name' => 'devices'])
         <div class="devices_wrapper @if (old('devices') == 1) {{ 'shown' }} @endif">
             {{ __('app.lead.devicesHint') }}
             <div class="textarea-wrap">
