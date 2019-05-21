@@ -33,4 +33,16 @@ class Organization extends ChildResource
     {
         return [];
     }
+
+    protected function getBaseQuery()
+    {
+        if (! auth()->user()->organization_id) {
+            return parent::getBaseQuery();
+        }
+        if (! $this->parentId) {
+            return parent::getBaseQuery()->where('id', auth()->user()->organization_id);
+        }
+        $organization = \App\Models\Organization::find(auth()->user()->organization_id);
+        return parent::getBaseQuery()->whereIn('id', $organization->getChildrenOrganizations()->push($organization)->pluck('id'));
+    }
 }
