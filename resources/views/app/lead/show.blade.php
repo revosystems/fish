@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-md-12 text-center"><div class="intro">{!! __('app.hardware.hard_title') !!}</div></div>
                         </div>
-                        <div style="{{  $type === 2 ? "display:none" : "display:block" }}">
+                        <div style="{{ $product == App\Models\Lead::PRODUCT_RETAIL ? "display:none" : "display:block" }}">
                             <div class="row">
                                 <div class="col-md-12"><h3 class="subtitle">{{__('app.hardware.type_cash')}}</h3></div>
                             </div>
@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="{{  $type === 1 ? "display:none" : "display:block" }}">
+                        <div style="{{  $product === App\Models\Lead::PRODUCT_XEF ? "display:none" : "display:block" }}">
                             <div class="row">
                                 <div class="col-md-12"><h3 class="subtitle">{{__('app.hardware.type_cash_display')}}</h3></div>
                             </div>

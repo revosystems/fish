@@ -1297,7 +1297,7 @@ div.platform_orange {
 	top: 9px;
 }
 
- .header_mobile .is-sticky.platform:not(.mobileLogo .platform) {*/
+ .header_mobile .is-sticky.platform:not(.mobileLogo .platform) {
 	top: 0px;
 }
 
@@ -1903,7 +1903,7 @@ textarea::-webkit-scrollbar-thumb {
 	background: #e85e30; border-radius: 2px;
 }
 
-.hasDependancy.input-group-text{
+.hasDependency.input-group-text{
 	width: 100%;
 	border-radius: 4px;
 	padding-top: 0;
@@ -1914,26 +1914,26 @@ textarea::-webkit-scrollbar-thumb {
 	padding-right: 0;
 	color: #fff;
 }
-.input-group-text.hasDependancy .form-control{
+.input-group-text.hasDependency .form-control{
 	background: none!important;
 	padding-bottom: 4px!important;
 }
-.hasDependancy .input-group-prepend {
+.hasDependency .input-group-prepend {
 	color: #fff;
 	border: none;
 	padding-right:0;
 	
 }
 
-.hasDependancy.is-invalid{
+.hasDependency.is-invalid{
 	border: 2px solid #e85e30!important;
 }
-.hasDependancy input {
+.hasDependency input {
 border-top-left-radius: 0!important;
 border-bottom-left-radius: 0!important;	
 }
 
-.hasDependancy label {
+.hasDependency label {
 	left: 20px!important;
 }
 
@@ -1943,17 +1943,17 @@ border-bottom-left-radius: 0!important;
 		padding-left: 20px;
 	}
 
-	.hasDependancy label {
+	.hasDependency label {
 		left: 0px!important;
 	}
 	
-	.hasDependancy input {
+	.hasDependency input {
 		border-top-left-radius: 4px!important;
 		border-bottom-left-radius: 4px!important;
 		padding-left: 0!important;
 	}
 	
-	.hasDependancy .input-group-prepend {
+	.hasDependency .input-group-prepend {
 		display: none;
 	}
 	

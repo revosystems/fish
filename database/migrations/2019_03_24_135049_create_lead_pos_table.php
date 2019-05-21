@@ -16,9 +16,9 @@ class CreateLeadPosTable extends Migration
         Schema::create('lead_pos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('type_id')->unsigned();
+            $table->integer('pos_type_id')->unsigned();
             $table->timestamps();
-            $table->foreign('type_id')->references('id')->on('lead_pos_types');
+            $table->foreign('pos_type_id')->references('id')->on('lead_pos_types');
         });
     }
 

@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Lead;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,18 +12,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-        $this->call(LeadDevicesTableSeeder::class);
         $this->call(LeadErpTableSeeder::class);
-        $this->call(LeadFranchisePosExternalTableSeeder::class);
         $this->call(LeadPosTableSeeder::class);
         $this->call(LeadPosTypesTableSeeder::class);
         $this->call(LeadPropertySpacesTableSeeder::class);
         $this->call(LeadGeneralTypologyTableSeeder::class);
-        $this->call(LeadRetailSaleLocationsTableSeeder::class);
-        $this->call(LeadRetailSaleModesTableSeeder::class);
-        $this->call(LeadTypesSegmentsTableSeeder::class);
         $this->call(LeadXefPmsTableSeeder::class);
-        $this->call(LeadXefPropertyFranchiseTableSeeder::class);
-        $this->call(LeadXefTypologySpecificTableSeeder::class);
     }
 }

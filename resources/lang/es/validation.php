@@ -218,7 +218,7 @@ return [
             'type' => [
                 'required'  => 'Debe seleccionar una opción',
             ],
-            'type_segment_id' => [
+            'type_segment' => [
                 'required'  => 'Debe seleccionar una opción',
             ],
             'xef_general_typology_id' => [

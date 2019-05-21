@@ -107,22 +107,22 @@ var Lead = function(){
                 if (lastSelected !== undefined){
                     var lastValue = $select.find("option").eq(lastSelected).val();
 
-                    if((lastValue!=1 && $("#type").val()==1) || (lastValue!=4 && $("#type").val()==2) ){
+                    if((lastValue!=1 && $("#product").val()==1) || (lastValue!=4 && $("#product").val()==2) ){
 
-                        if($("#type").val()==1){
+                        if($("#product").val()==1){
                             $select.find("[value=1]").prop("selected",false);
                         }
-                        if($("#type").val()==2){
+                        if($("#product").val()==2){
                             $select.find("[value=4]").prop("selected",false);
                         }
 
                         $select.selectpicker("refresh");
                     }
-                    else if((lastValue==1 && $("#type").val()==1) || (lastValue==4 && $("#type").val()==2) ){
-                        if($("#type").val()==1) {
+                    else if((lastValue==1 && $("#product").val()==1) || (lastValue==4 && $("#product").val()==2) ){
+                        if($("#product").val()==1) {
                             $select.find("option:not([value=1])").prop("selected", false);
                         }
-                        if($("#type").val()==2) {
+                        if($("#product").val()==2) {
                             $select.find("option:not([value=4])").prop("selected", false);
                         }
                         $select.selectpicker("refresh");

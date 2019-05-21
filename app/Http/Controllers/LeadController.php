@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLeadRequest;
 use App\Models\LeadPropertySpaces;
 use App\Models\LeadSoft;
-use App\Models\LeadSoftType;
 use App\Models\LeadTypesSegment;
+use App\Models\LeadXefSpecificTypology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Lead;
-use App\Models\LeadDevice;
 use App\Models\LeadProposal;
-use App\Models\LeadGeneralTypology;
 
 class LeadController extends Controller
 {
@@ -34,13 +32,9 @@ class LeadController extends Controller
      */
     public function create()
     {
-        return view('app.lead.create', [
-            "leadXefGeneralTypologies"      => LeadGeneralTypology::whereType(Lead::TYPE_XEF)->orderBy("name")->get(),
-            "leadRetailGeneralTypologies"   => LeadGeneralTypology::whereType(Lead::TYPE_RETAIL)->orderBy("name")->get(),
-            "leadXefPropertySpaces"         => LeadPropertySpaces::whereType(Lead::TYPE_XEF)->get(),
-            "leadRetailPropertySpaces"      => LeadPropertySpaces::whereType(Lead::TYPE_RETAIL)->get(),
-            "leadXefSofts"                  => LeadSoft::whereType(Lead::TYPE_XEF)->orderBy("name")->get()->groupBy("soft_type_id"),
-            "leadRetailSofts"               => LeadSoft::whereType(Lead::TYPE_RETAIL)->orderBy("name")->get()->groupBy("soft_type_id"),
+        return view('app.lead.create.create', [
+            "leadXefSofts"      => LeadSoft::whereProduct(Lead::PRODUCT_XEF)->orderBy("name")->get()->groupBy("soft_type_id"),
+            "leadRetailSofts"   => LeadSoft::whereProduct(Lead::PRODUCT_RETAIL)->orderBy("name")->get()->groupBy("soft_type_id"),
         ]);
     }
 
@@ -64,6 +58,8 @@ class LeadController extends Controller
             $lead = Lead::create($inputs + ['user_id' => Auth::id()]);
             return  redirect()->route('lead.show', [$lead->id])->with('status', 'Lead creado OK');
         } catch (\Exception $e) {
+            // TODO: remove this
+            dd($e->getMessage());
             //$msg = $e->getMessage();
             $msg = __('app.errors.leadException');
             $request->session()->flash('exception', $msg);
@@ -81,12 +77,13 @@ class LeadController extends Controller
     {
         $lead      = Lead::findOrFail($id);
         $proposals = $this->getProposals($lead);
-        if (Auth::id() === $lead->user_id) {
-            return view('app.lead.show')
-                ->with('proposals', $proposals)
-                ->with('type', $lead->type)
-                ->with('trade_name', $lead->trade_name)
-                ->with('id', $id);
+        if (auth()->user()->id == $lead->user_id) {
+            return view('app.lead.show', [
+                'id'        =>  $id,
+                'proposals' =>  $proposals,
+                'product'   =>  $lead->product,
+                'trade_name'=>  $lead->trade_name,
+            ]);
         }
         
         return  redirect()->route('login');
@@ -138,18 +135,16 @@ class LeadController extends Controller
         $lead = Lead::findOrFail($leadId);
 
         $proposals          = $this->getProposals($lead);
-        $type               = $lead->type;
-        $revoVersionCss     = ($type == 1) ? "xef" : "retail";
-        $revoVersion        = ($type == 1) ? "XEF" : "RETAIL";
-        $revo_version_fname = ($type == 1) ? "XEF" : "RETAIL";
+        $product            = $lead->product;
+        $revoVersionCss     = ($product == 1) ? "xef" : "retail";
+        $revoVersion        = ($product == 1) ? "XEF" : "RETAIL";
+        $revo_version_fname = ($product == 1) ? "XEF" : "RETAIL";
 
         $hardware_retail = [ 'Caja & Display cliente', 'Caja móvil / autoventa', 'Payment', 'Balanzas y lectores', 'Almacén', 'Printers', 'Wifi' ];
         $hardware_xef    = [ 'Caja', 'Comandero', 'KDS cocina', 'KIOSK "Pre-Order, In-Room & In-Table"', 'Payment', 'Printers', 'Wifi', 'Balanzas y lectores' ];
-        $hardware        = ($type == 1) ? $hardware_xef : $hardware_retail;
+        $hardware        = ($product == 1) ? $hardware_xef : $hardware_retail;
 
         $propertyStaffQuantity     = null;
-        $retailSaleMode            = null;
-        $retailSaleLocation        = null;
         $erp                       = null;
         $software                  = "";
         $softHasOther              = 0;
@@ -160,12 +155,12 @@ class LeadController extends Controller
         $xefPrintersQuantity       = null;
         $xefPms                    = null;
 
-        $revoVersion .= " ({$lead->typeSegment->name})";
+        $revoVersion .= " (" . array_collapse(LeadTypesSegment::segments())[$lead->type_segment] . ")";
         $typology       = $lead->generalTypology->name;
 //        $propertySpaces    = $lead->propertySpaces->map(function ($space) {
 //            return LeadPropertySpaces::find($space)->name;
 //        })->implode(', ');
-        if ($type == 1) {
+        if ($product == 1) {
             $propertySpaces = collect(explode(",", $lead->xef_property_spaces))->map(function ($space) {
                 return LeadPropertySpaces::find($space)->name;
             })->implode(', ');
@@ -178,8 +173,8 @@ class LeadController extends Controller
 //            }
 //            $revo_version.=" ".$versionTtype." ({$lead->typeSegment->name}")";
 
-            $typology .= " ({$lead->xefSpecificTypology->name})";
-            $franchise = $lead->xefPropertyFranchise->name;
+            $typology .= " (" . LeadXefSpecificTypology::all()[$lead->xef_specific_typology_id] . ")";
+            $franchise = $lead->xef_property_franchise_id == 1 ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
 
             $xefPropertyCapacity     = $lead->xef_property_capacity;
             $xefPosCriticalQuantity  = $lead->xef_pos_critical_quantity;
@@ -215,20 +210,12 @@ class LeadController extends Controller
             if ($softHasNone == 1) {
                 $software .= "Ninguno, ";
             }
-        } elseif ($type == 2) {
+        } elseif ($product == 2) {
             $propertySpaces = collect(explode(",", $lead->retail_property_spaces))->map(function ($space) {
                 return LeadPropertySpaces::find($space)->name;
             })->implode(', ');
             $propertyStaffQuantity = $lead->retail_property_staff_quantity;
-
-            $retailSaleMode     = $lead->retail_sale_mode->name;
-            $retailSaleLocation = $lead->retail_sale_location->name;
-
-            if ($lead->type_segment_id == 5) {
-                $franchise = "Sí";
-            } else {
-                $franchise = "No";
-            }
+            $franchise = $lead->type_segment == LeadTypesSegment::RETAIL_SEGMENT_FRANCHISE ? __('app.lead.yes') : __('app.lead.no');
 
             foreach (explode(",", $lead->retail_soft) as $soft) {
                 if (! $soft) {
@@ -255,7 +242,8 @@ class LeadController extends Controller
         }
         $software        = rtrim($software, ", ");
 
-        $devices = LeadDevice::find($lead->devices)->name;
+//        $devices = LeadDevice::find($lead->devices)->name;
+        $devices = $lead->devices == 1 ? __('app.lead.yes') : __('app.lead.no');
         if ($lead->devices == 1) {
             $devices = nl2br($lead->devices_current);
         }
@@ -278,26 +266,19 @@ class LeadController extends Controller
         }
 
         $pdf = \PDF::loadView('app.lead.pdf', [
-            'type'                      => $type,
+            'product'                   => $product,
             "revoVersionCss"            => $revoVersionCss,
             "revoVersion"               => $revoVersion,
-            "tradeName"                 => $lead->trade_name,
-            "clientName"                => $lead->name,
-            "clientSurname1"            => $lead->surname1,
-            "clientSurname2"            => $lead->surname2,
-            "clientEmail"               => $lead->email,
-            "clientPhone"               => $lead->phone,
-            "clientCity"                => $lead->city,
+            "lead"                      => $lead,
             "proposals"                 => $proposals,
             'hardware'                  => $hardware,
             'profile'                   => $revoVersion,
             'typology'                  => $typology,
-            'propertyQty'               => $lead->property_quantity,
             'propertySpaces'            => $propertySpaces,
             'propertyStaffQuantity'     => $propertyStaffQuantity,
             'devices'                   => $devices,
-            'retailSaleMode'            => $retailSaleMode,
-            'retailSaleLocation'        => $retailSaleLocation,
+            'retailSaleMode'            => $lead->retail_sale_mode == 1 ? __('app.lead.yes') : __('app.lead.no'),
+            'retailSaleLocation'        => $lead->retail_sale_location == 1 ? __('app.lead.onLocal') : __('app.lead.onMobility'),
             'pos'                       => $pos,
             'franchise'                 => $franchise,
             'franchisePosExternal'      => $this->getFranchisePosExternal($lead),
@@ -307,7 +288,7 @@ class LeadController extends Controller
             'xefPosCriticalQuantity'    => $xefPosCriticalQuantity,
             'xefCashQuantity'           => $xefCashQuantity,
             'xefPrintersQuantity'       => $xefPrintersQuantity,
-            'xefKds'                    => $lead->xef_kds ? "Sí, {$lead->xef_kds_quantity} pantallas" : "No",
+            'xefKds'                    => $lead->xef_kds == 1 ? "Sí, {$lead->xef_kds_quantity} pantallas" : "No",
             'xefPms'                    => $xefPms
         ]);
 
@@ -335,7 +316,7 @@ class LeadController extends Controller
         $proposals->push($lead->getRelatedProposal());
         // HERO PROPOSAL
         $proposals->push($lead->generalTypology->proposal);
-        if ($lead->type == Lead::TYPE_XEF) {
+        if ($lead->product == Lead::PRODUCT_XEF) {
             $xefProposal      = 1; // BASIC
             $xefDevices       = $lead->xef_pos_critical_quantity + $lead->xef_cash_quantity;
             $xef_printers     = $lead->xef_printers_quantity + ($lead->xef_kds ? $lead->xef_kds_quantity : 0);
@@ -347,7 +328,7 @@ class LeadController extends Controller
                 }
             }
             $proposals->push(LeadProposal::find($xefProposal));
-        } elseif ($lead->type == Lead::TYPE_RETAIL) {
+        } elseif ($lead->product == Lead::PRODUCT_RETAIL) {
             // VERSION
             $proposals->push(LeadProposal::find(4));
         }
@@ -381,7 +362,7 @@ class LeadController extends Controller
         // SOFT
         if ($lead->xef_soft || $lead->retail_soft) {
             $softCategoryTypes  = [];
-            $software           = collect(($lead->type == Lead::TYPE_XEF) ? explode(",", $lead->xef_soft) : explode(",", $lead->retail_soft));
+            $software           = collect(($lead->product == Lead::PRODUCT_XEF) ? explode(",", $lead->xef_soft) : explode(",", $lead->retail_soft));
             $software->each(function ($soft) use ($proposals, $softCategoryTypes) {
                 if ($soft == "none")    return;
                 if ($soft == "other")   return $proposals->push(LeadProposal::find(51));
@@ -403,9 +384,9 @@ class LeadController extends Controller
      */
     public function fetchSegments()
     {
-        echo LeadTypesSegment::whereType(request('value'))->get()->reduce(function ($carry, $segment) {
-            return $carry . '<option class="'.$segment->class_helper.'" value="'.$segment->id.'" data-content="<div class=\'hideHint\'>'.__('app.lead.type_segment').' </div><div class=\'colored\'>'.$segment->name.' </div>">'.$segment->name.'</option>';
-        });
+        echo collect(LeadTypesSegment::byProduct(request('value')))->map(function ($value, $key) {
+            return "<option class='{$key}' value='{$key}' data-content=\"<div class='hideHint'>" . __('app.lead.type_segment') . " </div><div class='colored'>{$value}</div>\">{$value}</option>";
+        })->implode('');
     }
 
     private function getRequestSanitizedInputs(StoreLeadRequest $request)
@@ -424,10 +405,11 @@ class LeadController extends Controller
 
     protected function getFranchisePosExternal($lead)
     {
-        if ($lead->type_segment_id == 5) {
-            return $lead->franchise_pos_external->name;
-        } else if ($lead->xef_property_franchise == 1) {
-            return $lead->franchisePosExternal->name;
+        if ($lead->type_segment == LeadTypesSegment::RETAIL_SEGMENT_FRANCHISE) {
+            return $lead->franchise_pos_external == 1 ? __('app.lead.yes') : __('app.lead.no');
+        }
+        if ($lead->xef_property_franchise == LeadTypesSegment::XEF_SEGMENT_SMALL) {
+            return $lead->franchise_pos_external == 1 ? __('app.lead.yes') : __('app.lead.no');
         }
         return null;
     }

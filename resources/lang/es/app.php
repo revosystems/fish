@@ -97,6 +97,12 @@ return [
         'saveLead'                  => 'Registrar Lead',
         'yes'                       => 'Sí',
         'no'                        => 'No',
+        'noOwnLocal'                => 'No, local propio',
+        'onLocal'                   => 'En un local',
+        'onMobility'                => 'En mobilidad',
+        'carta'                     => 'Carta',
+        'events'                    => 'Events',
+        'menu'                      => 'Menu',
     ],
 
     'pages' => [

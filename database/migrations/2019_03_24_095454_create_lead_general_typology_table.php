@@ -16,7 +16,7 @@ class CreateLeadGeneralTypologyTable extends Migration
 
         Schema::create('lead_general_typologies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type');
+            $table->integer('product');
             $table->integer('proposal_id')->unsigned();
             $table->string('name');
             $table->timestamps();

@@ -9,9 +9,8 @@ class Lead extends Model
 {
     use Taggable;
 
-    const TYPE_XEF       = 1;
-    const TYPE_RETAIL    = 2;
-
+    const PRODUCT_XEF       = 1;
+    const PRODUCT_RETAIL    = 2;
 
     const STATUS_NEW           = 1;
     const STATUS_FIRST_CONTACT = 2;
@@ -31,44 +30,14 @@ class Lead extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function typeSegment()
-    {
-        return $this->belongsTo(LeadTypesSegment::class);
-    }
-
     public function generalTypology()
     {
         return $this->belongsTo(LeadGeneralTypology::class);
     }
 
-    public function xefSpecificTypology()
-    {
-        return $this->belongsTo(LeadXefSpecificTypology::class);
-    }
-
-    public function xefPropertyFranchise()
-    {
-        return $this->belongsTo(LeadXefPropertyFranchise::class);
-    }
-
     public function pos()
     {
         return $this->belongsTo(LeadPos::class);
-    }
-
-    public function retailSaleMode()
-    {
-        return $this->belongsTo(LeadRetailSaleMode::class);
-    }
-
-    public function retailSaleLocation()
-    {
-        return $this->belongsTo(LeadRetailSaleLocation::class);
-    }
-
-    public function franchisePosExternal()
-    {
-        return $this->belongsTo(LeadFranchisePosExternal::class);
     }
 
     public function xefPms()
@@ -135,5 +104,13 @@ class Lead extends Model
     public function getParentOrganizations()
     {
         return $this->organization->getParentOrganizations()->push($this->organization);
+    }
+    
+    public static function products()
+    {
+        return [
+            Lead::PRODUCT_XEF    => "Xef",
+            Lead::PRODUCT_RETAIL => "Retail",
+        ];
     }
 }

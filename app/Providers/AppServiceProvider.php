@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Lead;
+use App\Models\LeadTypesSegment;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('gravatar', function ($email) {
             return "<?php echo gravatar({$email} ?? null); ?>";
+        });
+
+        Blade::directive('segmentClasses', function($type){
+            return "<?php echo App\Models\LeadTypesSegment::segmentClasses($type) ?>";
         });
 
     }

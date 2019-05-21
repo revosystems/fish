@@ -3,11 +3,10 @@
 @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <title>PROPUESTA {{$tradeName}}</title>
+        <title>PROPUESTA {{$lead->trade_name}}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('modules/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css') }}">
-
     </head>
     <body class="pdf ">
 
@@ -19,8 +18,8 @@
         <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}-hero" />
         <img src="{{ asset("images/revo-logo-{$revoVersionCss}.png") }}" class="revo-logo {{$revoVersionCss}}" />
 
-        <div class="trade-name title absolute ">{{$tradeName}} | <span class="text-capitalize">{{$clientName}} {{$clientSurname1}}</span></div>
-        <div class="client-name title absolute">{{$clientName}}</div>
+        <div class="trade-name title absolute ">{{$lead->trade_name}} | <span class="text-capitalize">{{$lead->name}} {{$lead->surname1}}</span></div>
+        <div class="client-name title absolute">{{$lead->name}}</div>
 
         <div class="page_break"></div>
 
@@ -40,31 +39,31 @@
                     <tbody>
                     <tr>
                         <td>Nombre comercial</td>
-                        <td>{{$tradeName}}</td>
+                        <td>{{$lead->trade_name}}</td>
                     </tr>
                     <tr>
                         <td>Nombre y apellidos</td>
-                        <td>{{$clientName}}</td>
+                        <td>{{$lead->name}}</td>
                     </tr>
                     <tr>
                         <td>Primer apellido</td>
-                        <td>{{$clientSurname1}}</td>
+                        <td>{{$lead->surname1}}</td>
                     </tr>
                     <tr>
                         <td>Segundo apellido</td>
-                        <td>{{$clientSurname2}}</td>
+                        <td>{{$lead->surname2}}</td>
                     </tr>
                     <tr>
                         <td>Correo electrónico</td>
-                        <td>{{$clientEmail}}</td>
+                        <td>{{$lead->email}}</td>
                     </tr>
                     <tr>
                         <td>Teléfono</td>
-                        <td>{{$clientPhone}}</td>
+                        <td>{{$lead->phone}}</td>
                     </tr>
                     <tr>
                         <td>Población</td>
-                        <td>{{$clientCity}}</td>
+                        <td>{{$lead->city}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -116,7 +115,7 @@
                     <tbody>
                     <tr>
                         <td>Perfil</td>
-                        <td>{{$profile}}</td>
+                        <td>{{$revoVersion}}</td>
                     </tr>
                     <tr>
                         <td>Tipología</td>
@@ -128,26 +127,26 @@
                     </tr>
                     <tr>
                         <td>Nº de locales</td>
-                        <td>{{$propertyQty}}</td>
+                        <td>{{$lead->property_quantity}}</td>
                     </tr>
                     <tr>
                         <td>Espacios</td>
                         <td>{{$propertySpaces}}</td>
                     </tr>
-                    @if($type == App\Models\Lead::TYPE_XEF)
+                    @if($product == App\Models\Lead::PRODUCT_XEF)
                         <tr>
                             <td>Aforo del local</td>
                             <td>{{$xefPropertyCapacity}}</td>
                         </tr>
                     @endif
-                    @if($type == App\Models\Lead::TYPE_RETAIL)
+                    @if($product == App\Models\Lead::PRODUCT_RETAIL)
                         <tr>
                             <td>Nº empleados / comerciales</td>
                             <td>{{$propertyStaffQuantity}}</td>
                         </tr>
                     @endif
 
-                    @if($type == App\Models\Lead::TYPE_XEF)
+                    @if($product == App\Models\Lead::PRODUCT_XEF)
                         <tr>
                             <td>Nº comanderos entorno crítico</td>
                             <td>{{$xefPosCriticalQuantity}}</td>
@@ -165,7 +164,7 @@
                             <td>{{$xefKds}}</td>
                         </tr>
                     @endif
-                    @if($type == App\Models\Lead::TYPE_RETAIL)
+                    @if($product == App\Models\Lead::PRODUCT_RETAIL)
                         <tr>
                             <td>Requiere venta delante del cliente final</td>
                             <td>{{$retail_sale_mode}}</td>
@@ -235,7 +234,7 @@
         <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}" />
         <div class="profile title absolute">HARDWARE Y ACCESORIOS</div>
         <div class="divider">&nbsp;</div>
-        <div class="hardware" style="{{  $type == App\Models\Lead::TYPE_RETAIL ? "display:none" : "display:block" }}">
+        <div class="hardware" style="{{  $product == App\Models\Lead::PRODUCT_RETAIL ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash')}}</h3></div>
             </div>
@@ -337,7 +336,7 @@
                 </div>
             </div>
         </div>
-        <div  class="hardware" style="{{ $type == App\Models\Lead::TYPE_XEF ? "display:none" : "display:block" }}">
+        <div  class="hardware" style="{{ $product == App\Models\Lead::PRODUCT_XEF ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash_display')}}</h3></div>
             </div>

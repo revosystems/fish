@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class LeadXefSpecificTypology extends Model
+class LeadXefSpecificTypology
 {
-    protected $table = 'lead_xef_specific_typology';
+    public static function all()
+    {
+        return [
+            1 => __('app.lead.carta'),
+            2 => __('app.lead.events'),
+            3 => __('app.lead.menu'),
+        ];
+    }
 }

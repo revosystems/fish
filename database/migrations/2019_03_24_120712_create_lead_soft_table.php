@@ -15,7 +15,7 @@ class CreateLeadSoftTable extends Migration
     {
         Schema::create('lead_soft', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type');
+            $table->integer('product');
             $table->integer('soft_type_id')->unsigned();
             $table->string('name');
             $table->timestamps();

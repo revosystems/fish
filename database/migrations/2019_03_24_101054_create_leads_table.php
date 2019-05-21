@@ -25,8 +25,8 @@ class CreateLeadsTable extends Migration
             $table->string('email')->nullable();
             $table->integer('phone')->nullable();
             $table->string('city')->nullable();
-            $table->integer('type')->nullable();
-            $table->integer('type_segment_id')->nullable();
+            $table->integer('product')->nullable();
+            $table->string('type_segment')->nullable();
             $table->integer('general_typology_id')->nullable();
             $table->integer('xef_specific_typology_id')->nullable();
             $table->integer('property_quantity')->nullable()->default('0');

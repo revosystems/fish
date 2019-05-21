@@ -85,5 +85,11 @@ return [
 
     'admin'             => 'Admin',
     'report'            => 'Report|Reports',
-    'newComment'        => 'Nuevo Comentario'
+    'newComment'        => 'Nuevo Comentario',
+
+    'small'             => 'Pequeño',
+    'medium'            => 'Mediano',
+    'large'             => 'Grande',
+    'store'             => 'Tienda',
+    'chainOrFranchise'  => 'Cadena o franquicia',
 ];

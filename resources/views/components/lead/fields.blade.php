@@ -1,10 +1,5 @@
 @php
-    if($lead->type == App\Models\Lead::TYPE_XEF){
-        $typeName = "xef";
-    }
-    if($lead->type == App\Models\Lead::TYPE_RETAIL){
-        $typeName = "retail";
-    }
+    $productName = $lead->product == App\Models\Lead::PRODUCT_XEF ? "xef" : "retail";
 @endphp
 
 <div class="card card-small mb-4">
@@ -16,10 +11,10 @@
             <div class="col-sm-12">
                 <div class="form-group isPicker {{ $errors->has('type') ? ' is-invalid' : '' }}">
                     <select class="selectpicker form-control started" name="type" id="type" title="{{ __('app.lead.type') }}"  data-style="btn-light">
-                        <option class='dep.xef' value='{{App\Models\Lead::TYPE_XEF}}' @if ($lead->type == App\Models\Lead::TYPE_XEF) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Xef</div>">
+                        <option class='dep.xef' value='{{App\Models\Lead::PRODUCT_XEF}}' @if ($lead->product == App\Models\Lead::PRODUCT_XEF) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Xef</div>">
                             Xef
                         </option>
-                        <option class='dep.retail' value='{{App\Models\Lead::TYPE_RETAIL}}' @if ($lead->type == App\Models\Lead::TYPE_RETAIL) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Retail</div>">
+                        <option class='dep.retail' value='{{App\Models\Lead::PRODUCT_RETAIL}}' @if ($lead->product == App\Models\Lead::PRODUCT_RETAIL) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type') }}</div><div class='colored'>Retail</div>">
                             Retail
                         </option>
                     </select>
@@ -32,32 +27,27 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <input type="hidden" id="type_segment_id_old" value="{{old('type_segment_id')}}" />
-                <div class="form-group isPicker {{ $errors->has('type_segment_id') ? ' is-invalid' : '' }}">
-                    <select class="selectpicker form-control started" name="type_segment_id" id="type_segment_id" title="{{ __('app.lead.type_segment') }}"  data-style="btn-light" data-size="5">
-                        @foreach(\App\Models\LeadTypesSegment::whereType($lead->type)->get()->sortBy("order") as $segment)
-                            <option value='{{$segment->id}}'
-                                    @if ($lead->type_segment_id == $segment->id)
-                                    {{ 'selected' }}
-                                    @endif
-                                    data-content="<div class='hideHint'>{{ __('app.lead.type_segment') }} </div><div class='colored'> {{ $segment->name }}</div>"
-                            >
-                                {{ $segment->name }}
+                <input type="hidden" id="type_segment_old" value="{{old('type_segment')}}" />
+                <div class="form-group isPicker {{ $errors->has('type_segment') ? ' is-invalid' : '' }}">
+                    <select class="selectpicker form-control started" name="type_segment" id="type_segment" title="{{ __('app.lead.type_segment') }}"  data-style="btn-light" data-size="5">
+                        @foreach(\App\Models\LeadTypesSegment::byProduct($lead->product) as $key => $value)
+                            <option value='{{$key}}' @if ($lead->product_segment_id == $key)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.type_segment') }} </div><div class='colored'> {{ $value }}</div>">
+                                {{ $value }}
                             </option>
                         @endforeach
                     </select>
                 </div>
 
-                @if ($errors->has('type_segment_id'))
-                    <span class="invalid-feedback" role="alert">{{ $errors->first('type_segment_id') }}</span>
+                @if ($errors->has('type_segment'))
+                    <span class="invalid-feedback" role="alert">{{ $errors->first('type_segment') }}</span>
                 @endif
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div class="form-group @if ($lead->type==2) ? mb-0 @endif isPicker {{ $errors->has('general_typology_id') ? ' is-invalid' : '' }}">
+                <div class="form-group @if ($lead->product == 2) ? mb-0 @endif isPicker {{ $errors->has('general_typology_id') ? ' is-invalid' : '' }}">
                     <select class="selectpicker form-control started" name="general_typology_id" id="general_typology_id" title="{{ __('app.lead.generalTypology') }}"  data-style="btn-light" data-size="5">
-                        @foreach(\App\Models\LeadGeneralTypology::all()->whereIn("type",$lead->type)->sortBy("order") as $typology)
+                        @foreach(\App\Models\LeadGeneralTypology::all()->whereIn("product", $lead->product)->sortBy("order") as $typology)
                             <option value='{{$typology->id}}'
                                     @if ($lead->general_typology_id == $typology->id)
                                     {{ 'selected' }}
@@ -76,19 +66,14 @@
             </div>
         </div>
 
-        @if($lead->type == App\Models\Lead::TYPE_XEF)
+        @if($lead->product == App\Models\Lead::PRODUCT_XEF)
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group mb-0 isPicker {{ $errors->has('xef_specific_typology_id') ? ' is-invalid' : '' }}">
+                    <div class="form-group mb-0 isPicker @if ($errors->has('xef_specific_typology_id'))is-invalid @endif">
                         <select class="selectpicker form-control started" name="xef_specific_typology_id" id="type_specific" title="{{ __('app.lead.xefSpecificTypology') }}"  data-style="btn-light" data-size="5">
-                            @foreach(App\Models\LeadXefSpecificTypology::all()->sortBy("order") as $specificTypology)
-                                <option value='{{$specificTypology->id}}'
-                                        @if ($lead->xef_specific_typology_id == $specificTypology->id)
-                                        {{ 'selected' }}
-                                        @endif
-                                        data-content="<div class='hideHint'>{{ __('app.lead.xefSpecificTypology') }} </div><div class='colored'> {{ $specificTypology->name }}</div>"
-                                >
-                                    {{ $specificTypology->name }}
+                            @foreach(App\Models\LeadXefSpecificTypology::all() as $key => $value)
+                                <option value='{{$key}}' @if ($lead->xef_specific_typology_id == $key)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSpecificTypology') }} </div><div class='colored'> {{ $value }}</div>">
+                                    {{ $value }}
                                 </option>
                             @endforeach
                         </select>
@@ -172,21 +157,13 @@
                 </div>
             </div>
         </div>
-        @if($lead->type == App\Models\Lead::TYPE_XEF)
+        @if($lead->product == App\Models\Lead::PRODUCT_XEF)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group isPicker {{ $errors->has('xef_property_franchise_id') ? ' is-invalid' : '' }}">
                         <select class="selectpicker form-control started" name="xef_property_franchise_id" id="xef_property_franchise_id" title="{{ __('app.lead.xefPropertyFranchise') }}"  data-style="btn-light" data-size="5">
-                            @foreach(App\Models\LeadXefPropertyFranchise::all()->sortBy("order") as $propertyFranchise)
-                                <option value='{{$propertyFranchise->id}}'
-                                        @if ($lead->xef_property_franchise_id == $propertyFranchise->id)
-                                        {{ 'selected' }}
-                                        @endif
-                                        data-content="<div class='hideHint'>{{ __('app.lead.xefPropertyFranchise') }} </div><div class='colored'> {{ $propertyFranchise->name }}</div>"
-                                >
-                                    {{ $propertyFranchise->name }}
-                                </option>
-                            @endforeach
+                            <option value='1' @if ($lead->xef_property_franchise_id == 1) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefPropertyFranchise') }} </div><div class='colored'> {{ __('app.lead.yes') }}</div>">{{ __('app.lead.yes') }}</option>
+                            <option value='2' @if ($lead->xef_property_franchise_id == 2) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefPropertyFranchise') }} </div><div class='colored'> {{ __('app.lead.noOwnLocal') }}</div>">{{ __('app.lead.noOwnLocal') }}</option>
                         </select>
 
                         @if ($errors->has('xef_property_franchise_id'))
@@ -198,24 +175,24 @@
         @endif
         <div class="row">
             <div class="col-sm-12">
-                <input type="hidden" name="{{$typeName}}_property_spaces[]" value="">
-                <div class="form-group isPicker {{ $errors->has($typeName.'_property_spaces') ? ' is-invalid' : '' }}">
-                    <select class="selectpicker form-control started" name="{{$typeName}}_property_spaces[]" id="{{$typeName}}_property_spaces" title="{{ __('app.lead.propertySpaces') }}"  data-size="5" data-style="btn-light" multiple>
-                        @foreach(App\Models\LeadPropertySpaces::whereType($lead->type)->orderBy("order")->get() as $space)
+                <input type="hidden" name="{{$productName}}_property_spaces[]" value="">
+                <div class="form-group isPicker {{ $errors->has($productName.'_property_spaces') ? ' is-invalid' : '' }}">
+                    <select class="selectpicker form-control started" name="{{$productName}}_property_spaces[]" id="{{$productName}}_property_spaces" title="{{ __('app.lead.propertySpaces') }}"  data-size="5" data-style="btn-light" multiple>
+                        @foreach(App\Models\LeadPropertySpaces::whereProduct($lead->product)->orderBy("order")->get() as $space)
 
-                            <option value='{{$space->id}}' @if (in_array($space->id, explode(",",old($typeName."_property_spaces"))) || in_array($space->id,explode(",",$lead->{$typeName."_property_spaces"}))) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.propertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>">
+                            <option value='{{$space->id}}' @if (in_array($space->id, explode(",",old($productName."_property_spaces"))) || in_array($space->id,explode(",",$lead->{$productName."_property_spaces"}))) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.propertySpaces') }} </div><span class='colored'> {{ $space->name }}</span>">
                                 {{ $space->name }}
                             </option>
                         @endforeach
                     </select>
 
-                    @if ($errors->has($typeName.'_property_spaces'))
-                        <span class="invalid-feedback" role="alert">{{ $errors->first($typeName.'_property_spaces') }}</span>
+                    @if ($errors->has($productName.'_property_spaces'))
+                        <span class="invalid-feedback" role="alert">{{ $errors->first($productName.'_property_spaces') }}</span>
                     @endif
                 </div>
             </div>
         </div>
-        @if($lead->type == App\Models\Lead::TYPE_XEF)
+        @if($lead->product == App\Models\Lead::PRODUCT_XEF)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group mb-0">
@@ -224,7 +201,7 @@
                 </div>
             </div>
         @endif
-        @if($lead->type == App\Models\Lead::TYPE_RETAIL)
+        @if($lead->product == App\Models\Lead::PRODUCT_RETAIL)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group mb-0">
@@ -240,7 +217,7 @@
         <h6 class="m-0"> {{ __('app.lead.configurationTitle') }} </h6>
     </div>
     <div class="card-body p-3">
-        @if($lead->type == App\Models\Lead::TYPE_XEF)
+        @if($lead->product == App\Models\Lead::PRODUCT_XEF)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -288,17 +265,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group isPicker {{ $errors->has('devices') ? ' is-invalid' : '' }}">
-                    <select class="selectpicker form-control started" name="devices" id="devices" title="{{ __('app.lead.devices') }}"  data-style="btn-light" data-size="5">
-                        @foreach(App\Models\LeadDevice::all()->sortBy("order") as $device)
-                            <option value='{{$device->id}}'
-                                    @if ($lead->devices == $device->id)
-                                    {{ 'selected' }}
-                                    @endif
-                                    data-content="<div class='hideHint'>{{ __('app.lead.devices') }} </div><div class='colored'> {{ $device->name }}</div>"
-                            >
-                                {{ $device->name }}
-                            </option>
-                        @endforeach
+                    <select class="selectpicker form-control started" name="devices" id="devices" title="{{ __('app.lead.devices') }}" data-style="btn-light" data-size="5">
+                        <option value='1' @if ($lead->devices == 1) {{ 'selected' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.devices') }} </div><div class='colored'>{{ __('app.lead.yes') }}</div>">{{ $value }}</option>
+                        <option value='2' @if ($lead->devices == 2) {{ 'selected' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.devices') }} </div><div class='colored'>{{ __('app.lead.no') }}</div>">{{ $value }}</option>
                     </select>
 
                     @if ($errors->has('devices'))
@@ -320,21 +289,13 @@
                 </div>
             </div>
         </div>
-        @if($lead->type == App\Models\Lead::TYPE_RETAIL)
+        @if($lead->product == App\Models\Lead::PRODUCT_RETAIL)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group isPicker {{ $errors->has('retail_sale_mode_id') ? ' is-invalid' : '' }}">
                         <select class="selectpicker form-control started" name="retail_sale_mode_id" id="retail_sale_mode_id" title="{{ __('app.lead.retailSaleMode') }}"  data-style="btn-light" data-size="5">
-                            @foreach(App\Models\LeadRetailSaleMode::all()->sortBy("order") as $retailSaleMode)
-                                <option value='{{$retailSaleMode->id}}'
-                                        @if ($lead->retail_sale_mode_id == $retailSaleMode->id)
-                                        {{ 'selected' }}
-                                        @endif
-                                        data-content="<div class='hideHint'>{{ __('app.lead.retailSaleMode') }} </div><div class='colored'> {{ $retailSaleMode->name }}</div>"
-                                >
-                                    {{ $retailSaleMode->name }}
-                                </option>
-                            @endforeach
+                                <option value='1' @if ($lead->retail_sale_mode_id == 1)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSaleMode') }} </div><div class='colored'> {{ __('app.lead.yes') }}</div>">{{ __('app.lead.yes') }}</option>
+                                <option value='2' @if ($lead->retail_sale_mode_id == 2)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSaleMode') }} </div><div class='colored'> {{ __('app.lead.no') }}</div>">{{ __('app.lead.no')  }}</option>
                         </select>
 
                         @if ($errors->has('retail_sale_mode_id'))
@@ -384,7 +345,7 @@
                 </div>
             </div>
         </div>
-        @if($lead->type == App\Models\Lead::TYPE_XEF)
+        @if($lead->product == App\Models\Lead::PRODUCT_XEF)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group isPicker {{ $errors->has('xef_pms_id') ? ' is-invalid' : '' }}">
@@ -431,43 +392,35 @@
         @endif
         <div class="row">
             <div class="col-sm-12">
-                <input type="hidden" name="{{$typeName}}_soft[]" value="">
-                <div class="form-group isPicker {{ $errors->has($typeName.'_soft') ? ' is-invalid' : '' }}">
-                    <select class="selectpicker form-control started" name="{{$typeName}}_soft[]" id="{{$typeName}}_soft" title="{{ __('app.lead.xefSoft') }}"  data-size="5" data-style="btn-light" multiple>
-                        @foreach(App\Models\LeadSoft::whereType($lead->type)->orderBy("name")->get()->groupBy("soft_type_id") as $softs)
+                <input type="hidden" name="{{$productName}}_soft[]" value="">
+                <div class="form-group isPicker {{ $errors->has($productName.'_soft') ? ' is-invalid' : '' }}">
+                    <select class="selectpicker form-control started" name="{{$productName}}_soft[]" id="{{$productName}}_soft" title="{{ __('app.lead.xefSoft') }}"  data-size="5" data-style="btn-light" multiple>
+                        @foreach(App\Models\LeadSoft::whereProduct($lead->product)->orderBy("name")->get()->groupBy("soft_type_id") as $softs)
                             <optgroup label="{{ $softs->first()->softType->name}}">
                                 @foreach($softs as $softItem)
-                                    <option value='{{$softItem->id}}' @if (in_array($softItem->id, explode(",",old($typeName."_soft"))) || in_array($softItem->id,explode(",",$lead->{$typeName."_soft"}))) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ $softItem->name }}</span>">
+                                    <option value='{{$softItem->id}}' @if (in_array($softItem->id, explode(",",old($productName."_soft"))) || in_array($softItem->id,explode(",",$lead->{$productName."_soft"}))) selected @endif data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ $softItem->name }}</span>">
                                         {{ $softItem->name }}
                                     </option>
                                 @endforeach
                             </optgroup>
                         @endforeach
-                        <option value='other' {{ in_array("other", explode(",",$lead->{$typeName."_soft"})) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
-                        <option value='none' {{ in_array("none", explode(",",$lead->{$typeName."_soft"})) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
+                        <option value='other' {{ in_array("other", explode(",",$lead->{$productName."_soft"})) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
+                        <option value='none' {{ in_array("none", explode(",",$lead->{$productName."_soft"})) ? ' selected' : '' }} data-content="<div class='hideHint'>{{ __('app.lead.xefSoft') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
                     </select>
 
-                    @if ($errors->has($typeName.'_soft'))
-                        <span class="invalid-feedback" role="alert">{{ $errors->first($typeName.'_soft') }}</span>
+                    @if ($errors->has($productName.'_soft'))
+                        <span class="invalid-feedback" role="alert">{{ $errors->first($productName.'_soft') }}</span>
                     @endif
                 </div>
             </div>
         </div>
-        @if($lead->type == App\Models\Lead::TYPE_RETAIL)
+        @if($lead->product == App\Models\Lead::PRODUCT_RETAIL)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group isPicker {{ $errors->has('retail_sale_location_id') ? ' is-invalid' : '' }}">
                         <select class="selectpicker form-control started" name="retail_sale_location_id" id="retail_sale_location_id" title="{{ __('app.lead.retailSaleLocation') }}"  data-style="btn-light" data-size="5">
-                            @foreach(App\Models\LeadRetailSaleLocation::all()->sortBy("order") as $saleLocation)
-                                <option value='{{$saleLocation->id}}'
-                                    @if ($lead->retail_sale_location_id == $saleLocation->id)
-                                        {{ 'selected' }}
-                                    @endif
-                                    data-content="<div class='hideHint'>{{ __('app.lead.retailSaleLocation') }} </div><div class='colored'> {{ $saleLocation->name }}</div>"
-                                >
-                                    {{ $saleLocation->name }}
-                                </option>
-                            @endforeach
+                            <option value='1' @if ($lead->retail_sale_location_id == 1){{ 'selected' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSaleLocation') }} </div><div class='colored'>{{ __('app.lead.onLocal') }}</div>">{{ __('app.lead.onLocal') }}</option>
+                            <option value='2' @if ($lead->retail_sale_location_id == 2){{ 'selected' }} @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSaleLocation') }} </div><div class='colored'>{{ __('app.lead.onMobility') }}</div>">{{ __('app.lead.onMobility') }}</option>
                         </select>
 
                         @if ($errors->has('retail_sale_location_id'))
@@ -481,16 +434,8 @@
             <div class="col-sm-12">
                 <div class="form-group isPicker {{ $errors->has('franchise_pos_external_id') ? ' is-invalid' : '' }}">
                     <select class="selectpicker form-control started" name="franchise_pos_external_id" id="franchise_pos_external_id" title="{{ __('app.lead.franchisePosExternal') }}"  data-style="btn-light" data-size="5">
-                        @foreach(App\Models\LeadFranchisePosExternal::all()->sortBy("order") as $franchisePosExternal)
-                            <option value='{{$franchisePosExternal->id}}'
-                                @if ($lead->franchise_pos_external_id == $franchisePosExternal->id)
-                                    {{ 'selected' }}
-                                @endif
-                                data-content="<div class='hideHint'>{{ __('app.lead.franchisePosExternal') }} </div><div class='colored'> {{ $franchisePosExternal->name }}</div>"
-                            >
-                                {{ $franchisePosExternal->name }}
-                            </option>
-                        @endforeach
+                        <option value='2' @if ($lead->franchise_pos_external_id == 2)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.franchisePosExternal') }} </div><div class='colored'> {{ __('app.lead.yes') }}</div>">{{ __('app.lead.yes') }}</option>
+                        <option value='2' @if ($lead->franchise_pos_external_id == 2)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.franchisePosExternal') }} </div><div class='colored'> {{ __('app.lead.no') }}</div>">{{ __('app.lead.no') }}</option>
                     </select>
 
                     @if ($errors->has('franchise_pos_external_id'))
@@ -525,16 +470,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div class="form-group ml-5
-                    @if ($lead->xef_pms_id != -1)
-                       {{ ' disabled ' }}
-                    @endif
-                ">
-                    <input type="text" name="erp_other" id="erp_other" value="{{ old('erp_other') ? : $lead->xef_pms_other }}" placeholder="{{ __('app.lead.specify') }}" class="form-control"
-                    @if ($lead->erp_id != -1)
-                        {{ ' disabled ' }}
-                    @endif
-                    >
+                <div class="form-group ml-5 @if ($lead->xef_pms_id != -1)disabled @endif">
+                    <input type="text" name="erp_other" id="erp_other" value="{{ old('erp_other') ? : $lead->xef_pms_other }}" placeholder="{{ __('app.lead.specify') }}" class="form-control" @if ($lead->erp_id != -1)disabled @endif>
                 </div>
             </div>
         </div>

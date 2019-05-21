@@ -181,28 +181,28 @@ var Lead = function() {
 
     return {
         typeHandler: function(){
-            $("#type").on("change", function () {
+            $("#product").on("change", function () {
                 Forms.clearErrors();
                 Lead.typeSegmentsFetch($(this));
-                Lead.typeSegmentsDependancy($(this),true);
+                Lead.typeSegmentsDependency($(this),true);
             });
 
-            $("#type_segment_id").on("change", function () {
-                Lead.typeSegmentsDependancy($(this),false);
+            $("#type_segment").on("change", function () {
+                Lead.typeSegmentsDependency($(this),false);
                 Lead.posRetailHandler();
             });
         },
 
         typeSegmentRestore: function(){
-            if($("#type").length>0) {
-                if ($("#type option:selected").val()!="") {
-                    Lead.typeSegmentsFetch($("#type option:selected"));
+            if($("#product").length>0) {
+                if ($("#product option:selected").val()!="") {
+                    Lead.typeSegmentsFetch($("#product option:selected"));
                 }
             }
         },
 
         typeSegmentsFetch: function (input) {
-            var $typeSegmentOld = $("#type_segment_id_old"),
+            var $typeSegmentOld = $("#type_segment_old"),
             value = input.val();
 
             $.ajax({
@@ -213,40 +213,37 @@ var Lead = function() {
                     _token: $("input[name=\"_token\"]").val(),
                 },
                 success:function(result){
-                    $("#type_segment_id")
+                    $("#type_segment")
                         .html(result)
                         .selectpicker("refresh")
                         .closest(".bootstrap-select").removeClass("started");
 
                     if($typeSegmentOld.val()!==""){
-                        $("select[name=type_segment_id]")
+                        $("select[name=type_segment]")
                             .val($typeSegmentOld.val())
                             .selectpicker("refresh")
                             .closest(".bootstrap-select").addClass("started");
                     }
-                    Lead.typeSegmentsDependancy($("select[name=type_segment_id]"),false);
+                    Lead.typeSegmentsDependency($("select[name=type_segment]"),false);
                     Lead.posRetailHandler();
                 }
             });
         },
 
-        typeSegmentsDependancy: function(input, isType){
-            if(isType==true){
-                $("div[class*=\"dep_\"]").hide();
+        typeSegmentsDependency: function(input, typeChanged) {
+            if (typeChanged) {
+                return $("div[class*=\"dep_\"]").hide();
             }
-            else {
-                if($("#"+input.attr("id")+" option:selected").length>0) {
-                    var dependancy = $("#" + input.attr("id") + " option:selected").attr("class"),
-                        dependancyType = dependancy.split("_")[0] + "_" + dependancy.split("_")[1];
+            if (! $("#"+input.attr("id")+" option:selected").length) {
+                $("#type_segment").closest(".bootstrap-select").removeClass("started");
+            }
 
-                    $("div[class*=\"" + dependancyType + "\"]").hide();
-                    $("div." + dependancy).show();
-                    //$('div[class*="dep_"]').not('div[class*="'+dependancyType+'"]').hide();
-                }
-                else{
-                    $("#type_segment_id").closest(".bootstrap-select").removeClass("started");
-                }
-            }
+            let dependency = $("#" + input.attr("id") + " option:selected").attr("class");
+            let dependencyType = dependency.split("_")[0] + "_" + dependency.split("_")[1];
+
+            $("div[class*=\"" + dependencyType + "\"]").hide();
+            $("div." + dependency).show();
+            //$('div[class*="dep_"]').not('div[class*="'+dependencyType+'"]').hide();
         },
 
         devicesHandler: function(){
@@ -311,7 +308,7 @@ var Lead = function() {
         },
 
         posRetailHandler:function(){
-            if(($("#type").val()==1 && $("#xef_property_franchise_id").val()==1) || $("#type").val()==2 && $("#type_segment_id").val()==5){
+            if(($("#product").val()==1 && $("#xef_property_franchise_id").val()==1) || $("#product").val()==2 && $("#type_segment").val()==5){
                 $("#franchise_pos_external_id").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
             }
             else{
@@ -414,22 +411,22 @@ var Lead = function() {
                 if (lastSelected !== undefined){
                     var lastValue = $select.find("option").eq(lastSelected).val();
 
-                    if((lastValue!=1 && $("#type").val()==1) || (lastValue!=4 && $("#type").val()==2) ){
+                    if((lastValue!=1 && $("#product").val()==1) || (lastValue!=4 && $("#product").val()==2) ){
 
-                        if($("#type").val()==1){
+                        if($("#product").val()==1){
                             $select.find("[value=1]").prop("selected",false);
                         }
-                        if($("#type").val()==2){
+                        if($("#product").val()==2){
                             $select.find("[value=4]").prop("selected",false);
                         }
 
                         $select.selectpicker("refresh");
                     }
-                    else if((lastValue==1 && $("#type").val()==1) || (lastValue==4 && $("#type").val()==2) ){
-                        if($("#type").val()==1) {
+                    else if((lastValue==1 && $("#product").val()==1) || (lastValue==4 && $("#product").val()==2) ){
+                        if($("#product").val()==1) {
                             $select.find("option:not([value=1])").prop("selected", false);
                         }
-                        if($("#type").val()==2) {
+                        if($("#product").val()==2) {
                             $select.find("option:not([value=4])").prop("selected", false);
                         }
                         $select.selectpicker("refresh");
