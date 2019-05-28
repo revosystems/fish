@@ -28,7 +28,7 @@ class LeadController extends Controller
     public function store(StoreLeadRequest $request)
     {
         try {
-            $inputs = $request->except(['property_spaces', 'soft']);
+            $inputs = $this->requestSanitizedInputs($request);
 //            $lead = Lead::create($inputs + ['user_id' => auth()->user()->id]);
             $lead = Lead::create($inputs + ['user_id' => auth()->user()->id]);
             collect($request->get('property_spaces'))->reject(null)->each(function ($propertySpace) use ($lead) {
@@ -280,5 +280,22 @@ class LeadController extends Controller
             return $lead->franchise_pos_external ? __('app.lead.yes') : __('app.lead.no');
         }
         return null;
+    }
+
+    protected function requestSanitizedInputs(StoreLeadRequest $request)
+    {
+        $inputs = $request->except([
+            'xef_property_spaces',
+            'retail_property_spaces',
+            'xef_property_quantity',
+            'retail_property_quantity',
+            'xef_property_capacity',
+            'retail_property_capacity',
+            'soft',
+        ]);
+        return array_merge($inputs, [
+            "property_quantity" => $request->get('xef_property_quantity') ? : $request->get('retail_property_quantity'),
+            "property_capacity" => $request->get('xef_property_capacity') ? : $request->get('retail_property_capacity'),
+        ]);
     }
 }

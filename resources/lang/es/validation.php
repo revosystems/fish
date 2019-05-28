@@ -223,18 +223,30 @@ return [
         ],
 
         // PROPERTY
-        'property_quantity' => [
+        'xef_property_quantity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        'retail_property_quantity' => [
             'required_if'  => 'Campo obligatorio',
             'numeric'      => 'Debe ser numérico',
         ],
         'xef_property_franchise' => [
             'required_if'  => 'Debe seleccionar una opción',
         ],
-        'property_spaces' => [
+        'xef_property_spaces' => [
             'required'     => 'Debe seleccionar una opción',
             'required_if'  => 'Debe seleccionar una opción',
         ],
-        'property_capacity' => [
+        'retail_property_spaces' => [
+            'required'     => 'Debe seleccionar una opción',
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'xef_property_capacity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        'retail_property_capacity' => [
             'required_if'  => 'Campo obligatorio',
             'numeric'      => 'Debe ser numérico',
         ],

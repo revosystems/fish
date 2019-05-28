@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Lead;
 use App\Models\LeadTypesSegment;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -43,11 +44,18 @@ class StoreLeadRequest extends FormRequest
             'city'          => 'required|string|min:3|max:255',
 
             // PROPERTY
-            'property_quantity'     => 'required|numeric',
-            'property_capacity'     => 'required|numeric',
-            'property_spaces'          => [function ($attribute, $value, $fail) {
-                if (! collect($value)->filter(null)->count()) {
-                    $fail(__('validation.custom.property_spaces.required'));
+            'xef_property_quantity'    => 'required_if:product,1|nullable|numeric',
+            'retail_property_quantity' => 'required_if:product,2|nullable|numeric',
+            'xef_property_capacity'    => 'required_if:product,1|nullable|numeric',
+            'retail_property_capacity' => 'required_if:product,2|nullable|numeric',
+            'xef_property_spaces'          => [function ($attribute, $value, $fail) {
+                if (request('product') == Lead::PRODUCT_XEF && ! collect($value)->filter(null)->count()) {
+                    $fail(__('validation.custom.xef_property_spaces.required'));
+                }
+            }],
+            'retail_property_spaces'          => [function ($attribute, $value, $fail) {
+                if (request('product') == Lead::PRODUCT_RETAIL && ! collect($value)->filter(null)->count()) {
+                    $fail(__('validation.custom.retail_property_spaces.required'));
                 }
             }],
             'xef_property_franchise'       => 'required_if:product,1',
