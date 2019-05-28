@@ -1,30 +1,29 @@
 @extends('layouts.admin')
 @section('content')
-
-        <div class="card-header border-bottom">
-            <div class="description comment">
-                <div class="page-header row no-gutters py-0">
-                    <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                        <span class="text-uppercase page-subtitle">
-                            <h6 class="m-0"><a  href="{{ route('thrust.hasMany', ['organizations', $lead->organization, 'leads']) }}"> {{ trans_choice('admin.organization', 1) }} · {{ nameOrDash($lead->organization) }} · {{ trans_choice('admin.lead', 2) }}</a></h6>
-                        </span>
-                    </div>
-                    <div class="col-12 col-sm-6 text-center text-sm-right mb-0">
-                        @busy
-                        <span class="date pr-2">{{  $lead->created_at->diffForHumans() }} </span>
-                        <span class="btn lead-status-{{ $lead->statusName() }}"> {{ __("admin." . $lead->statusName() ) }} </span> &nbsp;
-                        <span class="download-proposal">
-                            <a class="btn btn-accent" href="{{ route('lead.show', [$lead->id]) }}/download">
-                                <span class="product text-center">{{__('app.proposal.download')}}</span> @iconMaterial (description)
-                            </a>
-                        </span>
-                    </div>
-                </div>
+<div class="card-header border-bottom">
+    <div class="description comment">
+        <div class="page-header row no-gutters py-0">
+            <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
+                <span class="text-uppercase page-subtitle">
+                    <h6 class="m-0"><a  href="{{ route('thrust.hasMany', ['organizations', $lead->organization, 'leads']) }}"> {{ trans_choice('admin.organization', 1) }} · {{ nameOrDash($lead->organization) }} · {{ trans_choice('admin.lead', 2) }}</a></h6>
+                </span>
+            </div>
+            <div class="col-12 col-sm-6 text-center text-sm-right mb-0">
+                @busy
+                <span class="date pr-2">{{  $lead->created_at->diffForHumans() }} </span>
+                <span class="btn lead-status-{{ $lead->statusName() }}"> {{ __("admin." . $lead->statusName() ) }} </span> &nbsp;
+                <span class="download-proposal">
+                    <a class="btn btn-accent" href="{{ route('lead.show', [$lead->id]) }}/download">
+                        <span class="product text-center">{{__('app.proposal.download')}}</span> @iconMaterial (description)
+                    </a>
+                </span>
             </div>
         </div>
-        <div class="card-body p-3">
-            <h6 class="m-0"> {{ $lead->name }} · {{ $lead->email }} </h6>
-        </div>
+    </div>
+</div>
+<div class="card-body p-3">
+    <h6 class="m-0"> {{ $lead->name }} · {{ $lead->email }} </h6>
+</div>
 {{-- ############FAKE NEW CARD ############ --}}
    </div>
 {{-- ###################################### --}}

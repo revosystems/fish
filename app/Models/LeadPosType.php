@@ -2,22 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class LeadPosType extends Model
+class LeadPosType
 {
-    public function soft()
-    {
-        return $this->hasMany(LeadSoft::class);
-    }
+    const LEGACY    = 1;
+    const CLOUD     = 2;
+    const IOS       = 3;
 
-    public function pos()
+    public static function all()
     {
-        return $this->hasMany(LeadPos::class);
-    }
-
-    public function relatedProposal()
-    {
-        return $this->belongsTo(LeadProposal::class, 'related_proposal_id');
+        return [
+            static::LEGACY  => ['related_proposal_id' => '18','name' => 'Legacy'],
+            static::CLOUD   => ['related_proposal_id' => '49','name' => 'Cloud'],
+            static::IOS     => ['related_proposal_id' => '50','name' => 'iOs'],
+        ];
     }
 }

@@ -10,7 +10,7 @@ class LeadTypesSegment
     const RETAIL_SEGMENT_STORE      = 'dep_retail_store';
     const RETAIL_SEGMENT_FRANCHISE  = 'dep_retail_franchise';
 
-    public static function segments()
+    public static function all()
     {
         return [
             Lead::PRODUCT_XEF    => [
@@ -27,13 +27,13 @@ class LeadTypesSegment
     
     public static function byProduct($product)
     {
-        return static::segments()[$product] ?? [];
+        return static::all()[$product] ?? [];
     }
 
-    public static function segmentClasses($product = null)
+    public static function htmlClasses($product = null)
     {
         if (! $product) {
-            return implode(' ', array_keys(array_collapse(LeadTypesSegment::segments())));
+            return implode(' ', array_keys(array_collapse(LeadTypesSegment::all())));
         }
         return implode(' ', array_keys(LeadTypesSegment::byProduct($product)));
     }

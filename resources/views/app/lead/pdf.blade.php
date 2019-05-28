@@ -115,63 +115,54 @@
                     <tbody>
                     <tr>
                         <td>Perfil</td>
-                        <td>{{$revoVersion}}</td>
+                        <td>{{ $revoVersion }}</td>
                     </tr>
                     <tr>
                         <td>Tipología</td>
-                        <td>{{$typology}}</td>
+                        <td>{{ $typology }}</td>
                     </tr>
                     <tr>
                         <td>Es franquicia</td>
-                        <td>{{$franchise}}</td>
+                        <td>{{ $franchise }}</td>
                     </tr>
                     <tr>
                         <td>Nº de locales</td>
-                        <td>{{$lead->property_quantity}}</td>
+                        <td>{{ $lead->property_quantity }}</td>
                     </tr>
                     <tr>
                         <td>Espacios</td>
-                        <td>{{$propertySpaces}}</td>
+                        <td>{{ $propertySpaces }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ $product == App\Models\Lead::PRODUCT_XEF ? 'Aforo del local' : 'Nº empleados / comerciales' }}</td>
+                        <td>{{ $lead->property_capacity }}</td>
                     </tr>
                     @if($product == App\Models\Lead::PRODUCT_XEF)
                         <tr>
-                            <td>Aforo del local</td>
-                            <td>{{$xefPropertyCapacity}}</td>
-                        </tr>
-                    @endif
-                    @if($product == App\Models\Lead::PRODUCT_RETAIL)
-                        <tr>
-                            <td>Nº empleados / comerciales</td>
-                            <td>{{$propertyStaffQuantity}}</td>
-                        </tr>
-                    @endif
-
-                    @if($product == App\Models\Lead::PRODUCT_XEF)
-                        <tr>
                             <td>Nº comanderos entorno crítico</td>
-                            <td>{{$xefPosCriticalQuantity}}</td>
+                            <td>{{ $xefPosCriticalQuantity }}</td>
                         </tr>
                         <tr>
                             <td>Nº de cajas de cobro</td>
-                            <td>{{$xefCashQuantity}}</td>
+                            <td>{{ $xefCashQuantity }}</td>
                         </tr>
                         <tr>
                             <td>Nº de impresoras en cocina</td>
-                            <td>{{$xefPrintersQuantity}}</td>
+                            <td>{{ $xefPrintersQuantity }}</td>
                         </tr>
                         <tr>
                             <td>Desea trabajar con pantallas en cocina</td>
-                            <td>{{$xefKds}}</td>
+                            <td>{{ $xefKds }}</td>
                         </tr>
                     @endif
                     @if($product == App\Models\Lead::PRODUCT_RETAIL)
                         <tr>
                             <td>Requiere venta delante del cliente final</td>
-                            <td>{{$retail_sale_mode}}</td>
+                            <td>{{ $retail_sale_mode }}</td>
                         </tr>
                         <tr>
                             <td>Donde se vende</td>
-                            <td>{{$retail_sale_location}}</td>
+                            <td>{{ $retail_sale_location }}</td>
                         </tr>
                     @endif
                     <tr>
@@ -181,30 +172,30 @@
 
                     <tr>
                         <td>TPV actual</td>
-                        <td>{{$pos}}</td>
+                        <td>{{ $pos }}</td>
                     </tr>
                     @if($franchisePosExternal)
                         <tr>
                             <td>Autorizado para trabajar con TPV externo</td>
-                            <td>{{$franchisePosExternal}}</td>
+                            <td>{{ $franchisePosExternal }}</td>
                         </tr>
                     @endif
                     @if($xefPms)
                         <tr>
                             <td>PMS actual</td>
-                            <td>{{$xefPms}}</td>
+                            <td>{{ $xefPms }}</td>
                         </tr>
                     @endif
                     @if($erp)
                         <tr>
                             <td>ERP actual</td>
-                            <td>{{$erp}}</td>
+                            <td>{{ $erp }}</td>
                         </tr>
                     @endif
                     @if($software)
                         <tr>
                             <td>Otro software del cliente</td>
-                            <td>{{$software}}</td>
+                            <td>{{ $software }}</td>
                         </tr>
                     @endif
                     </tbody>
@@ -215,7 +206,7 @@
 
 
         <div class="page_break"></div>
-        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}" />
+        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{ $platform }}" />
         <div class="profile title absolute">ARGUMENTARIOS</div>
         <div class="divider">&nbsp;</div>
 
@@ -231,7 +222,7 @@
         @endforeach
 
         <div class="page_break"></div>
-        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{$platform}}" />
+        <img src="{{ asset("images/{$platform}.jpg") }}" class="{{ $platform }}" />
         <div class="profile title absolute">HARDWARE Y ACCESORIOS</div>
         <div class="divider">&nbsp;</div>
         <div class="hardware" style="{{  $product == App\Models\Lead::PRODUCT_RETAIL ? "display:none" : "display:block" }}">

@@ -12,8 +12,8 @@ class LeadsController extends Controller
     {
         return view('admin.leads.show', [
             "lead"              => $lead,
-            "leadXefSofts"      => LeadSoft::whereProduct(Lead::PRODUCT_XEF)->orderBy("name")->get()->groupBy("soft_type_id"),
-            "leadRetailSofts"   => LeadSoft::whereProduct(Lead::PRODUCT_RETAIL)->orderBy("name")->get()->groupBy("soft_type_id"),
+            "leadXefSofts"      => LeadSoft::types()->where('product', Lead::PRODUCT_XEF)->groupBy("softType"),
+            "leadRetailSofts"   => LeadSoft::types()->where('product', Lead::PRODUCT_RETAIL)->groupBy("softType"),
         ]);
     }
 

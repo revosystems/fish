@@ -15,9 +15,9 @@ class CreateLeadPropertySpacesTable extends Migration
     {
         Schema::create('lead_property_spaces', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product');
-            $table->string('name');
-            $table->integer('order');
+//            $table->integer('product')->nullable();
+            $table->integer('lead_id');
+            $table->integer('property_space');
             $table->timestamps();
         });
     }

@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('segmentClasses', function($type){
-            return "<?php echo App\Models\LeadTypesSegment::segmentClasses($type) ?>";
+            return "<?php echo App\Models\LeadTypesSegment::htmlClasses($type) ?>";
         });
 
     }

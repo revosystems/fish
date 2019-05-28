@@ -41,13 +41,11 @@ var Layouts = function() {
 var Lead = function(){
     return {
         multiselectHandler: function(){ // PENDENT OPTIMITZAR
-            Lead.multiselectChained($("#xef_soft"));
-            Lead.multiselectChained($("#retail_soft"));
-            Lead.multiselectSetNone($("#xef_property_spaces"));
-            Lead.multiselectSetNone($("#retail_property_spaces"));
+            Lead.multiselectChained($("#soft"));
+            Lead.multiselectSetNone($("#property_spaces"));
             Lead.multiselectFilterHandler();
 
-            $("select#xef_soft,select#retail_soft").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
+            $("select#soft").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
                 Lead.multiselectChained($(this),clickedIndex);
                 Lead.multiselectFilterHandler();
 
@@ -57,7 +55,7 @@ var Lead = function(){
                 }
             });
 
-            $("#xef_property_spaces,#retail_property_spaces").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
+            $("#property_spaces").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
                 Lead.multiselectSetNone($(this), clickedIndex);
                 Lead.multiselectFilterHandler();
 
@@ -68,7 +66,7 @@ var Lead = function(){
         },
 
         multiselectFilterHandler: function(){
-            $("#xef_soft,#retail_soft,#xef_property_spaces,#retail_property_spaces").closest(".bootstrap-select").find(".filter-option .hideHint:gt(0)").hide();
+            $("#soft,#property_spaces").closest(".bootstrap-select").find(".filter-option .hideHint:gt(0)").hide();
         },
 
         multiselectChained: function(dropdown,lastSelected){

@@ -115,64 +115,54 @@ return [
     'url'                  => 'El formato :attribute es inválido.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
-    */
 
     'custom' => [
         'password' => [
-	        'required'  => 'Campo obligatorio',
-            'min' => 'La :attribute debe contener más de :min caracteres',
+            'required'  => 'Campo obligatorio',
+            'min'       => 'La :attribute debe contener más de :min caracteres',
         ],
-	    'company' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-	    'enterprise' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-	    'department' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-	    'position' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-	    'name' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-	    'firstsurname' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-	    'secondsurname' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
+        'company' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'enterprise' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'department' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'position' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'name' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'firstsurname' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'secondsurname' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
         'surname1' => [
             'required'  => 'Campo obligatorio',
             'string'    => 'Debe ser una cadena de caracteres',
@@ -185,227 +175,180 @@ return [
             'min'       => 'Mínimo :min caracteres',
             'max'       => 'Máximo :max caracteres',
         ],
-	    'email' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-		    'email'     => 'No es un correo válido',
-		    'unique'    => 'El :attribute ya ha sido registrado.',
-		    'digits_between' => 'Debe tener entre :min y :max dígitos'
-	    ],
-	    'phone' => [
-		    'required'  => 'Campo obligatorio',
-		    'numeric'   => 'Debe ser numérico',
+        'email' => [
+            'required'       => 'Campo obligatorio',
+            'string'         => 'Debe ser una cadena de caracteres',
+            'min'            => 'Mínimo :min caracteres',
+            'max'            => 'Máximo :max caracteres',
+            'email'          => 'No es un correo válido',
+            'unique'         => 'El :attribute ya ha sido registrado.',
             'digits_between' => 'Debe tener entre :min y :max dígitos'
-	    ],
-	    'city' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-	    'territory' => [
-		    'required'  => 'Campo obligatorio',
-		    'string'    => 'Debe ser una cadena de caracteres',
-		    'min'       => 'Mínimo :min caracteres',
-		    'max'       => 'Máximo :max caracteres',
-	    ],
-
-
-
-        // CLIENT
-            'type' => [
-                'required'  => 'Debe seleccionar una opción',
-            ],
-            'type_segment' => [
-                'required'  => 'Debe seleccionar una opción',
-            ],
-            'xef_general_typology_id' => [
-                'required_if'  => 'Debe seleccionar una opción',
-            ],
-            'retail_general_typology_id' => [
+        ],
+        'phone' => [
+            'required'       => 'Campo obligatorio',
+            'numeric'        => 'Debe ser numérico',
+            'digits_between' => 'Debe tener entre :min y :max dígitos'
+        ],
+        'city' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'territory' => [
+            'required'  => 'Campo obligatorio',
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'type' => [
+            'required'  => 'Debe seleccionar una opción',
+        ],
+        'type_segment' => [
+            'required'  => 'Debe seleccionar una opción',
+        ],
+        'general_typology_id' => [
             'required_if'  => 'Debe seleccionar una opción',
         ],
-            // > XEF
-            'xef_specific_typology_id' => [
-                'required_if'  => 'Debe seleccionar una opción',
-            ],
+        // > XEF
+        'xef_specific_typology_id' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
 
         // CLIENT INFO
-            'trade_name' => [
-                'required'  => 'Campo obligatorio',
-                'min'       => 'Mínimo :min caracteres',
-                'max'       => 'Máximo :max caracteres',
-            ],
+        'trade_name' => [
+            'required'  => 'Campo obligatorio',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
 
-            // PROPERTY
-            'retail_property_quantity' => [
-                'required_if'  => 'Campo obligatorio',
-                'numeric'   => 'Debe ser numérico',
-            ],
-            'xef_property_quantity' => [
-                'required_if'  => 'Campo obligatorio',
-                'numeric'   => 'Debe ser numérico',
-            ],
-            // > XEF
-                'xef_property_franchise' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'xef_property_spaces' => [
-                    'required'  => 'Debe seleccionar una opción',
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'xef_property_capacity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
-            // > RETAIL
-                'retail_property_spaces' => [
-                    'required'  => 'Debe seleccionar una opción',
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'retail_property_staff_quantity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
+        // PROPERTY
+        'property_quantity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        'xef_property_franchise' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'property_spaces' => [
+            'required'     => 'Debe seleccionar una opción',
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'property_capacity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        'devices' => [
+            'required'  => 'Debe seleccionar una opción',
+        ],
+        'devices_current' => [
+            'required_if'  => 'Campo obligatorio',
+            'string'       => 'Debe ser una cadena de caracteres',
+            'min'          => 'Mínimo :min caracteres',
+        ],
+        // > XEF
+        'xef_pos_critical_quantity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        'xef_cash_quantity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        'xef_printers_quantity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        'xef_kds' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'xef_kds_quantity' => [
+            'required_if'  => 'Campo obligatorio',
+            'numeric'      => 'Debe ser numérico',
+        ],
+        // > XEF & RETAIL
+        'pos' => [
+            'required'  => 'Debe seleccionar una opción',
+        ],
+        'pos_other' => [
+            'required_if'  => 'Campo obligatorio',
+            'string'       => 'Debe ser una cadena de caracteres',
+            'min'          => 'Mínimo :min caracteres',
+            'max'          => 'Máximo :max caracteres',
+        ],
+        // > RETAIL
+        'retail_sale_mode' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'retail_sale_location' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        // > XEF (isFranchise) & RETAIL (isFranchise)
+        'franchise_pos_external' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        // > XEF (isHotel)
+        'xef_pms' => [
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'xef_pms_other' => [
+            'required_if'  => 'Campo obligatorio',
+            'string'       => 'Debe ser una cadena de caracteres',
+            'min'          => 'Mínimo :min caracteres',
+            'max'          => 'Máximo :max caracteres',
+        ],
+        // > XEF & RETAIL
+        'erp' => [
+            'required'  => 'Debe seleccionar una opción',
+        ],
+        'erp_other' => [
+            'required_if'  => 'Campo obligatorio',
+            'string'       => 'Debe ser una cadena de caracteres',
+            'min'          => 'Mínimo :min caracteres',
+            'max'          => 'Máximo :max caracteres',
+        ],
 
-        // CONFIGURATION
-            // > XEF & RETAIL
-                'devices' => [
-                    'required'  => 'Debe seleccionar una opción',
-                ],
-                'devices_current' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'string'    => 'Debe ser una cadena de caracteres',
-                    'min'       => 'Mínimo :min caracteres',
-                ],
-            // > XEF
-                'xef_pos_critical_quantity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
-                'xef_cash_quantity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
-                'xef_printers_quantity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
-                'xef_kds' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'xef_kds_quantity' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'numeric'   => 'Debe ser numérico',
-                ],
-            // > XEF & RETAIL
-                'pos_id' => [
-                    'required'  => 'Debe seleccionar una opción',
-                ],
-                'pos_other' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'string'    => 'Debe ser una cadena de caracteres',
-                    'min'       => 'Mínimo :min caracteres',
-                    'max'       => 'Máximo :max caracteres',
-                ],
-            // > RETAIL
-                'retail_sale_mode' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'retail_sale_location' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-            // > XEF (isFranchise) & RETAIL (isFranchise)
-                'franchise_pos_external' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-            // > XEF (isHotel)
-                'xef_pms_id' => [
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'xef_pms_other' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'string'    => 'Debe ser una cadena de caracteres',
-                    'min'       => 'Mínimo :min caracteres',
-                    'max'       => 'Máximo :max caracteres',
-                ],
-            // > XEF & RETAIL
-                'erp' => [
-                    'required'  => 'Debe seleccionar una opción',
-                ],
-                'erp_other' => [
-                    'required_if'  => 'Campo obligatorio',
-                    'string'    => 'Debe ser una cadena de caracteres',
-                    'min'       => 'Mínimo :min caracteres',
-                    'max'       => 'Máximo :max caracteres',
-                ],
-
-            // > XEF (Medium-Large)
-                'xef_soft' => [
-                    'required'  => 'Debe seleccionar una opción',
-                    'required_if'  => 'Debe seleccionar una opción',
-                ],
-                'xef_soft_other' => [
-                    'string'    => 'Debe ser una cadena de caracteres',
-                    'min'       => 'Mínimo :min caracteres',
-                    'max'       => 'Máximo :max caracteres',
-                ],
-            // > RETAIL (FRANCHISE)
-                'retail_soft' => [
-                    'required'  => 'Debe seleccionar una opción',
-                    'required_if'  => 'Debe seleccionar una opción',
-
-                ],
-                'retail_soft_other' => [
-                    'string'    => 'Debe ser una cadena de caracteres',
-                    'min'       => 'Mínimo :min caracteres',
-                    'max'       => 'Máximo :max caracteres',
-                ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Attributes
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used to swap attribute place-holders
-    | with something more reader friendly such as E-Mail Address instead
-    | of "email". This simply helps us make messages a little cleaner.
-    |
-    */
-
-    'attributes' => [
-        'name'                  => 'nombre',
-        'username'              => 'usuario',
-        'email'                 => 'correo electrónico',
-        'first_name'            => 'nombre',
-        'last_name'             => 'apellido',
-        'password'              => 'contraseña',
-        'password_confirmation' => 'confirmación de la contraseña',
-        'city'                  => 'ciudad',
-        'country'               => 'país',
-        'address'               => 'dirección',
-        'phone'                 => 'teléfono',
-        'mobile'                => 'móvil',
-        'age'                   => 'edad',
-        'sex'                   => 'sexo',
-        'gender'                => 'género',
-        'year'                  => 'año',
-        'month'                 => 'mes',
-        'day'                   => 'día',
-        'hour'                  => 'hora',
-        'minute'                => 'minuto',
-        'second'                => 'segundo',
-        'title'                 => 'título',
-        'content'               => 'contenido',
-        'body'                  => 'contenido',
-        'description'           => 'descripción',
-        'excerpt'               => 'extracto',
-        'date'                  => 'fecha',
-        'time'                  => 'hora',
-        'subject'               => 'asunto',
-        'message'               => 'mensaje',
-    ],
+        // > XEF (Medium-Large)
+        'soft' => [
+            'required'     => 'Debe seleccionar una opción',
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'soft_other' => [
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'attributes' => [
+            'name'                  => 'nombre',
+            'username'              => 'usuario',
+            'email'                 => 'correo electrónico',
+            'first_name'            => 'nombre',
+            'last_name'             => 'apellido',
+            'password'              => 'contraseña',
+            'password_confirmation' => 'confirmación de la contraseña',
+            'city'                  => 'ciudad',
+            'country'               => 'país',
+            'address'               => 'dirección',
+            'phone'                 => 'teléfono',
+            'mobile'                => 'móvil',
+            'age'                   => 'edad',
+            'sex'                   => 'sexo',
+            'gender'                => 'género',
+            'year'                  => 'año',
+            'month'                 => 'mes',
+            'day'                   => 'día',
+            'hour'                  => 'hora',
+            'minute'                => 'minuto',
+            'second'                => 'segundo',
+            'title'                 => 'título',
+            'content'               => 'contenido',
+            'body'                  => 'contenido',
+            'description'           => 'descripción',
+            'excerpt'               => 'extracto',
+            'date'                  => 'fecha',
+            'time'                  => 'hora',
+            'subject'               => 'asunto',
+            'message'               => 'mensaje',
+        ]
+    ]
 ];

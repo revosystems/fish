@@ -4,6 +4,11 @@ namespace App\Models;
 
 trait Taggable
 {
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
     public function tagsString($glue = ',')
     {
         return implode($glue, $this->tags->pluck('name')->toArray());

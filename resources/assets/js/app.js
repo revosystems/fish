@@ -1,8 +1,9 @@
 $.fn.selectpicker.Constructor.DEFAULTS.style = "btn";
+let PRODUCT_XEF = 1;
+let PRODUCT_RETAIL = 2;
 
 var App = function() {
     var size_point = 991;//$this.data().responsive
-
     return {
         mobileDetect: function () {
             if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)) {
@@ -183,7 +184,7 @@ var Lead = function() {
         typeHandler: function(){
             $("#product").on("change", function () {
                 Forms.clearErrors();
-                Lead.typeSegmentsFetch($(this));
+                Lead.segmentTypes($(this));
                 Lead.typeSegmentsDependency($(this),true);
             });
 
@@ -196,17 +197,17 @@ var Lead = function() {
         typeSegmentRestore: function(){
             if($("#product").length>0) {
                 if ($("#product option:selected").val()!="") {
-                    Lead.typeSegmentsFetch($("#product option:selected"));
+                    Lead.segmentTypes($("#product option:selected"));
                 }
             }
         },
 
-        typeSegmentsFetch: function (input) {
+        segmentTypes: function (input) {
             var $typeSegmentOld = $("#type_segment_old"),
             value = input.val();
 
             $.ajax({
-                url: "/lead/typeSegmentsFetch",
+                url: "/lead/segments/types",
                 method: "POST",
                 data:{
                     value: value,
@@ -259,7 +260,7 @@ var Lead = function() {
 
         kdsHandler: function(){
             $("#xef_kds").on("change", function () {
-                if($(this).val()==1){
+                if($(this).val() == 1){
                     $("#xef_kds_quantity").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
                 else{
@@ -269,25 +270,27 @@ var Lead = function() {
         },
 
         pmsHandler: function(){
-            $("#xef_general_typology_id").on("change", function () {
-                if($(this).val()==7){
-                    $("#xef_pms_id").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
-                    // if($('#xef_pms_id').val()==-1){
+            $("#general_typology_id").on("change", function () {
+                if ($("#product").val() != PRODUCT_XEF) {
+                    return;
+                }
+                if($(this).val() == 7){
+                    $("#xef_pms").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
+                    // if($('#xef_pms').val() == -1) {
                     //     $('#xef_pms_other').prop("disabled", false).closest(".form-group").removeClass("disabled");
                     // }
-                }
-                else{
-                    $("#xef_pms_id").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
+                } else {
+                    $("#xef_pms").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
                     $("#xef_pms_other").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
 
-            if($("#xef_pms_id").val()==-1){
+            if($("#xef_pms").val()==-1){
                 $("#xef_pms_other").prop("disabled", false).closest(".form-group").removeClass("disabled");
             }
 
-            $("#xef_pms_id").on("change", function () {
-                if($(this).val()==-1){
+            $("#xef_pms").on("change", function () {
+                if($(this).val() == -1){
                     $("#xef_pms_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
                 else{
@@ -298,26 +301,26 @@ var Lead = function() {
 
         posExternalHandler: function(){
             $("#xef_property_franchise").on("change", function () {
-                if($(this).val()!=2){
-                    $("#franchise_pos_external_id").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
+                if($(this).val() != 2){
+                    $("#franchise_pos_external").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
                 }
                 else{
-                    $("#franchise_pos_external_id").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
+                    $("#franchise_pos_external").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
                 }
             });
         },
 
         posRetailHandler:function(){
-            if(($("#product").val()==1 && $("#xef_property_franchise").val()==1) || $("#product").val()==2 && $("#type_segment").val()==5){
-                $("#franchise_pos_external_id").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
+            if(($("#product").val() == PRODUCT_XEF && $("#xef_property_franchise").val() == 1) || $("#product").val() == PRODUCT_RETAIL && $("#type_segment").val() == 5){
+                $("#franchise_pos_external").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
             }
             else{
-                $("#franchise_pos_external_id").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
+                $("#franchise_pos_external").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
             }
         },
 
         erpHandler: function(){
-            $("#erp_id,#xef_erp_id,#retail_erp_id").on("change", function () {
+            $("#erp,#xef_erp,#retail_erp").on("change", function () {
 
                 var base_id = $(this).attr("id").replace("_id", "");
 
@@ -331,11 +334,9 @@ var Lead = function() {
         },
 
         posHandler: function(){
-            $("#pos_id").on("change", function () {
-
+            $("#pos").on("change", function () {
                 var base_id = $(this).attr("id").replace("_id", "");
-
-                if($(this).val()=="-1"){
+                if($(this).val() == "-1"){
                     $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 }
                 else{
@@ -345,13 +346,11 @@ var Lead = function() {
         },
 
         multiselectHandler: function(){ // PENDENT OPTIMITZAR
-            Lead.multiselectChained($("#xef_soft"));
-            Lead.multiselectChained($("#retail_soft"));
-            Lead.multiselectSetNone($("#xef_property_spaces"));
-            Lead.multiselectSetNone($("#retail_property_spaces"));
+            Lead.multiselectChained($("#soft"));
+            Lead.multiselectSetNone($("#property_spaces"));
             Lead.multiselectFilterHandler();
 
-            $("select#xef_soft,select#retail_soft").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
+            $("select#soft").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
                 Lead.multiselectChained($(this),clickedIndex);
                 Lead.multiselectFilterHandler();
 
@@ -361,7 +360,7 @@ var Lead = function() {
                 }
             });
 
-            $("#xef_property_spaces,#retail_property_spaces").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
+            $("#property_spaces").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
                 Lead.multiselectSetNone($(this), clickedIndex);
                 Lead.multiselectFilterHandler();
 
@@ -372,29 +371,27 @@ var Lead = function() {
         },
 
         multiselectFilterHandler: function(){
-            $("#xef_soft,#retail_soft,#xef_property_spaces,#retail_property_spaces").closest(".bootstrap-select").find(".filter-option .hideHint:gt(0)").hide();
+            $("#soft,#property_spaces").closest(".bootstrap-select").find(".filter-option .hideHint:gt(0)").hide();
         },
 
         multiselectChained: function(dropdown,lastSelected){
-            if(dropdown.length>0){
+            if (dropdown.length>0) {
                 var $select =  dropdown,
                     values = $select.val();
 
-                if(values.indexOf("other")!=-1){
+                if(values.indexOf("other") != -1){
                     $("#"+$select.attr("id")+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                }
-                else{
+                } else {
                     $("#"+$select.attr("id")+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
 
                 if (lastSelected !== undefined){
                     var lastValue = $select.find("option").eq(lastSelected).val();
 
-                    if(lastValue!="none"){
+                    if (lastValue != "none") {
                         $select.find("[value=none]").prop("selected",false);
                         $select.selectpicker("refresh");
-                    }
-                    else if(lastValue=="none"){
+                    } else if(lastValue == "none") {
                         $select.find("option:not([value=none])").prop("selected", false);
                         $select.selectpicker("refresh");
                         $("#"+$select.attr("id")+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
@@ -410,30 +407,25 @@ var Lead = function() {
 
                 if (lastSelected !== undefined){
                     var lastValue = $select.find("option").eq(lastSelected).val();
-
-                    if((lastValue!=1 && $("#product").val()==1) || (lastValue!=4 && $("#product").val()==2) ){
-
-                        if($("#product").val()==1){
+                    if ((lastValue != 1 && $("#product").val() == PRODUCT_XEF) || (lastValue != 4 && $("#product").val() == PRODUCT_RETAIL) ){
+                        if ($("#product").val() == PRODUCT_XEF ) {
                             $select.find("[value=1]").prop("selected",false);
-                        }
-                        if($("#product").val()==2){
+                        } else if ($("#product").val() == PRODUCT_RETAIL) {
                             $select.find("[value=4]").prop("selected",false);
                         }
 
                         $select.selectpicker("refresh");
                     }
-                    else if((lastValue==1 && $("#product").val()==1) || (lastValue==4 && $("#product").val()==2) ){
-                        if($("#product").val()==1) {
+                    else if ((lastValue == 1 && $("#product").val() == PRODUCT_XEF) || (lastValue == 4 && $("#product").val() == PRODUCT_RETAIL) ){
+                        if($("#product").val() == PRODUCT_XEF) {
                             $select.find("option:not([value=1])").prop("selected", false);
-                        }
-                        if($("#product").val()==2) {
+                        } else if($("#product").val() == PRODUCT_RETAIL) {
                             $select.find("option:not([value=4])").prop("selected", false);
                         }
                         $select.selectpicker("refresh");
                     }
                 }
-
-                if(values.length<2){
+                if (values.length < 2) {
                     //$select.closest(".bootstrap-select").removeClass("started");
                 }
             }
@@ -481,7 +473,6 @@ $(document).ready(function(){
     App.rowEqualHeightHandler();
     App.backToTop();
 
-
     $(".gridder").gridderExpander({
         scroll: true,
         scrollOffset: 100,
@@ -489,6 +480,5 @@ $(document).ready(function(){
         animationSpeed: 400,
         animationEasing: "easeInOutExpo",
         showNav: false,
-
     });
 });

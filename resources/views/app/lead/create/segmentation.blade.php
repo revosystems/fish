@@ -13,7 +13,7 @@
 
 <div class="row @segmentClasses(App\Models\Lead::PRODUCT_XEF) " style="display: none;">
     <div class="col-sm-6">
-        @include('components.lead.app-select', ["options" => App\Models\LeadGeneralTypology::whereProduct(App\Models\Lead::PRODUCT_XEF)->pluck('name', 'id'), 'name' => 'xef_general_typology_id', 'title' => 'generalTypology'])
+        @include('components.lead.app-select', ["options" => App\Models\LeadGeneralTypology::whereProduct(App\Models\Lead::PRODUCT_XEF)->pluck('name', 'id'), 'name' => 'general_typology_id', 'title' => 'generalTypology'])
     </div>
     <div class="col-sm-6">
         @include('components.lead.app-select', ["options" => App\Models\LeadXefSpecificTypology::all(), 'name' => 'xef_specific_typology_id', 'title' => 'xefSpecificTypology'])
@@ -21,7 +21,7 @@
 </div>
 <div class="row @segmentClasses(App\Models\Lead::PRODUCT_RETAIL)" style="display: none;">
     <div class="col-sm-12">
-        @include('components.lead.app-select', ["options" => App\Models\LeadGeneralTypology::whereProduct(App\Models\Lead::PRODUCT_RETAIL)->pluck('name', 'id'), 'name' => 'retail_general_typology_id', 'title' => 'generalTypology'])
+        @include('components.lead.app-select', ["options" => App\Models\LeadGeneralTypology::whereProduct(App\Models\Lead::PRODUCT_RETAIL)->pluck('name', 'id'), 'name' => 'general_typology_id', 'title' => 'generalTypology'])
     </div>
 </div>
 
