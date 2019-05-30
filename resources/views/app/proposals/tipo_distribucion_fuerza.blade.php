@@ -1,0 +1,2 @@
+<span class='lined'>¿Tienes cualquier negocio de distribución de productos y una fuerza de ventas trabajándolos? </span>
+REVO es tu software de gestión y punto de venta. Podrás tener un equipo comercial haciendo visitas y enviando pedidos en movilidad a Central, mostrando una imagen moderna y eficiente.

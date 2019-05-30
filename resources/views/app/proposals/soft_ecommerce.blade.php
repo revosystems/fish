@@ -1,0 +1,2 @@
+<span class='lined'>REVO es enlazable (ventas, pedidos...) con PRESTASHOP y WOOCOMERCE</span>
+Ésto permite alinear fácilmente la política comercial y de precios en todos los canales de venta del establecimiento o comercio.

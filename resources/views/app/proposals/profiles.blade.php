@@ -1,0 +1,2 @@
+<span class='lined'>REVO es de los pocos software de gestión & punto de venta en el mercado que te ofrece la flexibilidad (versión Revo XEF pro) de establecer perfiles asociados a espacios</span>
+Esta es sin duda tu opción, si quieres llevar configuraciones concretas ya parametrizadas a diferentes espacios o franjas horarias (cambios de ambiente barra día/coctelería noche... etc.). Esto puede incluir el establecimiento de la visibilidad/no visibilidad de determinados productos en dicha configuración, de tarifas diferentes, en función incluso de empleados diferentes... etc.

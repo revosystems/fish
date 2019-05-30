@@ -1,0 +1,2 @@
+<span class='lined'>¿Tienes un comercio retail de cualquier tipo?</span>
+Ropa, accesorios, complementos, artículos de deporte… sea lo que sea lo que vendas, REVO es el software integral de gestión que necesitas.

@@ -1,0 +1,2 @@
+<span class='lined'>App de fidelización de Clientes</span>
+REVO pone a disposición del Establecimiento o Comercio esta app de fidelización de clientes personalizada con su propia imagen gráfica, para que éste la pueda ofrecer a su Público (tanto en versión iOS -App Store-, como en versión Android -Google Play-), con el objetivo de afianzar su compromiso e implicación como Clientes, a través de una interacción continua, directa y de valor con ellos (acciones de comunicación, reservas, compras, engagement, promociones orientadas, remarketing, creación de experiencias…).

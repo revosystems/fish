@@ -53,6 +53,9 @@ class Pos extends FishDataBase
 
     public function posType()
     {
+        if (! isset($this->posType)) {
+            return PosType::find(PosType::IOS);
+        }
         return PosType::find($this->posType);
     }
 }

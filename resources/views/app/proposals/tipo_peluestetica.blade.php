@@ -1,0 +1,2 @@
+<span class='lined'>¿Tienes una peluquería o un negocio de estética?</span>
+REVO es tu software de gestión & punto de venta. Podrás además gestionar el calendario de servicios y profesionales asociados a tu negocio.
