@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Lead;
-use App\Models\LeadTypesSegment;
+use App\Models\TypeSegment;
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreLeadRequest extends FormRequest
@@ -26,15 +26,12 @@ class StoreLeadRequest extends FormRequest
     public function rules()
     {
         return [
-            // CLIENT
             'product'                   => 'required',
             'type_segment'              => 'required',
-            // > XEF
-//            'general_typology_id'       => 'required',
-            'xef_specific_typology_id'  => 'required_if:product,1',
-            // > RETAIL
+            'xef_general_typology'      => 'required_if:product,1',
+            'retail_general_typology'   => 'required_if:product,2',
+            'xef_specific_typology'     => 'required_if:product,1',
 
-            // CLIENT INFO
             'trade_name'    => 'required|string|min:3|max:255',
             'name'          => 'required|string|min:2|max:255',
             'surname1'      => 'required|string|min:2|max:255',
@@ -43,18 +40,17 @@ class StoreLeadRequest extends FormRequest
             'phone'         => 'required',
             'city'          => 'required|string|min:3|max:255',
 
-            // PROPERTY
             'xef_property_quantity'    => 'required_if:product,1|nullable|numeric',
             'retail_property_quantity' => 'required_if:product,2|nullable|numeric',
             'xef_property_capacity'    => 'required_if:product,1|nullable|numeric',
             'retail_property_capacity' => 'required_if:product,2|nullable|numeric',
             'xef_property_spaces'          => [function ($attribute, $value, $fail) {
-                if (request('product') == Lead::PRODUCT_XEF && ! collect($value)->filter(null)->count()) {
+                if (request('product') == Product::XEF && ! collect($value)->filter(null)->count()) {
                     $fail(__('validation.custom.xef_property_spaces.required'));
                 }
             }],
             'retail_property_spaces'          => [function ($attribute, $value, $fail) {
-                if (request('product') == Lead::PRODUCT_RETAIL && ! collect($value)->filter(null)->count()) {
+                if (request('product') == Product::RETAIL && ! collect($value)->filter(null)->count()) {
                     $fail(__('validation.custom.retail_property_spaces.required'));
                 }
             }],
@@ -83,9 +79,19 @@ class StoreLeadRequest extends FormRequest
                 }
             }],
             // > XEF (isHotel)
-            'xef_pms'                      => 'required_if:general_typology_id,7',
+            'xef_pms'                      => 'required_if:general_typology,7',
             'xef_pms_other'                => 'required_if:xef_pms,-1|string|min:2|max:255',
             // > XEF (Medium-Large) & RETAIL (Medium-Large)
+            'xef_soft'          => [function ($attribute, $value, $fail) {
+                if (request('product') == Product::XEF && ! collect($value)->filter(null)->count()) {
+                    $fail(__('validation.custom.xef_soft.required'));
+                }
+            }],
+            'retail_soft'          => [function ($attribute, $value, $fail) {
+                if (request('product') == Product::RETAIL && ! collect($value)->filter(null)->count()) {
+                    $fail(__('validation.custom.retail_soft.required'));
+                }
+            }],
             'erp'                       => [function ($attribute, $value, $fail) {
                 if ($value === null && $this->hasBigSegmentation(request("type_segment"))) {
                     $fail(__('validation.custom.erp.required'));
@@ -115,11 +121,11 @@ class StoreLeadRequest extends FormRequest
 
     private function isFranchise()
     {
-        return (request("xef_property_franchise") == 1 || request("type_segment") == LeadTypesSegment::RETAIL_SEGMENT_FRANCHISE);
+        return (request("xef_property_franchise") == 1 || request("type_segment") == TypeSegment::RETAIL_SEGMENT_FRANCHISE);
     }
 
     private function hasBigSegmentation($typeSegment)
     {
-        return ! in_array($typeSegment, [LeadTypesSegment::XEF_SEGMENT_SMALL, LeadTypesSegment::RETAIL_SEGMENT_STORE]);
+        return ! in_array($typeSegment, [TypeSegment::XEF_SEGMENT_SMALL, TypeSegment::RETAIL_SEGMENT_STORE]);
     }
 }

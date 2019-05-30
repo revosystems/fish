@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lead;
-use App\Models\LeadSoft;
+use App\Models\Soft;
+use App\Models\Product;
 
 class LeadsController extends Controller
 {
@@ -12,14 +13,14 @@ class LeadsController extends Controller
     {
         return view('admin.leads.show', [
             "lead"              => $lead,
-            "leadXefSofts"      => LeadSoft::types()->where('product', Lead::PRODUCT_XEF)->groupBy("softType"),
-            "leadRetailSofts"   => LeadSoft::types()->where('product', Lead::PRODUCT_RETAIL)->groupBy("softType"),
+            "leadXefSofts"      => Soft::all()->where('product', Product::XEF)->groupBy("softType"),
+            "leadRetailSofts"   => Soft::all()->where('product', Product::RETAIL)->groupBy("softType"),
         ]);
     }
 
     public function update(Lead $lead)
     {
-        $lead->update(request()->toArray());
+        $lead->update(request()->except(['property_spaces', 'soft']));
         return back()->withMessage('updated');
     }
 }

@@ -64,28 +64,22 @@ return [
         'xefPrintersQuantity'       => 'Nº de impresoras en cocina',
         'xefKds'                    => '¿Desea trabajar con pantallas en cocina?',
         'xefKdsQuantity'            => 'Nº de pantallas',
-        // > XEF & RETAIL
+
         'pos'                       => 'TPV actual',
-        // > RETAIL
         'retailSaleMode'          => '¿Requiere una venta delante del cliente final?',
         'retailSaleLocation'      => '¿Dónde se vende?',
-        // > XEF (isFranchise) & RETAIL (isFranchise)
         'franchisePosExternal'      => '¿Tiene autorización para trabajar con otro TPV?',
-        // > XEF (isHotel)
         'xefPms'                    => 'PMS actual',
-        // > XEF & RETAIL
         'erp'                       => 'ERP actual',
-        // > XEF (Medium-Large)
         //                'xefErp'                    => 'ERP actual',
         'xefSoft'                   => 'Software del que dispone el cliente',
+        'retailSoft'                => 'Otros software del cliente',
         'xefSoftStock'              => 'Almacén y compras',
         'xefSoftStaff'              => 'Gestión de personal',
         'xefSoftBookings'           => 'Reservas',
         'xefSoftDelivery'           => 'Delivery',
         'xefSoftRecipes'            => 'Recetas',
-        // > RETAIL (Franchise)
-        //                'retailErp'                    => 'ERP actual',
-        'retailSoft'                   => 'Otros software del cliente',
+
         'retailSoftStaff'              => 'Gestión de personal',
         'retailSoftDelivery'           => 'Delivery',
 

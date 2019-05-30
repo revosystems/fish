@@ -29,7 +29,7 @@
 {{-- ###################################### --}}
 
 {{ Form::open(["url" => route('leads.update', $lead), 'method' => "PUT"]) }}
-    @include('components.lead.fields', ["lead" => $lead])
+    @include('admin.leads.edit', compact('lead'))
     <div class="card card-small  mt-4 mb-4">
         <div class="card-body p-0 update-button">
             <button class="btn btn-accent uppercase w-100 h-100"> {{ __('admin.update') }}</button>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Status;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -27,8 +28,8 @@ class CreateLeadsTable extends Migration
             $table->string('city')->nullable();
             $table->tinyInteger('product')->nullable();
             $table->tinyInteger('type_segment')->nullable();
-            $table->integer('general_typology_id')->nullable();
-            $table->integer('xef_specific_typology_id')->nullable();
+            $table->integer('general_typology')->nullable();
+            $table->integer('xef_specific_typology')->nullable();
             $table->integer('property_quantity')->nullable()->default('0');
             $table->integer('property_capacity')->nullable()->default('0');
             $table->boolean('xef_property_franchise')->default(0);
@@ -49,9 +50,23 @@ class CreateLeadsTable extends Migration
             $table->string('erp_other')->nullable();
             $table->tinyInteger('soft')->nullable();
             $table->string('soft_other')->nullable();
-            $table->tinyInteger('status')->default(Lead::STATUS_NEW);
+            $table->tinyInteger('status')->default(Status::NEW);
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::create('lead_property_spaces', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('lead_id');
+            $table->integer('property_space');
+            $table->timestamps();
+        });
+
+        Schema::create('lead_softs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('lead_id');
+            $table->integer('soft');
+            $table->timestamps();
         });
     }
 
@@ -62,6 +77,8 @@ class CreateLeadsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('lead_softs');
+        Schema::dropIfExists('leads_property_spaces');
         Schema::dropIfExists('leads');
     }
 }

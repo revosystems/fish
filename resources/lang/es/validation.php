@@ -207,11 +207,11 @@ return [
         'type_segment' => [
             'required'  => 'Debe seleccionar una opción',
         ],
-        'general_typology_id' => [
+        'general_typology' => [
             'required_if'  => 'Debe seleccionar una opción',
         ],
         // > XEF
-        'xef_specific_typology_id' => [
+        'xef_specific_typology' => [
             'required_if'  => 'Debe seleccionar una opción',
         ],
 
@@ -320,12 +320,20 @@ return [
             'max'          => 'Máximo :max caracteres',
         ],
 
-        // > XEF (Medium-Large)
-        'soft' => [
+        'xef_soft' => [
             'required'     => 'Debe seleccionar una opción',
             'required_if'  => 'Debe seleccionar una opción',
         ],
-        'soft_other' => [
+        'xef_soft_other' => [
+            'string'    => 'Debe ser una cadena de caracteres',
+            'min'       => 'Mínimo :min caracteres',
+            'max'       => 'Máximo :max caracteres',
+        ],
+        'retail_soft' => [
+            'required'     => 'Debe seleccionar una opción',
+            'required_if'  => 'Debe seleccionar una opción',
+        ],
+        'retail_soft_other' => [
             'string'    => 'Debe ser una cadena de caracteres',
             'min'       => 'Mínimo :min caracteres',
             'max'       => 'Máximo :max caracteres',

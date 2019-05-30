@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('html', 'onProposal')
-@section('title', __('app.pageTitles.proposalLead').' '.$trade_name.' - ')
+@section('title', __('app.pageTitles.proposalLead'). ' ' .$lead->trade_name . ' - ')
 @section('content')
         <div class="section">
             <div class="container">
@@ -24,18 +24,18 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="gridder">
-                                    @foreach($proposals as $item)
+                                    @foreach($proposals as $proposal)
                                         <li class="gridder-list" data-griddercontent="#content{{$loop->index}}">
-                                            <div class="img-wrap"><img src="{{$item->media}}" /></div>
+                                            <div class="img-wrap"><img src="/images/proposals/{{$proposal->key}}.png" /></div>
                                         </li>
                                         <div id="content{{$loop->index}}" class="gridder-content">
                                             <div class="row">
                                                 <div class="col-sm-7">
-                                                    <h3 class="subtitle">{!!$item->name!!}</h3>
-                                                    {!!$item->description!!}
+                                                    <h3 class="subtitle">{!!$proposal->name!!}</h3>
+                                                    @include("app.proposals.{$proposal->key}")
                                                 </div>
                                                 <div class="col-sm-5">
-                                                    <img src="{{$item->hero}}" />
+                                                    <img src="/images/proposals/{{$proposal->key}}-hero.png" />
                                                 </div>
                                             </div>
                                         </div>
@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-md-12 text-center"><div class="intro">{!! __('app.hardware.hard_title') !!}</div></div>
                         </div>
-                        <div style="{{ $product == App\Models\Lead::PRODUCT_RETAIL ? "display:none" : "display:block" }}">
+                        <div style="{{ $lead->product == App\Models\Product::RETAIL ? "display:none" : "display:block" }}">
                             <div class="row">
                                 <div class="col-md-12"><h3 class="subtitle">{{__('app.hardware.type_cash')}}</h3></div>
                             </div>
@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="{{  $product === App\Models\Lead::PRODUCT_XEF ? "display:none" : "display:block" }}">
+                        <div style="{{  $lead->product === App\Models\Product::XEF ? "display:none" : "display:block" }}">
                             <div class="row">
                                 <div class="col-md-12"><h3 class="subtitle">{{__('app.hardware.type_cash_display')}}</h3></div>
                             </div>
@@ -337,7 +337,7 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3 text-center">
                         <div class="dossier">
-                            <a href="{{Request::url()}}/download">
+                            <a href="{{ route('lead.download', $lead) }}">
                                 <div class="item featured">
                                     <div class="icon"></div><div class="download">&nbsp</div>
                                     <span class="product text-center">{{__('app.proposal.download')}}</span>

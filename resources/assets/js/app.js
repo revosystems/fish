@@ -270,7 +270,7 @@ var Lead = function() {
         },
 
         pmsHandler: function(){
-            $("#general_typology_id").on("change", function () {
+            $("#general_typology").on("change", function () {
                 if ($("#product").val() != PRODUCT_XEF) {
                     return;
                 }

@@ -14,12 +14,12 @@ class PropertySpace extends FishDataBase
     public static function all($columns = [])
     {
         return collect([
-            static::XEF_PROPERTY_SPACE_NO                           => ['product' => Lead::PRODUCT_XEF,     'name' => 'No'],
-            static::XEF_PROPERTY_SPACE_OUTDOOR                      => ['product' => Lead::PRODUCT_XEF,     'name' => 'Terraza'],
-            static::XEF_PROPERTY_SPACE_SPLITTED_ROOMS               => ['product' => Lead::PRODUCT_XEF,     'name' => 'Comedores separados'],
-            static::RETAIL_PROPERTY_SPACE_STANDARD                  => ['product' => Lead::PRODUCT_RETAIL,  'name' => 'Estándar'],
-            static::RETAIL_PROPERTY_SPACE_DIFFERENT_ROOMS           => ['product' => Lead::PRODUCT_RETAIL,  'name' => 'Diferentes áreas / plantas'],
-            static::RETAIL_PROPERTY_SPACE_DIFFERENT_SPLITTED_ROOMS  => ['product' => Lead::PRODUCT_RETAIL,  'name' => 'Locales separados'],
+            static::XEF_PROPERTY_SPACE_NO                           => ['product' => Product::XEF,     'name' => 'No'],
+            static::XEF_PROPERTY_SPACE_OUTDOOR                      => ['product' => Product::XEF,     'name' => 'Terraza'],
+            static::XEF_PROPERTY_SPACE_SPLITTED_ROOMS               => ['product' => Product::XEF,     'name' => 'Comedores separados'],
+            static::RETAIL_PROPERTY_SPACE_STANDARD                  => ['product' => Product::RETAIL,  'name' => 'Estándar'],
+            static::RETAIL_PROPERTY_SPACE_DIFFERENT_ROOMS           => ['product' => Product::RETAIL,  'name' => 'Diferentes áreas / plantas'],
+            static::RETAIL_PROPERTY_SPACE_DIFFERENT_SPLITTED_ROOMS  => ['product' => Product::RETAIL,  'name' => 'Locales separados'],
         ]);
     }
 }

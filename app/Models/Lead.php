@@ -23,40 +23,46 @@ class Lead extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function generalTypology()
-    {
-        return $this->belongsTo(LeadGeneralTypology::class);
-    }
-
     public function propertySpaces()
     {
-        return $this->hasMany(LeadPropertySpace::class, 'lead_property_spaces');
+        return $this->hasMany(LeadPropertySpace::class, null, 'lead_property_spaces');
+    }
+
+    public function softs()
+    {
+        return $this->hasMany(LeadSoft::class, null, 'lead_softs');
+    }
+
+    public function generalTypology()
+    {
+        return GeneralTypology::find($this->general_typology);
+    }
+
+    public function product()
+    {
+        return Product::find($this->product);
+    }
+
+    public function typeSegment()
+    {
+        return TypeSegment::find($this->type_segment);
+    }
+
+    public function relatedProposal()
+    {
+        if (! $this->pos) {
+            return null;
+        }
+        return $this->pos()->posType()->relatedProposal();
     }
 
     public function pos()
     {
-        return $this->belongsTo(Pos::class);
-    }
-
-    public function getRelatedProposal()
-    {
-        //dd($this->pos()->posType()->relatedProposal());
-        if (! $this->pos) {
-            return null;
-        }
-        return $this->pos->posType->relatedProposal;
+        return Pos::find($this->pos);
     }
 
     public function getParentOrganizations()
     {
         return $this->organization->getParentOrganizations()->push($this->organization);
-    }
-    
-    public static function products()
-    {
-        return [
-            Lead::PRODUCT_XEF    => "Xef",
-            Lead::PRODUCT_RETAIL => "Retail",
-        ];
     }
 }

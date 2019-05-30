@@ -134,10 +134,10 @@
                         <td>{{ $propertySpaces }}</td>
                     </tr>
                     <tr>
-                        <td>{{ $product == App\Models\Lead::PRODUCT_XEF ? 'Aforo del local' : 'Nº empleados / comerciales' }}</td>
+                        <td>{{ $product == App\Models\Product::XEF ? 'Aforo del local' : 'Nº empleados / comerciales' }}</td>
                         <td>{{ $lead->property_capacity }}</td>
                     </tr>
-                    @if($product == App\Models\Lead::PRODUCT_XEF)
+                    @if($product == App\Models\Product::XEF)
                         <tr>
                             <td>Nº comanderos entorno crítico</td>
                             <td>{{ $xefPosCriticalQuantity }}</td>
@@ -155,7 +155,7 @@
                             <td>{{ $xefKds }}</td>
                         </tr>
                     @endif
-                    @if($product == App\Models\Lead::PRODUCT_RETAIL)
+                    @if($product == App\Models\Product::RETAIL)
                         <tr>
                             <td>Requiere venta delante del cliente final</td>
                             <td>{{ $retail_sale_mode }}</td>
@@ -215,7 +215,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h3 class="title">{!!$item->name!!}</h3>
-                        {!!$item->description!!}
+                        @include("app.proposals.{$item->key}")
                     </div>
                 </div>
             </div>
@@ -225,7 +225,7 @@
         <img src="{{ asset("images/{$platform}.jpg") }}" class="{{ $platform }}" />
         <div class="profile title absolute">HARDWARE Y ACCESORIOS</div>
         <div class="divider">&nbsp;</div>
-        <div class="hardware" style="{{  $product == App\Models\Lead::PRODUCT_RETAIL ? "display:none" : "display:block" }}">
+        <div class="hardware" style="{{  $product == App\Models\Product::RETAIL ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash')}}</h3></div>
             </div>
@@ -327,7 +327,7 @@
                 </div>
             </div>
         </div>
-        <div  class="hardware" style="{{ $product == App\Models\Lead::PRODUCT_XEF ? "display:none" : "display:block" }}">
+        <div  class="hardware" style="{{ $product == App\Models\Product::XEF ? "display:none" : "display:block" }}">
             <div class="row">
                 <div class="col-md-12"><h3 class="title">{{__('app.hardware.type_cash_display')}}</h3></div>
             </div>
