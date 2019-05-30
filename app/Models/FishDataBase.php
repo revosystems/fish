@@ -16,12 +16,7 @@ abstract class FishDataBase
         $this->reference = static::all()[$id];
     }
 
-    public static function all() {
-        return collect([
-            static::OTHER   => ['posType' => PosType::OTHER, 'name' => 'Otro'],
-            static::NONE    => ['posType' => PosType::NONE, 'name' => 'Ninguno'],
-        ]);
-    }
+    abstract public static function all();
 
     public static function find($id)
     {

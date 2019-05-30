@@ -9,7 +9,7 @@ class LeadStatusUpdate extends Model
     protected $guarded = [];
     public function statusName()
     {
-        return Lead::getStatusText($this->new_status);
+        return Status::text($this->new_status);
     }
 
     public function user()

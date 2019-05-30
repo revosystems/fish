@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Lead extends Model
 {
-    use StatusTrait;
     use Taggable;
 
     const PRODUCT_XEF       = 1;
@@ -21,6 +21,11 @@ class Lead extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function statusUpdates()
+    {
+        return $this->hasMany(LeadStatusUpdate::class)->latest();
     }
 
     public function propertySpaces()
@@ -64,5 +69,20 @@ class Lead extends Model
     public function getParentOrganizations()
     {
         return $this->organization->getParentOrganizations()->push($this->organization);
+    }
+
+    public function statusName()
+    {
+        return Status::text($this->status);
+    }
+
+    public function updateStatus($user, $body, $status)
+    {
+        if (! $this->user) {
+            $this->update(['status' => $status, 'updated_at' => Carbon::now(), 'user_id' => $user->id]);
+        } else {
+            $this->update(['status' => $status, 'updated_at' => Carbon::now()]);
+        }
+        return $this->statusUpdates()->create(['user_id' => $user->id, 'new_status' => $status, 'body' => $body]);
     }
 }

@@ -4,6 +4,7 @@
 namespace App\ThrustHelpers\Metrics;
 
 use App\Models\Lead;
+use App\Models\Status;
 use BadChoice\Thrust\Metrics\PartitionMetric;
 
 class LeadStatusMetric extends PartitionMetric
@@ -11,7 +12,7 @@ class LeadStatusMetric extends PartitionMetric
     public function calculate()
     {
         return $this->count(Lead::class, 'status')->names(function($lead){
-            return ucFirst(Lead::getStatusText($lead->status));
+            return ucFirst(Status::text($lead->status));
         });
     }
 

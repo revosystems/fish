@@ -59,12 +59,12 @@
                                         @iconMaterial(insert_comment) {{ __('admin.commentAs') }} ... {{-- __("admin." . $lead->statusName()) --}}
                                     </button>
                                     <div class="dropdown-menu w-100">
-                                        @foreach(App\Models\Lead::availableStatus() as $value => $status)
-                                            <a class="dropdown-item" onClick="setStatusAndSubmit( {{ $value}} )">
+                                        @foreach(App\Models\Status::all() as $key => $value)
+                                            <a class="dropdown-item" onClick="setStatusAndSubmit( {{ $key}} )">
                                                 <div class="dot-wrap">
-                                                    <div class="rounded-circle dot lead-status-{{$status}}"></div>
+                                                    <div class="rounded-circle dot lead-status-{{$value['name']}}"></div>
                                                 </div>
-                                                {{ __('admin.commentAs') }} <b>{{ __("admin.$status") }} </b>
+                                                {{ __('admin.commentAs') }} <b>{{ __("admin." . $value['name']) }} </b>
                                             </a>
                                         @endforeach
                                     </div>

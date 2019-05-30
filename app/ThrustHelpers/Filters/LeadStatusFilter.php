@@ -4,6 +4,7 @@
 namespace App\ThrustHelpers\Filters;
 
 use App\Models\Lead;
+use App\Models\Status;
 use BadChoice\Thrust\Filters\SelectFilter;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,10 @@ class LeadStatusFilter extends SelectFilter
 
     public function options()
     {
-        return collect(Lead::availableStatus())->flip()->mapWithKeys(function ($key, $status) {
+        return collect(Status::all())->mapWithKeys(function ($value, $key) {
+            return [__("admin.{$value->name}") => $key];
+        });
+        return collect(Status::all())->flip()->mapWithKeys(function ($key, $status) {
             return [__("admin.{$status}") => $key];
         });
     }

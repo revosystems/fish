@@ -17,7 +17,7 @@ class Erp extends FishDataBase
 
     public static function all()
     {
-        return parent::all()->union([
+        return collect([
             static::A3                  => ['name' => 'A3'],
             static::CONTASOL            => ['name' => 'CONTASOL'],
             static::CORUS               => ['name' => 'Corus'],

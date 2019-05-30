@@ -16,7 +16,7 @@ class XefPms extends FishDataBase
 
     public static function all()
     {
-        return [
+        return collect([
             static::IBELSA        => ['name' => 'Ibelsa'],
             static::MEDALLION     => ['name' => 'Medallion'],
             static::ROCKETBEDS    => ['name' => 'Rocketbeds'],
@@ -26,6 +26,6 @@ class XefPms extends FishDataBase
             static::LEAN_HOTEL    => ['name' => 'LEAN Hotel'],
             static::PROTEL        => ['name' => 'Protel'],
             static::MEWS_SYSTEMS  => ['name' => 'Mews Systems'],
-        ];
+        ]);
     }
 }

@@ -10,10 +10,10 @@ class PosType extends FishDataBase
 
     public static function all()
     {
-        return parent::all()->union([
-            static::LEGACY  => ['related_proposal' => 18, 'name' => 'Legacy'],
-            static::CLOUD   => ['related_proposal' => 49, 'name' => 'Cloud'],
-            static::IOS     => ['related_proposal' => 50, 'name' => 'iOs'],
+        return collect([
+            static::LEGACY  => ['related_proposal' => Proposal::POS_LEGACY, 'name' => 'Legacy'],
+            static::CLOUD   => ['related_proposal' => Proposal::POS_CLOUD, 'name' => 'Cloud'],
+            static::IOS     => ['related_proposal' => Proposal::POS_IOS, 'name' => 'iOs'],
         ]);
     }
 

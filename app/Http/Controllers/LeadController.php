@@ -10,7 +10,7 @@ use App\Models\LeadSoft;
 use App\Models\XefPms;
 use App\Models\Soft;
 use App\Models\TypeSegment;
-use App\Models\LeadXefSpecificTypology;
+use App\Models\XefSpecificTypology;
 use App\Models\Pos;
 use App\Models\Product;
 use App\Models\PropertySpace;
@@ -277,6 +277,6 @@ class LeadController extends Controller
         if ($lead->product == Product::RETAIL) {
             return $lead->generalTypology()->name;
         }
-        return  "{$lead->generalTypology()->name} (" . LeadXefSpecificTypology::find($lead->xef_specific_typology)->name . ")";
+        return  "{$lead->generalTypology()->name} (" . XefSpecificTypology::find($lead->xef_specific_typology)->name . ")";
     }
 }

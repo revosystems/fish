@@ -27,7 +27,7 @@ class Pos extends FishDataBase
 
     public static function all()
     {
-        return parent::all()->union([
+        return collect([
             static::AGORA         => ['posType' => PosType::LEGACY, 'name' => 'Ágora'],
             static::BDP           => ['posType' => PosType::LEGACY, 'name' => 'BDP'],
             static::CUINER        => ['posType' => PosType::LEGACY, 'name' => 'Cuiner'],

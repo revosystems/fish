@@ -22,7 +22,7 @@
     @if($lead->product == App\Models\Product::XEF)
         <div class="row">
             <div class="col-sm-12">
-                @include('admin.leads.components.select', ['object' => $lead, 'options' => \App\Models\LeadXefSpecificTypology::all(), 'name' => 'xef_specific_typology', 'title' => 'xefSpecificTypology'])
+                @include('admin.leads.components.select', ['object' => $lead, 'options' => \App\Models\XefSpecificTypology::all(), 'name' => 'xef_specific_typology', 'title' => 'xefSpecificTypology'])
             </div>
         </div>
     @endif
