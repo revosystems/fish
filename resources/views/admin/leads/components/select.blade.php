@@ -5,6 +5,15 @@
                 {{ is_array($value) ? $value['name'] : $value }}
             </option>
         @endforeach
+    @if (isset($hasOther) || isset($hasNone))
+        <option data-divider="true"></option>
+    @endif
+    @if (isset($hasOther) && $hasOther)
+        <option value='-1' @if ($object->$name === -1)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.' . ($title ?? $name)) }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
+    @endif
+    @if (isset($hasNone) && $hasNone)
+        <option value='-2' @if ($object->$name === -2)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.' . ($title ?? $name)) }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
+    @endif
     </select>
     @include('admin.leads.components.error-field', compact('name'))
 </div>

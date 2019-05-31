@@ -186,7 +186,6 @@ class LeadController extends Controller
             'xef_general_typology',
             'retail_general_typology',
             'xef_property_spaces',
-            'xef_property_spaces',
             'retail_property_spaces',
             'xef_property_quantity',
             'retail_property_quantity',
@@ -264,7 +263,7 @@ class LeadController extends Controller
 
     protected function getRequestPropertySpaces(StoreLeadRequest $request)
     {
-        return collect($request->get('property_spaces'))->reject(null);
+        return collect($request->get('xef_property_spaces') ? : $request->get('retail_property_spaces'))->reject(null);
     }
 
     protected function getRequestSofts(StoreLeadRequest $request)
