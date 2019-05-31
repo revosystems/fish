@@ -14,9 +14,9 @@ class PropertySpace extends FishDataBase
     public static function all($columns = [])
     {
         return collect([
-            static::XEF_PROPERTY_SPACE_NO                           => ['product' => Product::XEF,     'name' => 'No'],
-            static::XEF_PROPERTY_SPACE_OUTDOOR                      => ['product' => Product::XEF,     'name' => 'Terraza'],
-            static::XEF_PROPERTY_SPACE_SPLITTED_ROOMS               => ['product' => Product::XEF,     'name' => 'Comedores separados'],
+            static::XEF_PROPERTY_SPACE_NO                           => ['product' => Product::XEF,     'name' => 'Una única Sala'],
+            static::XEF_PROPERTY_SPACE_OUTDOOR                      => ['product' => Product::XEF,     'name' => 'Sala + Terraza'],
+            static::XEF_PROPERTY_SPACE_SPLITTED_ROOMS               => ['product' => Product::XEF,     'name' => 'Multiples Salas y/o Terrazas'],
             static::RETAIL_PROPERTY_SPACE_STANDARD                  => ['product' => Product::RETAIL,  'name' => 'Estándar'],
             static::RETAIL_PROPERTY_SPACE_DIFFERENT_ROOMS           => ['product' => Product::RETAIL,  'name' => 'Diferentes áreas / plantas'],
             static::RETAIL_PROPERTY_SPACE_DIFFERENT_SPLITTED_ROOMS  => ['product' => Product::RETAIL,  'name' => 'Locales separados'],

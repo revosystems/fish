@@ -174,10 +174,10 @@
                         <td>TPV actual</td>
                         <td>{{ $pos }}</td>
                     </tr>
-                    @if($franchisePosExternal)
+                    @if($canUseAnotherPos)
                         <tr>
                             <td>Autorizado para trabajar con TPV externo</td>
-                            <td>{{ $franchisePosExternal }}</td>
+                            <td>{{ $canUseAnotherPos}}</td>
                         </tr>
                     @endif
                     @if($xefPms)

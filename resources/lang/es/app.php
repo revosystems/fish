@@ -66,9 +66,9 @@ return [
         'xefKdsQuantity'            => 'Nº de pantallas',
 
         'pos'                       => 'TPV actual',
-        'retailSaleMode'          => '¿Requiere una venta delante del cliente final?',
-        'retailSaleLocation'      => '¿Dónde se vende?',
-        'franchisePosExternal'      => '¿Tiene autorización para trabajar con otro TPV?',
+        'retailSaleMode'            => '¿Requiere una venta delante del cliente final?',
+        'retailSaleLocation'        => '¿Dónde se vende?',
+        'canUseAnotherPos'          => '¿Tiene autorización para trabajar con otro TPV?',
         'xefPms'                    => 'PMS actual',
         'erp'                       => 'ERP actual',
         //                'xefErp'                    => 'ERP actual',

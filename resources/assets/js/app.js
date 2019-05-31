@@ -190,7 +190,6 @@ var Lead = function() {
 
             $("#type_segment").on("change", function () {
                 Lead.typeSegmentsDependency($(this),false);
-                Lead.posRetailHandler();
             });
         },
 
@@ -226,7 +225,6 @@ var Lead = function() {
                             .closest(".bootstrap-select").addClass("started");
                     }
                     Lead.typeSegmentsDependency($("select[name=type_segment]"),false);
-                    Lead.posRetailHandler();
                 }
             });
         },
@@ -249,10 +247,9 @@ var Lead = function() {
 
         devicesHandler: function(){
             $("#devices").on("change", function () {
-                if($(this).val()==1){
+                if ($(this).val() == 1) {
                     $(".devices_wrapper").show().find("textarea").focus();
-                }
-                else{
+                } else {
                     $(".devices_wrapper").hide();
                 }
             });
@@ -299,33 +296,22 @@ var Lead = function() {
         },
 
         posExternalHandler: function(){
-            $("#xef_property_franchise").on("change", function () {
-                if($(this).val() != 2){
-                    $("#franchise_pos_external").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
-                }
-                else{
-                    $("#franchise_pos_external").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
+            $("#property_franchise").on("change", function () {
+                console.log($(this).val());
+                if($(this).val() == 1){
+                    $("#can_use_another_pos").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
+                } else {
+                    $("#can_use_another_pos").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
                 }
             });
         },
 
-        posRetailHandler:function(){
-            if (($("#product").val() == PRODUCT_XEF && $("#xef_property_franchise").val() == 1) || $("#product").val() == PRODUCT_RETAIL && $("#type_segment").val() == 5){
-                $("#franchise_pos_external").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
-            } else {
-                $("#franchise_pos_external").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
-            }
-        },
-
         erpHandler: function(){
             $("#erp,#xef_erp,#retail_erp").on("change", function () {
-
                 var base_id = $(this).attr("id").replace("_id", "");
-
-                if($(this).val()==-1){
+                if ($(this).val() == -1) {
                     $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                }
-                else{
+                } else {
                     $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
@@ -334,99 +320,34 @@ var Lead = function() {
         posHandler: function(){
             $("#pos").on("change", function () {
                 var base_id = $(this).attr("id").replace("_id", "");
-                if($(this).val() == "-1"){
+                if ($(this).val() == "-1") {
                     $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                }
-                else{
+                } else {
                     $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
         },
 
-        multiselectHandler: function(){ // PENDENT OPTIMITZAR
-            Lead.multiselectChained($("#xef_soft,#retail_soft"));
-            Lead.multiselectSetNone($("#xef_property_spaces,#retail_property_spaces"));
-            Lead.multiselectFilterHandler();
-
-            $("select#xef_soft,select#retail_soft").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
-                Lead.multiselectChained($(this),clickedIndex);
-                Lead.multiselectFilterHandler();
-
-                var id = $(this).attr("id"); //test (O_O)?
-                if($("#"+id).val().length===0){
-                    $("#"+id).closest(".started").removeClass("started");
-                }
-            });
-
-            $("#xef_property_spaces,#retail_property_spaces").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
-                Lead.multiselectSetNone($(this), clickedIndex);
-                Lead.multiselectFilterHandler();
-
-                if($(this).val().length==0){
-                    $(this).closest(".form-group").find(".started").removeClass("started");
-                }
-            });
-        },
-
-        multiselectFilterHandler: function(){
-            $("#xef_soft,#retail_soft,#xef_property_spaces,#retail_property_spaces").closest(".bootstrap-select").find(".filter-option .hideHint:gt(0)").hide();
-        },
-
-        multiselectChained: function(dropdown,lastSelected){
-            if (dropdown.length>0) {
-                var $select =  dropdown,
-                    values = $select.val();
-
-                if(values.indexOf("other") != -1){
-                    $("#"+$select.attr("id")+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
+        softHandler: function(){
+            $("#retail_soft,#xef_soft").on("change", function () {
+                var base_id = $(this).attr("id").replace("_id", "");
+                if ($(this).val() == "-1") {
+                    $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
                 } else {
-                    $("#"+$select.attr("id")+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
+                    $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
-
-                if (lastSelected !== undefined){
-                    var lastValue = $select.find("option").eq(lastSelected).val();
-
-                    if (lastValue != "none") {
-                        $select.find("[value=none]").prop("selected",false);
-                        $select.selectpicker("refresh");
-                    } else if(lastValue == "none") {
-                        $select.find("option:not([value=none])").prop("selected", false);
-                        $select.selectpicker("refresh");
-                        $("#"+$select.attr("id")+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                    }
-                }
-            }
+            });
         },
 
-        multiselectSetNone: function(dropdown,lastSelected){
-            if(dropdown.length>0){
-                var $select =  dropdown,
-                    values = $select.val();
-
-                if (lastSelected !== undefined){
-                    var lastValue = $select.find("option").eq(lastSelected).val();
-                    if ((lastValue != 1 && $("#product").val() == PRODUCT_XEF) || (lastValue != 4 && $("#product").val() == PRODUCT_RETAIL) ){
-                        if ($("#product").val() == PRODUCT_XEF ) {
-                            $select.find("[value=1]").prop("selected",false);
-                        } else if ($("#product").val() == PRODUCT_RETAIL) {
-                            $select.find("[value=4]").prop("selected",false);
-                        }
-
-                        $select.selectpicker("refresh");
-                    }
-                    else if ((lastValue == 1 && $("#product").val() == PRODUCT_XEF) || (lastValue == 4 && $("#product").val() == PRODUCT_RETAIL) ){
-                        if($("#product").val() == PRODUCT_XEF) {
-                            $select.find("option:not([value=1])").prop("selected", false);
-                        } else if($("#product").val() == PRODUCT_RETAIL) {
-                            $select.find("option:not([value=4])").prop("selected", false);
-                        }
-                        $select.selectpicker("refresh");
-                    }
+        propertySpacesHandler: function(){
+            $("#retail_property_spaces, #xef_property_spaces").on("change", function () {
+                var base_id = $(this).attr("id").replace("_id", "");
+                if ($(this).val() == "-1") {
+                    $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
+                } else {
+                    $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
-                if (values.length < 2) {
-                    //$select.closest(".bootstrap-select").removeClass("started");
-                }
-            }
+            });
         },
 
         mobileTabs: function(){
@@ -459,8 +380,9 @@ $(document).ready(function(){
     Lead.pmsHandler();
     Lead.posExternalHandler();
     Lead.posHandler();
+    Lead.softHandler();
     Lead.erpHandler();
-    Lead.multiselectHandler();
+    Lead.propertySpacesHandler();
     Lead.mobileTabs();
     App.navigationHandler();
     App.navigationMobileStatus();

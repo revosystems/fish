@@ -1,9 +1,9 @@
 <div class="form-group isPicker @if ($errors->has($name))is-invalid @endif @if(isset($disabledOn) && old($disabledOn) != 1)disabled @endif @if(isset($disabled) && $disabled)disabled @endif">
     <select class="selectpicker @if (old($name) !== null)started @endif" name="{{$name}}" id="{{$id ?? $name}}" title="{{ __("app.lead." . ($title ?? $name)) }}" data-size="5" @if(isset($disabledOn) && old($disabledOn) != 1)disabled @endif @if(isset($disabled) && $disabled)disabled @endif>
-        @if (isset($hasOther) && $hasOther)
+        @if (isset($hasOther))
             <option value='-1' @if (old($name) === "-1")selected @endif data-content="<div class='hideHint'>{{ __('app.lead.' . ($title ?? $name)) }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
         @endif
-        @if (isset($hasNone) && $hasNone)
+        @if (isset($hasNone))
             <option value='-2' @if (old($name) === "-2")selected @endif data-content="<div class='hideHint'>{{ __('app.lead.' . ($title ?? $name)) }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
         @endif
         @if (isset($hasOther) || isset($hasNone))

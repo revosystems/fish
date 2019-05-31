@@ -16,7 +16,7 @@
     @endif
     <div class="row">
         <div class="col-sm-12">
-            @include('admin.leads.partials.property-spaces')
+            @include('admin.leads.components.select', ['options' => App\Models\PropertySpace::all()->where('product', $lead->product), 'name' => 'property_spaces', 'title' => 'propertySpaces'])
         </div>
     </div>
     <div class="row">

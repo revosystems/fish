@@ -38,108 +38,10 @@ var Layouts = function() {
     }
 }();
 
-var Lead = function(){
-    return {
-        multiselectHandler: function(){ // PENDENT OPTIMITZAR
-            Lead.multiselectChained($("#soft"));
-            Lead.multiselectSetNone($("#property_spaces"));
-            Lead.multiselectFilterHandler();
-
-            $("select#soft").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
-                Lead.multiselectChained($(this),clickedIndex);
-                Lead.multiselectFilterHandler();
-
-                var id = $(this).attr("id"); //test (O_O)?
-                if($("#"+id).val().length===0){
-                    $("#"+id).closest(".started").removeClass("started");
-                }
-            });
-
-            $("#property_spaces").on("changed.bs.select", function (e, clickedIndex, isSelected, previousValue) {
-                Lead.multiselectSetNone($(this), clickedIndex);
-                Lead.multiselectFilterHandler();
-
-                if($(this).val().length==0){
-                    $(this).closest(".form-group").find(".started").removeClass("started");
-                }
-            });
-        },
-
-        multiselectFilterHandler: function(){
-            $("#soft,#property_spaces").closest(".bootstrap-select").find(".filter-option .hideHint:gt(0)").hide();
-        },
-
-        multiselectChained: function(dropdown,lastSelected){
-            if(dropdown.length>0){
-                var $select =  dropdown,
-                    values = $select.val();
-
-                if(values.indexOf("other")!=-1){
-                    $("#"+$select.attr("id")+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                }
-                else{
-                    $("#"+$select.attr("id")+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-
-                if (lastSelected !== undefined){
-                    var lastValue = $select.find("option").eq(lastSelected).val();
-
-                    if(lastValue!="none"){
-                        $select.find("[value=none]").prop("selected",false);
-                        $select.selectpicker("refresh");
-                    }
-                    else if(lastValue=="none"){
-                        $select.find("option:not([value=none])").prop("selected", false);
-                        $select.selectpicker("refresh");
-                        $("#"+$select.attr("id")+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                    }
-                }
-            }
-        },
-
-        multiselectSetNone: function(dropdown,lastSelected){
-            if(dropdown.length>0){
-                var $select =  dropdown,
-                    values = $select.val();
-
-                if (lastSelected !== undefined){
-                    var lastValue = $select.find("option").eq(lastSelected).val();
-
-                    if((lastValue!=1 && $("#product").val()==1) || (lastValue!=4 && $("#product").val()==2) ){
-
-                        if($("#product").val()==1){
-                            $select.find("[value=1]").prop("selected",false);
-                        }
-                        if($("#product").val()==2){
-                            $select.find("[value=4]").prop("selected",false);
-                        }
-
-                        $select.selectpicker("refresh");
-                    }
-                    else if((lastValue==1 && $("#product").val()==1) || (lastValue==4 && $("#product").val()==2) ){
-                        if($("#product").val()==1) {
-                            $select.find("option:not([value=1])").prop("selected", false);
-                        }
-                        if($("#product").val()==2) {
-                            $select.find("option:not([value=4])").prop("selected", false);
-                        }
-                        $select.selectpicker("refresh");
-                    }
-                }
-
-                if(values.length<2){
-                    //$select.closest(".bootstrap-select").removeClass("started");
-                }
-            }
-        }
-    }
-}();
-
 
 $(document).ready(function() {
     Layouts.toggleSidebar();
     Forms.selects();
     Forms.placeholders();
     Forms.textareas();
-    Lead.multiselectHandler();
 });

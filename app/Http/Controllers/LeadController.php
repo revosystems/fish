@@ -23,18 +23,6 @@ class LeadController extends Controller
         try {
             $inputs = $this->requestSanitizedInputs($request);
             $lead   = Lead::create($inputs + ['user_id' => auth()->user()->id]);
-            $this->getRequestPropertySpaces($request)->each(function ($propertySpace) use ($lead) {
-                LeadPropertySpace::create([
-                    "lead_id"           => $lead->id,
-                    "property_space"    => $propertySpace,
-                ]);
-            });
-            $this->getRequestSofts($request)->each(function ($soft) use ($lead) {
-                LeadSoft::create([
-                    "lead_id"   => $lead->id,
-                    "soft"      => $soft,
-                ]);
-            });
             return  redirect()->route('lead.show', [$lead->id])->with('status', 'Lead creado OK');
         } catch (\Exception $e) {
             dd($e->getMessage());
@@ -73,7 +61,7 @@ class LeadController extends Controller
 
         $revoVersion .= " (" . TypeSegment::find($lead->type_segment)->name . ")";
         if ($lead->product == Product::XEF) {
-            $franchise              = $lead->xef_property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
+            $franchise              = $lead->property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
         } elseif ($lead->product == Product::RETAIL) {
             $franchise = $lead->type_segment == TypeSegment::RETAIL_SEGMENT_FRANCHISE ? __('app.lead.yes') : __('app.lead.no');
         }
@@ -93,7 +81,7 @@ class LeadController extends Controller
             'retailSaleLocation'        => $lead->retail_sale_location ? __('app.lead.onLocal') : __('app.lead.onMobility'),
             'pos'                       => $lead->posName(),
             'franchise'                 => $franchise,
-            'franchisePosExternal'      => $this->isFranchisePosExternal($lead),
+            'canUseAnotherPos'          => $this->can_use_another_pos ? __('app.lead.yes') : __('app.lead.no'),
             'erp'                       => $lead->erpName(),
             'software'                  => $lead->softwareName(),
             'xefPosCriticalQuantity'    => $lead->product == Product::XEF ? $lead->xef_pos_critical_quantity : null,
@@ -164,14 +152,6 @@ class LeadController extends Controller
         })->implode('');
     }
 
-    protected function isFranchisePosExternal($lead)
-    {
-        if (! in_array($lead->type_segment, [TypeSegment::RETAIL_SEGMENT_STORE, TypeSegment::XEF_SEGMENT_SMALL])) {
-            return $lead->franchise_pos_external ? __('app.lead.yes') : __('app.lead.no');
-        }
-        return null;
-    }
-
     protected function requestSanitizedInputs(StoreLeadRequest $request)
     {
         $inputs = $request->except([
@@ -187,6 +167,8 @@ class LeadController extends Controller
             'retail_soft',
         ]);
         return array_merge($inputs, [
+            "soft"              => $request->get('xef_soft') ? : $request->get('retail_soft'),
+            "property_spaces"   => $request->get('xef_property_spaces') ? : $request->get('retail_property_spaces'),
             "property_quantity" => $request->get('xef_property_quantity') ? : $request->get('retail_property_quantity'),
             "general_typology"  => $request->get('xef_general_typology') ? : $request->get('retail_general_typology'),
             "property_capacity" => $request->get('xef_property_capacity') ? : $request->get('retail_property_capacity'),

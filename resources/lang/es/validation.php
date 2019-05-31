@@ -231,7 +231,7 @@ return [
             'required_if'  => 'Campo obligatorio',
             'numeric'      => 'Debe ser numérico',
         ],
-        'xef_property_franchise' => [
+        'property_franchise' => [
             'required_if'  => 'Debe seleccionar una opción',
         ],
         'xef_property_spaces' => [
@@ -296,7 +296,7 @@ return [
             'required_if'  => 'Debe seleccionar una opción',
         ],
         // > XEF (isFranchise) & RETAIL (isFranchise)
-        'franchise_pos_external' => [
+        'can_use_another_pos' => [
             'required_if'  => 'Debe seleccionar una opción',
         ],
         // > XEF (isHotel)

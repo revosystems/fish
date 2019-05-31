@@ -7,13 +7,13 @@
         @include('app.lead.components.input', ['name' => 'xef_property_quantity', 'title' => 'propertyQuantity'])
     </div>
     <div class="col-sm-6 col-md-6">
-        @include('app.lead.components.select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.noOwnLocal')], 'name' => 'xef_property_franchise', 'title' => 'xefPropertyFranchise'])
+        @include('app.lead.components.select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.noOwnLocal')], 'name' => 'property_franchise', 'title' => 'xefPropertyFranchise'])
     </div>
 </div>
 
 <div class="row @segmentClasses(App\Models\Product::XEF)" style="display: none;">
     <div class="col-sm-6 col-md-6">
-        @include('app.lead.components.multiple-select', ['name' => 'xef_property_spaces', 'title' => 'propertySpaces', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::XEF)])
+        @include('app.lead.components.select', ['name' => 'xef_property_spaces', 'title' => 'propertySpaces', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::XEF)])
     </div>
     <div class="col-sm-6 col-md-6">
         <div class="form-group">
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="col-sm-4 col-md-4">
-        @include('app.lead.components.multiple-select', ['name' => 'retail_property_spaces', 'title' => 'propertySpaces', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::RETAIL)])
+        @include('app.lead.components.select', ['name' => 'retail_property_spaces', 'title' => 'propertySpaces', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::RETAIL)])
     </div>
     <div class="col-sm-4 col-md-4">
         <div class="form-group">

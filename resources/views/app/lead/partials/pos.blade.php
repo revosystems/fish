@@ -8,6 +8,6 @@
 </div>
 <div class="row @segmentClasses()" style="display: none;">
     <div class="col-sm-12 col-md-12">
-        @include('app.lead.components.select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.no')], 'name' => 'franchise_pos_external', 'title' => 'franchisePosExternal', 'disabledOn' => 'xef_property_franchise'])
+        @include('app.lead.components.select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.no')], 'name' => 'can_use_another_pos', 'title' => 'canUseAnotherPos', 'disabledOn' => 'property_franchise'])
     </div>
 </div>

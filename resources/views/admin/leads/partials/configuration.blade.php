@@ -32,7 +32,7 @@
     @endif
     <div class="row">
         <div class="col-sm-12">
-            @include('admin.leads.partials.franchise-pos-external')
+            @include('admin.leads.partials.can-use-another-pos')
         </div>
     </div>
     @include('admin.leads.partials.erp')

@@ -1,10 +1,10 @@
 <div class="row @segmentClasses($product)" style="display: none;">
-    <input type="hidden" name="{{$name}}[]" value="">
     <div class="col-sm-6 col-md-6">
+        <input type="hidden" name="{{$name}}[]" value="">
         <div class="form-group isPicker hasOverflow @if($errors->has($name))is-invalid @endif">
-            <select class="selectpicker @if (old($name) != '')started @endif" name="{{$name}}[]" id="soft" title="{{ $title }}" data-size="5" multiple>
-                <option value='other' @if (old($name) && in_array(('other'), old($name)))selected @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
-                <option value='none' @if (old($name) && in_array(('none'), old($name)))selected @endif data-content="<div class='hideHint'>{{ __('app.lead.retailSoft') }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
+            <select class="selectpicker @if (old($name) !== null)started @endif" name="{{$name}}" id="soft" title="{{ $title }}" data-size="5" multiple>
+                <option value='-1' @if (old($name) === "-1")selected @endif data-content="<div class='hideHint'>{{ $title }} </div><span class='colored'> {{ __('app.lead.other') }}</span>"> {{ __('app.lead.other') }} </option>
+                <option value='-2' @if (old($name) === "-2")selected @endif data-content="<div class='hideHint'>{{ $title }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
                 <option data-divider="true"></option>
                 @foreach($options as $softType)
                     <optgroup label="{{ App\Models\SoftType::find($softType)->reference['name'] }}">

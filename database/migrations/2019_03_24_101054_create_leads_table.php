@@ -28,11 +28,12 @@ class CreateLeadsTable extends Migration
             $table->string('city')->nullable();
             $table->tinyInteger('product')->nullable();
             $table->tinyInteger('type_segment')->nullable();
-            $table->integer('general_typology')->nullable();
-            $table->integer('xef_specific_typology')->nullable();
+            $table->tinyInteger('general_typology')->nullable();
+            $table->tinyInteger('xef_specific_typology')->nullable();
+            $table->tinyInteger('property_spaces')->nullable();
             $table->integer('property_quantity')->nullable()->default('0');
             $table->integer('property_capacity')->nullable()->default('0');
-            $table->boolean('xef_property_franchise')->default(0);
+            $table->boolean('property_franchise')->default(0);
             $table->integer('devices')->nullable();
             $table->text('devices_current')->nullable();
             $table->integer('xef_pos_critical_quantity')->nullable()->default('0');
@@ -43,7 +44,7 @@ class CreateLeadsTable extends Migration
             $table->tinyInteger('pos')->nullable();
             $table->tinyInteger('retail_sale_mode')->default(0);
             $table->tinyInteger('retail_sale_location')->default(0);
-            $table->integer('franchise_pos_external')->nullable();
+            $table->tinyInteger('can_use_another_pos')->default(0);
             $table->tinyInteger('xef_pms')->nullable();
             $table->string('xef_pms_other')->nullable();
             $table->tinyInteger('erp')->nullable();
