@@ -131,7 +131,7 @@
                     </tr>
                     <tr>
                         <td>Espacios</td>
-                        <td>{{ $propertySpaces }}</td>
+                        <td>{{ $propertySpace }}</td>
                     </tr>
                     <tr>
                         <td>{{ $product == App\Models\Product::XEF ? 'Aforo del local' : 'Nº empleados / comerciales' }}</td>

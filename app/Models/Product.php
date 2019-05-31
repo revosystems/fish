@@ -14,9 +14,4 @@ class Product extends FishDataBase
             static::RETAIL  => ['key' => 'retail', 'name' => 'Retail'],
         ]);
     }
-
-    public function relatedProposal()
-    {
-        return Proposal::find($this->reference['related_proposal']);
-    }
 }

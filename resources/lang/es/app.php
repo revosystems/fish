@@ -45,8 +45,8 @@ return [
         'city'          => 'Población',
 
         // PROPERTY
-        'propertyQuantity'         => '¿Cuantos locales tiene el propietario?',
-        'propertySpaces'           => 'Espacios',
+        'propertyQuantity'          => '¿Cuantos locales tiene el propietario?',
+        'propertySpace'             => 'Espacios',
         // > XEF
         'xefPropertyFranchise'     => '¿Es franquicia?',
         'xefPropertyCapacity'      => 'Aforo local para carta, no eventos',

@@ -22,4 +22,9 @@ class PropertySpace extends FishDataBase
             static::RETAIL_PROPERTY_SPACE_DIFFERENT_SPLITTED_ROOMS  => ['product' => Product::RETAIL,  'name' => 'Locales separados'],
         ]);
     }
+
+    public function needProfiles()
+    {
+        return ! in_array($this->id, [static::XEF_PROPERTY_SPACE_NO, static::RETAIL_PROPERTY_SPACE_STANDARD]);
+    }
 }

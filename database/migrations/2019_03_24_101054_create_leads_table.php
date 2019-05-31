@@ -30,7 +30,7 @@ class CreateLeadsTable extends Migration
             $table->tinyInteger('type_segment')->nullable();
             $table->tinyInteger('general_typology')->nullable();
             $table->tinyInteger('xef_specific_typology')->nullable();
-            $table->tinyInteger('property_spaces')->nullable();
+            $table->tinyInteger('property_space')->nullable();
             $table->integer('property_quantity')->nullable()->default('0');
             $table->integer('property_capacity')->nullable()->default('0');
             $table->boolean('property_franchise')->default(0);
@@ -55,20 +55,6 @@ class CreateLeadsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        Schema::create('lead_property_spaces', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('lead_id');
-            $table->integer('property_space');
-            $table->timestamps();
-        });
-
-        Schema::create('lead_softs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('lead_id');
-            $table->integer('soft');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -78,8 +64,6 @@ class CreateLeadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lead_softs');
-        Schema::dropIfExists('leads_property_spaces');
         Schema::dropIfExists('leads');
     }
 }

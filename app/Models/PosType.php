@@ -11,17 +11,17 @@ class PosType extends FishDataBase
     public static function all()
     {
         return collect([
-            static::LEGACY  => ['related_proposal' => Proposal::POS_LEGACY, 'name' => 'Legacy'],
-            static::CLOUD   => ['related_proposal' => Proposal::POS_CLOUD, 'name' => 'Cloud'],
-            static::IOS     => ['related_proposal' => Proposal::POS_IOS, 'name' => 'iOs'],
+            static::LEGACY  => ['proposal' => Proposal::POS_LEGACY, 'name' => 'Legacy'],
+            static::CLOUD   => ['proposal' => Proposal::POS_CLOUD, 'name' => 'Cloud'],
+            static::IOS     => ['proposal' => Proposal::POS_IOS, 'name' => 'iOs'],
         ]);
     }
 
-    public function relatedProposal()
+    public function proposal()
     {
-        if (! isset($this->reference['related_proposal'])) {
+        if (! isset($this->reference['proposal'])) {
             return;
         }
-        return Proposal::find($this->reference['related_proposal']);
+        return Proposal::find($this->reference['proposal']);
     }
 }

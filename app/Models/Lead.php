@@ -28,14 +28,14 @@ class Lead extends Model
         return $this->hasMany(LeadStatusUpdate::class)->latest();
     }
 
-    public function propertySpaces()
+    public function propertySpace()
     {
-        return $this->hasMany(LeadPropertySpace::class, null, 'lead_property_spaces');
+        return PropertySpace::find($this->property_space);
     }
 
-    public function softs()
+    public function soft()
     {
-        return $this->hasMany(LeadSoft::class, null, 'lead_softs');
+        return Soft::find($this->soft);
     }
 
     public function generalTypology()

@@ -340,7 +340,7 @@ var Lead = function() {
         },
 
         propertySpacesHandler: function(){
-            $("#retail_property_spaces, #xef_property_spaces").on("change", function () {
+            $("#retail_property_space, #xef_property_space").on("change", function () {
                 var base_id = $(this).attr("id").replace("_id", "");
                 if ($(this).val() == "-1") {
                     $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");

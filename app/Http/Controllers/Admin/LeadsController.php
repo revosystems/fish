@@ -20,7 +20,7 @@ class LeadsController extends Controller
 
     public function update(Lead $lead)
     {
-        $lead->update(request()->except(['property_spaces', 'soft']));
+        $lead->update(request()->all());
         return back()->withMessage('updated');
     }
 }

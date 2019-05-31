@@ -234,11 +234,11 @@ return [
         'property_franchise' => [
             'required_if'  => 'Debe seleccionar una opción',
         ],
-        'xef_property_spaces' => [
+        'xef_property_space' => [
             'required'     => 'Debe seleccionar una opción',
             'required_if'  => 'Debe seleccionar una opción',
         ],
-        'retail_property_spaces' => [
+        'retail_property_space' => [
             'required'     => 'Debe seleccionar una opción',
             'required_if'  => 'Debe seleccionar una opción',
         ],

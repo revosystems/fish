@@ -5,8 +5,6 @@ namespace App\Models;
 
 abstract class FishDataBase
 {
-    const OTHER = -1;
-    const NONE  = -2;
     public $id;
     public $reference;
 
@@ -32,10 +30,5 @@ abstract class FishDataBase
     public function __get($name)
     {
         return $this->reference[$name];
-    }
-
-    public static function other()
-    {
-        return ['posType' => -1, 'name' => 'Ágora'];
     }
 }

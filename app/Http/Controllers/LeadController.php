@@ -75,7 +75,7 @@ class LeadController extends Controller
             'hardware'                  => $hardware,
             'profile'                   => $revoVersion,
             'typology'                  => $lead->xefTypologyName(),
-            'propertySpaces'            => $lead->propertySpaces->pluck('name')->implode(', '),
+            'propertySpace'            => $lead->propertySpace()->name,
             'devices'                   => $this->devicesNames($lead),
             'retailSaleMode'            => $lead->retail_sale_mode ? __('app.lead.yes') : __('app.lead.no'),
             'retailSaleLocation'        => $lead->retail_sale_location ? __('app.lead.onLocal') : __('app.lead.onMobility'),
@@ -106,15 +106,15 @@ class LeadController extends Controller
     public function getProposals(Lead $lead)
     {
         $proposals = collect();
-        $proposals->push($lead->posType()->relatedProposal());
+        $proposals->push($lead->posType()->proposal());
         $typologyProposals = $lead->generalTypology()->proposals();
         $proposals->push($typologyProposals->first());
         $proposals->push($lead->productProposal());
-        if ($lead->propertySpaces()->whereIn('property_space', [PropertySpace::XEF_PROPERTY_SPACE_NO, PropertySpace::RETAIL_PROPERTY_SPACE_STANDARD])->count() == 0) {
+        if ($lead->propertySpace()->needProfiles()) {
             $proposals->push(Proposal::find(Proposal::PROFILES));
         }
-        $typologyProposals->slice(1)->each(function ($relatedProposal) use ($proposals) {
-            $proposals->push($relatedProposal);
+        $typologyProposals->slice(1)->each(function ($proposal) use ($proposals) {
+            $proposals->push($proposal);
         });
         $proposals->push(Proposal::find($lead->property_quantity > 1 ? Proposal::REVO_MASTER : Proposal::REVO_BACK));
         if ($lead->erp || $lead->erp_other) {
@@ -124,24 +124,15 @@ class LeadController extends Controller
             $proposals->push(Proposal::find(Proposal::PMS));
         }
 
-        // SOFT
-        // TODO:: fix this;
-//        $softCategoryTypes  = [];
-//        $lead->soft()->each(function($soft) use ($proposals, $softCategoryTypes) {
-//            if ($soft == "none") {
-//                return;
-//            }
-//            if ($soft == "other") {
-//                return $proposals->push(Proposal::find(Proposal::SOFT_OTHER));
-//            }
-//            $soft = LeadSoft::find($soft);
-//            if (in_array($soft->softType, $softCategoryTypes)) {
-//                return;
-//            }
-//
-//            $softCategoryTypes[] = $soft->softType;
-//            $proposals->push($soft->softType->relatedProposal);
-//        });
+        if ($lead->erp || $lead->erp_other) {
+            $proposals->push(Proposal::find(Proposal::ERP));
+        }
+
+        if ($lead->soft > 0) {
+            $proposals->push(Proposal::find($lead->soft()->softType()->proposal()));
+        } elseif ($lead->soft_other) {
+            $proposals->push(Proposal::find(Proposal::SOFT_OTHER));
+        }
         return $proposals->reject(null);
     }
 
@@ -157,8 +148,8 @@ class LeadController extends Controller
         $inputs = $request->except([
             'xef_general_typology',
             'retail_general_typology',
-            'xef_property_spaces',
-            'retail_property_spaces',
+            'xef_property_space',
+            'retail_property_space',
             'xef_property_quantity',
             'retail_property_quantity',
             'xef_property_capacity',
@@ -168,16 +159,16 @@ class LeadController extends Controller
         ]);
         return array_merge($inputs, [
             "soft"              => $request->get('xef_soft') ? : $request->get('retail_soft'),
-            "property_spaces"   => $request->get('xef_property_spaces') ? : $request->get('retail_property_spaces'),
+            "property_space"   => $request->get('xef_property_space') ? : $request->get('retail_property_space'),
             "property_quantity" => $request->get('xef_property_quantity') ? : $request->get('retail_property_quantity'),
             "general_typology"  => $request->get('xef_general_typology') ? : $request->get('retail_general_typology'),
             "property_capacity" => $request->get('xef_property_capacity') ? : $request->get('retail_property_capacity'),
         ]);
     }
 
-    protected function getRequestPropertySpaces(StoreLeadRequest $request)
+    protected function getRequestPropertySpace(StoreLeadRequest $request)
     {
-        return collect($request->get('xef_property_spaces') ? : $request->get('retail_property_spaces'))->reject(null);
+        return collect($request->get('xef_property_space') ? : $request->get('retail_property_space'))->reject(null);
     }
 
     protected function getRequestSofts(StoreLeadRequest $request)
