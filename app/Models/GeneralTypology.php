@@ -11,7 +11,6 @@ class GeneralTypology extends FishDataBase
     const TAKE_AWAY                                     = 5;
     const DELIVERY                                      = 6;
     const HOTEL                                         = 7;
-    const KIOSK                                         = 8;
     const XEF_PANADERIA                                 = 9;
     const FOODTRUCK                                     = 10;
     const COMIDA_AL_PESO                                = 11;
@@ -29,38 +28,32 @@ class GeneralTypology extends FishDataBase
     public static function all()
     {
         return collect([
-            static::CAFETERIA                                    => ['product' => Product::XEF,     'name' => 'Cafetería',  'proposal' => Proposal::TIPO_CAFETERIA, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF]],
-            static::BAR                                          => ['product' => Product::XEF,     'name' => 'Bar',        'proposal' => Proposal::TIPO_BAR, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF]],
-            static::RESTAURANTE                                  => ['product' => Product::XEF,     'name' => 'Restaurante', 'proposal' => Proposal::TIPO_RESTAURANTE, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF, Proposal::REVO_KDS]],
-            static::DISCOTECA                                    => ['product' => Product::XEF,     'name' => 'Discoteca',  'proposal' => Proposal::TIPO_DISCOTECA, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF]],
-            static::TAKE_AWAY                                    => ['product' => Product::XEF,     'name' => 'Take away',  'proposal' => Proposal::TIPO_TAKEAWAY, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_KDS]],
-            static::DELIVERY                                     => ['product' => Product::XEF,     'name' => 'Delivery',   'proposal' => Proposal::TIPO_DELIVERY, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_KDS, Proposal::REVO_DDS]],
-            static::HOTEL                                        => ['product' => Product::XEF,     'name' => 'Hotel',      'proposal' => Proposal::TIPO_HOTEL, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_KDS, Proposal::REVO_DDS,Proposal::REVO_KIOSK]],
-//            static::KIOSK                                        => ['product' => Product::XEF,   'name' => 'Kiosk', 'proposal' => Proposal::TIPO_KIOSKO, 'related_proposals' => [14, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::self::REVO_KDS]],
-            static::XEF_PANADERIA                                => ['product' => Product::XEF,     'name' => 'Panadería',  'proposal' => Proposal::TIPO_PANADERIA_XEF,  'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL,Proposal::REVO_DISPLAY]],
-            static::FOODTRUCK                                    => ['product' => Product::XEF,     'name' => 'Foodtruck',  'proposal' => Proposal::TIPO_FOODTRUCK, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::COMIDA_AL_PESO                               => ['product' => Product::XEF,     'name' => 'Comida al peso', 'proposal' => Proposal::TIPO_COMIDA, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL,Proposal::REVO_DISPLAY, Proposal::REVO_KDS]],
-            static::SOLO_EVENTOS                                 => ['product' => Product::XEF,     'name' => 'Solo eventos', 'proposal' => Proposal::TIPO_EVENTOS],
-            static::RETAIL_STORE                                 => ['product' => Product::RETAIL,  'name' => 'Retail store', 'proposal' => Proposal::TIPO_RETAIL_STORE, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::DISTRIBUCION_DE_PRODUCTOS_Y_FUERZA_COMERCIAL => ['product' => Product::RETAIL,  'name' => 'Distribución de productos y Fuerza comercial', 'proposal' => Proposal::TIPO_DISTRIBUCION_FUERZA, 'related_proposals' => [Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::AUTOVENTA_MOVILIDAD                          => ['product' => Product::RETAIL,  'name' => 'Autoventa / movilidad', 'proposal' => Proposal::TIPO_AUTOMOVILIDAD, 'related_proposals' => [Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::PELUQUERIA_ESTETICA                          => ['product' => Product::RETAIL,  'name' => 'Peluquería / estética', 'proposal' => Proposal::TIPO_PELUESTETICA, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_RETAIL]],
-            static::RETAIL_PANADERIA                             => ['product' => Product::RETAIL,  'name' => 'Panadería', 'proposal' => Proposal::TIPO_PANADERIA_RETAIL, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::VENTA_GRANEL                                 => ['product' => Product::RETAIL, 'name' => 'Venta a granel', 'proposal' => Proposal::TIPO_VENTA_GRANEL, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::AVIACION_TRANSPORTE                          => ['product' => Product::RETAIL,  'name' => 'Aviación / transporte', 'proposal' => Proposal::TIPO_AVITRANSPORTE, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::EVENTOS_CORNERS                              => ['product' => Product::RETAIL,  'name' => 'Eventos / corners', 'proposal' => Proposal::TIPO_EVENTCORNERS, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
-            static::ESPECTACULOS                                 => ['product' => Product::RETAIL,  'name' => 'Espectáculos', 'proposal' => Proposal::TIPO_ESPECTACULOS, 'related_proposals' => [Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_RETAIL]],
+            static::CAFETERIA                                    => ['product' => Product::XEF,     'name' => 'Cafetería',  'proposals' => [Proposal::TIPO_CAFETERIA, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF]],
+            static::BAR                                          => ['product' => Product::XEF,     'name' => 'Bar',        'proposals' => [Proposal::TIPO_BAR, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF]],
+            static::RESTAURANTE                                  => ['product' => Product::XEF,     'name' => 'Restaurante', 'proposals' => [Proposal::TIPO_RESTAURANTE, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF, Proposal::REVO_KDS]],
+            static::DISCOTECA                                    => ['product' => Product::XEF,     'name' => 'Discoteca',  'proposals' => [Proposal::TIPO_DISCOTECA, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_XEF]],
+            static::TAKE_AWAY                                    => ['product' => Product::XEF,     'name' => 'Take away',  'proposals' => [Proposal::TIPO_TAKEAWAY, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_KDS]],
+            static::DELIVERY                                     => ['product' => Product::XEF,     'name' => 'Delivery',   'proposals' => [Proposal::TIPO_DELIVERY, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_KDS, Proposal::REVO_DDS]],
+            static::HOTEL                                        => ['product' => Product::XEF,     'name' => 'Hotel',      'proposals' => [Proposal::TIPO_HOTEL, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_KDS, Proposal::REVO_DDS,Proposal::REVO_KIOSK]],
+            static::XEF_PANADERIA                                => ['product' => Product::XEF,     'name' => 'Panadería',  'proposals' => [Proposal::TIPO_PANADERIA_XEF, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL,Proposal::REVO_DISPLAY]],
+            static::FOODTRUCK                                    => ['product' => Product::XEF,     'name' => 'Foodtruck',  'proposals' => [Proposal::TIPO_FOODTRUCK, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::COMIDA_AL_PESO                               => ['product' => Product::XEF,     'name' => 'Comida al peso', 'proposals' => [Proposal::TIPO_COMIDA, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL,Proposal::REVO_DISPLAY, Proposal::REVO_KDS]],
+            static::SOLO_EVENTOS                                 => ['product' => Product::XEF,     'name' => 'Solo eventos', 'proposals' => [Proposal::TIPO_EVENTOS]],
+            static::RETAIL_STORE                                 => ['product' => Product::RETAIL,  'name' => 'Retail store', 'proposals' => [Proposal::TIPO_RETAIL_STORE, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::DISTRIBUCION_DE_PRODUCTOS_Y_FUERZA_COMERCIAL => ['product' => Product::RETAIL,  'name' => 'Distribución de productos y Fuerza comercial', 'proposals' => [Proposal::TIPO_DISTRIBUCION_FUERZA, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::AUTOVENTA_MOVILIDAD                          => ['product' => Product::RETAIL,  'name' => 'Autoventa / movilidad', 'proposals' => [Proposal::TIPO_AUTOMOVILIDAD, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::PELUQUERIA_ESTETICA                          => ['product' => Product::RETAIL,  'name' => 'Peluquería / estética', 'proposals' => [Proposal::TIPO_PELUESTETICA, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_RETAIL]],
+            static::RETAIL_PANADERIA                             => ['product' => Product::RETAIL,  'name' => 'Panadería', 'proposals' => [Proposal::TIPO_PANADERIA_RETAIL, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::VENTA_GRANEL                                 => ['product' => Product::RETAIL, 'name' => 'Venta a granel', 'proposals' => [Proposal::TIPO_VENTA_GRANEL, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::AVIACION_TRANSPORTE                          => ['product' => Product::RETAIL,  'name' => 'Aviación / transporte', 'proposals' => [Proposal::TIPO_AVITRANSPORTE, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::EVENTOS_CORNERS                              => ['product' => Product::RETAIL,  'name' => 'Eventos / corners', 'proposals' => [Proposal::TIPO_EVENTCORNERS, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL]],
+            static::ESPECTACULOS                                 => ['product' => Product::RETAIL,  'name' => 'Espectáculos', 'proposals' => [Proposal::TIPO_ESPECTACULOS, Proposal::REVO_INTOUCH, Proposal::REVO_STOCK, Proposal::REVO_CONTROL, Proposal::REVO_FLOW_RETAIL]],
         ]);
     }
 
-    public function proposal()
+    public function proposals()
     {
-        return Proposal::find($this->proposal);
-    }
-
-    public function relatedProposals()
-    {
-        return collect($this->reference['related_proposals'])->map(function ($proposal) {
+        return collect($this->reference['proposals'])->map(function ($proposal) {
             return Proposal::find($proposal);
         });
     }

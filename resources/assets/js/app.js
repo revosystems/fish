@@ -274,7 +274,7 @@ var Lead = function() {
                 if ($("#product").val() != PRODUCT_XEF) {
                     return;
                 }
-                if($(this).val() == 7){
+                if ($(this).val() == 7) { // TYPOLOGY HOTEL
                     $("#xef_pms").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
                     // if($('#xef_pms').val() == -1) {
                     //     $('#xef_pms_other').prop("disabled", false).closest(".form-group").removeClass("disabled");
@@ -285,15 +285,14 @@ var Lead = function() {
                 }
             });
 
-            if($("#xef_pms").val()==-1){
+            if ($("#xef_pms").val() == -1) {
                 $("#xef_pms_other").prop("disabled", false).closest(".form-group").removeClass("disabled");
             }
 
             $("#xef_pms").on("change", function () {
-                if($(this).val() == -1){
+                if ($(this).val() == -1) {
                     $("#xef_pms_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                }
-                else{
+                } else {
                     $("#xef_pms_other").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
@@ -311,10 +310,9 @@ var Lead = function() {
         },
 
         posRetailHandler:function(){
-            if(($("#product").val() == PRODUCT_XEF && $("#xef_property_franchise").val() == 1) || $("#product").val() == PRODUCT_RETAIL && $("#type_segment").val() == 5){
+            if (($("#product").val() == PRODUCT_XEF && $("#xef_property_franchise").val() == 1) || $("#product").val() == PRODUCT_RETAIL && $("#type_segment").val() == 5){
                 $("#franchise_pos_external").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
-            }
-            else{
+            } else {
                 $("#franchise_pos_external").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
             }
         },
