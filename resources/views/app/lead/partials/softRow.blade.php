@@ -1,4 +1,4 @@
-<div class="row @segmentClasses($product)" style="display: none;">
+<div class="row show-on-{{$product}}" style="display: none;">
     <div class="col-sm-6 col-md-6">
         <input type="hidden" name="{{$name}}[]" value="">
         <div class="form-group isPicker hasOverflow @if($errors->has($name))is-invalid @endif">

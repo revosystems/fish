@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLeadRequest;
-use App\Models\LeadPropertySpace;
-use App\Models\LeadSoft;
 use App\Models\TypeSegment;
 use App\Models\Product;
-use App\Models\PropertySpace;
 use App\Models\Lead;
 use App\Models\Proposal;
 
@@ -59,12 +56,8 @@ class LeadController extends Controller
         $hardware_xef    = [ 'Caja', 'Comandero', 'KDS cocina', 'KIOSK "Pre-Order, In-Room & In-Table"', 'Payment', 'Printers', 'Wifi', 'Balanzas y lectores' ];
         $hardware        = ($lead->product == 1) ? $hardware_xef : $hardware_retail;
 
-        $revoVersion .= " (" . TypeSegment::find($lead->type_segment)->name . ")";
-        if ($lead->product == Product::XEF) {
-            $franchise              = $lead->property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
-        } elseif ($lead->product == Product::RETAIL) {
-            $franchise = $lead->type_segment == TypeSegment::RETAIL_SEGMENT_FRANCHISE ? __('app.lead.yes') : __('app.lead.no');
-        }
+        $revoVersion .= " (" . $lead->typeSegment()->name . ")";
+        $franchise      = $lead->property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
 
         $pdf = \PDF::loadView('app.lead.pdf', [
             'product'                   => $lead->product,
@@ -75,7 +68,7 @@ class LeadController extends Controller
             'hardware'                  => $hardware,
             'profile'                   => $revoVersion,
             'typology'                  => $lead->xefTypologyName(),
-            'propertySpace'            => $lead->propertySpace()->name,
+            'propertySpace'             => $lead->propertySpace()->name,
             'devices'                   => $this->devicesNames($lead),
             'retailSaleMode'            => $lead->retail_sale_mode ? __('app.lead.yes') : __('app.lead.no'),
             'retailSaleLocation'        => $lead->retail_sale_location ? __('app.lead.onLocal') : __('app.lead.onMobility'),
@@ -136,13 +129,6 @@ class LeadController extends Controller
         return $proposals->reject(null);
     }
 
-    public function segments()
-    {
-        return TypeSegment::all()->where('product', request('value'))->map(function ($value, $key) {
-            return "<option class='{$key}' value='{$key}' data-content=\"<div class='hideHint'>" . __('app.lead.type_segment') . " </div><div class='colored'>{$value['name']}</div>\">{$value['name']}</option>";
-        })->implode('');
-    }
-
     protected function requestSanitizedInputs(StoreLeadRequest $request)
     {
         $inputs = $request->except([
@@ -150,8 +136,6 @@ class LeadController extends Controller
             'retail_general_typology',
             'xef_property_space',
             'retail_property_space',
-            'xef_property_quantity',
-            'retail_property_quantity',
             'xef_property_capacity',
             'retail_property_capacity',
             'xef_soft',
@@ -159,8 +143,7 @@ class LeadController extends Controller
         ]);
         return array_merge($inputs, [
             "soft"              => $request->get('xef_soft') ? : $request->get('retail_soft'),
-            "property_space"   => $request->get('xef_property_space') ? : $request->get('retail_property_space'),
-            "property_quantity" => $request->get('xef_property_quantity') ? : $request->get('retail_property_quantity'),
+            "property_space"    => $request->get('xef_property_space') ? : $request->get('retail_property_space'),
             "general_typology"  => $request->get('xef_general_typology') ? : $request->get('retail_general_typology'),
             "property_capacity" => $request->get('xef_property_capacity') ? : $request->get('retail_property_capacity'),
         ]);

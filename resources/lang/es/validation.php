@@ -223,11 +223,7 @@ return [
         ],
 
         // PROPERTY
-        'xef_property_quantity' => [
-            'required_if'  => 'Campo obligatorio',
-            'numeric'      => 'Debe ser numérico',
-        ],
-        'retail_property_quantity' => [
+        'property_quantity' => [
             'required_if'  => 'Campo obligatorio',
             'numeric'      => 'Debe ser numérico',
         ],

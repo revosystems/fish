@@ -1,7 +1,7 @@
-<div class="row @segmentClasses()" style="display: none;">
+<div class="row show-on-product" style="display: none;">
     <div class="col-sm-12 col-md-12">
         @include('app.lead.components.select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.no')], 'name' => 'devices'])
-        <div class="devices_wrapper @if (old('devices') == 1) {{ 'shown' }} @endif">
+        <div class="devices_wrapper @if (old('devices') == 1)shown @endif">
             {{ __('app.lead.devicesHint') }}
             <div class="textarea-wrap">
                 <textarea rows="1" placeholder="{{ __('app.lead.devicesHintPlaceholder') }}" name="devices_current" id="devices_current" class=" @if ($errors->has('devices_current'))is-invalid @endif">{{ old('devices_current') }}</textarea>
@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div class="row @segmentClasses(App\Models\Product::XEF)" style="display: none;">
+<div class="row show-on-{{App\Models\Product::XEF}}" style="display: none;">
     <div class="col-sm-4 ">
         <div class="form-group">
             @include('app.lead.components.input', ['name' => 'xef_pos_critical_quantity', 'title' => 'xefPosCriticalQuantity'])

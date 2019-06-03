@@ -7,8 +7,6 @@
         Route::get('/contact', 'ContactController@index')->name("contact");
         Route::get('/resources', 'ResourcesController@index')->name("resources");
 
-        Route::any('/lead/segments/types', 'LeadController@segments')->name("lead.fetch");
-        Route::post('/lead/segments/types', 'LeadController@segments')->name("lead.fetch");
         Route::resource("lead", 'LeadController');
         Route::get('/lead/{leadId}/download', 'LeadController@download')->name("lead.download");
 

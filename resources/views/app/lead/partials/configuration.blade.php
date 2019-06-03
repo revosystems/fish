@@ -1,4 +1,4 @@
-<div class="row @segmentClasses() row_title bold upper" style="display: none;">
+<div class="row show-on-product row_title bold upper" style="display: none;">
     <div class="col-sm-12">{{ __('app.lead.configurationTitle') }}</div>
 </div>
 

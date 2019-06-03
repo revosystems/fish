@@ -1,4 +1,4 @@
-<div class="row @segmentClasses()" style="display: none;">
+<div class="row show-on-product" style="display: none;">
     <div class="col-sm-6 col-md-6">
         @include('app.lead.components.select', ['name' => 'pos', 'options' => App\Models\Pos::all(), 'hasOther' => true, 'hasNone' => true])
     </div>
@@ -6,7 +6,7 @@
         @include('app.lead.partials.select-other', ['name' => 'pos'])
     </div>
 </div>
-<div class="row @segmentClasses()" style="display: none;">
+<div class="row show-on-product" style="display: none;">
     <div class="col-sm-12 col-md-12">
         @include('app.lead.components.select', ["options" => ['1' => __('app.lead.yes'), '0' => __('app.lead.no')], 'name' => 'can_use_another_pos', 'title' => 'canUseAnotherPos', 'disabledOn' => 'property_franchise'])
     </div>

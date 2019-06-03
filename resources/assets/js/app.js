@@ -153,15 +153,9 @@ var Forms = function() {
         checkboxes: function () {
             $(".checkbox input").change(function(){
                 if($(this).is(":checked")){
-                    $(this)
-                        .closest(".checkbox").addClass("checked")
-                        .find("i").show();
+                    return $(this).closest(".checkbox").addClass("checked").find("i").show();
                 }
-                else{
-                    $(this)
-                        .closest(".checkbox").removeClass("checked")
-                        .find("i").hide();
-                }
+                $(this).closest(".checkbox").removeClass("checked").find("i").hide();
             });
         },
 
@@ -179,70 +173,18 @@ var Forms = function() {
 }();
 
 var Lead = function() {
-
     return {
         typeHandler: function(){
             $("#product").on("change", function () {
                 Forms.clearErrors();
-                Lead.segmentTypes($(this));
-                Lead.typeSegmentsDependency($(this),true);
-            });
-
-            $("#type_segment").on("change", function () {
-                Lead.typeSegmentsDependency($(this),false);
+                Lead.typeSegmentsDependency($(this));
             });
         },
 
-        typeSegmentRestore: function(){
-            if($("#product").length>0) {
-                if ($("#product option:selected").val()!="") {
-                    Lead.segmentTypes($("#product option:selected"));
-                }
-            }
-        },
-
-        segmentTypes: function (input) {
-            var $typeSegmentOld = $("#type_segment_old"),
-            value = input.val();
-
-            $.ajax({
-                url: "/lead/segments/types",
-                method: "POST",
-                data:{
-                    value: value,
-                    _token: $("input[name=\"_token\"]").val(),
-                },
-                success:function(result){
-                    $("#type_segment")
-                        .html(result)
-                        .selectpicker("refresh")
-                        .closest(".bootstrap-select").removeClass("started");
-
-                    if($typeSegmentOld.val()!==""){
-                        $("select[name=type_segment]")
-                            .val($typeSegmentOld.val())
-                            .selectpicker("refresh")
-                            .closest(".bootstrap-select").addClass("started");
-                    }
-                    Lead.typeSegmentsDependency($("select[name=type_segment]"),false);
-                }
-            });
-        },
-
-        typeSegmentsDependency: function(input, productChanged) {
-            if (productChanged) {
-                return $("div[class*=\"dep_\"]").hide();
-            }
-            if (! $("#"+input.attr("id")+" option:selected").length) {
-                $("#type_segment").closest(".bootstrap-select").removeClass("started");
-            }
-
-            let dependency = $("#" + input.attr("id") + " option:selected").attr("class");
-            let dependencyType = dependency.split("_")[0] + "_" + dependency.split("_")[1];
-
-            $("div[class*=\"" + dependencyType + "\"]").hide();
-            $("div." + dependency).show();
-            //$('div[class*="dep_"]').not('div[class*="'+dependencyType+'"]').hide();
+        typeSegmentsDependency: function(input) {
+            $("div[class*=\"show-on-\"]").hide();
+            $("div." + 'show-on-product').show();
+            $("div." + 'show-on-' + $("#product").val()).show();
         },
 
         devicesHandler: function(){
@@ -257,10 +199,9 @@ var Lead = function() {
 
         kdsHandler: function(){
             $("#xef_kds").on("change", function () {
-                if($(this).val() == 1){
+                if ($(this).val() == 1) {
                     $("#xef_kds_quantity").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                }
-                else{
+                } else {
                     $("#xef_kds_quantity").prop("disabled", true).closest(".form-group").addClass("disabled");
                 }
             });
@@ -374,7 +315,7 @@ $(document).ready(function(){
     App.mobileDetect();
     App.preloader();
     Lead.typeHandler();
-    Lead.typeSegmentRestore();
+    // Lead.typeSegmentRestore();
     Lead.devicesHandler();
     Lead.kdsHandler();
     Lead.pmsHandler();

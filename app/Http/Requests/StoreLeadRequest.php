@@ -40,8 +40,7 @@ class StoreLeadRequest extends FormRequest
             'phone'         => 'required',
             'city'          => 'required|string|min:3|max:255',
 
-            'xef_property_quantity'    => 'required_if:product,' . Product::XEF . '|nullable|numeric',
-            'retail_property_quantity' => 'required_if:product,'. Product::RETAIL .'|nullable|numeric',
+            'property_quantity'        => 'required|numeric',
             'xef_property_capacity'    => 'required_if:product,' . Product::XEF . '|nullable|numeric',
             'retail_property_capacity' => 'required_if:product,'. Product::RETAIL .'|nullable|numeric',
             'xef_property_space'       => 'required_if:product,' . Product::XEF,

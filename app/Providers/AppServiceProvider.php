@@ -35,11 +35,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('gravatar', function ($email) {
             return "<?php echo gravatar({$email} ?? null); ?>";
         });
-
-        Blade::directive('segmentClasses', function($product){
-            return "<?php echo App\Models\TypeSegment::htmlClasses($product) ?>";
-        });
-
     }
 
     /**

@@ -48,8 +48,8 @@ return [
         'propertyQuantity'          => '¿Cuantos locales tiene el propietario?',
         'propertySpace'             => 'Espacios',
         // > XEF
-        'xefPropertyFranchise'     => '¿Es franquicia?',
-        'xefPropertyCapacity'      => 'Aforo local para carta, no eventos',
+        'propertyFranchise'             => '¿Es franquicia?',
+        'xefPropertyCapacity'           => 'Aforo local para carta, no eventos',
         // > RETAIL
         'retailPropertyStaffQuantity'   => 'Nº de empleados / comerciales',
 
