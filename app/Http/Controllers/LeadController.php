@@ -33,7 +33,7 @@ class LeadController extends Controller
     {
         try {
             $inputs = $this->requestSanitizedInputs($request);
-            $lead   = Lead::create($inputs + ['user_id' => auth()->user()->id]);
+            $lead   = Lead::create($inputs + ['user_id' => auth()->user()->id, 'organization_id' => auth()->user()->organization_id]);
             $lead->xefSpecificTypologies()->createMany($this->getRequestXefSpecificTypology($request));
             $lead->softs()->createMany($this->getRequestSofts($request));
             return  redirect()->route('lead.show', [$lead->id])->with('status', 'Lead creado OK');

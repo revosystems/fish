@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Lead;
+use App\Models\Organization;
 use App\Models\Status;
 use Carbon\Carbon;
 
@@ -24,12 +25,13 @@ class LeadsRepository
 
     public static function all()
     {
-        if (auth()->user()->admin || ! auth()->user()->organization_id) {
-            return Lead::where('status', '<', Status::COMPLETED);
+        if (! auth()->user()->admin) {
+            return auth()->user()->leads();
         }
-        $organization = \App\Models\Organization::find(auth()->user()->organization_id);
-        // return auth()->user()->teamsLeads()->where('status', '<', Status::COMPLETED);
-        return Lead::where('status', '<', Status::COMPLETED)->whereIn('organization_id', $organization->getChildrenOrganizations()->push($organization)->pluck('id'));
+        $organization = auth()->user()->organization;
+        return Lead::where('status', '<', Status::COMPLETED)
+            /*->Lead::where('status', '<', Status::COMPLETED)*/
+            ->whereIn('organization_id', $organization->getChildrenOrganizations()->push($organization)->pluck('id'));
     }
 
     public static function recentlyUpdated()

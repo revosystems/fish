@@ -1,6 +1,3 @@
-<?php
-use \App\Models\Organization;
-?>
 <!-- Main Sidebar -->
 <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
     <div class="main-navbar">
@@ -30,13 +27,14 @@ use \App\Models\Organization;
                  "count"    => App\Repositories\LeadsRepository::all()->count()
             ])
 
-            @include('components.sidebarItem', [
-                 "url"      => route('thrust.index', ['organizations']),
-                 "title"    => trans_choice('admin.organization', 2),
-                 "icon"     => 'recent_actors',
-                 "count"    => App\Repositories\OrganizationsRepository::all()->count()
-            ])
-
+            @if (auth()->user()->admin)
+                @include('components.sidebarItem', [
+                     "url"      => route('thrust.index', ['organizations']),
+                     "title"    => trans_choice('admin.organization', 2),
+                     "icon"     => 'recent_actors',
+                     "count"    => App\Repositories\OrganizationsRepository::all()->count()
+                ])
+            @endif
             @include('components.sidebarItem', [
                  "url"      => route('reports'),
                  "title"    => trans_choice('admin.report', 2),

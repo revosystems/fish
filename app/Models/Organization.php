@@ -41,7 +41,9 @@ class Organization extends Model
     {
         $organizationsArray = $this->organizations;
         return $organizationsArray->each(function ($organization) use ($organizationsArray) {
-            $organizationsArray->push($organization->getChildrenOrganizations()->flatten());
+            if ($organization instanceof Organization) {
+                $organizationsArray->push($organization->getChildrenOrganizations()->flatten());
+            }
         })->flatten();
     }
 }

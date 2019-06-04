@@ -36,13 +36,13 @@ class Organization extends ChildResource
 
     protected function getBaseQuery()
     {
-        if (auth()->user()->admin) {
-            return parent::getBaseQuery()->whereNull('organization_id');
+        if (! auth()->user()->admin) {
+            return parent::getBaseQuery()->whereTrue(false);
         }
         if (! $this->parentId) {
             return parent::getBaseQuery()->where('id', auth()->user()->organization_id);
         }
-        $organization = \App\Models\Organization::findOrFail(auth()->user()->organization_id);
+        $organization = auth()->user()->organization;
         return parent::getBaseQuery()->whereIn('id', $organization->getChildrenOrganizations()->push($organization)->pluck('id'));
     }
 }
