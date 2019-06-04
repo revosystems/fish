@@ -13,7 +13,7 @@
 
 <div class="row show-on-{{App\Models\Product::XEF}}" style="display: none;">
     <div class="col-sm-6 col-md-6">
-        @include('app.lead.components.select', ['name' => 'xef_property_space', 'title' => 'propertySpace', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::XEF)])
+        @include('app.lead.components.select', ['name' => 'xef_property_spaces', 'title' => 'propertySpace', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::XEF)])
     </div>
     <div class="col-sm-6 col-md-6">
         <div class="form-group">
@@ -24,7 +24,7 @@
 
 <div class="row show-on-{{App\Models\Product::RETAIL}}" style="display: none;">
     <div class="col-sm-6 col-md-6">
-        @include('app.lead.components.select', ['name' => 'retail_property_space', 'title' => 'propertySpace', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::RETAIL)])
+        @include('app.lead.components.select', ['name' => 'retail_property_spaces', 'title' => 'propertySpace', 'options' => App\Models\PropertySpace::all()->where('product', App\Models\Product::RETAIL)])
     </div>
     <div class="col-sm-6 col-md-6">
         <div class="form-group">

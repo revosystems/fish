@@ -29,8 +29,7 @@ class CreateLeadsTable extends Migration
             $table->tinyInteger('product')->nullable();
             $table->tinyInteger('type_segment')->nullable();
             $table->tinyInteger('general_typology')->nullable();
-            $table->tinyInteger('xef_specific_typology')->nullable();
-            $table->tinyInteger('property_space')->nullable();
+            $table->tinyInteger('property_spaces')->nullable();
             $table->integer('property_quantity')->nullable()->default('0');
             $table->integer('property_capacity')->nullable()->default('0');
             $table->boolean('property_franchise')->default(0);
@@ -42,16 +41,19 @@ class CreateLeadsTable extends Migration
             $table->boolean('xef_kds')->nullable()->default('0');
             $table->integer('xef_kds_quantity')->nullable()->default('0');
             $table->tinyInteger('pos')->nullable();
-            $table->tinyInteger('retail_sale_mode')->default(0);
-            $table->tinyInteger('retail_sale_location')->default(0);
+            $table->string('pos_other')->nullable();
+            $table->tinyInteger('retail_sale_mode')->default(0)->nullable();
+            $table->tinyInteger('retail_sale_location')->default(0)->nullable();
             $table->tinyInteger('can_use_another_pos')->default(0);
             $table->tinyInteger('xef_pms')->nullable();
             $table->string('xef_pms_other')->nullable();
             $table->tinyInteger('erp')->nullable();
             $table->string('erp_other')->nullable();
-            $table->tinyInteger('soft')->nullable();
             $table->string('soft_other')->nullable();
             $table->tinyInteger('status')->default(Status::NEW);
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('organization_id')->references('id')->on('organizations');
             $table->timestamps();
             $table->softDeletes();
         });

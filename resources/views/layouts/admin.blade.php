@@ -3,7 +3,7 @@
 <head>
     @include('layouts.partials-admin.head')
 </head>
-<body class="h-100 {{ auth()->user()->getOrganizationName() }}">
+<body class="h-100 {{ auth()->user()->platform() }}">
     <div class="container-fluid">
         <div class="row">
             @include('layouts.partials-admin.sidebar')

@@ -8,7 +8,7 @@ class Soft extends FishDataBase
     const GSTOCK        = 1;
     const CHEF_CONTROL  = 2;
     const DISTRITO_K    = 3;
-    const RETAIL_GIRNET = 4;
+    const XEF_GIRNET    = 4;
     const REVO_FLOW     = 5;
     const COVERMANAGER  = 6;
     const ELTENEDOR     = 7;
@@ -16,7 +16,7 @@ class Soft extends FishDataBase
     const DELIVEROO     = 9;
     const GLOVO         = 10;
     const TSPOONLAB     = 11;
-    const XEF_GIRNET    = 12;
+    const RETAIL_GIRNET = 12;
     const PRESTASHOP    = 13;
     const WOOCOMMERCE   = 14;
 
@@ -38,6 +38,13 @@ class Soft extends FishDataBase
             static::PRESTASHOP      => ['product' => Product::RETAIL, 'softType' => SoftType::ECOMMERCE, 'name' => 'PrestaShop'],
             static::WOOCOMMERCE     => ['product' => Product::RETAIL, 'softType' => SoftType::ECOMMERCE, 'name' => 'WooCommerce'],
         ]);
+    }
+
+    public static function groupedBy($product)
+    {
+        return static::all()->where('product', $product)->mapToGroups(function ($value, $key) {
+            return [$value['softType'] => static::find($key)];
+        });
     }
 
     public function softType()

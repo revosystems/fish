@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lead extends Model
 {
     use Taggable;
+    use SoftDeletes;
 
     const PRODUCT_XEF       = 1;
     const PRODUCT_RETAIL    = 2;
@@ -23,6 +25,16 @@ class Lead extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function xefSpecificTypologies()
+    {
+        return $this->hasMany(LeadXefSpecificTypology::class);
+    }
+
+    public function softs()
+    {
+        return $this->hasMany(LeadSoft::class);
+    }
+
     public function statusUpdates()
     {
         return $this->hasMany(LeadStatusUpdate::class)->latest();
@@ -30,12 +42,7 @@ class Lead extends Model
 
     public function propertySpace()
     {
-        return PropertySpace::find($this->property_space);
-    }
-
-    public function soft()
-    {
-        return Soft::find($this->soft);
+        return PropertySpace::find($this->property_spaces);
     }
 
     public function generalTypology()
@@ -76,6 +83,14 @@ class Lead extends Model
         return XefPms::find($this->xef_pms);
     }
 
+    public function hardware()
+    {
+        if ($this->product == Product::XEF) {
+            return ['Caja', 'Comandero', 'KDS cocina', 'KIOSK "Pre-Order, In-Room & In-Table"', 'Payment', 'Printers', 'Wifi', 'Balanzas y lectores' ];
+        }
+        return ['Caja & Display cliente', 'Caja móvil / autoventa', 'Payment', 'Balanzas y lectores', 'Almacén', 'Printers', 'Wifi'];
+    }
+
     public function getParentOrganizations()
     {
         return $this->organization->getParentOrganizations()->push($this->organization);
@@ -101,7 +116,7 @@ class Lead extends Model
         if ($this->product == Product::RETAIL) {
             return Proposal::find(Proposal::REVO_RETAIL);
         }
-        return Proposal::find($this->getXefProposal());
+        return Proposal::find($this->xefProposal());
     }
 
     protected function xefProposal()
@@ -163,6 +178,7 @@ class Lead extends Model
 
     public function softwareName()
     {
+        return 'ninguno';
         $software = $this->softs->map(function ($soft) {
             return Soft::find($soft)->name;
         })->implode(', ');

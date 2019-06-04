@@ -16,6 +16,7 @@ class CreateOrganizationsTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('platform');
             $table->string('email')->nullable();
             $table->string('slack_webhook_url')->nullable();
             $table->unsignedInteger('organization_id')->nullable();

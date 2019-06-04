@@ -1,5 +1,5 @@
 @php
-    $platform = auth()->user()->getOrganizationName();
+    $platform = auth()->user()->platform();
 @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -37,34 +37,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Nombre comercial</td>
-                        <td>{{$lead->trade_name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre y apellidos</td>
-                        <td>{{$lead->name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Primer apellido</td>
-                        <td>{{$lead->surname1}}</td>
-                    </tr>
-                    <tr>
-                        <td>Segundo apellido</td>
-                        <td>{{$lead->surname2}}</td>
-                    </tr>
-                    <tr>
-                        <td>Correo electrónico</td>
-                        <td>{{$lead->email}}</td>
-                    </tr>
-                    <tr>
-                        <td>Teléfono</td>
-                        <td>{{$lead->phone}}</td>
-                    </tr>
-                    <tr>
-                        <td>Población</td>
-                        <td>{{$lead->city}}</td>
-                    </tr>
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Nombre comercial', 'value' => $lead->trade_name])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Nombre y apellidos', 'value' => $lead->name])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Primer apellido', 'value' => $lead->surname1])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Segundo apellido', 'value' => $lead->surname2])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Correo electrónico', 'value' => $lead->email])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Teléfono', 'value' => $lead->phone])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Población', 'value' => $lead->city])
                     </tbody>
                 </table>
             </div>
@@ -93,10 +72,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($hardware as $item)
+                    @foreach($lead->hardware() as $item)
                         <tr>
                             <td>
-                                {!!$item!!}
+                                {{ $item }}
                             </td>
                     @endforeach
                     </tbody>
@@ -113,91 +92,28 @@
             <div class="col-md-12">
                 <table class="table specs-table">
                     <tbody>
-                    <tr>
-                        <td>Perfil</td>
-                        <td>{{ $revoVersion }}</td>
-                    </tr>
-                    <tr>
-                        <td>Tipología</td>
-                        <td>{{ $typology }}</td>
-                    </tr>
-                    <tr>
-                        <td>Es franquicia</td>
-                        <td>{{ $franchise }}</td>
-                    </tr>
-                    <tr>
-                        <td>Nº de locales</td>
-                        <td>{{ $lead->property_quantity }}</td>
-                    </tr>
-                    <tr>
-                        <td>Espacios</td>
-                        <td>{{ $propertySpace }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ $product == App\Models\Product::XEF ? 'Aforo del local' : 'Nº empleados / comerciales' }}</td>
-                        <td>{{ $lead->property_capacity }}</td>
-                    </tr>
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Perfil', 'value' => $revoVersion])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Tipología', 'value' => $typology])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Es franquicia', 'value' => $franchise])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Nº de locales', 'value' => $lead->property_quantity])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Espacios', 'value' => $propertySpace])
+                    @include('app.lead.components.pdf-table-row', ['title' => $product == App\Models\Product::XEF ? 'Aforo del local' : 'Nº empleados / comerciales', 'value' => $lead->property_capacity])
                     @if($product == App\Models\Product::XEF)
-                        <tr>
-                            <td>Nº comanderos entorno crítico</td>
-                            <td>{{ $xefPosCriticalQuantity }}</td>
-                        </tr>
-                        <tr>
-                            <td>Nº de cajas de cobro</td>
-                            <td>{{ $xefCashQuantity }}</td>
-                        </tr>
-                        <tr>
-                            <td>Nº de impresoras en cocina</td>
-                            <td>{{ $xefPrintersQuantity }}</td>
-                        </tr>
-                        <tr>
-                            <td>Desea trabajar con pantallas en cocina</td>
-                            <td>{{ $xefKds }}</td>
-                        </tr>
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Nº comanderos entorno crítico', 'value' => $xefPosCriticalQuantity])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Nº de cajas de cobro', 'value' => $xefCashQuantity])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Nº de impresoras en cocina', 'value' => $xefPrintersQuantity])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Desea trabajar con pantallas en cocina', 'value' => $xefKds])
                     @endif
                     @if($product == App\Models\Product::RETAIL)
-                        <tr>
-                            <td>Requiere venta delante del cliente final</td>
-                            <td>{{ $retail_sale_mode }}</td>
-                        </tr>
-                        <tr>
-                            <td>Donde se vende</td>
-                            <td>{{ $retail_sale_location }}</td>
-                        </tr>
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Requiere venta delante del cliente final', 'value' => $lead->retail_sale_mode])
+                        @include('app.lead.components.pdf-table-row', ['title' => 'Donde se vende', 'value' => $lead->retail_sale_location])
                     @endif
-                    <tr>
-                        <td>Dispone de dispositivos</td>
-                        <td>{!! $devices !!}</td>
-                    </tr>
-
-                    <tr>
-                        <td>TPV actual</td>
-                        <td>{{ $pos }}</td>
-                    </tr>
-                    @if($canUseAnotherPos)
-                        <tr>
-                            <td>Autorizado para trabajar con TPV externo</td>
-                            <td>{{ $canUseAnotherPos}}</td>
-                        </tr>
-                    @endif
-                    @if($xefPms)
-                        <tr>
-                            <td>PMS actual</td>
-                            <td>{{ $xefPms }}</td>
-                        </tr>
-                    @endif
-                    @if($erp)
-                        <tr>
-                            <td>ERP actual</td>
-                            <td>{{ $erp }}</td>
-                        </tr>
-                    @endif
-                    @if($software)
-                        <tr>
-                            <td>Otro software del cliente</td>
-                            <td>{{ $software }}</td>
-                        </tr>
-                    @endif
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Dispone de dispositivos', 'value' => $devices])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'TPV actual', 'value' => $pos])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Autorizado para trabajar con TPV externo', 'value' => $canUseAnotherPos])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'PMS actual', 'value' => $xefPms])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'ERP actual', 'value' => $erp])
+                    @include('app.lead.components.pdf-table-row', ['title' => 'Otro software del cliente', 'value' => $software])
                     </tbody>
                 </table>
             </div>

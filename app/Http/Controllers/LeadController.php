@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLeadRequest;
-use App\Models\TypeSegment;
 use App\Models\Product;
 use App\Models\Lead;
 use App\Models\Proposal;
@@ -13,20 +12,6 @@ class LeadController extends Controller
     public function create()
     {
         return view('app.lead.create');
-    }
-
-    public function store(StoreLeadRequest $request)
-    {
-        try {
-            $inputs = $this->requestSanitizedInputs($request);
-            $lead   = Lead::create($inputs + ['user_id' => auth()->user()->id]);
-            return  redirect()->route('lead.show', [$lead->id])->with('status', 'Lead creado OK');
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-            $msg = __('app.errors.leadException');
-            $request->session()->flash('exception', $msg);
-            return  redirect()->back();
-        }
     }
 
     public function show($id)
@@ -40,41 +25,45 @@ class LeadController extends Controller
                 'proposals' => $proposals,
             ]);
         }
-        
+
         return  redirect()->route('login');
+    }
+
+    public function store(StoreLeadRequest $request)
+    {
+        try {
+            $inputs = $this->requestSanitizedInputs($request);
+            $lead   = Lead::create($inputs + ['user_id' => auth()->user()->id]);
+            $lead->xefSpecificTypologies()->createMany($this->getRequestXefSpecificTypology($request));
+            $lead->softs()->createMany($this->getRequestSofts($request));
+            return  redirect()->route('lead.show', [$lead->id])->with('status', 'Lead creado OK');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            $msg = __('app.errors.leadException');
+            $request->session()->flash('exception', $msg);
+            return  redirect()->back();
+        }
     }
 
     public function download($leadId)
     {
         $lead               = Lead::findOrFail($leadId);
-        $proposals          = $this->getProposals($lead);
-        $revoVersionCss     = ($lead->product == Product::XEF) ? "xef" : "retail";
-        $revoVersion        = ($lead->product == Product::XEF) ? "XEF" : "RETAIL";
-        $revo_version_fname = ($lead->product == Product::XEF) ? "XEF" : "RETAIL";
-
-        $hardware_retail = [ 'Caja & Display cliente', 'Caja móvil / autoventa', 'Payment', 'Balanzas y lectores', 'Almacén', 'Printers', 'Wifi' ];
-        $hardware_xef    = [ 'Caja', 'Comandero', 'KDS cocina', 'KIOSK "Pre-Order, In-Room & In-Table"', 'Payment', 'Printers', 'Wifi', 'Balanzas y lectores' ];
-        $hardware        = ($lead->product == 1) ? $hardware_xef : $hardware_retail;
-
-        $revoVersion .= " (" . $lead->typeSegment()->name . ")";
-        $franchise      = $lead->property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal') ;
-
+        $revoVersionFilename   = ($lead->product == Product::XEF) ? "XEF" : "RETAIL";
         $pdf = \PDF::loadView('app.lead.pdf', [
             'product'                   => $lead->product,
-            "revoVersionCss"            => $revoVersionCss,
-            "revoVersion"               => $revoVersion,
+            "revoVersionCss"            => ($lead->product == Product::XEF) ? "xef" : "retail",
+            "revoVersion"               => $revoVersionFilename . " (" . $lead->typeSegment()->name . ")",
             "lead"                      => $lead,
-            "proposals"                 => $proposals,
-            'hardware'                  => $hardware,
-            'profile'                   => $revoVersion,
+            "proposals"                 => $this->getProposals($lead),
+            'profile'                   => $revoVersionFilename . " (" . $lead->typeSegment()->name . ")",
             'typology'                  => $lead->xefTypologyName(),
             'propertySpace'             => $lead->propertySpace()->name,
-            'devices'                   => $this->devicesNames($lead),
+            'devices'                   => $lead->devicesNames(),
             'retailSaleMode'            => $lead->retail_sale_mode ? __('app.lead.yes') : __('app.lead.no'),
             'retailSaleLocation'        => $lead->retail_sale_location ? __('app.lead.onLocal') : __('app.lead.onMobility'),
             'pos'                       => $lead->posName(),
-            'franchise'                 => $franchise,
-            'canUseAnotherPos'          => $this->can_use_another_pos ? __('app.lead.yes') : __('app.lead.no'),
+            'franchise'                 => $lead->property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal'),
+            'canUseAnotherPos'          => $lead->can_use_another_pos ? __('app.lead.yes') : __('app.lead.no'),
             'erp'                       => $lead->erpName(),
             'software'                  => $lead->softwareName(),
             'xefPosCriticalQuantity'    => $lead->product == Product::XEF ? $lead->xef_pos_critical_quantity : null,
@@ -93,7 +82,7 @@ class LeadController extends Controller
         ]);
         $pdf->setPaper("a4", "landscape");
 
-        return $pdf->download(ucwords(auth()->user()->getOrganizationName()) . "_Lead_{$revo_version_fname}_" . date('Y_m_d_hia') . ".pdf");
+        return $pdf->download(ucwords(auth()->user()->platform()) . "_Lead_{$revoVersionFilename}_" . date('Y_m_d_hia') . ".pdf");
     }
 
     public function getProposals(Lead $lead)
@@ -134,28 +123,37 @@ class LeadController extends Controller
         $inputs = $request->except([
             'xef_general_typology',
             'retail_general_typology',
-            'xef_property_space',
-            'retail_property_space',
+            'xef_specific_typology',
+            'xef_property_spaces',
+            'retail_property_spaces',
             'xef_property_capacity',
             'retail_property_capacity',
             'xef_soft',
             'retail_soft',
+            'xef_soft_other',
+            'retail_soft_other',
         ]);
         return array_merge($inputs, [
-            "soft"              => $request->get('xef_soft') ? : $request->get('retail_soft'),
-            "property_space"    => $request->get('xef_property_space') ? : $request->get('retail_property_space'),
+            "soft_other"        => $request->get('xef_soft_other') ? : $request->get('retail_soft_other'),
+            "property_spaces"   => $request->get('xef_property_spaces') ? : $request->get('retail_property_spaces'),
             "general_typology"  => $request->get('xef_general_typology') ? : $request->get('retail_general_typology'),
             "property_capacity" => $request->get('xef_property_capacity') ? : $request->get('retail_property_capacity'),
         ]);
     }
 
-    protected function getRequestPropertySpace(StoreLeadRequest $request)
+    protected function getRequestXefSpecificTypology(StoreLeadRequest $request)
     {
-        return collect($request->get('xef_property_space') ? : $request->get('retail_property_space'))->reject(null);
+        return collect($request->get('xef_specific_typology'))->reject(null)->map(function ($value) {
+            return ['xef_specific_typology' => $value];
+        })->toArray();
     }
 
     protected function getRequestSofts(StoreLeadRequest $request)
     {
-        return collect($request->get('xef_soft') ? : $request->get('retail_soft'))->reject(null);
+        $softs = collect($request->get('xef_soft'))->reject(null);
+        $softs = $softs->count() ? $softs : collect($request->get('retail_soft'))->reject(null);
+        return $softs->map(function ($value) {
+            return ['soft' => $value];
+        })->toArray();
     }
 }

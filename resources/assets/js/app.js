@@ -1,15 +1,15 @@
 $.fn.selectpicker.Constructor.DEFAULTS.style = "btn";
 let PRODUCT_XEF = 1;
 let PRODUCT_RETAIL = 2;
+let GENERAL_TYPOLOGY_HOTEL = 7;
 
-var App = function() {
-    var size_point = 991;//$this.data().responsive
+let App = function() {
+    let size_point = 991;//$this.data().responsive
     return {
         mobileDetect: function () {
             if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)) {
                 $("html").addClass("mobile");
-            }
-            else {
+            } else {
                 $("html").addClass("no-mobile");
             }
         },
@@ -172,159 +172,13 @@ var Forms = function() {
     };
 }();
 
-var Lead = function() {
-    return {
-        typeHandler: function(){
-            $("#product").on("change", function () {
-                Forms.clearErrors();
-                Lead.typeSegmentsDependency($(this));
-            });
-        },
-
-        typeSegmentsDependency: function(input) {
-            $("div[class*=\"show-on-\"]").hide();
-            $("div." + 'show-on-product').show();
-            $("div." + 'show-on-' + $("#product").val()).show();
-        },
-
-        devicesHandler: function(){
-            $("#devices").on("change", function () {
-                if ($(this).val() == 1) {
-                    $(".devices_wrapper").show().find("textarea").focus();
-                } else {
-                    $(".devices_wrapper").hide();
-                }
-            });
-        },
-
-        kdsHandler: function(){
-            $("#xef_kds").on("change", function () {
-                if ($(this).val() == 1) {
-                    $("#xef_kds_quantity").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                } else {
-                    $("#xef_kds_quantity").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-            });
-        },
-
-        pmsHandler: function(){
-            $("#general_typology").on("change", function () {
-                if ($("#product").val() != PRODUCT_XEF) {
-                    return;
-                }
-                if ($(this).val() == 7) { // TYPOLOGY HOTEL
-                    $("#xef_pms").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
-                    // if($('#xef_pms').val() == -1) {
-                    //     $('#xef_pms_other').prop("disabled", false).closest(".form-group").removeClass("disabled");
-                    // }
-                } else {
-                    $("#xef_pms").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
-                    $("#xef_pms_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-            });
-
-            if ($("#xef_pms").val() == -1) {
-                $("#xef_pms_other").prop("disabled", false).closest(".form-group").removeClass("disabled");
-            }
-
-            $("#xef_pms").on("change", function () {
-                if ($(this).val() == -1) {
-                    $("#xef_pms_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                } else {
-                    $("#xef_pms_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-            });
-        },
-
-        posExternalHandler: function(){
-            $("#property_franchise").on("change", function () {
-                console.log($(this).val());
-                if($(this).val() == 1){
-                    $("#can_use_another_pos").prop("disabled", false).selectpicker("refresh").closest(".form-group").removeClass("disabled");
-                } else {
-                    $("#can_use_another_pos").prop("disabled", true).selectpicker("refresh").closest(".form-group").addClass("disabled");
-                }
-            });
-        },
-
-        erpHandler: function(){
-            $("#erp,#xef_erp,#retail_erp").on("change", function () {
-                var base_id = $(this).attr("id").replace("_id", "");
-                if ($(this).val() == -1) {
-                    $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                } else {
-                    $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-            });
-        },
-
-        posHandler: function(){
-            $("#pos").on("change", function () {
-                var base_id = $(this).attr("id").replace("_id", "");
-                if ($(this).val() == "-1") {
-                    $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                } else {
-                    $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-            });
-        },
-
-        softHandler: function(){
-            $("#retail_soft,#xef_soft").on("change", function () {
-                var base_id = $(this).attr("id").replace("_id", "");
-                if ($(this).val() == "-1") {
-                    $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                } else {
-                    $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-            });
-        },
-
-        propertySpacesHandler: function(){
-            $("#retail_property_space, #xef_property_space").on("change", function () {
-                var base_id = $(this).attr("id").replace("_id", "");
-                if ($(this).val() == "-1") {
-                    $("#"+base_id+"_other").prop("disabled", false).focus().closest(".form-group").removeClass("disabled");
-                } else {
-                    $("#"+base_id+"_other").prop("disabled", true).closest(".form-group").addClass("disabled");
-                }
-            });
-        },
-
-        mobileTabs: function(){
-            $(".mobileTab a").not(".customSelect a").click(function(){
-                $(".mobileTab .customSelect .dropdown-toggle .txt").text($(this).text());
-                $(".mobileTab .customSelect ul li a.active").removeClass("active");
-            });
-
-            $(".mobileTab .customSelect ul a").click(function(){
-                $(".mobileTab .customSelect .dropdown-toggle .txt").text($(this).text());
-                $(".mobileTab .customSelect ul li.active").removeClass("active");
-                $(this).closest("li").addClass("active");
-
-                var id = $(".tab-pane.active").attr("id");
-                $(".mobileTab .nav-item a.active").removeClass("active").closest(".mobileTab").find("#"+id+"_tab").addClass("active");
-            });
-        }
-    };
-}();
 
 /* -- DOCUMENT.READY ------------------------ */
 
 $(document).ready(function(){
     App.mobileDetect();
     App.preloader();
-    Lead.typeHandler();
-    // Lead.typeSegmentRestore();
-    Lead.devicesHandler();
-    Lead.kdsHandler();
-    Lead.pmsHandler();
-    Lead.posExternalHandler();
-    Lead.posHandler();
-    Lead.softHandler();
-    Lead.erpHandler();
-    Lead.propertySpacesHandler();
-    Lead.mobileTabs();
+    LeadForm.init();
     App.navigationHandler();
     App.navigationMobileStatus();
     Forms.placeholders();

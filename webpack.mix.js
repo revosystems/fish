@@ -28,6 +28,7 @@ mix
         'node_modules/bootstrap-select/dist/js/bootstrap-select.js',
         'public/modules/gridder/dist/js/jquery.gridder.min.js',
         'public/modules/Animated-Placeholder/js/animated-placeholder.js',
+        'resources/assets/js/LeadForm/*',
         'resources/assets/js/app.js',
     ], 'public/js/app.js')
 

@@ -17,5 +17,3 @@
     </select>
     @include('admin.leads.components.error-field', compact('name'))
 </div>
-
-
