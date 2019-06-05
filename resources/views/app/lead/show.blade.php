@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('html', 'onProposal')
-@section('title', __('app.pageTitles.proposalLead'). ' ' .$lead->trade_name . ' - ')
+@section('title', __('app.pageTitles.proposalLead'). ' ' . $lead->trade_name . ' - ')
 @section('content')
         <div class="section">
             <div class="container">

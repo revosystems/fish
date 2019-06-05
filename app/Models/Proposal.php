@@ -114,4 +114,37 @@ class Proposal extends FishDataBase
     {
         return $this->reference['key'];
     }
+
+    public function proposals()
+    {
+        $proposals = collect();
+        $proposals->push($this->posType()->proposal());
+        $typologyProposals = $this->generalTypology()->proposals();
+        $proposals->push($typologyProposals->first());
+        $proposals->push($this->productProposal());
+        if ($this->propertySpace()->needProfiles()) {
+            $proposals->push(Proposal::find(Proposal::PROFILES));
+        }
+        $typologyProposals->slice(1)->each(function ($proposal) use ($proposals) {
+            $proposals->push($proposal);
+        });
+        $proposals->push(Proposal::find($this->property_quantity > 1 ? Proposal::REVO_MASTER : Proposal::REVO_BACK));
+        if ($this->erp || $this->erp_other) {
+            $proposals->push(Proposal::find(Proposal::ERP));
+        }
+        if ($this->xef_pms || $this->pms_other) {
+            $proposals->push(Proposal::find(Proposal::PMS));
+        }
+
+        if ($this->erp || $this->erp_other) {
+            $proposals->push(Proposal::find(Proposal::ERP));
+        }
+
+        if ($this->soft > 0) {
+            $proposals->push(Proposal::find($this->soft()->softType()->proposal()));
+        } elseif ($this->soft_other) {
+            $proposals->push(Proposal::find(Proposal::SOFT_OTHER));
+        }
+        return $proposals->reject(null);
+    }
 }

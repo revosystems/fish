@@ -17,12 +17,11 @@ class LeadController extends Controller
     public function show($id)
     {
         $lead      = Lead::findOrFail($id);
-        $proposals = $this->getProposals($lead);
         if (auth()->user()->id == $lead->user_id) {
             return view('app.lead.show', [
                 'id'        => $id,
                 'lead'      => $lead,
-                'proposals' => $proposals,
+                'proposals' => $lead->proposals(),
             ]);
         }
 
@@ -54,7 +53,7 @@ class LeadController extends Controller
             "revoVersionCss"            => ($lead->product == Product::XEF) ? "xef" : "retail",
             "revoVersion"               => $revoVersionFilename . " (" . $lead->typeSegment()->name . ")",
             "lead"                      => $lead,
-            "proposals"                 => $this->getProposals($lead),
+            "proposals"                 => $lead->proposals(),
             'profile'                   => $revoVersionFilename . " (" . $lead->typeSegment()->name . ")",
             'typology'                  => $lead->xefTypologyName(),
             'propertySpace'             => $lead->propertySpace()->name,
@@ -65,7 +64,7 @@ class LeadController extends Controller
             'franchise'                 => $lead->property_franchise ? __('app.lead.yes') : __('app.lead.noOwnLocal'),
             'canUseAnotherPos'          => $lead->can_use_another_pos ? __('app.lead.yes') : __('app.lead.no'),
             'erp'                       => $lead->erpName(),
-            'software'                  => $lead->softwareName(),
+            'software'                  => $lead->softwareNames(),
             'xefPosCriticalQuantity'    => $lead->product == Product::XEF ? $lead->xef_pos_critical_quantity : null,
             'xefCashQuantity'           => $lead->product == Product::XEF ? $lead->xef_cash_quantity : null,
             'xefPrintersQuantity'       => $lead->product == Product::XEF ? $lead->xef_printers_quantity : null,
@@ -83,39 +82,6 @@ class LeadController extends Controller
         $pdf->setPaper("a4", "landscape");
 
         return $pdf->download(ucwords(auth()->user()->platform()) . "_Lead_{$revoVersionFilename}_" . date('Y_m_d_hia') . ".pdf");
-    }
-
-    public function getProposals(Lead $lead)
-    {
-        $proposals = collect();
-        $proposals->push($lead->posType()->proposal());
-        $typologyProposals = $lead->generalTypology()->proposals();
-        $proposals->push($typologyProposals->first());
-        $proposals->push($lead->productProposal());
-        if ($lead->propertySpace()->needProfiles()) {
-            $proposals->push(Proposal::find(Proposal::PROFILES));
-        }
-        $typologyProposals->slice(1)->each(function ($proposal) use ($proposals) {
-            $proposals->push($proposal);
-        });
-        $proposals->push(Proposal::find($lead->property_quantity > 1 ? Proposal::REVO_MASTER : Proposal::REVO_BACK));
-        if ($lead->erp || $lead->erp_other) {
-            $proposals->push(Proposal::find(Proposal::ERP));
-        }
-        if ($lead->xef_pms || $lead->pms_other) {
-            $proposals->push(Proposal::find(Proposal::PMS));
-        }
-
-        if ($lead->erp || $lead->erp_other) {
-            $proposals->push(Proposal::find(Proposal::ERP));
-        }
-
-        if ($lead->soft > 0) {
-            $proposals->push(Proposal::find($lead->soft()->softType()->proposal()));
-        } elseif ($lead->soft_other) {
-            $proposals->push(Proposal::find(Proposal::SOFT_OTHER));
-        }
-        return $proposals->reject(null);
     }
 
     protected function requestSanitizedInputs(StoreLeadRequest $request)

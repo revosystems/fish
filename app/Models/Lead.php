@@ -137,7 +137,7 @@ class Lead extends Model
         if ($this->product == Product::RETAIL) {
             return $this->generalTypology()->name;
         }
-        return  "{$this->generalTypology()->name} (" . XefSpecificTypology::find($this->xef_specific_typology)->name . ")";
+        return  "{$this->generalTypology()->name} (" . $this->xefSpecificTypologyNames() . ")";
     }
 
     public function xefPmsName()
@@ -176,15 +176,53 @@ class Lead extends Model
         return $devices;
     }
 
-    public function softwareName()
+    public function xefSpecificTypologyNames()
     {
-        return 'ninguno';
-        $software = $this->softs->map(function ($soft) {
-            return Soft::find($soft)->name;
+        return $this->xefSpecificTypologies->map(function ($leadTypology) {
+            return XefSpecificTypology::find($leadTypology->xef_specific_typology)->name;
         })->implode(', ');
-        if (! $software) {
-            return 'Ninguno';
+    }
+
+    public function softwareNames()
+    {
+        return $this->softs->map(function ($leadSoft) {
+            if ($leadSoft->soft == -1) {
+                return $this->soft_other;
+            }
+            return Soft::find($leadSoft->soft)->name;
+        })->implode(', ');
+    }
+
+    public function proposals()
+    {
+        $proposals = collect();
+        $proposals->push($this->posType()->proposal());
+        $typologyProposals = $this->generalTypology()->proposals();
+        $proposals->push($typologyProposals->first());
+        $proposals->push($this->productProposal());
+        if ($this->propertySpace()->needProfiles()) {
+            $proposals->push(Proposal::find(Proposal::PROFILES));
         }
-        return $software;
+        $typologyProposals->slice(1)->each(function ($proposal) use ($proposals) {
+            $proposals->push($proposal);
+        });
+        $proposals->push(Proposal::find($this->property_quantity > 1 ? Proposal::REVO_MASTER : Proposal::REVO_BACK));
+        if ($this->erp || $this->erp_other) {
+            $proposals->push(Proposal::find(Proposal::ERP));
+        }
+        if ($this->xef_pms || $this->pms_other) {
+            $proposals->push(Proposal::find(Proposal::PMS));
+        }
+
+        if ($this->erp || $this->erp_other) {
+            $proposals->push(Proposal::find(Proposal::ERP));
+        }
+
+        if ($this->soft > 0) {
+            $proposals->push(Proposal::find($this->soft()->softType()->proposal()));
+        } elseif ($this->soft_other) {
+            $proposals->push(Proposal::find(Proposal::SOFT_OTHER));
+        }
+        return $proposals->reject(null);
     }
 }
