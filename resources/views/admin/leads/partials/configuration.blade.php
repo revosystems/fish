@@ -18,11 +18,7 @@
     @if($lead->product == App\Models\Product::XEF)
         @include('admin.leads.partials.pms')
     @endif
-    <div class="row">
-        <div class="col-sm-12">
-            @include('admin.leads.partials.soft')
-        </div>
-    </div>
+    @include('admin.leads.partials.soft')
     @if($lead->product == App\Models\Product::RETAIL)
         <div class="row">
             <div class="col-sm-12">

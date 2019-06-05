@@ -22,9 +22,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group ml-5 @if ($lead->pos != -1)disabled @endif">
-            <input type="text" name="pos_other" id="pos_other" value="{{ old('pos_other') ? : $lead->pos_other }}"
-                   placeholder="{{ __('app.lead.specify') }}" class="form-control"
-                   @if ($lead->pos != -1)disabled @endif>
+            <input type="text" name="pos_other" id="pos_other" value="{{ old('pos_other') ? : $lead->pos_other }}" placeholder="{{ __('app.lead.specify') }}" class="form-control" @if ($lead->pos != -1)disabled @endif>
         </div>
     </div>
 </div>
