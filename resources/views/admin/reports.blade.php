@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    @each('thrust::metrics.panel', $metrics, 'metric')
+    <div class="card card-small mb-4">
+        @each('thrust::metrics.panel', $metrics, 'metric')
+    </div>
 @stop
 
 @section('scripts')

@@ -13,11 +13,11 @@ class Status extends FishDataBase
     public static function all()
     {
         return collect([
-            static::NEW           => ['name' => 'new'],
-            static::FIRST_CONTACT => ['name' => 'first-contact'],
-            static::VISITED       => ['name' => 'visited'],
-            static::COMPLETED     => ['name' => 'completed'],
-            static::FAILED        => ['name' => 'failed'],
+            static::NEW           => ['key' => 'new', 'name' => __('admin.new')],
+            static::FIRST_CONTACT => ['key' => 'first-contact', 'name' => __('admin.first-contact')],
+            static::VISITED       => ['key' => 'visited', 'name' => __('admin.visited')],
+            static::COMPLETED     => ['key' => 'completed', 'name' => __('admin.completed')],
+            static::FAILED        => ['key' => 'failed', 'name' => __('admin.failed')],
         ]);
     }
 

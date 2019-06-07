@@ -7,10 +7,12 @@
             </a>
             <div class="dropdown-menu dropdown-menu-small">
                 <a class="dropdown-item" href="{{route('lead.create')}}">
-                    @iconMaterial(library_add) {{__('admin.newLead')}}</a>
+                    @iconMaterial(library_add) {{__('admin.newLead')}}
+                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item text-danger" href="{{route('logout')}}">
-                    <span class="text-danger">@iconMaterial(&#xE879;)</span> {{ __('admin.logout') }} </a>
+                    <span class="text-danger">@iconMaterial(&#xE879;)</span> {{ __('admin.logout') }}
+                </a>
             </div>
         </li>
     </ul>

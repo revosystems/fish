@@ -96,9 +96,9 @@ class Lead extends Model
         return $this->organization->getParentOrganizations()->push($this->organization);
     }
 
-    public function statusName()
+    public function status()
     {
-        return Status::text($this->status);
+        return Status::find($this->status);
     }
 
     public function updateStatus($user, $body, $status)

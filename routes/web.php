@@ -14,10 +14,11 @@
         Route::get('/downloadDossier/{file}', 'DownloadsController@downloadDossier');
     });
 
-    Route::group(["middleware" => ['verified', 'user.active']], function () { // can = policy
-        Route::resource('admin/leads', 'Admin\LeadsController', ["only" => ['show', 'update']]);
-        Route::post('admin/leads/{lead}/status', 'Admin\LeadsStatusController@store')->name('leads.status.store');
-        Route::get('admin/reports', 'Admin\ReportsController@index')->name('reports');
+    Route::group(["prefix" => 'admin', "namespace" => "Admin", "middleware" => ['verified', 'user.active']], function () { // can = policy
+        Route::resource('leads', 'LeadsController', ["only" => ['show', 'update']]);
+        Route::get('leads/{lead}/showMore', 'LeadsController@showMore')->name('lead.showMore');
+        Route::post('leads/{lead}/status', 'LeadsStatusController@store')->name('leads.status.store');
+        Route::get('reports', 'ReportsController@index')->name('reports');
     });
 
     Route::get('logout', "Auth\LoginController@logout")->name('logout');

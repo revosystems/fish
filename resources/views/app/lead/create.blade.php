@@ -28,4 +28,4 @@
     </form>
 {{--    @if ($errors->count()) {{dd($errors)}}@endif--}}
 
-@endsection
+@stop

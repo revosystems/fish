@@ -11,16 +11,21 @@ class LeadsController extends Controller
 {
     public function show(Lead $lead)
     {
-        return view('admin.leads.show', [
-            "lead"              => $lead,
-            "leadXefSofts"      => Soft::all()->where('product', Product::XEF)->groupBy("softType"),
-            "leadRetailSofts"   => Soft::all()->where('product', Product::RETAIL)->groupBy("softType"),
-        ]);
+        return view('admin.leads.show', compact('lead'));
     }
 
     public function update(Lead $lead)
     {
         $lead->update(request()->all());
         return back()->withMessage('updated');
+    }
+
+    public function showMore(Lead $lead)
+    {
+        return view('admin.leads.showMore', [
+            "lead"              => $lead,
+            "leadXefSofts"      => Soft::all()->where('product', Product::XEF)->groupBy("softType"),
+            "leadRetailSofts"   => Soft::all()->where('product', Product::RETAIL)->groupBy("softType"),
+        ]);
     }
 }

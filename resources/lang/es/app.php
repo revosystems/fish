@@ -28,6 +28,11 @@ return [
         'propertyTitle'         => 'Local',
         'configurationTitle'    => 'Configuración',
 
+        'probability'           => 'Probabilidad',
+        'total'                 => 'Total',
+        'totalDevices'          => 'Total dispositivos',
+        'status'                => 'Estado',
+
         // CLIENT
         'type'                  => 'Perfil',
         'product'               => 'Perfil',

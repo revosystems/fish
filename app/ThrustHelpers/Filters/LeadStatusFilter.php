@@ -18,7 +18,7 @@ class LeadStatusFilter extends SelectFilter
     public function options()
     {
         return collect(Status::all())->mapWithKeys(function ($value, $key) {
-            return [__("admin.{$value['name']}") => $key];
+            return [$value['name'] => $key];
         });
     }
 }

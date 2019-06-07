@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class LeadStatusUpdate extends Model
 {
     protected $guarded = [];
-    public function statusName()
+    public function status()
     {
-        return Status::text($this->new_status);
+        return Status::find($this->new_status);
     }
 
     public function user()
