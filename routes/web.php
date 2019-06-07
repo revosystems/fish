@@ -17,7 +17,7 @@
     Route::group(["prefix" => 'admin', "namespace" => "Admin", "middleware" => ['verified', 'user.active']], function () { // can = policy
         Route::resource('leads', 'LeadsController', ["only" => ['show', 'update']]);
         Route::get('leads/{lead}/showMore', 'LeadsController@showMore')->name('lead.showMore');
-        Route::post('leads/{lead}/status', 'LeadsStatusController@store')->name('leads.status.store');
+        Route::post('leads/{lead}/comments', 'LeadCommentController@store')->name('leads.comments.store');
         Route::get('reports', 'ReportsController@index')->name('reports');
     });
 

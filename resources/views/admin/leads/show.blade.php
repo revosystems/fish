@@ -37,22 +37,17 @@
                 </div>
             </div>
             {{ Form::close() }}
-            <a href="{{ route('lead.showMore', $lead->id) }}">{{ __('admin.showMore') }}</a>
+            <a href="{{ route('lead.showMore', $lead->id) }}">{{ __('admin.showMore') }} @icon(plus)</a>
         </div>
     </div>
     <div class="card card-small mb-4">
-        @include('admin.leads.status')
+        @include('admin.leads.comments')
     </div>
 @stop
 
 @section('scripts')
     {{--@include('components.js.taggableInput', ["el" => "tags", "endpoint" => "leads", "object" => $lead])--}}
     <script>
-        function setStatusAndSubmit(new_status){
-            $("#new_status").val(new_status);
-            $("#comment-form").submit();
-        }
-
         $(document).ready(function(){
             $('input[type="file"]').change(function(e){
                 $(".attachment-selected").html(e.target.files[0].name);

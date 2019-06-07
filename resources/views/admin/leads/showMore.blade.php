@@ -16,19 +16,3 @@
         </div>
     </div>
 @stop
-
-@section('scripts')
-    {{--@include('components.js.taggableInput', ["el" => "tags", "endpoint" => "leads", "object" => $lead])--}}
-    <script>
-        function setStatusAndSubmit(new_status){
-            $("#new_status").val(new_status);
-            $("#comment-form").submit();
-        }
-
-        $(document).ready(function(){
-            $('input[type="file"]').change(function(e){
-                $(".attachment-selected").html(e.target.files[0].name);
-            });
-        });
-    </script>
-@stop

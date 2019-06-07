@@ -101,14 +101,20 @@ class Lead extends Model
         return Status::find($this->status);
     }
 
-    public function updateStatus($user, $body, $status)
+    public function updateStatus($user, $status = null)
     {
         if (! $this->user) {
             $this->update(['status' => $status, 'updated_at' => Carbon::now(), 'user_id' => $user->id]);
         } else {
             $this->update(['status' => $status, 'updated_at' => Carbon::now()]);
         }
-        return $this->statusUpdates()->create(['user_id' => $user->id, 'new_status' => $status, 'body' => $body]);
+        return $this->statusUpdates()->create(['user_id' => $user->id, 'new_status' => $status, 'body' => __('admin.statusChanged') . Status::find($status)->name]);
+    }
+
+    public function addComment($user, $comment)
+    {
+        $this->touch();
+        return $this->statusUpdates()->create(['user_id' => $user->id, 'new_status' => $this->status, 'body' => $comment]);
     }
 
     public function productProposal()

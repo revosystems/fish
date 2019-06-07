@@ -9,8 +9,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <input type="hidden" id="type_segment_old" value="{{ old('type_segment') }}"/>
-            @include('admin.leads.components.select', ['object' => $lead, 'options' => \App\Models\TypeSegment::all()->where('product', $lead->product), 'name' => 'type_segment'])
+            @include('admin.leads.components.select', ['object' => $lead, 'options' => \App\Models\TypeSegment::all(), 'name' => 'type_segment'])
         </div>
     </div>
     <div class="row">

@@ -16,7 +16,10 @@ class LeadsController extends Controller
 
     public function update(Lead $lead)
     {
-        $lead->update(request()->all());
+        $lead->update(request()->except('status'));
+        if (request()->has('status') && request('status') != $lead->status) {
+            $lead->updateStatus(auth()->user(), request('status'));
+        }
         return back()->withMessage('updated');
     }
 

@@ -5,9 +5,10 @@ return [
     'logout'        => 'Cerrar sesión',
 
     'lead'          => 'Lead|Leads',
-    'showMore'      => 'Mostrar mas',
+    'showMore'      => 'Mostrar más',
     'newLead'       => 'Nuevo Lead',
     'status'        => 'Estado|Estados',
+    'statusChanged' => 'El estado ha cambiado',
     'all'           => 'Todo|Todos',
     'mine'          => 'Mío|Míos',
     'company'       => 'Negocio',
@@ -53,7 +54,7 @@ return [
     'team'       => 'Equipo',
     'recent'     => 'Actualizado recientemente',
     'update'     => 'Actualitzar',
-    'comment'    => 'Comentario',
+    'comment'    => 'Comentar',
     'commentAs'  => 'Comentar como',
     'assign'     => 'Asignar',
 
@@ -93,6 +94,7 @@ return [
     'large'             => 'Grande',
     'store'             => 'Tienda',
     'chainOrFranchise'  => 'Cadena o franquicia',
+    'historic'          => 'Histórico',
     'probability'       => [
         'veryLow'    => 'Muy baja',
         'low'        => 'Baja',

@@ -6,12 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Attachment;
 use App\Models\Lead;
 
-class LeadsStatusController extends Controller
+class LeadCommentController extends Controller
 {
     public function store(Lead $lead)
     {
-//        $this->authorize('view', $lead);
-        $leadStatus = $lead->updateStatus(auth()->user(), request('body'), request('new_status'));
+        $leadStatus = $lead->addComment(auth()->user(), request('body'));
         if (request()->hasFile('attachment')) {
             Attachment::storeAttachmentFromRequest(request(), $leadStatus);
         }

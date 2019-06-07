@@ -18,6 +18,8 @@ class Lead extends ChildResource
     public static $model          = \App\Models\Lead::class;
     public static $search         = ['name', 'email', 'trade_name', 'phone', 'surname1'];
     public static $parentRelation = 'organization';
+    public static $defaultSort    = 'updated_at';
+    public static $defaultOrder   = 'DESC';
 
     public function fields()
     {

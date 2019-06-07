@@ -9,6 +9,7 @@
         @if (isset($hasNone) && $hasNone)
             <option value='-2' @if ($object->$name === -2)selected @endif data-content="<div class='hideHint'>{{ __('app.lead.' . ($title ?? $name)) }} </div><span class='colored'> {{ __('app.lead.none') }}</span>"> {{ __('app.lead.none') }} </option>
         @endif
+@php            \Log::info($options)@endphp
         @foreach($options as $key => $value)
             <option value='{{ $key }}' @if ($object->$name === $key)selected @endif data-content="<div class='hideHint'>{{ __("app.lead." . ($title ?? $name)) }}</div><div class='colored'>{{ is_array($value) ? $value['name'] : $value }}</div>">
                 {{ is_array($value) ? $value['name'] : $value }}
