@@ -8,7 +8,7 @@ return [
     'showMore'      => 'Mostrar más',
     'newLead'       => 'Nuevo Lead',
     'status'        => 'Estado|Estados',
-    'statusChanged' => 'El estado ha cambiado',
+    'statusChanged' => 'El estado ha cambiado a ',
     'all'           => 'Todo|Todos',
     'mine'          => 'Mío|Míos',
     'company'       => 'Negocio',
