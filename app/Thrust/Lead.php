@@ -2,6 +2,7 @@
 
 namespace App\Thrust;
 
+use App\ThrustActions\CreateLead;
 use App\ThrustHelpers\Fields\Status;
 use App\ThrustHelpers\Filters\LeadStatusFilter;
 use BadChoice\Thrust\ChildResource;
@@ -44,7 +45,7 @@ class Lead extends ChildResource
         return false;
     }
 
-    public function actions()
+    public function mainActions()
     {
         return [];
     }
