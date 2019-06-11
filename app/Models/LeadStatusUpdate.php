@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LeadStatusUpdate extends Model
 {
     protected $guarded = [];
+    protected $hidden  = ['created_at','updated_at','deleted_at'];
     public function status()
     {
         return Status::find($this->new_status);
@@ -15,6 +16,11 @@ class LeadStatusUpdate extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function lead()
+    {
+        return $this->belongsTo(lead::class);
     }
 
     public function attachments()

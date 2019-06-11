@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Notifications\LeadCommented;
+use App\Notifications\LeadStatusChanged;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,6 +17,7 @@ class Lead extends Model
     const PRODUCT_RETAIL    = 2;
 
     protected $guarded = [];
+    protected $hidden  = ['created_at','updated_at','deleted_at'];
     public function organization()
     {
         return $this->belongsTo(Organization::class);
@@ -108,12 +111,19 @@ class Lead extends Model
         } else {
             $this->update(['status' => $status, 'updated_at' => Carbon::now()]);
         }
+        if ($this->user && $user->id != $this->user_id) {
+            $this->user->notify(new LeadStatusChanged($this, $status, $user));
+        }
+
         return $this->statusUpdates()->create(['user_id' => $user->id, 'new_status' => $status, 'body' => __('admin.statusChanged') . Status::find($status)->name]);
     }
 
     public function addComment($user, $comment)
     {
         $this->touch();
+        if ($user->id != $this->user_id) {
+            $this->user->notify(new LeadCommented($this, $comment, $user));
+        }
         return $this->statusUpdates()->create(['user_id' => $user->id, 'new_status' => $this->status, 'body' => $comment]);
     }
 

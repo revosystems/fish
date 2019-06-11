@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Attachment extends Model
 {
     protected $guarded = [];
+    protected $hidden  = ['created_at','updated_at','deleted_at'];
     public function attachable()
     {
         return $this->morphTo();
