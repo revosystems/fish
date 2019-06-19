@@ -35,7 +35,7 @@
                                                     @include("app.proposals.{$proposal->key}")
                                                 </div>
                                                 <div class="col-sm-5">
-                                                    <img src="/images/proposals/{{$proposal->key}}-hero.png" />
+                                                    <img src="/images/proposals/{{$proposal->key}}_hero.png" />
                                                 </div>
                                             </div>
                                         </div>
