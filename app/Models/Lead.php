@@ -230,10 +230,6 @@ class Lead extends Model
             $proposals->push(Proposal::find(Proposal::PMS));
         }
 
-        if ($this->erp || $this->erp_other) {
-            $proposals->push(Proposal::find(Proposal::ERP));
-        }
-
         if ($this->soft > 0) {
             $proposals->push(Proposal::find($this->soft()->softType()->proposal()));
         } elseif ($this->soft_other) {
