@@ -4,6 +4,6 @@
     <li><a class="@setActive(resources)"     href="{{ route("resources") }}">{{ __('app.pages.resources') }}</a></li>
     <li><a class=""                          href="http://support.revo.works/es" target="_blank">{{ __('app.pages.support') }}</a></li>
     <li><a class="@setActive(lead.create)"   href="{{ route("lead.create") }}">{{ __('app.pages.lead') }}</a></li>
-    <li><a class="@setActive(crm)"           href="{{ route('thrust.index', ['organizations']) }}">{{ __('app.pages.crm') }}</a></li>
+    <li><a class="@setActive(crm)"           href="{{ route('thrust.index', ['leads']) }}">{{ __('app.pages.crm') }}</a></li>
     <li><a class=""                          href="{{route("logout")}}">@icon(power-off)</a></li>
 </ul>

@@ -37,7 +37,7 @@ class Organization extends ChildResource
     protected function getBaseQuery()
     {
         if (! auth()->user()->admin) {
-            return parent::getBaseQuery()->whereTrue(false);
+            return parent::getBaseQuery()->whereNull('id');
         }
         if (! $this->parentId) {
             return parent::getBaseQuery()->where('id', auth()->user()->organization_id);

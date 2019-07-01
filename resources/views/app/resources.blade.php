@@ -68,7 +68,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-4">
-                        <a href="{{__('app.resources.catalogs_flow_dwogs_txt')}}" target="_blank">
+                        <a href="{{__('app.resources.catalogs_flow_dw')}}" target="_blank">
                             <div class="item">
                                 <div class="icon"><div class="download">&nbsp;</div></div>
                                 <span class="product">{{__('app.resources.catalogs_flow')}}</span>
