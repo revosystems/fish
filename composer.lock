@@ -76,12 +76,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BadChoice/thrust.git",
-                "reference": "4ffe66bca2e593f74af882121f9cb69a46cbc9d4"
+                "reference": "17e133ddbe3afd43c6b4d380e63ef025cd1c7849"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadChoice/thrust/zipball/4ffe66bca2e593f74af882121f9cb69a46cbc9d4",
-                "reference": "4ffe66bca2e593f74af882121f9cb69a46cbc9d4",
+                "url": "https://api.github.com/repos/BadChoice/thrust/zipball/17e133ddbe3afd43c6b4d380e63ef025cd1c7849",
+                "reference": "17e133ddbe3afd43c6b4d380e63ef025cd1c7849",
                 "shasum": ""
             },
             "require": {
@@ -115,7 +115,7 @@
                 }
             ],
             "description": "A simple resource crud generator",
-            "time": "2019-05-07T15:32:56+00:00"
+            "time": "2019-07-03T11:50:23+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1490,7 +1490,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",

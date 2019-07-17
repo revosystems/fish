@@ -237,4 +237,13 @@ class Lead extends Model
         }
         return $proposals->reject(null);
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function userTasks(){
+        return $this->tasks()->where('user_id', auth()->id());
+    }
 }

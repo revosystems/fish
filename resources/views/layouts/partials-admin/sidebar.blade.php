@@ -27,6 +27,13 @@
                  "count"    => App\Repositories\LeadsRepository::all()->count()
             ])
 
+            @include('components.sidebarItem', [
+                 "url"      => route('thrust.index', ['tasks']),
+                 "title"    => trans_choice('admin.task', 2),
+                 "icon"     => 'list',
+                 "count"    => auth()->user()->tasks()->due()->count()
+            ])
+
             @if (auth()->user()->admin)
                 @include('components.sidebarItem', [
                      "url"      => route('thrust.index', ['organizations']),

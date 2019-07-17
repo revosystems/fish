@@ -21,7 +21,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('icon', function ($icon) {
-            return icon($icon);
+            return "<i class=\"fas fa-{$icon}\"></i>";
+
         });
 
         Blade::directive('iconMaterial', function ($icon) {

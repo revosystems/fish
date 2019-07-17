@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'admin'     => true,
             'active'    => 1
         ]);
-        factory(Lead::class)->create(['user_id' => $user->id]);
+        factory(Lead::class, 4)->create(['user_id' => $user->id]);
 
         $user = factory(User::class)->create([
             'name'      => 'Albert',
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             'admin'     => true,
             'active'    => 1
         ]);
-        factory(Lead::class)->create(['user_id' => $user->id]);
+        factory(Lead::class, 3)->create(['user_id' => $user->id]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

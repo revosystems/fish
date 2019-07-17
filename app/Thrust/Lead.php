@@ -35,6 +35,7 @@ class Lead extends ChildResource
             BelongsTo::make('organization'),
             BelongsTo::make('user'),
             Status::make('status')->sortable(),
+            HasMany::make('tasks')->onlyInIndex()->onlyCount()->withLink(),
             Date::make('created_at', __('admin.requested'))->showInTimeAgo()->sortable(),
             Date::make('updated_at', __('admin.updated'))->showInTimeAgo()->sortable(),
         ];
@@ -59,6 +60,8 @@ class Lead extends ChildResource
 
     protected function getBaseQuery()
     {
+        return auth()->user()->leads();
+
         if (! auth()->user()->admin) {
             return auth()->user()->leads();
 //            parent::getBaseQuery();

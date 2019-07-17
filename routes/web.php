@@ -19,6 +19,7 @@
         Route::get('leads/{lead}/showMore', 'LeadsController@showMore')->name('lead.showMore');
         Route::post('leads/{lead}/comments', 'LeadCommentController@store')->name('leads.comments.store');
         Route::get('reports', 'ReportsController@index')->name('reports');
+        Route::get('tasks/{task}/complete', 'TasksController@complete')->name('tasks.complete');
     });
 
     Route::get('logout', "Auth\LoginController@logout")->name('logout');

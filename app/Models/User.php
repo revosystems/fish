@@ -60,4 +60,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return auth()->user()->organization->platform ?? 'telefonica';
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
