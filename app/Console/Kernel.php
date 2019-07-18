@@ -24,8 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('overview:sendDailyPendingTasks')->dailyAt("5:00")->timezone('Europe/Madrid');
     }
 
     /**
