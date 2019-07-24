@@ -18,8 +18,14 @@
         Route::resource('leads', 'LeadsController', ["only" => ['show', 'update']]);
         Route::get('leads/{lead}/showMore', 'LeadsController@showMore')->name('lead.showMore');
         Route::post('leads/{lead}/comments', 'LeadCommentController@store')->name('leads.comments.store');
-        Route::get('reports', 'ReportsController@index')->name('reports');
         Route::get('tasks/{task}/complete', 'TasksController@complete')->name('tasks.complete');
+
+        Route::group(["prefix" => 'reports', "namespace" => "Reports"], function () { // can = policy
+            Route::get('dashboard', 'DashboardController@index')->name('reports.dashboard');
+            Route::get('leads', 'ReportsController@leads')->name('reports.leads');
+            Route::get('export/csv/{type}', 'ReportsExporterController@csv');
+            Route::get('export/xls/{type}', 'ReportsExporterController@xls');
+        });
     });
 
     Route::get('logout', "Auth\LoginController@logout")->name('logout');

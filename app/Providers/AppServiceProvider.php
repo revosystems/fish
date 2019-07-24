@@ -25,6 +25,16 @@ class AppServiceProvider extends ServiceProvider
 
         });
 
+        Blade::directive("icon", function ($icon) {
+            return icon($icon);
+        });
+
+        Blade::directive("paginator", function ($data) {
+            return "<?php  if ( method_exists({$data}, 'links') ) {
+                    echo {$data}->appends(array_except(request()->query(),['page']))->links();
+                } ?>";
+        });
+
         Blade::directive('iconMaterial', function ($icon) {
             return "<i class='material-icons'>".$icon."</i>";
         });

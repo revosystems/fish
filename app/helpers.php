@@ -15,3 +15,18 @@ function gravatarUrl($email, $size)
 
     return 'https://www.gravatar.com/avatar/'.$email.'?s='.$size."&default={$defaultImage}";
 }
+
+function timeZoned($date)
+{
+    return $date ? $date->timezone(auth()->user()->timezone) : '';
+}
+
+function getMonthName($monthNumber)
+{
+    return __("reports." . date("F", mktime(0, 0, 0, $monthNumber, 1)));
+}
+
+function dayOfWeekName($dayOfWeek)
+{
+    return __("reports." . strtolower(date('l', strtotime("Sunday + {$dayOfWeek} Days"))));
+}

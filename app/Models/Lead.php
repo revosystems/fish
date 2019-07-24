@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Orders\OrderStatus;
 use App\Notifications\LeadCommented;
 use App\Notifications\LeadStatusChanged;
+use BadChoice\Reports\Filters\Filterable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lead extends Model
 {
     use Taggable;
+    use Filterable;
     use SoftDeletes;
 
     const PRODUCT_XEF       = 1;
@@ -102,6 +105,11 @@ class Lead extends Model
     public function status()
     {
         return Status::find($this->status);
+    }
+
+    public function statusName()
+    {
+        return Status::text($this->status);
     }
 
     public function updateStatus($user, $status = null)

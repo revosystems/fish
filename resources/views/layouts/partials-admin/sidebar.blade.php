@@ -43,7 +43,7 @@
                 ])
             @endif
             @include('components.sidebarItem', [
-                 "url"      => route('reports'),
+                 "url"      => route('reports.dashboard'),
                  "title"    => trans_choice('admin.report', 2),
                  "icon"     => 'insert_chart'
             ])
