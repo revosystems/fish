@@ -28,7 +28,7 @@
             {{ Form::open(["url" => route('leads.update', $lead), 'method' => "PUT"]) }}
             @include('admin.leads.components.select', ['options' => App\Models\Probability::all(), 'object' => $lead, 'name' => 'probability'])
             @include('admin.leads.components.input', ['object' => $lead, 'name' => 'total', 'type' => 'number'])
-            @include('admin.leads.components.input', ['object' => $lead, 'name' => 'totalDevices', 'type' => 'number'])
+            @include('admin.leads.components.input', ['object' => $lead, 'name' => 'total_devices', 'type' => 'number', 'title' => "totalDevices"])
             @include('admin.leads.components.select', ['options' => App\Models\Status::all(), 'object' => $lead, 'name' => 'status'])
 
             <div class="card card-small mb-4">

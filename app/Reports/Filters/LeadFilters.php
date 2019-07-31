@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 class LeadFilters extends BaseFilters
 {
     public $defaultSort         = 'leads.id';
-    public $validSortFields     = ['id', 'name', 'userName', 'status', 'created_at', 'updated_at'];
+    public $validSortFields     = ['id', 'product', 'name', 'surname1', 'surname2', 'email', 'phone', 'city', 'userName', 'trade_name', 'status', 'created_at', 'updated_at', 'quantity', 'total', 'total_devices'];
     protected $dateField        = 'leads.created_at';
-    public $validTotalize       = ['day', 'dayAndUser', 'dayOfWeek', 'week', 'month', 'monthAndUser', 'status', 'user'];
+    public $validTotalize       = ['status', 'user_id', 'product', 'type_segment', 'general_typology', 'property_spaces', 'property_franchise'];
 
     public function globalFilter()
     {
@@ -18,56 +18,49 @@ class LeadFilters extends BaseFilters
         );
     }
 
-    public function totalize($key = null)
-    {
-        if ($key == null) {
-            return $this->builder;
-        }
-        return $this->groupBy($key)
-            ->select('leads.*',
-                'users.name as userName',
-                DB::raw('count(*) as quantity')
-            );
-    }
-
-    public function user($userId = null)
-    {
-        return $this->where('leads.user_id', $userId);
-    }
-
     public function product($product = null)
     {
         return $this->where('leads.product', $product);
     }
 
-    public function groupBy($key)
+    public function type_segment($typeSegment = null)
     {
-        if ($key == "day") {
-            return $this->builder->groupBy(DB::raw('date('. $this->dateField . ')'))  ->groupBy(DB::raw('month('. $this->dateField . ')'))  ->groupBy(DB::raw('year('. $this->dateField . ')'))->orderBy($this->dateField);
-        }
-        if ($key == 'dayAndUser') {
-            return $this->builder->groupBy(DB::raw('date(' . $this->dateField. ')'))->groupBy(DB::raw('month(' . $this->dateField . ')'))->groupBy(DB::raw('year(' . $this->dateField . ')'))->groupBy(DB::raw('user_id'));
-        }
-        if ($key == "week") {
-            return $this->builder->groupBy(DB::raw('week(' . $this->dateField. ', 3)')) ->groupBy(DB::raw('year('. $this->dateField . ')'))   ->orderBy($this->dateField);
-        }
-        if ($key == "month") {
-            return $this->builder->groupBy(DB::raw('month('. $this->dateField . ')')) ->groupBy(DB::raw('year('. $this->dateField . ')'))   ->orderBy($this->dateField);
-        }
-        if ($key == 'monthAndUser') {
-            return $this->builder->groupBy(DB::raw('month(' . $this->dateField . ')'))->groupBy(DB::raw('year(' . $this->dateField . ')'))->groupBy(DB::raw('user_id'));
-        }
-        if ($key == "dayOfWeek") {
-            return $this->builder->groupBy(DB::raw('dayofweek('. $this->dateField . ')'))                                             ->orderBy($this->dateField);
-        }
-        if ($key == "user") {
-            return $this->builder->groupBy(DB::raw('user_id'));
-        }
-        if ($key == "status") {
-            return $this->builder->groupBy(DB::raw('status'));
-        }
-
-        return $this->builder;
+        return $this->where('leads.type_segment', $typeSegment);
     }
 
+    public function general_typology($generalTypology = null)
+    {
+        return $this->where('leads.general_typology', $generalTypology);
+    }
+
+    public function property_spaces($propertySpaces = null)
+    {
+        return $this->where('leads.property_spaces', $propertySpaces);
+    }
+
+    public function property_franchise($propertyFranchise = null)
+    {
+        return $this->where('leads.property_franchise', $propertyFranchise);
+    }
+
+    public function user_id($userId = null)
+    {
+        return $this->where('leads.user_id', $userId);
+    }
+
+    public function status($status = null)
+    {
+        return $this->where('leads.status', $status);
+    }
+
+    protected function selectGrouped()
+    {
+        return $this->builder->select('leads.*',
+            'users.name as userName',
+            DB::raw('sum(devices) as devices'),
+            DB::raw('sum(total) as total'),
+            DB::raw('sum(totalDevices) as totalDevices'),
+            DB::raw('count(*) as quantity')
+        );
+    }
 }

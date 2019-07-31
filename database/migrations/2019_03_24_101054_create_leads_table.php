@@ -21,7 +21,7 @@ class CreateLeadsTable extends Migration
             $table->unsignedInteger('organization_id')->unsigned()->nullable();
             $table->tinyInteger('probability')->nullable();
             $table->decimal('total', 8, 2)->nullable();
-            $table->decimal('totalDevices', 8, 2)->nullable();
+            $table->decimal('total_devices', 8, 2)->nullable();
             $table->string('trade_name')->nullable();
             $table->string('name')->nullable();
             $table->string('surname1')->nullable();

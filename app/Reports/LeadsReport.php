@@ -14,6 +14,6 @@ class LeadsReport extends Report
 
     public function query($parent_id = null)
     {
-        return Lead::filter($this->getFilters($parent_id));;
+        return Lead::filter($this->getFilters($parent_id));
     }
 }

@@ -28,6 +28,17 @@
 </div>
 <a class="secondary button" onclick="shiftInterval(1)">></a>
 
+@if (isset($groupByDate) && $groupByDate)
+    @icon(calendar)
+    {{ Form::select('groupByDate', [
+        ""              => "--",
+        'day'           => trans_choice('reports.day',          1),
+        'dayOfWeek'     => trans_choice('reports.dayOfWeek',    1),
+        'week'          => trans_choice('reports.week',         1),
+        'month'         => trans_choice('reports.month',        1),
+        ], $filters->valueFor('groupByDate'), ["id" => "group-by-date" ]) }}
+@endif
+
 <script>
 
     function filterSetToday(){

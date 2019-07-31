@@ -6,6 +6,7 @@ mix
         'node_modules/jquery/dist/jquery.js',
         'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
         'vendor/badchoice/thrust/src/resources/js/thrust.min.js',
+        'node_modules/moment/min/moment.min.js',
         'node_modules/jquery-tags-input/dist/jquery.tagsinput.js',
         'node_modules/bootstrap-select/dist/js/bootstrap-select.js',
         'public/modules/Animated-Placeholder/js/animated-placeholder.js',
@@ -14,8 +15,11 @@ mix
         'resources/assets/js/libs/mention.js/mention.js',
     ], 'public/js/admin.js')
 
+    .less('resources/assets/less/style.less', '../resources/assets/css/admin-less.css')
     .sass('resources/assets/sass/admin.scss', '../resources/assets/css/admin-sass.css')
     .styles([
+        'resources/assets/css/admin-less.css',
+        'vendor/badchoice/thrust/src/resources/css/select2.css',
         'resources/assets/css/admin-sass.css',
         'node_modules/bootstrap-select/dist/css/bootstrap-select.css',
     ],'public/css/admin.css')
